@@ -1,0 +1,6 @@
+# hsbg output that can be rebuilt
+reports/
+export/
+# Python caches of the lenses' metrics.py / tests
+__pycache__/
+.pytest_cache/

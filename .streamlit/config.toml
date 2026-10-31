@@ -1,0 +1,14 @@
+# Local-only dashboard (docs/architecture.md §6.1). `hsbg serve` also passes these as CLI flags.
+[server]
+address = "127.0.0.1"
+port = 8501
+headless = true
+enableXsrfProtection = true
+fileWatcherType = "none"
+
+[browser]
+gatherUsageStats = false
+serverAddress = "127.0.0.1"
+
+[theme]
+base = "light"

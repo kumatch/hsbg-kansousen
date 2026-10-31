@@ -1,0 +1,1283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CardDefs build="253216">
+<Entity CardID="BG20_101" ID="70157" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ロードボア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_100" ID="70838" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ロカラ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_100_SKIN_G" ID="124111" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>探検家ロカラ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_202" ID="71908" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>マスター・ウェン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_202_SKIN_A" ID="82094" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>バンルーとウェン師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_283" ID="75702" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ゲイルウィング</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_283_SKIN_F" ID="120912" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>永遠のゲイルウィング</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_301" ID="71916" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>貪り喰らうものミュターヌス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_301_SKIN_G" ID="115388" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>城のミュターヌス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_004_G" ID="72821" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>貪るウルズール</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_000" ID="73940" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>キャリエル・ローム</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_000_SKIN_G" ID="131195" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>リーダー・キャリエル</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_000_SKIN_H" ID="133738" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>弁護士キャリエル</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_010" ID="76562" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>スキャブス・カッターバター</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_020" ID="77516" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>コックのクッキー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_020_SKIN_F" ID="128098" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>無限のクッキー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_000" ID="77987" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>タヴィッシュ・ストームパイク</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_000_SKIN_E" ID="115387" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>リボンでおめかしタヴィッシュ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_002" ID="80239" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ドレクサー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_002_SKIN_E" ID="115375" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>バードウォッチャー・ドレクサー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_002p" ID="80244" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フロストウルフ不撓</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_201" ID="81569" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フェイリン大使</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_201_SKIN_E" ID="117880" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>パンク・フェイリン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG23_HERO_201" ID="86013" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>オズマット</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_715" ID="97604" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>辛抱強い斥候</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_HERO_100" ID="92960" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>デナスリアス陛下</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_HERO_100_SKIN_A" ID="102494" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>メロディアス陛下</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_HERO_100_SKIN_E" ID="117884" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ボス・デナスリアス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_001" ID="95246" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>蘇ったウルフライダー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_008" ID="95261" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>永劫の騎士</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_010" ID="95265" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ハンズフリーのフォーセイクン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_011" ID="95267" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>死群のネルビアン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_022" ID="95280" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>スカーレット・スカル</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_354" ID="97408" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>タイタス・リーヴェンデア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_135" ID="98501" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>南海の大道芸人</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_146" ID="98582" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>コモリロボ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_149" ID="98713" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>分極ビートボクサー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_152" ID="98588" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ユーティリティドローン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_174" ID="100949" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ソウル・リワインダー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_817" ID="99035" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>刀狩</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_HERO_101" ID="101130" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ホガァァァ船長</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_ICC_901" ID="101314" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ドラッカリの呪い師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_300" ID="104551" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>無害なボンクラ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_303" ID="104610" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>変葬する墓泥棒</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_309" ID="108992" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>木乃伊加工者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_309_G" ID="109003" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>木乃伊加工者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_633_G" ID="110665" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フェルボア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_HERO_400" ID="105314" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ピン・ゾロ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG29_300" ID="109879" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>はらぺこウィンターフィンナー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG29_611" ID="110101" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>王のプラグを抜きし者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG29_813_G" ID="108464" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>執拗な詩竜</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_125" ID="113158" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>死体の世話係</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_301" ID="111388" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>永劫の肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_416" ID="111556" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>旧神のしるし</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_426t" ID="115250" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>カラフルコンパス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_434" ID="112855" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>レプリカの大聖堂</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_435" ID="112082" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ゴールデナイザーの補給品</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_442" ID="113096" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>血のゴーレムのステッカー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_700" ID="117794" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>末魔の魂壺</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_888" ID="112895" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>土産物店</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_993" ID="113103" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ペイグルの釣り竿</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_149" ID="116178" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>バブルガンナー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_177" ID="115678" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>メカノームの解読者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_330" ID="117553" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>不吉な予言者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_801" ID="115577" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>モリコガネ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_809" ID="119255" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ターコイズ・スキッタラー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_816" ID="116736" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ファイアーボーラー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_835" ID="115610" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>殺り手の死事人</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_999" ID="119666" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>縫い目のサルベージャー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_003" ID="116926" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>遠見師ノブンド</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_005" ID="117409" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>クローンマスター・ゼレク</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_006" ID="117425" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>主教オザール</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_811" ID="120358" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>刃の女王ケリガン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_111" ID="120754" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪夢の茶会の客人</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_236" ID="119996" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>凄腕黄金ハンター</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_237" ID="120223" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>恐れ知らずの植物学者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_324" ID="120104" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ドラストフォールンの肉屋</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_324_G" ID="120105" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ドラストフォールンの肉屋</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_336" ID="120689" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>グルメなゴルムリング</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_821" ID="120299" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フェルの炎吹師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_873" ID="121687" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>灰の頽廃者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_880" ID="120219" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>友好的なガイスト</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_MagicItem_901" ID="120159" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>金メッキの羅針盤</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_430" ID="122098" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>天才タスカー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_822" ID="122179" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>やり手の大盗賊</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_825" ID="122520" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>誇り高き私掠船員</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_825_G" ID="122521" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>誇り高き私掠船員</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_830" ID="123325" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>アズシャラのカトラス剣士</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_886" ID="122568" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>牙が生えたキャンパー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_924" ID="122674" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>チビブルードラゴン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_HERO_001" ID="122925" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>生ける伝説ロー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_140" ID="126637" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ベテラン飛魚</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_170t" ID="126822" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>赤の爆音器</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_170t3" ID="126826" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>緑の爆音器</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_171" ID="126816" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>コンベアー建設機</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_171_G" ID="126817" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>コンベアー建設機</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_405" ID="129269" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>容赦なきディフレクター</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_682" ID="126667" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>レイザーフェンの奔放娘</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_683" ID="126669" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ブライアーバックのドラマー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_690" ID="126451" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>疫病ランナー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_692" ID="126733" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フォーセイクンの織り手</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_HERO_001" ID="126537" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>時を歪めるクロミー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_HERO_002" ID="126532" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ミスター・クロックスワース</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_155" ID="130662" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ひねくれラスガード</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_HERO_001" ID="129684" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ウォーゲンの王ゲン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_HERO_001p" ID="129685" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>双対性の王</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_434" ID="130904" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>宝石箱</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_712" ID="130891" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>私掠船員の肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_732" ID="131132" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>魂発酵容器</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_733" ID="131133" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>獄吏のステッカー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_743" ID="131141" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>電極アトラクター</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_814" ID="130832" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>満杯コイン財布</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_817" ID="130835" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>レンズケース</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_890" ID="130890" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>海底のイカリ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_931" ID="131003" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>書記型タイプライター</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_097_G" ID="131693" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>マインドベンダー・グーシャ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_098" ID="131694" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ゾートロイド</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_099" ID="131696" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>腐る脳</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_101" ID="131700" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>不本意な怠慢</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_101_G" ID="131701" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>不本意な怠慢</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_103" ID="131704" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ナラキ戦闘工兵</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_103_G" ID="131705" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ナラキ戦闘工兵</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_104" ID="131706" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>闇の黒幕</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_106" ID="131710" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>殺し屋クシア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_106_G" ID="131711" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>殺し屋クシア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_108" ID="131714" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>獰猛な超脳スラッシャー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_108_G" ID="131715" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>獰猛な超脳スラッシャー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_109" ID="131716" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>疑いの影</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_109_G" ID="131717" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>疑いの影</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_110" ID="131718" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ルンルン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_112" ID="133096" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪臭漂う腐食</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_113" ID="133098" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>横滑りする生贄</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_113_G" ID="133099" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>横滑りする生贄</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_114" ID="133100" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>寄生肉獣の子</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_115" ID="133102" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪夢の腐食</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_115_G" ID="133103" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪夢の腐食</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_116" ID="133104" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>大腐界の落とし子</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_116_G" ID="133105" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>大腐界の落とし子</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_201" ID="132794" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>潜伏するミノカサゴ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_201_G" ID="132795" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>潜伏するミノカサゴ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_202" ID="132796" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>おいしいロブスター</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_204_G" ID="132801" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ヘッドハンター・グリフォン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_207" ID="132806" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>オオカミの子</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_210" ID="133039" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ため込み屋ハイエナ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_211" ID="133041" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>檻かじり</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_241" ID="132953" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>クリムゾンの擁護者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_245" ID="132985" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ルーンの魔術師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_300" ID="132136" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ナラキ・フロストコーラー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_311" ID="132213" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>奈落の使い</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_312" ID="132215" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>マインドベンド徴兵官</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_312_G" ID="132216" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>マインドベンド徴兵官</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_318" ID="132331" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>無貌の変換マシン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_318_G" ID="132332" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>無貌の変換マシン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_320" ID="134497" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>謎めいたクシア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_320_G" ID="134498" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>謎めいたクシア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_331" ID="132632" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>イバラの穴掘り</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_342" ID="132921" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>賢い漂流者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_345" ID="132915" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>怪しい看守</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_346" ID="132917" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>果物売り</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_354" ID="133434" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>おとりの召術師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_360t5" ID="134708" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>闇のパラドックス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_366" ID="134415" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>臨機応変ロボ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_367" ID="134417" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>全自動起床ラッパ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_369" ID="134421" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>欲張りな謀略家</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_372" ID="134409" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>神聖前衛隊</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_506" ID="132312" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ドローン複製師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_511" ID="132322" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>デッドベルリンガー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_511_G" ID="132323" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>デッドベルリンガー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_514" ID="133081" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>バリアバンシー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_515" ID="133083" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>しゃれた幽霊</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_700" ID="132881" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>下水からの脱走者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_731_G" ID="132900" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>インプの幻術師</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_762" ID="132901" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪魔の陽動者</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_764" ID="133283" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ギアフィン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_853" ID="132893" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>グラムボット</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_854" ID="132895" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>救助ロボ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_000" ID="134502" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ドレストアガス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_002" ID="134504" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>キシックス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_002p" ID="134505" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>闇の儀式</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_101" ID="132578" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>魂寄生体トラスタス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_105" ID="132608" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪夢の王ザヴィウス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_204" ID="133391" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>疫病ランナーの肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_213" ID="133401" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>風に舞う怪鳥のステッカー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_303" ID="133346" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>見通しのグラス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_308" ID="133380" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>先遣者のステッカー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_400" ID="134315" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>穢れしコインの肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_402" ID="134638" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>超脳スラッシャーの肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_404" ID="134317" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>穢れしバトン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_404t" ID="134323" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>穢れしバトン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_411" ID="134325" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>再活性の光</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_416" ID="134757" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>邪悪な実験</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_417" ID="134758" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>即興の達人</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_418" ID="134759" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>古代の書物</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_423" ID="134439" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>爆音器の肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_430" ID="134443" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ヘドロの肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_450" ID="134637" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ひねくれサメの肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_600" ID="134453" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>変換マシンの肖像画</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_602" ID="134322" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>古なる者の仮面</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_609" ID="134642" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>トリックススターの手の内</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_610" ID="134748" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>悪意あふれる招待状</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_810" ID="133062" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>誘導ジャイロブレード</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_812" ID="133695" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>緊急用ギアブレード</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_852" ID="134639" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>放蕩娘のステッカー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BGFYM_000" ID="130610" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>クトゥーン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BGFYM_002t" ID="130613" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>異形の触手</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BGFYM_011" ID="132532" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ヤシャラージュ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BGS_008" ID="59687" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ガストコイラー</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BGS_018" ID="59955" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>巨狼ゴルドリン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG_ICC_026t_G" ID="99630" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>スケルトン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="BG_LOE_077" ID="96786" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ブラン・ブロンズビアード</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_10" ID="57891" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>商大公ガリーウィックス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_11" ID="57892" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>炎の王ラグナロス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_16" ID="57944" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>A. F. ケイ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_16_SKIN_A" ID="75166" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>日光浴のA. F. ケイ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_16_SKIN_K" ID="133733" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>娯楽時間中のA. F. ケイ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_21" ID="58021" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>偉大なるアカザムザラク</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_27" ID="58435" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>シンドラゴサ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_27_SKIN_C" ID="98800" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>スコージのシンドラゴサ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_28" ID="58534" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>無限のトキ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_28_SKIN_D" ID="97924" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ティンカータウンのトキ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_36" ID="59806" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ダンシン・ダリル</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_36_SKIN_F" ID="103816" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>サイドショーのダリル</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_38" ID="59814" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>キング・ムクラ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_38_SKIN_D" ID="102496" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ミスター・ムクラ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_39" ID="59831" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ピラマッド</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_39_SKIN_F" ID="120914" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ピラマスミウス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_43" ID="60214" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>恐竜使いブラン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_43_SKIN_D" ID="96576" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ブラン・ブロンズギル</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_50" ID="60367" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>テス・グレイメイン</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_52" ID="60369" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>デスウィング</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_52_SKIN_C" ID="98796" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>蘇ったデスウィング</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_62" ID="61914" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>マイエヴ・シャドウソング</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_62_SKIN_G" ID="131116" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>非番のマイエヴ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_67" ID="62266" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フックタスク船長</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_67_SKIN_G" ID="133728" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>密輸人フックタスク</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_68" ID="62268" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>空賊船長クラッグ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_71" ID="63601" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ジャンディス・バロフ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_71_SKIN_F" ID="105062" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>決斗のジャンディス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_74" ID="63604" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>森番オム</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_74_SKIN_G" ID="131187" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>フェルウッドの番人オム</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_74_SKIN_H" ID="133729" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>看守のオム</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_75" ID="64400" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ラカニシュ</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_76" ID="64403" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>アラキア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_76_SKIN_E" ID="107785" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>弾嵐のアラキア</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_91" ID="64485" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>偉大なるゼフリス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_91_SKIN_F" ID="107787" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>砂丘住まいのゼフリス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_93" ID="66483" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ン＝ゾス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_93_SKIN_B" ID="102861" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ミックスの現神ン＝ゾス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_94" ID="67356" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>チケッタス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_94_SKIN_E" ID="103815" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ダフ屋チケッタス</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_KelThuzad" ID="59194" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ケルスザード</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HP_044" ID="59891" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>放置</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HP_086" ID="64402" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>羽虫を打つが如し</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HP_105t" ID="67213" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ン＝ゾスの魚</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconUps_045" ID="58400" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ブラン・ブロンズビアード</jaJP>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconUps_307" ID="67216" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<jaJP>ン＝ゾスの魚</jaJP>
+	</Tag>
+</Entity>
+</CardDefs>

@@ -1,0 +1,24 @@
+# hsbg settings for this workspace. Every line is optional: delete or comment out what you do not
+# need and the default (shown) is used. Paths may use %USERPROFILE% / %APPDATA%; relative paths are
+# relative to this folder. Environment variables HSBG_LOGS / HSBG_KNOWLEDGE / HSBG_CARDDEFS /
+# HSBG_LOCALE override the matching line. `hsbg config` shows what is in effect.
+
+# Game logs written by the HDT plugin (its Settings > Log folder)
+# logs_dir = '%USERPROFILE%\Documents\HSBG-Logs'
+
+# Saved AI analyses (Markdown), static HTML reports, `hsbg export` output
+# analysis_dir = 'analysis'
+# reports_dir = 'reports'
+# export_dir = 'export'
+
+# Your lenses (one folder per angle of analysis; `hsbg lens new <name>`)
+# lenses_dir = 'lenses'
+
+# Your own game-knowledge folder (rules, season, patches), created by `hsbg init` next to this file.
+# Point it at another folder (e.g. a separate git repository) if you keep it elsewhere; comment it
+# out to analyse without one.
+knowledge_dir = 'knowledge'
+
+# HDT's card data (card names, hero skins) and the card-name language (jaJP, enUS, ...)
+# carddefs_dir = '%APPDATA%\HearthstoneDeckTracker\CardDefs'
+# locale = 'jaJP'

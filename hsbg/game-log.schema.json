@@ -1,0 +1,275 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/kumatch/hdt-plugin-hsbg-kansousen/blob/main/schema/game-log.schema.json",
+  "title": "HSBG Logger game log",
+  "description": "docs/log-schema.md と同期する。1 ゲーム = 1 JSON。",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "generator", "game", "player", "result", "opponents", "turns", "notes"],
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "status": { "type": "string", "enum": ["complete", "incomplete", "not_battlegrounds"] },
+    "generator": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["plugin", "plugin_version", "hdt_version", "hearthstone_build"],
+      "properties": {
+        "plugin": { "type": "string" },
+        "plugin_version": { "type": "string" },
+        "hdt_version": { "type": ["string", "null"] },
+        "hearthstone_build": { "type": ["integer", "null"] }
+      }
+    },
+    "game": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["game_id", "mode", "variant", "game_type", "started_at", "ended_at", "duration_sec", "region",
+                   "anomaly", "global_old_god", "minion_types", "combat_damage_cap", "lobby_size"],
+      "properties": {
+        "game_id": { "type": "string", "minLength": 1 },
+        "mode": { "type": "string", "enum": ["battlegrounds"] },
+        "variant": { "type": "string", "enum": ["solo", "duos"] },
+        "game_type": { "type": ["string", "null"] },
+        "started_at": { "type": ["string", "null"], "format": "date-time" },
+        "ended_at": { "type": ["string", "null"], "format": "date-time" },
+        "duration_sec": { "type": ["integer", "null"], "minimum": 0 },
+        "region": { "type": ["string", "null"] },
+        "anomaly": { "$ref": "#/definitions/card_ref" },
+        "global_old_god": { "$ref": "#/definitions/card_ref" },
+        "minion_types": { "type": "array", "items": { "type": "string" } },
+        "combat_damage_cap": { "type": ["integer", "null"] },
+        "lobby_size": { "type": ["integer", "null"], "minimum": 2, "maximum": 8 }
+      }
+    },
+    "player": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["hero", "hero_choices", "hero_choices_before_reroll", "hero_power", "starting_health", "starting_armor", "trinkets", "quest"],
+      "properties": {
+        "hero": { "$ref": "#/definitions/card_ref" },
+        "hero_choices": { "type": "array", "items": { "$ref": "#/definitions/hero_choice" } },
+        "hero_choices_before_reroll": { "type": ["array", "null"], "items": { "$ref": "#/definitions/hero_choice" } },
+        "hero_power": { "$ref": "#/definitions/card_ref" },
+        "starting_health": { "type": ["integer", "null"] },
+        "starting_armor": { "type": ["integer", "null"] },
+        "trinkets": { "type": "array", "items": { "$ref": "#/definitions/trinket" } },
+        "quest": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["card_id", "name", "reward_card_id", "completed_turn"],
+          "properties": {
+            "card_id": { "type": ["string", "null"] },
+            "name": { "type": ["string", "null"] },
+            "reward_card_id": { "type": ["string", "null"] },
+            "completed_turn": { "type": ["integer", "null"] }
+          }
+        }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["placement", "mmr_before", "mmr_after", "mmr_delta", "eliminated_turn", "final_tavern_tier", "total_turns"],
+      "properties": {
+        "placement": { "type": ["integer", "null"], "minimum": 1, "maximum": 8 },
+        "mmr_before": { "type": ["integer", "null"] },
+        "mmr_after": { "type": ["integer", "null"] },
+        "mmr_delta": { "type": ["integer", "null"] },
+        "eliminated_turn": { "type": ["integer", "null"] },
+        "final_tavern_tier": { "type": ["integer", "null"], "minimum": 1, "maximum": 7 },
+        "total_turns": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "opponents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["player_id", "hero", "placement", "estimated_placement", "eliminated_turn", "final_health", "final_armor", "final_tavern_tier", "trinkets"],
+        "properties": {
+          "player_id": { "type": "integer" },
+          "hero": { "$ref": "#/definitions/card_ref" },
+          "placement": { "type": ["integer", "null"], "minimum": 1, "maximum": 8 },
+          "estimated_placement": { "type": ["integer", "null"], "minimum": 1, "maximum": 8 },
+          "eliminated_turn": { "type": ["integer", "null"] },
+          "final_health": { "type": ["integer", "null"] },
+          "final_armor": { "type": ["integer", "null"] },
+          "final_tavern_tier": { "type": ["integer", "null"] },
+          "trinkets": { "type": "array", "items": { "$ref": "#/definitions/card_ref" } }
+        }
+      }
+    },
+    "turns": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["turn", "tavern_tier", "health", "armor", "gold_available", "actions", "board_end_of_shop", "hand_end_of_shop", "combat"],
+        "properties": {
+          "turn": { "type": "integer", "minimum": 1 },
+          "tavern_tier": { "type": ["integer", "null"], "minimum": 1, "maximum": 7 },
+          "health": { "type": ["integer", "null"] },
+          "armor": { "type": ["integer", "null"] },
+          "gold_available": { "type": ["integer", "null"] },
+          "actions": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["gold_spent", "buys", "sells", "rerolls", "tier_ups", "hero_power_uses", "spells_played"],
+            "properties": {
+              "gold_spent": { "type": ["integer", "null"] },
+              "buys": { "type": ["integer", "null"] },
+              "sells": { "type": ["integer", "null"] },
+              "gold_gained": { "type": ["integer", "null"] },
+              "rerolls": { "type": ["integer", "null"] },
+              "tier_ups": { "type": ["integer", "null"] },
+              "hero_power_uses": { "type": ["integer", "null"] },
+              "spells_played": { "type": ["integer", "null"] },
+              "dark_gifts": { "type": ["integer", "null"] }
+            }
+          },
+          "board_end_of_shop": { "type": "array", "items": { "$ref": "#/definitions/minion" } },
+          "hand_end_of_shop": { "type": ["array", "null"], "items": { "$ref": "#/definitions/card_snapshot" } },
+          "shop_offers": { "type": "array", "items": { "$ref": "#/definitions/shop_offer" } },
+          "lobby": { "type": ["array", "null"], "items": { "$ref": "#/definitions/lobby_entry" } },
+          "deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
+          "combat": {
+            "type": ["object", "null"],
+            "additionalProperties": false,
+            "required": ["opponent_player_id", "opponent_hero", "opponent_board", "opponent_health", "opponent_armor", "result", "damage_dealt", "damage_taken", "bobs_buddy"],
+            "properties": {
+              "opponent_player_id": { "type": ["integer", "null"] },
+              "opponent_hero": { "$ref": "#/definitions/card_ref" },
+              "opponent_board": { "type": "array", "items": { "$ref": "#/definitions/minion" } },
+              "opponent_health": { "type": ["integer", "null"] },
+              "opponent_armor": { "type": ["integer", "null"] },
+              "opponent_tavern_tier": { "type": ["integer", "null"] },
+              "result": { "type": ["string", "null"], "enum": ["win", "loss", "tie", null] },
+              "damage_dealt": { "type": ["integer", "null"] },
+              "damage_taken": { "type": ["integer", "null"] },
+              "bobs_buddy": {
+                "type": ["object", "null"],
+                "additionalProperties": false,
+                "required": ["win", "tie", "loss", "lethal", "opponent_lethal", "avg_damage", "simulations"],
+                "properties": {
+                  "win": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "tie": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "loss": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "lethal": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "opponent_lethal": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "avg_damage": { "type": "number" },
+                  "simulations": { "type": "integer", "minimum": 0 }
+                }
+              },
+              "opponent_deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] }
+            }
+          }
+        }
+      }
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "definitions": {
+    "card_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "name", "dbf_id"],
+      "properties": {
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] }
+      }
+    },
+    "card_snapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "name", "dbf_id"],
+      "properties": {
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] },
+        "card_type": { "type": ["string", "null"], "enum": ["minion", "spell", "other", null] },
+        "tier": { "type": ["integer", "null"] },
+        "attack": { "type": ["integer", "null"] },
+        "health": { "type": ["integer", "null"] },
+        "golden": { "type": ["boolean", "null"] }
+      }
+    },
+    "shop_offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["trigger", "cards"],
+      "properties": {
+        "trigger": { "type": "string", "enum": ["turn_start", "reroll", "refill", "added"] },
+        "cards": { "type": "array", "items": { "$ref": "#/definitions/card_snapshot" } }
+      }
+    },
+    "lobby_entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["player_id", "tavern_tier", "health", "armor", "leaderboard_place", "eliminated"],
+      "properties": {
+        "player_id": { "type": "integer" },
+        "tavern_tier": { "type": ["integer", "null"] },
+        "health": { "type": ["integer", "null"] },
+        "armor": { "type": ["integer", "null"] },
+        "leaderboard_place": { "type": ["integer", "null"] },
+        "eliminated": { "type": "boolean" }
+      }
+    },
+    "hero_choice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "name", "dbf_id", "starting_armor"],
+      "properties": {
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] },
+        "starting_armor": { "type": ["integer", "null"] }
+      }
+    },
+    "trinket": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "name", "dbf_id", "turn"],
+      "properties": {
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] },
+        "turn": { "type": ["integer", "null"] }
+      }
+    },
+    "deity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "name", "dbf_id", "attack", "health", "attack_after_combat", "health_after_combat", "awakened"],
+      "properties": {
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] },
+        "attack": { "type": ["integer", "null"] },
+        "health": { "type": ["integer", "null"] },
+        "attack_after_combat": { "type": ["integer", "null"] },
+        "health_after_combat": { "type": ["integer", "null"] },
+        "awakened": { "type": ["boolean", "null"] },
+        "golden": { "type": ["boolean", "null"] }
+      }
+    },
+    "minion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["position", "card_id", "name", "tier", "attack", "health", "golden", "keywords", "minion_types"],
+      "properties": {
+        "position": { "type": "integer", "minimum": 1, "maximum": 7 },
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "tier": { "type": ["integer", "null"] },
+        "attack": { "type": "integer" },
+        "health": { "type": "integer" },
+        "golden": { "type": "boolean" },
+        "keywords": { "type": "array", "items": { "type": "string" } },
+        "divine_shields": { "type": "integer", "minimum": 0 },
+        "minion_types": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

@@ -1,0 +1,1541 @@
+{
+  "schema_version": "1.0.0",
+  "status": "complete",
+  "generator": {
+    "plugin": "HsbgLogger",
+    "plugin_version": "0.3.0",
+    "hdt_version": "1.58.3",
+    "hearthstone_build": 56608
+  },
+  "game": {
+    "game_id": "7de011e4-8087-5f50-ae58-2ac61d42a1bc",
+    "mode": "battlegrounds",
+    "variant": "solo",
+    "game_type": "GT_BATTLEGROUNDS",
+    "started_at": "2026-01-10T11:04:44.067533+09:00",
+    "ended_at": "2026-01-10T11:17:53.984008+09:00",
+    "duration_sec": 790,
+    "region": "ASIA",
+    "anomaly": {
+      "card_id": null,
+      "name": null,
+      "dbf_id": null
+    },
+    "global_old_god": {
+      "card_id": "BGFYM_011",
+      "name": "Y'Shaarj",
+      "dbf_id": 132532
+    },
+    "minion_types": [
+      "aberration",
+      "beast",
+      "mechanical",
+      "pirate",
+      "undead"
+    ],
+    "combat_damage_cap": 15,
+    "lobby_size": 8
+  },
+  "player": {
+    "hero": {
+      "card_id": "BG36_HERO_002",
+      "name": "Kith'ix",
+      "dbf_id": 134504
+    },
+    "hero_choices": [
+      {
+        "starting_armor": 8,
+        "card_id": "BG36_HERO_002",
+        "name": "Kith'ix",
+        "dbf_id": 134504
+      },
+      {
+        "starting_armor": 17,
+        "card_id": "TB_BaconShop_HERO_91_SKIN_F",
+        "name": "Dune Dweller Zephrys",
+        "dbf_id": 107787
+      },
+      {
+        "starting_armor": 6,
+        "card_id": "TB_BaconShop_HERO_74_SKIN_H",
+        "name": "Prison Warden Omu",
+        "dbf_id": 133729
+      },
+      {
+        "starting_armor": 8,
+        "card_id": "BG21_HERO_020_SKIN_F",
+        "name": "Cookie the Infinite",
+        "dbf_id": 128098
+      }
+    ],
+    "hero_choices_before_reroll": [
+      {
+        "starting_armor": 8,
+        "card_id": "BG36_HERO_002",
+        "name": "Kith'ix",
+        "dbf_id": 134504
+      },
+      {
+        "starting_armor": 17,
+        "card_id": "TB_BaconShop_HERO_91_SKIN_F",
+        "name": "Dune Dweller Zephrys",
+        "dbf_id": 107787
+      },
+      {
+        "starting_armor": 14,
+        "card_id": "BG31_HERO_811",
+        "name": "Kerrigan, Queen of Blades",
+        "dbf_id": 120358
+      },
+      {
+        "starting_armor": 8,
+        "card_id": "BG21_HERO_020_SKIN_F",
+        "name": "Cookie the Infinite",
+        "dbf_id": 128098
+      }
+    ],
+    "hero_power": {
+      "card_id": "BG36_HERO_002p",
+      "name": "Dark Ritual",
+      "dbf_id": 134505
+    },
+    "starting_health": 30,
+    "starting_armor": 8,
+    "trinkets": [
+      {
+        "turn": 6,
+        "card_id": "BG36_MagicItem_812",
+        "name": "Emergency Gearblade",
+        "dbf_id": 133695
+      }
+    ],
+    "quest": {
+      "card_id": null,
+      "name": null,
+      "reward_card_id": null,
+      "completed_turn": null
+    }
+  },
+  "result": {
+    "placement": 7,
+    "mmr_before": 4973,
+    "mmr_after": 4905,
+    "mmr_delta": -68,
+    "eliminated_turn": 8,
+    "final_tavern_tier": 4,
+    "total_turns": 8
+  },
+  "opponents": [
+    {
+      "player_id": 1,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_11",
+        "name": "Ragnaros the Firelord",
+        "dbf_id": 57892
+      },
+      "placement": null,
+      "estimated_placement": 4,
+      "eliminated_turn": null,
+      "final_health": 20,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_434",
+          "name": "Replica Cathedral",
+          "dbf_id": 112855
+        }
+      ]
+    },
+    {
+      "player_id": 2,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_62_SKIN_G",
+        "name": "Off Duty Maiev",
+        "dbf_id": 131116
+      },
+      "placement": 8,
+      "estimated_placement": 8,
+      "eliminated_turn": 6,
+      "final_health": 0,
+      "final_armor": 0,
+      "final_tavern_tier": 3,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_609",
+          "name": "Trickster's Sleeve",
+          "dbf_id": 134642
+        }
+      ]
+    },
+    {
+      "player_id": 3,
+      "hero": {
+        "card_id": "BG22_HERO_201_SKIN_E",
+        "name": "Punk Faelin",
+        "dbf_id": 117880
+      },
+      "placement": null,
+      "estimated_placement": 6,
+      "eliminated_turn": null,
+      "final_health": 6,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_423",
+          "name": "Volumizer Portrait",
+          "dbf_id": 134439
+        }
+      ]
+    },
+    {
+      "player_id": 4,
+      "hero": {
+        "card_id": "BG28_HERO_400",
+        "name": "Snake Eyes",
+        "dbf_id": 105314
+      },
+      "placement": null,
+      "estimated_placement": 2,
+      "eliminated_turn": null,
+      "final_health": 30,
+      "final_armor": 3,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_400",
+          "name": "Corrupted Coin Portrait",
+          "dbf_id": 134315
+        }
+      ]
+    },
+    {
+      "player_id": 5,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_16",
+        "name": "A. F. Kay",
+        "dbf_id": 57944
+      },
+      "placement": null,
+      "estimated_placement": 1,
+      "eliminated_turn": null,
+      "final_health": 30,
+      "final_armor": 5,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_700",
+          "name": "Deathly Phylactery",
+          "dbf_id": 117794
+        }
+      ]
+    },
+    {
+      "player_id": 6,
+      "hero": {
+        "card_id": "BG36_HERO_000",
+        "name": "Drest'agath",
+        "dbf_id": 134502
+      },
+      "placement": null,
+      "estimated_placement": 3,
+      "eliminated_turn": null,
+      "final_health": 22,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_852",
+          "name": "Willbreaker Sticker",
+          "dbf_id": 134639
+        }
+      ]
+    },
+    {
+      "player_id": 7,
+      "hero": {
+        "card_id": "BG24_HERO_100_SKIN_A",
+        "name": "Sire Melodious",
+        "dbf_id": 102494
+      },
+      "placement": null,
+      "estimated_placement": 5,
+      "eliminated_turn": null,
+      "final_health": 10,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG35_MagicItem_890",
+          "name": "Sunken Anchor",
+          "dbf_id": 130890
+        }
+      ]
+    }
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "tavern_tier": 1,
+      "health": 30,
+      "armor": 8,
+      "gold_available": 3,
+      "actions": {
+        "gold_spent": 3,
+        "buys": 1,
+        "sells": 1,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 1,
+        "spells_played": 1
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG29_611",
+          "name": "Cord Puller",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 7,
+        "opponent_hero": {
+          "card_id": "BG24_HERO_100_SKIN_A",
+          "name": "Sire Melodious",
+          "dbf_id": 102494
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG32_236",
+            "name": "Aureate Laureate",
+            "tier": 1,
+            "attack": 2,
+            "health": 2,
+            "golden": true,
+            "keywords": [
+              "divine_shield"
+            ],
+            "minion_types": [
+              "pirate"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 11,
+        "result": "tie",
+        "damage_dealt": 0,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 1.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 0.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 2,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 8,
+      "gold_available": 4,
+      "actions": {
+        "gold_spent": 4,
+        "buys": 0,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG29_611",
+          "name": "Cord Puller",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 6,
+        "opponent_hero": {
+          "card_id": "BG36_HERO_000",
+          "name": "Drest'agath",
+          "dbf_id": 134502
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_110",
+            "name": "Joyous",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 12,
+        "result": "tie",
+        "damage_dealt": 0,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 1.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 0.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 8,
+      "gold_available": 5,
+      "actions": {
+        "gold_spent": 5,
+        "buys": 1,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 1,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG31_801",
+          "name": "Forest Rover",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "beast"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG26_135",
+          "name": "Southsea Busker",
+          "tier": 1,
+          "attack": 3,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG29_611",
+          "name": "Cord Puller",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 3,
+        "opponent_hero": {
+          "card_id": "BG22_HERO_201_SKIN_E",
+          "name": "Punk Faelin",
+          "dbf_id": 117880
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG31_177",
+            "name": "Mechagnome Interpreter",
+            "tier": 2,
+            "attack": 10,
+            "health": 9,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG34_170t3",
+            "name": "Green Volumizer",
+            "tier": 2,
+            "attack": 4,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 12,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 4,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -4.11,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 4,
+      "tavern_tier": 3,
+      "health": 30,
+      "armor": 4,
+      "gold_available": 6,
+      "actions": {
+        "gold_spent": 6,
+        "buys": 0,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 1,
+        "hero_power_uses": 1,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG31_801",
+          "name": "Forest Rover",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "beast"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG26_135",
+          "name": "Southsea Busker",
+          "tier": 1,
+          "attack": 3,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG30_125",
+          "name": "Cadaver Caretaker",
+          "tier": 3,
+          "attack": 3,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG29_611",
+          "name": "Cord Puller",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 2,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_62_SKIN_G",
+          "name": "Off Duty Maiev",
+          "dbf_id": 131116
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG32_236",
+            "name": "Aureate Laureate",
+            "tier": 1,
+            "attack": 2,
+            "health": 5,
+            "golden": true,
+            "keywords": [
+              "taunt",
+              "divine_shield"
+            ],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_354",
+            "name": "Decoy Conjurer",
+            "tier": 2,
+            "attack": 8,
+            "health": 9,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_098",
+            "name": "Zoatroid",
+            "tier": 1,
+            "attack": 3,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_201",
+            "name": "Lurking Lionfish",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG32_237",
+            "name": "Intrepid Botanist",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 16,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 6,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -6.68,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 5,
+      "tavern_tier": 3,
+      "health": 28,
+      "armor": 0,
+      "gold_available": 7,
+      "actions": {
+        "gold_spent": 7,
+        "buys": 1,
+        "sells": 1,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 1,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_369",
+          "name": "Greedy Conniver",
+          "tier": 3,
+          "attack": 7,
+          "health": 7,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG30_125",
+          "name": "Cadaver Caretaker",
+          "tier": 3,
+          "attack": 3,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG31_801",
+          "name": "Forest Rover",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "beast"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG29_611",
+          "name": "Cord Puller",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_854",
+          "name": "Rescue Bot",
+          "tier": 3,
+          "attack": 5,
+          "health": 2,
+          "golden": false,
+          "keywords": [
+            "taunt",
+            "reborn"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 4,
+        "opponent_hero": {
+          "card_id": "BG28_HERO_400",
+          "name": "Snake Eyes",
+          "dbf_id": 105314
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_311",
+            "name": "Abyssal Envoy",
+            "tier": 3,
+            "attack": 11,
+            "health": 12,
+            "golden": false,
+            "keywords": [
+              "divine_shield",
+              "windfury"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_369",
+            "name": "Greedy Conniver",
+            "tier": 3,
+            "attack": 7,
+            "health": 7,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_098",
+            "name": "Zoatroid",
+            "tier": 1,
+            "attack": 4,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_346",
+            "name": "Fruit Vendor",
+            "tier": 3,
+            "attack": 3,
+            "health": 6,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_346",
+            "name": "Fruit Vendor",
+            "tier": 3,
+            "attack": 3,
+            "health": 6,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 3,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 10,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.004,
+          "loss": 0.996,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -9.33,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 6,
+      "tavern_tier": 3,
+      "health": 18,
+      "armor": 0,
+      "gold_available": 8,
+      "actions": {
+        "gold_spent": 8,
+        "buys": 2,
+        "sells": 1,
+        "rerolls": 1,
+        "tier_ups": 0,
+        "hero_power_uses": 1,
+        "spells_played": 4
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_854",
+          "name": "Rescue Bot",
+          "tier": 3,
+          "attack": 21,
+          "health": 34,
+          "golden": false,
+          "keywords": [
+            "taunt",
+            "divine_shield",
+            "reborn"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_369",
+          "name": "Greedy Conniver",
+          "tier": 3,
+          "attack": 7,
+          "health": 7,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG26_817",
+          "name": "Blade Collector",
+          "tier": 4,
+          "attack": 3,
+          "health": 2,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG_ICC_026t_G",
+          "name": "Skeleton",
+          "tier": 1,
+          "attack": 2,
+          "health": 2,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG31_801",
+          "name": "Forest Rover",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "beast"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG28_303",
+          "name": "Disguised Graverobber",
+          "tier": 3,
+          "attack": 4,
+          "health": 4,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 5,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_16",
+          "name": "A. F. Kay",
+          "dbf_id": 57944
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_360t5",
+            "name": "Dark Paradox",
+            "tier": 4,
+            "attack": 36,
+            "health": 36,
+            "golden": false,
+            "keywords": [
+              "windfury"
+            ],
+            "minion_types": [
+              "all"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_207",
+            "name": "Wolf Pup",
+            "tier": 3,
+            "attack": 3,
+            "health": 6,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_202",
+            "name": "Tasty Lobster",
+            "tier": 3,
+            "attack": 3,
+            "health": 3,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_201_G",
+            "name": "Lurking Lionfish",
+            "tier": 2,
+            "attack": 6,
+            "health": 8,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG31_801",
+            "name": "Forest Rover",
+            "tier": 2,
+            "attack": 1,
+            "health": 1,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_211",
+            "name": "Cage Gnawer",
+            "tier": 4,
+            "attack": 2,
+            "health": 7,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BGS_018",
+            "name": "Goldrinn, the Great Wolf",
+            "tier": 5,
+            "attack": 7,
+            "health": 7,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 5,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 10,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -10.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 7,
+      "tavern_tier": 4,
+      "health": 8,
+      "armor": 0,
+      "gold_available": 9,
+      "actions": {
+        "gold_spent": 9,
+        "buys": 1,
+        "sells": 3,
+        "rerolls": 1,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 3
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_853",
+          "name": "Glambot",
+          "tier": 4,
+          "attack": 29,
+          "health": 41,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "mechanical"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG26_817",
+          "name": "Blade Collector",
+          "tier": 4,
+          "attack": 4,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_369",
+          "name": "Greedy Conniver",
+          "tier": 3,
+          "attack": 8,
+          "health": 8,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_764",
+          "name": "Gearfin",
+          "tier": 4,
+          "attack": 7,
+          "health": 6,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "murloc",
+            "mechanical"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_764",
+          "name": "Gearfin",
+          "tier": 4,
+          "attack": 7,
+          "health": 6,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "murloc",
+            "mechanical"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_311",
+          "name": "Abyssal Envoy",
+          "tier": 3,
+          "attack": 3,
+          "health": 4,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_854",
+          "name": "Rescue Bot",
+          "tier": 3,
+          "attack": 22,
+          "health": 35,
+          "golden": false,
+          "keywords": [
+            "taunt",
+            "divine_shield",
+            "reborn"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 7,
+        "opponent_hero": {
+          "card_id": "BG24_HERO_100_SKIN_A",
+          "name": "Sire Melodious",
+          "dbf_id": 102494
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG33_822",
+            "name": "Bigwig Bandit",
+            "tier": 4,
+            "attack": 14,
+            "health": 20,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG33_822",
+            "name": "Bigwig Bandit",
+            "tier": 4,
+            "attack": 8,
+            "health": 14,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_108",
+            "name": "Vicious Mindslasher",
+            "tier": 3,
+            "attack": 19,
+            "health": 37,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_116",
+            "name": "Underrot Spawn",
+            "tier": 2,
+            "attack": 2,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG32_236",
+            "name": "Aureate Laureate",
+            "tier": 1,
+            "attack": 2,
+            "health": 2,
+            "golden": true,
+            "keywords": [
+              "divine_shield"
+            ],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_342",
+            "name": "Clever Castaway",
+            "tier": 2,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG36_342",
+            "name": "Clever Castaway",
+            "tier": 2,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "pirate"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 5,
+        "result": "win",
+        "damage_dealt": 10,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.953,
+          "tie": 0.045,
+          "loss": 0.002,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 9.24,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 8,
+      "tavern_tier": 4,
+      "health": 8,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 8,
+        "buys": 1,
+        "sells": 3,
+        "rerolls": 6,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 7
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_853",
+          "name": "Glambot",
+          "tier": 4,
+          "attack": 47,
+          "health": 67,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "mechanical"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_506",
+          "name": "Drone Duplicator",
+          "tier": 4,
+          "attack": 35,
+          "health": 40,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_369",
+          "name": "Greedy Conniver",
+          "tier": 3,
+          "attack": 10,
+          "health": 10,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "pirate"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_764",
+          "name": "Gearfin",
+          "tier": 4,
+          "attack": 9,
+          "health": 8,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "murloc",
+            "mechanical"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_764",
+          "name": "Gearfin",
+          "tier": 4,
+          "attack": 13,
+          "health": 15,
+          "golden": false,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "murloc",
+            "mechanical"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_854",
+          "name": "Rescue Bot",
+          "tier": 3,
+          "attack": 24,
+          "health": 37,
+          "golden": false,
+          "keywords": [
+            "taunt",
+            "divine_shield",
+            "reborn"
+          ],
+          "minion_types": [
+            "mechanical"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 6,
+        "opponent_hero": {
+          "card_id": "BG36_HERO_000",
+          "name": "Drest'agath",
+          "dbf_id": 134502
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_354",
+            "name": "Decoy Conjurer",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_106",
+            "name": "Cutthroat K'Thir",
+            "tier": 4,
+            "attack": 24,
+            "health": 24,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_320",
+            "name": "Mysterious K'Thir",
+            "tier": 5,
+            "attack": 16,
+            "health": 16,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG33_825",
+            "name": "Proud Privateer",
+            "tier": 5,
+            "attack": 78,
+            "health": 78,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "pirate"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 6,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_367",
+            "name": "Auto Reveille",
+            "tier": 6,
+            "attack": 6,
+            "health": 6,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG_LOE_077",
+            "name": "Brann Bronzebeard",
+            "tier": 5,
+            "attack": 6,
+            "health": 12,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 22,
+        "opponent_armor": 0,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 8,
+        "bobs_buddy": {
+          "win": 0.001,
+          "tie": 0.002,
+          "loss": 0.997,
+          "lethal": 0.0,
+          "opponent_lethal": 0.997,
+          "avg_damage": -10.83,
+          "simulations": 10000
+        }
+      }
+    }
+  ],
+  "notes": []
+}

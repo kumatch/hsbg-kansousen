@@ -1,0 +1,2589 @@
+{
+  "schema_version": "1.0.0",
+  "status": "complete",
+  "generator": {
+    "plugin": "HsbgLogger",
+    "plugin_version": "0.3.0",
+    "hdt_version": "1.58.3",
+    "hearthstone_build": 56608
+  },
+  "game": {
+    "game_id": "061ac328-ecd3-5ecd-b723-29175de57452",
+    "mode": "battlegrounds",
+    "variant": "solo",
+    "game_type": "GT_BATTLEGROUNDS",
+    "started_at": "2026-01-10T11:18:33.047010+09:00",
+    "ended_at": "2026-01-10T11:44:32.327909+09:00",
+    "duration_sec": 1559,
+    "region": "ASIA",
+    "anomaly": {
+      "card_id": null,
+      "name": null,
+      "dbf_id": null
+    },
+    "global_old_god": {
+      "card_id": "BGFYM_000",
+      "name": "C'Thun",
+      "dbf_id": 130610
+    },
+    "minion_types": [
+      "aberration",
+      "dragon",
+      "elemental",
+      "quilboar",
+      "undead"
+    ],
+    "combat_damage_cap": null,
+    "lobby_size": 8
+  },
+  "player": {
+    "hero": {
+      "card_id": "BG22_HERO_002_SKIN_E",
+      "name": "Bird Watching Drek'Thar",
+      "dbf_id": 115375
+    },
+    "hero_choices": [
+      {
+        "starting_armor": 10,
+        "card_id": "TB_BaconShop_HERO_27_SKIN_C",
+        "name": "Sindragosa of the Scourge",
+        "dbf_id": 98800
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "TB_BaconShop_HERO_36_SKIN_F",
+        "name": "Sideshow Deryl",
+        "dbf_id": 103816
+      },
+      {
+        "starting_armor": 10,
+        "card_id": "BG22_HERO_002_SKIN_E",
+        "name": "Bird Watching Drek'Thar",
+        "dbf_id": 115375
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "BG34_HERO_002",
+        "name": "Mister Clocksworth",
+        "dbf_id": 126532
+      }
+    ],
+    "hero_choices_before_reroll": [
+      {
+        "starting_armor": 10,
+        "card_id": "TB_BaconShop_HERO_27_SKIN_C",
+        "name": "Sindragosa of the Scourge",
+        "dbf_id": 98800
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "TB_BaconShop_HERO_36_SKIN_F",
+        "name": "Sideshow Deryl",
+        "dbf_id": 103816
+      },
+      {
+        "starting_armor": 14,
+        "card_id": "TB_BaconShop_HERO_39_SKIN_F",
+        "name": "Pyramasmius",
+        "dbf_id": 120914
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "BG34_HERO_002",
+        "name": "Mister Clocksworth",
+        "dbf_id": 126532
+      }
+    ],
+    "hero_power": {
+      "card_id": "BG22_HERO_002p",
+      "name": "Frostwolf Fervor",
+      "dbf_id": 80244
+    },
+    "starting_health": 30,
+    "starting_armor": 10,
+    "trinkets": [
+      {
+        "turn": 6,
+        "card_id": "BG36_MagicItem_402",
+        "name": "Mindslasher Portrait",
+        "dbf_id": 134638
+      },
+      {
+        "turn": 9,
+        "card_id": "BG36_MagicItem_430",
+        "name": "Sludge Portrait",
+        "dbf_id": 134443
+      }
+    ],
+    "quest": {
+      "card_id": null,
+      "name": null,
+      "reward_card_id": null,
+      "completed_turn": null
+    }
+  },
+  "result": {
+    "placement": 4,
+    "mmr_before": 4905,
+    "mmr_after": 4935,
+    "mmr_delta": 30,
+    "eliminated_turn": 13,
+    "final_tavern_tier": 5,
+    "total_turns": 13
+  },
+  "opponents": [
+    {
+      "player_id": 1,
+      "hero": {
+        "card_id": "BG23_HERO_201",
+        "name": "Ozumat",
+        "dbf_id": 86013
+      },
+      "placement": null,
+      "estimated_placement": 2,
+      "eliminated_turn": null,
+      "final_health": 14,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_852",
+          "name": "Willbreaker Sticker",
+          "dbf_id": 134639
+        },
+        {
+          "card_id": "BG36_MagicItem_600",
+          "name": "Converter Portrait",
+          "dbf_id": 134453
+        }
+      ]
+    },
+    {
+      "player_id": 2,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_75",
+        "name": "Rakanishu",
+        "dbf_id": 64400
+      },
+      "placement": 3,
+      "estimated_placement": 3,
+      "eliminated_turn": 13,
+      "final_health": -9,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_301",
+          "name": "Eternal Portrait",
+          "dbf_id": 111388
+        },
+        {
+          "card_id": "BG36_MagicItem_204",
+          "name": "Plaguerunner Portrait",
+          "dbf_id": 133391
+        }
+      ]
+    },
+    {
+      "player_id": 3,
+      "hero": {
+        "card_id": "BG24_HERO_100_SKIN_E",
+        "name": "Boss Denathrius",
+        "dbf_id": 117884
+      },
+      "placement": 8,
+      "estimated_placement": 8,
+      "eliminated_turn": 7,
+      "final_health": 0,
+      "final_armor": 0,
+      "final_tavern_tier": 4,
+      "trinkets": [
+        {
+          "card_id": "BG35_MagicItem_931",
+          "name": "Transcribing Typewriter",
+          "dbf_id": 131003
+        }
+      ]
+    },
+    {
+      "player_id": 4,
+      "hero": {
+        "card_id": "BG33_HERO_001",
+        "name": "Loh, the Living Legend",
+        "dbf_id": 122925
+      },
+      "placement": null,
+      "estimated_placement": 1,
+      "eliminated_turn": null,
+      "final_health": 19,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_400",
+          "name": "Corrupted Coin Portrait",
+          "dbf_id": 134315
+        },
+        {
+          "card_id": "BG36_MagicItem_602",
+          "name": "Mask of Ancient Ones",
+          "dbf_id": 134322
+        }
+      ]
+    },
+    {
+      "player_id": 5,
+      "hero": {
+        "card_id": "BG21_HERO_010",
+        "name": "Scabbs Cutterbutter",
+        "dbf_id": 76562
+      },
+      "placement": 5,
+      "estimated_placement": 5,
+      "eliminated_turn": 12,
+      "final_health": -8,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_852",
+          "name": "Willbreaker Sticker",
+          "dbf_id": 134639
+        },
+        {
+          "card_id": "BG36_MagicItem_602",
+          "name": "Mask of Ancient Ones",
+          "dbf_id": 134322
+        }
+      ]
+    },
+    {
+      "player_id": 6,
+      "hero": {
+        "card_id": "BG31_HERO_005",
+        "name": "Zerek, Master Cloner",
+        "dbf_id": 117409
+      },
+      "placement": 6,
+      "estimated_placement": 6,
+      "eliminated_turn": 12,
+      "final_health": 0,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_888",
+          "name": "Souvenir Stand",
+          "dbf_id": 112895
+        },
+        {
+          "card_id": "BG36_MagicItem_610",
+          "name": "Sinister Invitation",
+          "dbf_id": 134748
+        }
+      ]
+    },
+    {
+      "player_id": 8,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_93_SKIN_B",
+        "name": "Mixmaster N'Zoth",
+        "dbf_id": 102861
+      },
+      "placement": 7,
+      "estimated_placement": 7,
+      "eliminated_turn": 11,
+      "final_health": -7,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_435",
+          "name": "Goldenizer Supply",
+          "dbf_id": 112082
+        },
+        {
+          "card_id": "BG36_MagicItem_430",
+          "name": "Sludge Portrait",
+          "dbf_id": 134443
+        }
+      ]
+    }
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "tavern_tier": 1,
+      "health": 30,
+      "armor": 10,
+      "gold_available": 3,
+      "actions": {
+        "gold_spent": 3,
+        "buys": 1,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_110",
+          "name": "Joyous",
+          "tier": 1,
+          "attack": 2,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 2,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_75",
+          "name": "Rakanishu",
+          "dbf_id": 64400
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_098",
+            "name": "Zoatroid",
+            "tier": 1,
+            "attack": 3,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 10,
+        "result": "tie",
+        "damage_dealt": 0,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 1.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 0.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 2,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 10,
+      "gold_available": 4,
+      "actions": {
+        "gold_spent": 4,
+        "buys": 0,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_110",
+          "name": "Joyous",
+          "tier": 1,
+          "attack": 2,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 1,
+        "opponent_hero": {
+          "card_id": "BG23_HERO_201",
+          "name": "Ozumat",
+          "dbf_id": 86013
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_110",
+            "name": "Joyous",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 15,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 3,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -3.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 7,
+      "gold_available": 5,
+      "actions": {
+        "gold_spent": 5,
+        "buys": 1,
+        "sells": 1,
+        "rerolls": 1,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 1
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_116",
+          "name": "Underrot Spawn",
+          "tier": 2,
+          "attack": 2,
+          "health": 2,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 5,
+        "opponent_hero": {
+          "card_id": "BG21_HERO_010",
+          "name": "Scabbs Cutterbutter",
+          "dbf_id": 76562
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG33_886",
+            "name": "Tusked Camper",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "quilboar"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG25_008",
+            "name": "Eternal Knight",
+            "tier": 2,
+            "attack": 4,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_110",
+            "name": "Joyous",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 16,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 5,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.169,
+          "loss": 0.831,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -3.21,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 4,
+      "tavern_tier": 3,
+      "health": 30,
+      "armor": 2,
+      "gold_available": 6,
+      "actions": {
+        "gold_spent": 6,
+        "buys": 1,
+        "sells": 1,
+        "rerolls": 0,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 1
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 2,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 6,
+        "opponent_hero": {
+          "card_id": "BG31_HERO_005",
+          "name": "Zerek, Master Cloner",
+          "dbf_id": 117409
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_116",
+            "name": "Underrot Spawn",
+            "tier": 2,
+            "attack": 2,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_101",
+            "name": "Unwilling Slacker",
+            "tier": 2,
+            "attack": 1,
+            "health": 1,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG33_886",
+            "name": "Tusked Camper",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "quilboar"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BGFYM_002t",
+            "name": "Aberrant Tentacle",
+            "tier": 1,
+            "attack": 0,
+            "health": 2,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 6,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 4,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.058,
+          "loss": 0.942,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -5.91,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 5,
+      "tavern_tier": 3,
+      "health": 28,
+      "armor": 0,
+      "gold_available": 7,
+      "actions": {
+        "gold_spent": 7,
+        "buys": 1,
+        "sells": 0,
+        "rerolls": 7,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 1
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG33_924",
+          "name": "Blue Whelp",
+          "tier": 3,
+          "attack": 4,
+          "health": 9,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 2,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 4,
+        "opponent_hero": {
+          "card_id": "BG33_HERO_001",
+          "name": "Loh, the Living Legend",
+          "dbf_id": 122925
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_116",
+            "name": "Underrot Spawn",
+            "tier": 2,
+            "attack": 2,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_354",
+            "name": "Decoy Conjurer",
+            "tier": 2,
+            "attack": 8,
+            "health": 9,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 3,
+            "card_id": "BG28_309",
+            "name": "Mummifier",
+            "tier": 3,
+            "attack": 5,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG31_816",
+            "name": "Fire Baller",
+            "tier": 2,
+            "attack": 4,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "elemental"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_099",
+            "name": "Brain Rotter",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_345",
+            "name": "Suspicious Prisonguard",
+            "tier": 1,
+            "attack": 3,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 19,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 6,
+        "bobs_buddy": {
+          "win": 0.237,
+          "tie": 0.216,
+          "loss": 0.547,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -2.1,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 6,
+      "tavern_tier": 3,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 8,
+      "actions": {
+        "gold_spent": 7,
+        "buys": 1,
+        "sells": 0,
+        "rerolls": 2,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 4
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 2,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG33_924",
+          "name": "Blue Whelp",
+          "tier": 3,
+          "attack": 11,
+          "health": 25,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 7,
+          "health": 13,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 7,
+          "health": 17,
+          "golden": false,
+          "keywords": [
+            "taunt",
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 3,
+        "opponent_hero": {
+          "card_id": "BG24_HERO_100_SKIN_E",
+          "name": "Boss Denathrius",
+          "dbf_id": 117884
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG33_924",
+            "name": "Blue Whelp",
+            "tier": 3,
+            "attack": 1,
+            "health": 5,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "dragon"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG33_924",
+            "name": "Blue Whelp",
+            "tier": 3,
+            "attack": 1,
+            "health": 5,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "dragon"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_354",
+            "name": "Decoy Conjurer",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_354",
+            "name": "Decoy Conjurer",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 15,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 10,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 1.0,
+          "tie": 0.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 10.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 7,
+      "tavern_tier": 4,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 9,
+      "actions": {
+        "gold_spent": 9,
+        "buys": 2,
+        "sells": 0,
+        "rerolls": 2,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 2
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG33_924",
+          "name": "Blue Whelp",
+          "tier": 3,
+          "attack": 14,
+          "health": 29,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 16,
+          "health": 2,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 7,
+          "health": 13,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_320",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 16,
+          "health": 16,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_113_G",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 9,
+          "health": 18,
+          "golden": true,
+          "keywords": [
+            "taunt",
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 8,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_93_SKIN_B",
+          "name": "Mixmaster N'Zoth",
+          "dbf_id": 102861
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_113",
+            "name": "Drifting Sacrifice",
+            "tier": 3,
+            "attack": 2,
+            "health": 1,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_108",
+            "name": "Vicious Mindslasher",
+            "tier": 3,
+            "attack": 43,
+            "health": 13,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_245",
+            "name": "Runic Arcanist",
+            "tier": 4,
+            "attack": 6,
+            "health": 8,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "dragon"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "TB_BaconShop_HP_105t",
+            "name": "Fish of N'Zoth",
+            "tier": 1,
+            "attack": 6,
+            "health": 6,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 12,
+        "result": "win",
+        "damage_dealt": 10,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.939,
+          "tie": 0.06,
+          "loss": 0.001,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 8.7,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 8,
+      "tavern_tier": 4,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 3,
+        "sells": 1,
+        "rerolls": 8,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 4
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_115",
+          "name": "Nightmare Corroder",
+          "tier": 4,
+          "attack": 11,
+          "health": 24,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 5,
+          "health": 21,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_113_G",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 13,
+          "health": 38,
+          "golden": true,
+          "keywords": [
+            "taunt",
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG33_924",
+          "name": "Blue Whelp",
+          "tier": 3,
+          "attack": 21,
+          "health": 53,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 24,
+          "health": 34,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 15,
+          "health": 45,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_320",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 48,
+          "health": 72,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 5,
+        "opponent_hero": {
+          "card_id": "BG21_HERO_010",
+          "name": "Scabbs Cutterbutter",
+          "dbf_id": 76562
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_101",
+            "name": "Unwilling Slacker",
+            "tier": 2,
+            "attack": 16,
+            "health": 8,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "TB_BaconShop_HP_105t",
+            "name": "Fish of N'Zoth",
+            "tier": 1,
+            "attack": 18,
+            "health": 12,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG25_008",
+            "name": "Eternal Knight",
+            "tier": 2,
+            "attack": 44,
+            "health": 18,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG25_008",
+            "name": "Eternal Knight",
+            "tier": 2,
+            "attack": 43,
+            "health": 18,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 15,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 9,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG36_300",
+            "name": "N'raqi Frostcaller",
+            "tier": 5,
+            "attack": 9,
+            "health": 5,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 1,
+        "result": "win",
+        "damage_dealt": 15,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 1.0,
+          "tie": 0.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 15.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 9,
+      "tavern_tier": 4,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 4,
+        "sells": 2,
+        "rerolls": 2,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 5
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_115_G",
+          "name": "Nightmare Corroder",
+          "tier": 4,
+          "attack": 24,
+          "health": 54,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG32_821",
+          "name": "Felfire Conjurer",
+          "tier": 5,
+          "attack": 12,
+          "health": 31,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon",
+            "demon"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_113_G",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 19,
+          "health": 64,
+          "golden": true,
+          "keywords": [
+            "taunt",
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 34,
+          "health": 72,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 29,
+          "health": 95,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 17,
+          "health": 51,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_320",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 82,
+          "health": 134,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 6,
+        "opponent_hero": {
+          "card_id": "BG31_HERO_005",
+          "name": "Zerek, Master Cloner",
+          "dbf_id": 117409
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_331",
+            "name": "Bramble Tunneler",
+            "tier": 4,
+            "attack": 53,
+            "health": 54,
+            "golden": false,
+            "keywords": [
+              "divine_shield",
+              "windfury"
+            ],
+            "minion_types": [
+              "quilboar"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_103_G",
+            "name": "N'raqi Sapper",
+            "tier": 5,
+            "attack": 21,
+            "health": 15,
+            "golden": true,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 8,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 19,
+            "health": 15,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_109",
+            "name": "The Shadow of Doubt",
+            "tier": 6,
+            "attack": 17,
+            "health": 19,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_109",
+            "name": "The Shadow of Doubt",
+            "tier": 6,
+            "attack": 17,
+            "health": 19,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 21,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 7,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.012,
+          "tie": 0.076,
+          "loss": 0.912,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -10.36,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 10,
+      "tavern_tier": 5,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 0,
+        "sells": 2,
+        "rerolls": 4,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 9
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_115_G",
+          "name": "Nightmare Corroder",
+          "tier": 4,
+          "attack": 56,
+          "health": 151,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_311",
+          "name": "Abyssal Envoy",
+          "tier": 3,
+          "attack": 31,
+          "health": 87,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG32_821",
+          "name": "Felfire Conjurer",
+          "tier": 5,
+          "attack": 49,
+          "health": 138,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon",
+            "demon"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 85,
+          "health": 221,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 89,
+          "health": 276,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 77,
+          "health": 232,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_320",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 152,
+          "health": 297,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 4,
+        "opponent_hero": {
+          "card_id": "BG33_HERO_001",
+          "name": "Loh, the Living Legend",
+          "dbf_id": 122925
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_115",
+            "name": "Nightmare Corroder",
+            "tier": 4,
+            "attack": 32,
+            "health": 29,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_318",
+            "name": "Faceless Converter",
+            "tier": 5,
+            "attack": 32,
+            "health": 33,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_300",
+            "name": "N'raqi Frostcaller",
+            "tier": 5,
+            "attack": 26,
+            "health": 23,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_311",
+            "name": "Abyssal Envoy",
+            "tier": 3,
+            "attack": 30,
+            "health": 31,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_106_G",
+            "name": "Cutthroat K'Thir",
+            "tier": 4,
+            "attack": 100,
+            "health": 99,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 31,
+            "health": 25,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 7,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 1,
+            "health": 7,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 4,
+        "result": "win",
+        "damage_dealt": 15,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.757,
+          "tie": 0.1,
+          "loss": 0.143,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 9.13,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 11,
+      "tavern_tier": 5,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 2,
+        "sells": 1,
+        "rerolls": 7,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 15
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG26_ICC_901",
+          "name": "Drakkari Enchanter",
+          "tier": 5,
+          "attack": 67,
+          "health": 141,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_115_G",
+          "name": "Nightmare Corroder",
+          "tier": 4,
+          "attack": 134,
+          "health": 319,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG32_821",
+          "name": "Felfire Conjurer",
+          "tier": 5,
+          "attack": 127,
+          "health": 306,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon",
+            "demon"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 213,
+          "health": 493,
+          "golden": false,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 213,
+          "health": 582,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 201,
+          "health": 538,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_320",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 301,
+          "health": 582,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 8,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_93_SKIN_B",
+          "name": "Mixmaster N'Zoth",
+          "dbf_id": 102861
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_115",
+            "name": "Nightmare Corroder",
+            "tier": 4,
+            "attack": 41,
+            "health": 41,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_113_G",
+            "name": "Drifting Sacrifice",
+            "tier": 3,
+            "attack": 44,
+            "health": 45,
+            "golden": true,
+            "keywords": [
+              "taunt",
+              "reborn"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_108",
+            "name": "Vicious Mindslasher",
+            "tier": 3,
+            "attack": 241,
+            "health": 164,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 43,
+            "health": 39,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_300",
+            "name": "N'raqi Frostcaller",
+            "tier": 5,
+            "attack": 18,
+            "health": 15,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_312",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 43,
+            "health": 39,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "TB_BaconUps_307",
+            "name": "Fish of N'Zoth",
+            "tier": 1,
+            "attack": 47,
+            "health": 47,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "beast"
+            ]
+          }
+        ],
+        "opponent_health": 8,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 15,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 1.0,
+          "tie": 0.0,
+          "loss": 0.0,
+          "lethal": 1.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 15.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 12,
+      "tavern_tier": 5,
+      "health": 22,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 2,
+        "sells": 0,
+        "rerolls": 8,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 9
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG26_ICC_901",
+          "name": "Drakkari Enchanter",
+          "tier": 5,
+          "attack": 166,
+          "health": 315,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_115_G",
+          "name": "Nightmare Corroder",
+          "tier": 4,
+          "attack": 233,
+          "health": 493,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG32_821",
+          "name": "Felfire Conjurer",
+          "tier": 5,
+          "attack": 226,
+          "health": 480,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon",
+            "demon"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 328,
+          "health": 715,
+          "golden": false,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 344,
+          "health": 852,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 332,
+          "health": 808,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_320",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 464,
+          "health": 852,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 1,
+        "opponent_hero": {
+          "card_id": "BG23_HERO_201",
+          "name": "Ozumat",
+          "dbf_id": 86013
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_318",
+            "name": "Faceless Converter",
+            "tier": 5,
+            "attack": 116,
+            "health": 118,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_318",
+            "name": "Faceless Converter",
+            "tier": 5,
+            "attack": 122,
+            "health": 122,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_115_G",
+            "name": "Nightmare Corroder",
+            "tier": 4,
+            "attack": 150,
+            "health": 156,
+            "golden": true,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_241",
+            "name": "Crimson Vindicator",
+            "tier": 6,
+            "attack": 103,
+            "health": 80,
+            "golden": false,
+            "keywords": [
+              "divine_shield"
+            ],
+            "minion_types": [
+              "dragon"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG29_813_G",
+            "name": "Persistent Poet",
+            "tier": 4,
+            "attack": 39,
+            "health": 41,
+            "golden": true,
+            "keywords": [
+              "divine_shield"
+            ],
+            "minion_types": [
+              "dragon"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 107,
+            "health": 113,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 7,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 92,
+            "health": 98,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 14,
+        "opponent_armor": 0,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 12,
+        "bobs_buddy": {
+          "win": 0.555,
+          "tie": 0.178,
+          "loss": 0.267,
+          "lethal": 0.134,
+          "opponent_lethal": 0.0,
+          "avg_damage": 3.33,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 13,
+      "tavern_tier": 5,
+      "health": 10,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 3,
+        "sells": 3,
+        "rerolls": 11,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 10
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_104",
+          "name": "Dark Puppeteer",
+          "tier": 6,
+          "attack": 130,
+          "health": 196,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG26_ICC_901",
+          "name": "Drakkari Enchanter",
+          "tier": 5,
+          "attack": 302,
+          "health": 531,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        },
+        {
+          "position": 3,
+          "card_id": "BG32_821",
+          "name": "Felfire Conjurer",
+          "tier": 5,
+          "attack": 362,
+          "health": 696,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "dragon",
+            "demon"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 480,
+          "health": 979,
+          "golden": false,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 500,
+          "health": 1120,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 512,
+          "health": 1164,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_320_G",
+          "name": "Mysterious K'Thir",
+          "tier": 5,
+          "attack": 720,
+          "health": 1220,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 4,
+        "opponent_hero": {
+          "card_id": "BG33_HERO_001",
+          "name": "Loh, the Living Legend",
+          "dbf_id": 122925
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_318",
+            "name": "Faceless Converter",
+            "tier": 5,
+            "attack": 56,
+            "health": 59,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_318",
+            "name": "Faceless Converter",
+            "tier": 5,
+            "attack": 132,
+            "health": 133,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_115_G",
+            "name": "Nightmare Corroder",
+            "tier": 4,
+            "attack": 142,
+            "health": 139,
+            "golden": true,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_106_G",
+            "name": "Cutthroat K'Thir",
+            "tier": 4,
+            "attack": 244,
+            "health": 244,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_109",
+            "name": "The Shadow of Doubt",
+            "tier": 6,
+            "attack": 102,
+            "health": 105,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 159,
+            "health": 146,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 7,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 133,
+            "health": 124,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 19,
+        "opponent_armor": 0,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 23,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.989,
+          "avg_damage": -21.18,
+          "simulations": 10000
+        }
+      }
+    }
+  ],
+  "notes": []
+}

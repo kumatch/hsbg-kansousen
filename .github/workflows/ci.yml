@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    # hsbg reads logs written on Windows (paths, HDT folders); the tests are run there
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - name: Install
+        run: uv sync --locked
+      - name: Format
+        run: uv run ruff format --check .
+      - name: Lint
+        run: uv run ruff check .
+      - name: Test
+        run: uv run pytest -q
+      - name: Personal data check (built-in patterns; the deny list stays on each developer's PC)
+        run: python scripts/check_private.py
+
+  schema:
+    # The log schema belongs to the plugin repository; hsbg keeps a copy (hsbg/game-log.schema.json).
+    # A difference means the plugin changed the log format: update the copy and the loader.
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare with the plugin's schema
+        run: |
+          curl -fsSL -o plugin-schema.json \
+            https://raw.githubusercontent.com/kumatch/hdt-plugin-hsbg-kansousen/main/schema/game-log.schema.json \
+            || { echo "::warning::could not fetch the plugin's schema"; exit 0; }
+          python - <<'PY'
+          import json
+          ours = json.load(open("hsbg/game-log.schema.json", encoding="utf-8"))
+          theirs = json.load(open("plugin-schema.json", encoding="utf-8"))
+          if ours != theirs:
+              print("::warning::hsbg/game-log.schema.json differs from the plugin's schema/game-log.schema.json")
+              raise SystemExit(1)
+          print("schema copy is up to date")
+          PY

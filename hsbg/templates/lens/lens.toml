@@ -1,0 +1,8 @@
+# A lens = one angle of analysis you want to look at every time (docs: hsbg lens --help).
+# label / description are shown in `hsbg stats` and on the dashboard's マイ分析 page.
+label = "__NAME__"
+description = "上位 4 と下位 4 のゲームを、序盤の数値で比べる（雛形の例。自分の関心に合わせて書き換える）"
+# active: shown and used by the analysis skill. retired: kept for the record, not shown.
+status = "active"
+# lens API version this lens was written for (hsbg.lens.LENS_API)
+api = 1

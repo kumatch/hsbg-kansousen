@@ -1,0 +1,2525 @@
+{
+  "schema_version": "1.0.0",
+  "status": "complete",
+  "generator": {
+    "plugin": "HsbgLogger",
+    "plugin_version": "0.3.0",
+    "hdt_version": "1.58.3",
+    "hearthstone_build": 56608
+  },
+  "game": {
+    "game_id": "514d4824-7e2b-5bfb-8ac4-214c8e5e2c63",
+    "mode": "battlegrounds",
+    "variant": "solo",
+    "game_type": "GT_BATTLEGROUNDS",
+    "started_at": "2026-01-10T10:40:38.641748+09:00",
+    "ended_at": "2026-01-10T11:04:12.244023+09:00",
+    "duration_sec": 1414,
+    "region": "ASIA",
+    "anomaly": {
+      "card_id": null,
+      "name": null,
+      "dbf_id": null
+    },
+    "global_old_god": {
+      "card_id": "BGFYM_011",
+      "name": "Y'Shaarj",
+      "dbf_id": 132532
+    },
+    "minion_types": [
+      "aberration",
+      "mechanical",
+      "murloc",
+      "quilboar",
+      "undead"
+    ],
+    "combat_damage_cap": 15,
+    "lobby_size": 8
+  },
+  "player": {
+    "hero": {
+      "card_id": "BG35_HERO_001",
+      "name": "Genn, Worgen King",
+      "dbf_id": 129684
+    },
+    "hero_choices": [
+      {
+        "starting_armor": 15,
+        "card_id": "TB_BaconShop_HERO_28_SKIN_D",
+        "name": "Tinker Town Toki",
+        "dbf_id": 97924
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "TB_BaconShop_HERO_43_SKIN_D",
+        "name": "Brann Bronzegill",
+        "dbf_id": 96576
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "TB_BaconShop_HERO_52_SKIN_C",
+        "name": "Deathwing, Risen",
+        "dbf_id": 98796
+      },
+      {
+        "starting_armor": 7,
+        "card_id": "BG35_HERO_001",
+        "name": "Genn, Worgen King",
+        "dbf_id": 129684
+      }
+    ],
+    "hero_choices_before_reroll": [
+      {
+        "starting_armor": 15,
+        "card_id": "TB_BaconShop_HERO_28_SKIN_D",
+        "name": "Tinker Town Toki",
+        "dbf_id": 97924
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "TB_BaconShop_HERO_43_SKIN_D",
+        "name": "Brann Bronzegill",
+        "dbf_id": 96576
+      },
+      {
+        "starting_armor": 5,
+        "card_id": "TB_BaconShop_HERO_10",
+        "name": "Trade Prince Gallywix",
+        "dbf_id": 57891
+      },
+      {
+        "starting_armor": 7,
+        "card_id": "BG35_HERO_001",
+        "name": "Genn, Worgen King",
+        "dbf_id": 129684
+      }
+    ],
+    "hero_power": {
+      "card_id": "BG35_HERO_001p",
+      "name": "King of Duality",
+      "dbf_id": 129685
+    },
+    "starting_health": 30,
+    "starting_armor": 7,
+    "trinkets": [
+      {
+        "turn": 6,
+        "card_id": "BG36_MagicItem_404",
+        "name": "Corrupted Baton",
+        "dbf_id": 134317
+      },
+      {
+        "turn": 9,
+        "card_id": "BG36_MagicItem_600",
+        "name": "Converter Portrait",
+        "dbf_id": 134453
+      }
+    ],
+    "quest": {
+      "card_id": null,
+      "name": null,
+      "reward_card_id": null,
+      "completed_turn": null
+    }
+  },
+  "result": {
+    "placement": 5,
+    "mmr_before": 4972,
+    "mmr_after": 4973,
+    "mmr_delta": 1,
+    "eliminated_turn": 12,
+    "final_tavern_tier": 5,
+    "total_turns": 12
+  },
+  "opponents": [
+    {
+      "player_id": 1,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_71_SKIN_F",
+        "name": "Stand-off Jandice",
+        "dbf_id": 105062
+      },
+      "placement": 7,
+      "estimated_placement": 7,
+      "eliminated_turn": 11,
+      "final_health": -12,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_308",
+          "name": "Trailblazer Sticker",
+          "dbf_id": 133380
+        },
+        {
+          "card_id": "BG30_MagicItem_442",
+          "name": "Blood Golem Sticker",
+          "dbf_id": 113096
+        }
+      ]
+    },
+    {
+      "player_id": 2,
+      "hero": {
+        "card_id": "BG34_HERO_001",
+        "name": "Time Twister Chromie",
+        "dbf_id": 126537
+      },
+      "placement": null,
+      "estimated_placement": 3,
+      "eliminated_turn": null,
+      "final_health": 1,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_888",
+          "name": "Souvenir Stand",
+          "dbf_id": 112895
+        },
+        {
+          "card_id": "BG30_MagicItem_993",
+          "name": "Pagle's Fishing Rod",
+          "dbf_id": 113103
+        }
+      ]
+    },
+    {
+      "player_id": 3,
+      "hero": {
+        "card_id": "BG21_HERO_000_SKIN_G",
+        "name": "Leader Cariel",
+        "dbf_id": 131195
+      },
+      "placement": 4,
+      "estimated_placement": 4,
+      "eliminated_turn": 12,
+      "final_health": -2,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_852",
+          "name": "Willbreaker Sticker",
+          "dbf_id": 134639
+        },
+        {
+          "card_id": "BG36_MagicItem_430",
+          "name": "Sludge Portrait",
+          "dbf_id": 134443
+        }
+      ]
+    },
+    {
+      "player_id": 5,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_50",
+        "name": "Tess Greymane",
+        "dbf_id": 60367
+      },
+      "placement": null,
+      "estimated_placement": 1,
+      "eliminated_turn": null,
+      "final_health": 14,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_852",
+          "name": "Willbreaker Sticker",
+          "dbf_id": 134639
+        },
+        {
+          "card_id": "BG36_MagicItem_418",
+          "name": "Tome of the Ancients",
+          "dbf_id": 134759
+        }
+      ]
+    },
+    {
+      "player_id": 6,
+      "hero": {
+        "card_id": "BG36_HERO_002",
+        "name": "Kith'ix",
+        "dbf_id": 134504
+      },
+      "placement": 6,
+      "estimated_placement": 6,
+      "eliminated_turn": 11,
+      "final_health": -10,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_400",
+          "name": "Corrupted Coin Portrait",
+          "dbf_id": 134315
+        },
+        {
+          "card_id": "BG36_MagicItem_610",
+          "name": "Sinister Invitation",
+          "dbf_id": 134748
+        }
+      ]
+    },
+    {
+      "player_id": 7,
+      "hero": {
+        "card_id": "BG20_HERO_283_SKIN_F",
+        "name": "Eternal Galewing",
+        "dbf_id": 120912
+      },
+      "placement": 8,
+      "estimated_placement": 8,
+      "eliminated_turn": 6,
+      "final_health": 0,
+      "final_armor": 0,
+      "final_tavern_tier": 3,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_609",
+          "name": "Trickster's Sleeve",
+          "dbf_id": 134642
+        }
+      ]
+    },
+    {
+      "player_id": 8,
+      "hero": {
+        "card_id": "BG20_HERO_202_SKIN_A",
+        "name": "Ban-Lu Nguyen",
+        "dbf_id": 82094
+      },
+      "placement": null,
+      "estimated_placement": 2,
+      "eliminated_turn": null,
+      "final_health": 9,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_400",
+          "name": "Corrupted Coin Portrait",
+          "dbf_id": 134315
+        },
+        {
+          "card_id": "BG36_MagicItem_204",
+          "name": "Plaguerunner Portrait",
+          "dbf_id": 133391
+        }
+      ]
+    }
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "tavern_tier": 1,
+      "health": 30,
+      "armor": 7,
+      "gold_available": 3,
+      "actions": {
+        "gold_spent": 3,
+        "buys": 1,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG28_300",
+          "name": "Harmless Bonehead",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 5,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_50",
+          "name": "Tess Greymane",
+          "dbf_id": 60367
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_110",
+            "name": "Joyous",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 17,
+        "result": "tie",
+        "damage_dealt": 0,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 1.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 0.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 2,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 7,
+      "gold_available": 4,
+      "actions": {
+        "gold_spent": 4,
+        "buys": 0,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG28_300",
+          "name": "Harmless Bonehead",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 7,
+        "opponent_hero": {
+          "card_id": "BG20_HERO_283_SKIN_F",
+          "name": "Eternal Galewing",
+          "dbf_id": 120912
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG26_146",
+            "name": "Lullabot",
+            "tier": 1,
+            "attack": 2,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 10,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 3,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -3.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 3,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 4,
+      "gold_available": 5,
+      "actions": {
+        "gold_spent": 5,
+        "buys": 2,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 1
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_354",
+          "name": "Decoy Conjurer",
+          "tier": 2,
+          "attack": 3,
+          "health": 4,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG28_300",
+          "name": "Harmless Bonehead",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 8,
+        "opponent_hero": {
+          "card_id": "BG20_HERO_202_SKIN_A",
+          "name": "Ban-Lu Nguyen",
+          "dbf_id": 82094
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG25_008",
+            "name": "Eternal Knight",
+            "tier": 2,
+            "attack": 4,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_110",
+            "name": "Joyous",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG29_300",
+            "name": "Very Hungry Winterfinner",
+            "tier": 2,
+            "attack": 2,
+            "health": 12,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 8,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 5,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -5.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 4,
+      "tavern_tier": 2,
+      "health": 29,
+      "armor": 0,
+      "gold_available": 6,
+      "actions": {
+        "gold_spent": 6,
+        "buys": 2,
+        "sells": 0,
+        "rerolls": 0,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 0
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_354",
+          "name": "Decoy Conjurer",
+          "tier": 2,
+          "attack": 3,
+          "health": 4,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_101",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG28_300",
+          "name": "Harmless Bonehead",
+          "tier": 1,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG24_715",
+          "name": "Patient Scout",
+          "tier": 2,
+          "attack": 1,
+          "health": 1,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 2,
+        "opponent_hero": {
+          "card_id": "BG34_HERO_001",
+          "name": "Time Twister Chromie",
+          "dbf_id": 126537
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG34_140",
+            "name": "Expert Aviator",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "murloc"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_113",
+            "name": "Drifting Sacrifice",
+            "tier": 3,
+            "attack": 2,
+            "health": 1,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_110",
+            "name": "Joyous",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG31_149",
+            "name": "Bubble Gunner",
+            "tier": 1,
+            "attack": 2,
+            "health": 3,
+            "golden": false,
+            "keywords": [
+              "divine_shield"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 4,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 10,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -9.43,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 5,
+      "tavern_tier": 3,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 7,
+      "actions": {
+        "gold_spent": 7,
+        "buys": 1,
+        "sells": 2,
+        "rerolls": 0,
+        "tier_ups": 1,
+        "hero_power_uses": 1,
+        "spells_played": 3
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 2,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_312",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 14,
+          "health": 6,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_101_G",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 4,
+          "health": 4,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_112",
+          "name": "Fetid Corroder",
+          "tier": 3,
+          "attack": 5,
+          "health": 5,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_354",
+          "name": "Decoy Conjurer",
+          "tier": 2,
+          "attack": 5,
+          "health": 6,
+          "golden": false,
+          "keywords": [],
+          "minion_types": []
+        },
+        {
+          "position": 6,
+          "card_id": "BG28_300",
+          "name": "Harmless Bonehead",
+          "tier": 1,
+          "attack": 3,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "undead"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_110",
+          "name": "Joyous",
+          "tier": 1,
+          "attack": 2,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 1,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_71_SKIN_F",
+          "name": "Stand-off Jandice",
+          "dbf_id": 105062
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG20_101",
+            "name": "Roadboar",
+            "tier": 2,
+            "attack": 2,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "quilboar"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG34_683",
+            "name": "Briarback Drummer",
+            "tier": 3,
+            "attack": 5,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "quilboar"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG29_300",
+            "name": "Very Hungry Winterfinner",
+            "tier": 2,
+            "attack": 2,
+            "health": 6,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG24_715",
+            "name": "Patient Scout",
+            "tier": 2,
+            "attack": 1,
+            "health": 1,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 5,
+            "card_id": "BG33_430",
+            "name": "Prodigious Tusker",
+            "tier": 2,
+            "attack": 2,
+            "health": 5,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "quilboar"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG34_405",
+            "name": "Relentless Deflector",
+            "tier": 3,
+            "attack": 9,
+            "health": 10,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 5,
+        "result": "win",
+        "damage_dealt": 7,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.994,
+          "tie": 0.005,
+          "loss": 0.001,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 8.98,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 6,
+      "tavern_tier": 4,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 8,
+      "actions": {
+        "gold_spent": 8,
+        "buys": 0,
+        "sells": 4,
+        "rerolls": 1,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 3
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 2,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 2,
+          "health": 1,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 14,
+          "health": 6,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_101_G",
+          "name": "Unwilling Slacker",
+          "tier": 2,
+          "attack": 4,
+          "health": 4,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_112",
+          "name": "Fetid Corroder",
+          "tier": 3,
+          "attack": 5,
+          "health": 5,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_112",
+          "name": "Fetid Corroder",
+          "tier": 3,
+          "attack": 3,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 17,
+          "health": 19,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 3,
+        "opponent_hero": {
+          "card_id": "BG21_HERO_000_SKIN_G",
+          "name": "Leader Cariel",
+          "dbf_id": 131195
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_101",
+            "name": "Unwilling Slacker",
+            "tier": 2,
+            "attack": 47,
+            "health": 20,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG31_149",
+            "name": "Bubble Gunner",
+            "tier": 1,
+            "attack": 11,
+            "health": 14,
+            "golden": false,
+            "keywords": [
+              "windfury"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_346",
+            "name": "Fruit Vendor",
+            "tier": 3,
+            "attack": 13,
+            "health": 16,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_854",
+            "name": "Rescue Bot",
+            "tier": 3,
+            "attack": 6,
+            "health": 5,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          }
+        ],
+        "opponent_health": 30,
+        "opponent_armor": 6,
+        "result": "win",
+        "damage_dealt": 10,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.991,
+          "tie": 0.006,
+          "loss": 0.003,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 9.06,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 7,
+      "tavern_tier": 4,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 9,
+      "actions": {
+        "gold_spent": 9,
+        "buys": 4,
+        "sells": 5,
+        "rerolls": 6,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 6
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_114",
+          "name": "Parasitic Fleshling",
+          "tier": 4,
+          "attack": 46,
+          "health": 48,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 14,
+          "health": 13,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 14,
+          "health": 13,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 26,
+          "health": 18,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_106",
+          "name": "Cutthroat K'Thir",
+          "tier": 4,
+          "attack": 12,
+          "health": 12,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 53,
+          "health": 71,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_300",
+          "name": "N'raqi Frostcaller",
+          "tier": 5,
+          "attack": 18,
+          "health": 15,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 6,
+        "opponent_hero": {
+          "card_id": "BG36_HERO_002",
+          "name": "Kith'ix",
+          "dbf_id": 134504
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG34_171",
+            "name": "Conveyor Construct",
+            "tier": 4,
+            "attack": 11,
+            "health": 7,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG31_149",
+            "name": "Bubble Gunner",
+            "tier": 1,
+            "attack": 22,
+            "health": 23,
+            "golden": false,
+            "keywords": [
+              "divine_shield",
+              "reborn"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_311",
+            "name": "Abyssal Envoy",
+            "tier": 3,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_700",
+            "name": "Sewer Escapee",
+            "tier": 4,
+            "attack": 4,
+            "health": 5,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "murloc"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_506",
+            "name": "Drone Duplicator",
+            "tier": 4,
+            "attack": 9,
+            "health": 10,
+            "golden": false,
+            "keywords": [
+              "divine_shield"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG32_336",
+            "name": "Gormling Gourmet",
+            "tier": 4,
+            "attack": 4,
+            "health": 3,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG32_336",
+            "name": "Gormling Gourmet",
+            "tier": 4,
+            "attack": 4,
+            "health": 3,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "murloc"
+            ]
+          }
+        ],
+        "opponent_health": 20,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 10,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 1.0,
+          "tie": 0.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 10.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 8,
+      "tavern_tier": 5,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 1,
+        "sells": 4,
+        "rerolls": 2,
+        "tier_ups": 1,
+        "hero_power_uses": 0,
+        "spells_played": 5
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 50,
+          "health": 42,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_113",
+          "name": "Drifting Sacrifice",
+          "tier": 3,
+          "attack": 20,
+          "health": 19,
+          "golden": false,
+          "keywords": [
+            "reborn"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_114",
+          "name": "Parasitic Fleshling",
+          "tier": 4,
+          "attack": 56,
+          "health": 58,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_106",
+          "name": "Cutthroat K'Thir",
+          "tier": 4,
+          "attack": 30,
+          "health": 30,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 74,
+          "health": 102,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_300",
+          "name": "N'raqi Frostcaller",
+          "tier": 5,
+          "attack": 30,
+          "health": 27,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG32_111",
+          "name": "Nightmare Par-tea Guest",
+          "tier": 5,
+          "attack": 9,
+          "health": 9,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "all"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 7,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_KelThuzad",
+          "name": "Kel'Thuzad",
+          "dbf_id": 59194
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_354",
+            "name": "Decoy Conjurer",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_116",
+            "name": "Underrot Spawn",
+            "tier": 2,
+            "attack": 2,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG25_022",
+            "name": "Scarlet Skull",
+            "tier": 2,
+            "attack": 2,
+            "health": 1,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_099",
+            "name": "Brain Rotter",
+            "tier": 2,
+            "attack": 3,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_098",
+            "name": "Zoatroid",
+            "tier": 1,
+            "attack": 3,
+            "health": 2,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG26_146",
+            "name": "Lullabot",
+            "tier": 1,
+            "attack": 4,
+            "health": 11,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          }
+        ],
+        "opponent_health": 0,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 15,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 1.0,
+          "tie": 0.0,
+          "loss": 0.0,
+          "lethal": 1.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 15.0,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 9,
+      "tavern_tier": 5,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 3,
+        "sells": 4,
+        "rerolls": 7,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 2
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_318",
+          "name": "Faceless Converter",
+          "tier": 5,
+          "attack": 27,
+          "health": 27,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_318",
+          "name": "Faceless Converter",
+          "tier": 5,
+          "attack": 5,
+          "health": 5,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 77,
+          "health": 107,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_114",
+          "name": "Parasitic Fleshling",
+          "tier": 4,
+          "attack": 56,
+          "health": 58,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 50,
+          "health": 42,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_106",
+          "name": "Cutthroat K'Thir",
+          "tier": 4,
+          "attack": 38,
+          "health": 38,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_300",
+          "name": "N'raqi Frostcaller",
+          "tier": 5,
+          "attack": 30,
+          "health": 27,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 5,
+        "opponent_hero": {
+          "card_id": "TB_BaconShop_HERO_50",
+          "name": "Tess Greymane",
+          "dbf_id": 60367
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_115",
+            "name": "Nightmare Corroder",
+            "tier": 4,
+            "attack": 7,
+            "health": 4,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_108_G",
+            "name": "Vicious Mindslasher",
+            "tier": 3,
+            "attack": 85,
+            "health": 115,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_320",
+            "name": "Mysterious K'Thir",
+            "tier": 5,
+            "attack": 56,
+            "health": 56,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_311",
+            "name": "Abyssal Envoy",
+            "tier": 3,
+            "attack": 56,
+            "health": 57,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_300",
+            "name": "N'raqi Frostcaller",
+            "tier": 5,
+            "attack": 46,
+            "health": 43,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_300",
+            "name": "N'raqi Frostcaller",
+            "tier": 5,
+            "attack": 46,
+            "health": 43,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG36_097_G",
+            "name": "Mindbender Ghur'sha",
+            "tier": 5,
+            "attack": 6,
+            "health": 18,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          }
+        ],
+        "opponent_health": 22,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 8,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 1.0,
+          "tie": 0.0,
+          "loss": 0.0,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": 9.05,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 10,
+      "tavern_tier": 5,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 2,
+        "sells": 2,
+        "rerolls": 8,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 2
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_318",
+          "name": "Faceless Converter",
+          "tier": 5,
+          "attack": 38,
+          "health": 38,
+          "golden": false,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_318",
+          "name": "Faceless Converter",
+          "tier": 5,
+          "attack": 5,
+          "health": 5,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 80,
+          "health": 112,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 50,
+          "health": 42,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_106",
+          "name": "Cutthroat K'Thir",
+          "tier": 4,
+          "attack": 46,
+          "health": 46,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_300",
+          "name": "N'raqi Frostcaller",
+          "tier": 5,
+          "attack": 30,
+          "health": 27,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG34_682",
+          "name": "Razorfen Flapper",
+          "tier": 4,
+          "attack": 10,
+          "health": 6,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "quilboar"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 3,
+        "opponent_hero": {
+          "card_id": "BG21_HERO_000_SKIN_G",
+          "name": "Leader Cariel",
+          "dbf_id": 131195
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG36_318",
+            "name": "Faceless Converter",
+            "tier": 5,
+            "attack": 29,
+            "health": 31,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_101_G",
+            "name": "Unwilling Slacker",
+            "tier": 2,
+            "attack": 253,
+            "health": 71,
+            "golden": true,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_115",
+            "name": "Nightmare Corroder",
+            "tier": 4,
+            "attack": 52,
+            "health": 45,
+            "golden": false,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_103",
+            "name": "N'raqi Sapper",
+            "tier": 5,
+            "attack": 13,
+            "health": 11,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG36_312_G",
+            "name": "Mindbending Recruiter",
+            "tier": 4,
+            "attack": 154,
+            "health": 147,
+            "golden": true,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_320",
+            "name": "Mysterious K'Thir",
+            "tier": 5,
+            "attack": 39,
+            "health": 40,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "aberration"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG25_354",
+            "name": "Titus Rivendare",
+            "tier": 5,
+            "attack": 27,
+            "health": 28,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          }
+        ],
+        "opponent_health": 26,
+        "opponent_armor": 0,
+        "result": "win",
+        "damage_dealt": 15,
+        "damage_taken": 0,
+        "bobs_buddy": {
+          "win": 0.352,
+          "tie": 0.046,
+          "loss": 0.602,
+          "lethal": 0.0,
+          "opponent_lethal": 0.0,
+          "avg_damage": -2.16,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 11,
+      "tavern_tier": 5,
+      "health": 19,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 10,
+        "buys": 2,
+        "sells": 0,
+        "rerolls": 6,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 5
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_318_G",
+          "name": "Faceless Converter",
+          "tier": 5,
+          "attack": 59,
+          "health": 60,
+          "golden": true,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 92,
+          "health": 132,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG34_682",
+          "name": "Razorfen Flapper",
+          "tier": 4,
+          "attack": 10,
+          "health": 6,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "quilboar"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 50,
+          "health": 42,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_300",
+          "name": "N'raqi Frostcaller",
+          "tier": 5,
+          "attack": 30,
+          "health": 27,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_103",
+          "name": "N'raqi Sapper",
+          "tier": 5,
+          "attack": 6,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_103",
+          "name": "N'raqi Sapper",
+          "tier": 5,
+          "attack": 6,
+          "health": 3,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 8,
+        "opponent_hero": {
+          "card_id": "BG20_HERO_202_SKIN_A",
+          "name": "Ban-Lu Nguyen",
+          "dbf_id": 82094
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG32_880",
+            "name": "Friendly Geist",
+            "tier": 4,
+            "attack": 67,
+            "health": 5,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG28_309",
+            "name": "Mummifier",
+            "tier": 3,
+            "attack": 66,
+            "health": 3,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG36_511_G",
+            "name": "Dead Bellringer",
+            "tier": 4,
+            "attack": 75,
+            "health": 11,
+            "golden": true,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG36_511_G",
+            "name": "Dead Bellringer",
+            "tier": 4,
+            "attack": 75,
+            "health": 11,
+            "golden": true,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG25_010",
+            "name": "Handless Forsaken",
+            "tier": 3,
+            "attack": 63,
+            "health": 3,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG36_515",
+            "name": "Snazzy Phantom",
+            "tier": 6,
+            "attack": 127,
+            "health": 70,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          },
+          {
+            "position": 7,
+            "card_id": "BG32_324",
+            "name": "Drustfallen Butcher",
+            "tier": 5,
+            "attack": 798,
+            "health": 744,
+            "golden": false,
+            "keywords": [
+              "reborn"
+            ],
+            "minion_types": [
+              "undead"
+            ]
+          }
+        ],
+        "opponent_health": 9,
+        "opponent_armor": 0,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 15,
+        "bobs_buddy": {
+          "win": 0.001,
+          "tie": 0.001,
+          "loss": 0.998,
+          "lethal": 0.001,
+          "opponent_lethal": 0.0,
+          "avg_damage": -13.39,
+          "simulations": 10000
+        }
+      }
+    },
+    {
+      "turn": 12,
+      "tavern_tier": 5,
+      "health": 4,
+      "armor": 0,
+      "gold_available": 10,
+      "actions": {
+        "gold_spent": 9,
+        "buys": 2,
+        "sells": 4,
+        "rerolls": 11,
+        "tier_ups": 0,
+        "hero_power_uses": 0,
+        "spells_played": 10
+      },
+      "board_end_of_shop": [
+        {
+          "position": 1,
+          "card_id": "BG36_318_G",
+          "name": "Faceless Converter",
+          "tier": 5,
+          "attack": 59,
+          "health": 60,
+          "golden": true,
+          "keywords": [
+            "taunt"
+          ],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 2,
+          "card_id": "BG36_108",
+          "name": "Vicious Mindslasher",
+          "tier": 3,
+          "attack": 128,
+          "health": 192,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 3,
+          "card_id": "BG36_103_G",
+          "name": "N'raqi Sapper",
+          "tier": 5,
+          "attack": 12,
+          "health": 6,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 4,
+          "card_id": "BG34_682",
+          "name": "Razorfen Flapper",
+          "tier": 4,
+          "attack": 10,
+          "health": 6,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "quilboar"
+          ]
+        },
+        {
+          "position": 5,
+          "card_id": "BG36_312_G",
+          "name": "Mindbending Recruiter",
+          "tier": 4,
+          "attack": 50,
+          "health": 42,
+          "golden": true,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 6,
+          "card_id": "BG36_300",
+          "name": "N'raqi Frostcaller",
+          "tier": 5,
+          "attack": 30,
+          "health": 27,
+          "golden": false,
+          "keywords": [],
+          "minion_types": [
+            "aberration"
+          ]
+        },
+        {
+          "position": 7,
+          "card_id": "BG36_372",
+          "name": "Holy Vanguard",
+          "tier": 4,
+          "attack": 20,
+          "health": 20,
+          "golden": false,
+          "keywords": [
+            "divine_shield"
+          ],
+          "minion_types": []
+        }
+      ],
+      "hand_end_of_shop": null,
+      "combat": {
+        "opponent_player_id": 2,
+        "opponent_hero": {
+          "card_id": "BG34_HERO_001",
+          "name": "Time Twister Chromie",
+          "dbf_id": 126537
+        },
+        "opponent_board": [
+          {
+            "position": 1,
+            "card_id": "BG34_171_G",
+            "name": "Conveyor Construct",
+            "tier": 4,
+            "attack": 28,
+            "health": 61,
+            "golden": true,
+            "keywords": [
+              "taunt"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 2,
+            "card_id": "BG36_366",
+            "name": "Resourceful Robot",
+            "tier": 5,
+            "attack": 446,
+            "health": 471,
+            "golden": false,
+            "keywords": [
+              "taunt",
+              "divine_shield"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 3,
+            "card_id": "BG26_149",
+            "name": "Polarizing Beatboxer",
+            "tier": 7,
+            "attack": 963,
+            "health": 741,
+            "golden": false,
+            "keywords": [
+              "taunt",
+              "divine_shield"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 4,
+            "card_id": "BG26_149",
+            "name": "Polarizing Beatboxer",
+            "tier": 7,
+            "attack": 970,
+            "health": 742,
+            "golden": false,
+            "keywords": [
+              "taunt",
+              "divine_shield"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 5,
+            "card_id": "BG34_170t",
+            "name": "Red Volumizer",
+            "tier": 2,
+            "attack": 484,
+            "health": 346,
+            "golden": false,
+            "keywords": [
+              "taunt",
+              "divine_shield"
+            ],
+            "minion_types": [
+              "mechanical"
+            ]
+          },
+          {
+            "position": 6,
+            "card_id": "BG26_ICC_901",
+            "name": "Drakkari Enchanter",
+            "tier": 5,
+            "attack": 21,
+            "health": 73,
+            "golden": false,
+            "keywords": [],
+            "minion_types": []
+          },
+          {
+            "position": 7,
+            "card_id": "BG26_152",
+            "name": "Utility Drone",
+            "tier": 6,
+            "attack": 4,
+            "health": 5,
+            "golden": false,
+            "keywords": [],
+            "minion_types": [
+              "mechanical"
+            ]
+          }
+        ],
+        "opponent_health": 1,
+        "opponent_armor": 0,
+        "result": "loss",
+        "damage_dealt": 0,
+        "damage_taken": 15,
+        "bobs_buddy": {
+          "win": 0.0,
+          "tie": 0.0,
+          "loss": 1.0,
+          "lethal": 0.0,
+          "opponent_lethal": 1.0,
+          "avg_damage": -14.7,
+          "simulations": 10000
+        }
+      }
+    }
+  ],
+  "notes": []
+}

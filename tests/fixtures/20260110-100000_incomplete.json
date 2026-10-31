@@ -1,0 +1,399 @@
+{
+  "schema_version": "1.0.0",
+  "status": "incomplete",
+  "generator": {
+    "plugin": "HsbgLogger",
+    "plugin_version": "0.2.0",
+    "hdt_version": "1.58.3",
+    "hearthstone_build": 56608
+  },
+  "game": {
+    "game_id": "10ea6482-68db-5877-ac69-282a1ba3b688",
+    "mode": "battlegrounds",
+    "variant": "solo",
+    "game_type": "GT_BATTLEGROUNDS",
+    "started_at": "2026-01-10T10:00:00+09:00",
+    "ended_at": null,
+    "duration_sec": null,
+    "region": "ASIA",
+    "anomaly": {
+      "card_id": null,
+      "name": null,
+      "dbf_id": null
+    },
+    "global_old_god": {
+      "card_id": "BGFYM_011",
+      "name": "Y'Shaarj",
+      "dbf_id": 132532
+    },
+    "minion_types": [
+      "aberration",
+      "elemental",
+      "mechanical",
+      "pirate",
+      "quilboar"
+    ],
+    "combat_damage_cap": 15,
+    "lobby_size": 8
+  },
+  "player": {
+    "hero": {
+      "card_id": "TB_BaconShop_HERO_16_SKIN_A",
+      "name": "Sunlounger A. F. Kay",
+      "dbf_id": 75166
+    },
+    "hero_choices": [
+      {
+        "starting_armor": null,
+        "card_id": "BG26_HERO_101",
+        "name": "Cap'n Hoggarr",
+        "dbf_id": 101130
+      },
+      {
+        "starting_armor": null,
+        "card_id": "BG34_HERO_002",
+        "name": "Mister Clocksworth",
+        "dbf_id": 126532
+      },
+      {
+        "starting_armor": null,
+        "card_id": "TB_BaconShop_HERO_16_SKIN_A",
+        "name": "Sunlounger A. F. Kay",
+        "dbf_id": 75166
+      },
+      {
+        "starting_armor": null,
+        "card_id": "TB_BaconShop_HERO_21",
+        "name": "The Great Akazamzarak",
+        "dbf_id": 58021
+      }
+    ],
+    "hero_choices_before_reroll": [
+      {
+        "starting_armor": 14,
+        "card_id": "BG26_HERO_101",
+        "name": "Cap'n Hoggarr",
+        "dbf_id": 101130
+      },
+      {
+        "starting_armor": 18,
+        "card_id": "BG34_HERO_002",
+        "name": "Mister Clocksworth",
+        "dbf_id": 126532
+      },
+      {
+        "starting_armor": 17,
+        "card_id": "TB_BaconShop_HERO_94_SKIN_E",
+        "name": "Scalper Tickatus",
+        "dbf_id": 103815
+      },
+      {
+        "starting_armor": 12,
+        "card_id": "TB_BaconShop_HERO_21",
+        "name": "The Great Akazamzarak",
+        "dbf_id": 58021
+      }
+    ],
+    "hero_power": {
+      "card_id": "TB_BaconShop_HP_044",
+      "name": "Procrastinate",
+      "dbf_id": 59891
+    },
+    "starting_health": 30,
+    "starting_armor": 15,
+    "trinkets": [
+      {
+        "turn": 6,
+        "card_id": "BG35_MagicItem_434",
+        "name": "Jewelry Box",
+        "dbf_id": 130904
+      },
+      {
+        "turn": 9,
+        "card_id": "BG32_MagicItem_901",
+        "name": "Gold-plated Compass",
+        "dbf_id": 120159
+      }
+    ],
+    "quest": {
+      "card_id": null,
+      "name": null,
+      "reward_card_id": null,
+      "completed_turn": null
+    }
+  },
+  "result": {
+    "placement": null,
+    "mmr_before": null,
+    "mmr_after": null,
+    "mmr_delta": null,
+    "eliminated_turn": null,
+    "final_tavern_tier": null,
+    "total_turns": null
+  },
+  "opponents": [
+    {
+      "player_id": 2,
+      "hero": {
+        "card_id": "BG36_HERO_101",
+        "name": "Tras'tath, Soul Parasite",
+        "dbf_id": 132578
+      },
+      "placement": null,
+      "estimated_placement": 1,
+      "eliminated_turn": null,
+      "final_health": 28,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_400",
+          "name": "Corrupted Coin Portrait",
+          "dbf_id": 134315
+        },
+        {
+          "card_id": "BG36_MagicItem_417",
+          "name": "Makeshift Master",
+          "dbf_id": 134758
+        }
+      ]
+    },
+    {
+      "player_id": 3,
+      "hero": {
+        "card_id": "BG21_HERO_000_SKIN_H",
+        "name": "Advocate Cariel",
+        "dbf_id": 133738
+      },
+      "placement": 7,
+      "estimated_placement": 7,
+      "eliminated_turn": 10,
+      "final_health": -5,
+      "final_armor": 0,
+      "final_tavern_tier": 4,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_810",
+          "name": "Inductive Gyroblade",
+          "dbf_id": 133062
+        },
+        {
+          "card_id": "BG35_MagicItem_743",
+          "name": "Electrode Attractor",
+          "dbf_id": 131141
+        }
+      ]
+    },
+    {
+      "player_id": 4,
+      "hero": {
+        "card_id": "BG31_HERO_006",
+        "name": "Exarch Othaar",
+        "dbf_id": 117425
+      },
+      "placement": 8,
+      "estimated_placement": 8,
+      "eliminated_turn": 9,
+      "final_health": -7,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_888",
+          "name": "Souvenir Stand",
+          "dbf_id": 112895
+        },
+        {
+          "card_id": "BG30_MagicItem_426t",
+          "name": "Colorful Compass",
+          "dbf_id": 115250
+        }
+      ]
+    },
+    {
+      "player_id": 5,
+      "hero": {
+        "card_id": "TB_BaconShop_HERO_67_SKIN_G",
+        "name": "Smuggler Hooktusk",
+        "dbf_id": 133728
+      },
+      "placement": null,
+      "estimated_placement": 2,
+      "eliminated_turn": null,
+      "final_health": 25,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG35_MagicItem_817",
+          "name": "Lens Case",
+          "dbf_id": 130835
+        },
+        {
+          "card_id": "BG36_MagicItem_418",
+          "name": "Tome of the Ancients",
+          "dbf_id": 134759
+        }
+      ]
+    },
+    {
+      "player_id": 6,
+      "hero": {
+        "card_id": "BG20_HERO_301_SKIN_G",
+        "name": "Castle Mutanus",
+        "dbf_id": 115388
+      },
+      "placement": null,
+      "estimated_placement": 3,
+      "eliminated_turn": null,
+      "final_health": 11,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG30_MagicItem_434",
+          "name": "Replica Cathedral",
+          "dbf_id": 112855
+        },
+        {
+          "card_id": "BG36_MagicItem_404t",
+          "name": "Corrupted Baton",
+          "dbf_id": 134323
+        }
+      ]
+    },
+    {
+      "player_id": 7,
+      "hero": {
+        "card_id": "BG21_HERO_010",
+        "name": "Scabbs Cutterbutter",
+        "dbf_id": 76562
+      },
+      "placement": null,
+      "estimated_placement": 4,
+      "eliminated_turn": null,
+      "final_health": 8,
+      "final_armor": 0,
+      "final_tavern_tier": 5,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_303",
+          "name": "Glass of Perspective",
+          "dbf_id": 133346
+        },
+        {
+          "card_id": "BG36_MagicItem_600",
+          "name": "Converter Portrait",
+          "dbf_id": 134453
+        }
+      ]
+    },
+    {
+      "player_id": 8,
+      "hero": {
+        "card_id": "BG22_HERO_000_SKIN_E",
+        "name": "Ribbon Tavish",
+        "dbf_id": 115387
+      },
+      "placement": 5,
+      "estimated_placement": 5,
+      "eliminated_turn": 12,
+      "final_health": -2,
+      "final_armor": 0,
+      "final_tavern_tier": 6,
+      "trinkets": [
+        {
+          "card_id": "BG36_MagicItem_400",
+          "name": "Corrupted Coin Portrait",
+          "dbf_id": 134315
+        },
+        {
+          "card_id": "BG36_MagicItem_430",
+          "name": "Sludge Portrait",
+          "dbf_id": 134443
+        }
+      ]
+    }
+  ],
+  "turns": [
+    {
+      "turn": 1,
+      "tavern_tier": 1,
+      "health": 30,
+      "armor": 15,
+      "gold_available": null,
+      "actions": {
+        "gold_spent": null,
+        "buys": null,
+        "sells": null,
+        "rerolls": null,
+        "tier_ups": null,
+        "hero_power_uses": null,
+        "spells_played": null
+      },
+      "board_end_of_shop": [],
+      "hand_end_of_shop": null,
+      "combat": null
+    },
+    {
+      "turn": 2,
+      "tavern_tier": 1,
+      "health": 30,
+      "armor": 13,
+      "gold_available": null,
+      "actions": {
+        "gold_spent": null,
+        "buys": null,
+        "sells": null,
+        "rerolls": null,
+        "tier_ups": null,
+        "hero_power_uses": null,
+        "spells_played": null
+      },
+      "board_end_of_shop": [],
+      "hand_end_of_shop": null,
+      "combat": null
+    },
+    {
+      "turn": 3,
+      "tavern_tier": 2,
+      "health": 30,
+      "armor": 10,
+      "gold_available": 5,
+      "actions": {
+        "gold_spent": 5,
+        "buys": null,
+        "sells": null,
+        "rerolls": null,
+        "tier_ups": null,
+        "hero_power_uses": null,
+        "spells_played": null
+      },
+      "board_end_of_shop": [],
+      "hand_end_of_shop": null,
+      "combat": null
+    },
+    {
+      "turn": 4,
+      "tavern_tier": 3,
+      "health": 30,
+      "armor": 10,
+      "gold_available": 6,
+      "actions": {
+        "gold_spent": 6,
+        "buys": null,
+        "sells": null,
+        "rerolls": null,
+        "tier_ups": null,
+        "hero_power_uses": null,
+        "spells_played": null
+      },
+      "board_end_of_shop": [],
+      "hand_end_of_shop": null,
+      "combat": null
+    }
+  ],
+  "notes": [
+    "recovered from partial journal (HDT or plugin stopped during the game)"
+  ]
+}

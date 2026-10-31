@@ -1,0 +1,49 @@
+[project]
+name = "hsbg"
+version = "0.1.0"
+description = "Hearthstone Battlegrounds game-log analysis CLI, static report and local dashboard"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas>=2.2",
+    "plotly>=5.24",
+    "fastjsonschema>=2.20",
+    "typer>=0.12",
+    "pyarrow>=17",
+    "streamlit>=1.40",
+]
+
+[project.scripts]
+hsbg = "hsbg.cli:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.3",
+    "ruff>=0.6",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["hsbg"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+# copied as-is into each player's knowledge folder (hsbg init); kept in its own style
+extend-exclude = ["hsbg/templates/workspace/knowledge/tools"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "W"]
+
+[tool.ruff.lint.per-file-ignores]
+# HTML / Markdown template literals are clearer on one line
+"hsbg/report.py" = ["E501"]
+"hsbg/summarize.py" = ["E501"]
+"hsbg/dashboard/views/*.py" = ["E501"]
+"hsbg/markdown.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: performance budget tests (run by default; deselect with -m 'not slow')"]

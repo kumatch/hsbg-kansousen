@@ -1,0 +1,1313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CardDefs build="253216">
+<Entity CardID="BG20_101" ID="70157" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Roadboar</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_100" ID="70838" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Rokara</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_100_SKIN_G" ID="124111" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Explorer Rokara</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="70838"/>
+</Entity>
+<Entity CardID="BG20_HERO_202" ID="71908" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Master Nguyen</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_202_SKIN_A" ID="82094" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ban-Lu Nguyen</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="71908"/>
+</Entity>
+<Entity CardID="BG20_HERO_283" ID="75702" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Galewing</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_283_SKIN_F" ID="120912" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Eternal Galewing</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="75702"/>
+</Entity>
+<Entity CardID="BG20_HERO_301" ID="71916" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mutanus the Devourer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG20_HERO_301_SKIN_G" ID="115388" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Castle Mutanus</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="71916"/>
+</Entity>
+<Entity CardID="BG21_004_G" ID="72821" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Insatiable Ur'zul</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_000" ID="73940" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cariel Roame</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_000_SKIN_G" ID="131195" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Leader Cariel</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="73940"/>
+</Entity>
+<Entity CardID="BG21_HERO_000_SKIN_H" ID="133738" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Advocate Cariel</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="73940"/>
+</Entity>
+<Entity CardID="BG21_HERO_010" ID="76562" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Scabbs Cutterbutter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_020" ID="77516" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cookie the Cook</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG21_HERO_020_SKIN_F" ID="128098" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cookie the Infinite</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="77516"/>
+</Entity>
+<Entity CardID="BG22_HERO_000" ID="77987" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tavish Stormpike</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_000_SKIN_E" ID="115387" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ribbon Tavish</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="77987"/>
+</Entity>
+<Entity CardID="BG22_HERO_002" ID="80239" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drek'Thar</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_002_SKIN_E" ID="115375" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Bird Watching Drek'Thar</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="80239"/>
+</Entity>
+<Entity CardID="BG22_HERO_002p" ID="80244" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Frostwolf Fervor</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_201" ID="81569" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ambassador Faelin</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG22_HERO_201_SKIN_E" ID="117880" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Punk Faelin</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="81569"/>
+</Entity>
+<Entity CardID="BG23_HERO_201" ID="86013" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ozumat</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_715" ID="97604" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Patient Scout</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_HERO_100" ID="92960" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sire Denathrius</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG24_HERO_100_SKIN_A" ID="102494" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sire Melodious</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="92960"/>
+</Entity>
+<Entity CardID="BG24_HERO_100_SKIN_E" ID="117884" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Boss Denathrius</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="92960"/>
+</Entity>
+<Entity CardID="BG25_001" ID="95246" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Risen Rider</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_008" ID="95261" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Eternal Knight</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_010" ID="95265" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Handless Forsaken</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_011" ID="95267" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Nerubian Deathswarmer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_022" ID="95280" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Scarlet Skull</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG25_354" ID="97408" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Titus Rivendare</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_135" ID="98501" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Southsea Busker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_146" ID="98582" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Lullabot</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_149" ID="98713" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Polarizing Beatboxer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_152" ID="98588" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Utility Drone</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_174" ID="100949" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Soul Rewinder</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_817" ID="99035" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Blade Collector</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_HERO_101" ID="101130" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cap'n Hoggarr</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG26_ICC_901" ID="101314" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drakkari Enchanter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_300" ID="104551" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Harmless Bonehead</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_303" ID="104610" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Disguised Graverobber</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_309" ID="108992" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mummifier</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_309_G" ID="109003" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mummifier</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_633_G" ID="110665" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Felboar</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG28_HERO_400" ID="105314" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Snake Eyes</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG29_300" ID="109879" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Very Hungry Winterfinner</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG29_611" ID="110101" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cord Puller</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG29_813_G" ID="108464" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Persistent Poet</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_125" ID="113158" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cadaver Caretaker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_301" ID="111388" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Eternal Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_416" ID="111556" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Token of the Old Gods</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_426t" ID="115250" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Colorful Compass</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_434" ID="112855" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Replica Cathedral</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_435" ID="112082" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Goldenizer Supply</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_442" ID="113096" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Blood Golem Sticker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_700" ID="117794" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Deathly Phylactery</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_888" ID="112895" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Souvenir Stand</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG30_MagicItem_993" ID="113103" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Pagle's Fishing Rod</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_149" ID="116178" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Bubble Gunner</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_177" ID="115678" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mechagnome Interpreter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_330" ID="117553" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ominous Seer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_801" ID="115577" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Forest Rover</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_809" ID="119255" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Turquoise Skitterer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_816" ID="116736" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Fire Baller</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_835" ID="115610" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Deathly Striker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_999" ID="119666" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Stitched Salvager</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_003" ID="116926" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Farseer Nobundo</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_005" ID="117409" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Zerek, Master Cloner</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_006" ID="117425" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Exarch Othaar</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG31_HERO_811" ID="120358" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Kerrigan, Queen of Blades</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_111" ID="120754" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Nightmare Par-tea Guest</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_236" ID="119996" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Aureate Laureate</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_237" ID="120223" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Intrepid Botanist</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_324" ID="120104" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drustfallen Butcher</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_324_G" ID="120105" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drustfallen Butcher</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_336" ID="120689" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Gormling Gourmet</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_821" ID="120299" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Felfire Conjurer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_873" ID="121687" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ashen Corruptor</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_880" ID="120219" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Friendly Geist</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG32_MagicItem_901" ID="120159" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Gold-plated Compass</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_430" ID="122098" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Prodigious Tusker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_822" ID="122179" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Bigwig Bandit</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_825" ID="122520" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Proud Privateer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_825_G" ID="122521" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Proud Privateer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_830" ID="123325" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Azsharan Cutlassier</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_886" ID="122568" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tusked Camper</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_924" ID="122674" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Blue Whelp</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG33_HERO_001" ID="122925" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Loh, the Living Legend</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_140" ID="126637" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Expert Aviator</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_170t" ID="126822" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Red Volumizer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_170t3" ID="126826" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Green Volumizer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_171" ID="126816" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Conveyor Construct</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_171_G" ID="126817" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Conveyor Construct</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_405" ID="129269" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Relentless Deflector</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_682" ID="126667" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Razorfen Flapper</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_683" ID="126669" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Briarback Drummer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_690" ID="126451" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Plaguerunner</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_692" ID="126733" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Forsaken Weaver</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_HERO_001" ID="126537" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Time Twister Chromie</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG34_HERO_002" ID="126532" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mister Clocksworth</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_155" ID="130662" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Twisted Wrathguard</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_HERO_001" ID="129684" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Genn, Worgen King</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_HERO_001p" ID="129685" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>King of Duality</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_434" ID="130904" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Jewelry Box</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_712" ID="130891" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Privateer Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_732" ID="131132" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Soul Fermenter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_733" ID="131133" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Jailer Sticker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_743" ID="131141" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Electrode Attractor</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_814" ID="130832" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Stuffed Coin Purse</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_817" ID="130835" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Lens Case</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_890" ID="130890" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sunken Anchor</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG35_MagicItem_931" ID="131003" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Transcribing Typewriter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_097_G" ID="131693" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mindbender Ghur'sha</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_098" ID="131694" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Zoatroid</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_099" ID="131696" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Brain Rotter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_101" ID="131700" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Unwilling Slacker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_101_G" ID="131701" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Unwilling Slacker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_103" ID="131704" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>N'raqi Sapper</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_103_G" ID="131705" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>N'raqi Sapper</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_104" ID="131706" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dark Puppeteer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_106" ID="131710" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cutthroat K'Thir</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_106_G" ID="131711" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cutthroat K'Thir</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_108" ID="131714" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Vicious Mindslasher</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_108_G" ID="131715" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Vicious Mindslasher</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_109" ID="131716" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>The Shadow of Doubt</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_109_G" ID="131717" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>The Shadow of Doubt</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_110" ID="131718" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Joyous</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_112" ID="133096" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Fetid Corroder</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_113" ID="133098" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drifting Sacrifice</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_113_G" ID="133099" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drifting Sacrifice</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_114" ID="133100" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Parasitic Fleshling</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_115" ID="133102" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Nightmare Corroder</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_115_G" ID="133103" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Nightmare Corroder</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_116" ID="133104" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Underrot Spawn</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_116_G" ID="133105" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Underrot Spawn</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_201" ID="132794" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Lurking Lionfish</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_201_G" ID="132795" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Lurking Lionfish</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_202" ID="132796" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tasty Lobster</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_204_G" ID="132801" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Headhunter Gryphon</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_207" ID="132806" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Wolf Pup</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_210" ID="133039" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Hoarding Hyena</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_211" ID="133041" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Cage Gnawer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_241" ID="132953" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Crimson Vindicator</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_245" ID="132985" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Runic Arcanist</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_300" ID="132136" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>N'raqi Frostcaller</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_311" ID="132213" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Abyssal Envoy</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_312" ID="132215" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mindbending Recruiter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_312_G" ID="132216" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mindbending Recruiter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_318" ID="132331" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Faceless Converter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_318_G" ID="132332" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Faceless Converter</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_320" ID="134497" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mysterious K'Thir</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_320_G" ID="134498" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mysterious K'Thir</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_331" ID="132632" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Bramble Tunneler</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_342" ID="132921" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Clever Castaway</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_345" ID="132915" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Suspicious Prisonguard</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_346" ID="132917" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Fruit Vendor</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_354" ID="133434" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Decoy Conjurer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_360t5" ID="134708" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dark Paradox</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_366" ID="134415" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Resourceful Robot</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_367" ID="134417" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Auto Reveille</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_369" ID="134421" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Greedy Conniver</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_372" ID="134409" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Holy Vanguard</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_506" ID="132312" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drone Duplicator</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_511" ID="132322" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dead Bellringer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_511_G" ID="132323" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dead Bellringer</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_514" ID="133081" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Barrier Banshee</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_515" ID="133083" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Snazzy Phantom</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_700" ID="132881" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sewer Escapee</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_731_G" ID="132900" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Imp-lusionist</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_762" ID="132901" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Devilish Distractor</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_764" ID="133283" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Gearfin</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_853" ID="132893" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Glambot</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_854" ID="132895" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Rescue Bot</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_000" ID="134502" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Drest'agath</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_002" ID="134504" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Kith'ix</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_002p" ID="134505" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dark Ritual</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_101" ID="132578" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tras'tath, Soul Parasite</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_HERO_105" ID="132608" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Nightmare Lord Xavius</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_204" ID="133391" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Plaguerunner Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_213" ID="133401" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Lightfeather Sticker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_303" ID="133346" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Glass of Perspective</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_308" ID="133380" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Trailblazer Sticker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_400" ID="134315" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Corrupted Coin Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_402" ID="134638" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mindslasher Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_404" ID="134317" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Corrupted Baton</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_404t" ID="134323" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Corrupted Baton</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_411" ID="134325" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Reinvigorating Light</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_416" ID="134757" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Evil Experiment</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_417" ID="134758" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Makeshift Master</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_418" ID="134759" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tome of the Ancients</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_423" ID="134439" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Volumizer Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_430" ID="134443" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sludge Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_450" ID="134637" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Snarky Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_600" ID="134453" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Converter Portrait</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_602" ID="134322" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mask of Ancient Ones</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_609" ID="134642" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Trickster's Sleeve</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_610" ID="134748" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sinister Invitation</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_810" ID="133062" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Inductive Gyroblade</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_812" ID="133695" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Emergency Gearblade</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG36_MagicItem_852" ID="134639" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Willbreaker Sticker</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BGFYM_000" ID="130610" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>C'Thun</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BGFYM_002t" ID="130613" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Aberrant Tentacle</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BGFYM_011" ID="132532" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Y'Shaarj</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BGS_008" ID="59687" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ghastcoiler</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BGS_018" ID="59955" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Goldrinn, the Great Wolf</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG_ICC_026t_G" ID="99630" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Skeleton</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="BG_LOE_077" ID="96786" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Brann Bronzebeard</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_10" ID="57891" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Trade Prince Gallywix</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_11" ID="57892" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Ragnaros the Firelord</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_16" ID="57944" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>A. F. Kay</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_16_SKIN_A" ID="75166" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sunlounger A. F. Kay</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="57944"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_16_SKIN_K" ID="133733" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Rec Time A. F. Kay</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="57944"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_21" ID="58021" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>The Great Akazamzarak</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_27" ID="58435" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sindragosa</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_27_SKIN_C" ID="98800" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sindragosa of the Scourge</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="58435"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_28" ID="58534" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Infinite Toki</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_28_SKIN_D" ID="97924" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tinker Town Toki</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="58534"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_36" ID="59806" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dancin' Deryl</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_36_SKIN_F" ID="103816" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Sideshow Deryl</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="59806"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_38" ID="59814" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>King Mukla</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_38_SKIN_D" ID="102496" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mister Mukla</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="59814"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_39" ID="59831" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Pyramad</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_39_SKIN_F" ID="120914" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Pyramasmius</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="59831"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_43" ID="60214" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dinotamer Brann</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_43_SKIN_D" ID="96576" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Brann Bronzegill</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="60214"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_50" ID="60367" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tess Greymane</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_52" ID="60369" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Deathwing</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_52_SKIN_C" ID="98796" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Deathwing, Risen</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="60369"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_62" ID="61914" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Maiev Shadowsong</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_62_SKIN_G" ID="131116" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Off Duty Maiev</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="61914"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_67" ID="62266" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Captain Hooktusk</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_67_SKIN_G" ID="133728" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Smuggler Hooktusk</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="62266"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_68" ID="62268" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Skycap'n Kragg</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_71" ID="63601" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Jandice Barov</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_71_SKIN_F" ID="105062" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Stand-off Jandice</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="63601"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_74" ID="63604" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Forest Warden Omu</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_74_SKIN_G" ID="131187" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Felwarden Omu</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="63604"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_74_SKIN_H" ID="133729" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Prison Warden Omu</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="63604"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_75" ID="64400" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Rakanishu</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_76" ID="64403" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Al'Akir</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_76_SKIN_E" ID="107785" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Bulletstorm Al'Akir</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="64403"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_91" ID="64485" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Zephrys, the Great</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_91_SKIN_F" ID="107787" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Dune Dweller Zephrys</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="64485"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_93" ID="66483" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>N'Zoth</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_93_SKIN_B" ID="102861" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Mixmaster N'Zoth</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="66483"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_94" ID="67356" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Tickatus</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_94_SKIN_E" ID="103815" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Scalper Tickatus</enUS>
+	</Tag>
+	<Tag enumID="2039" name="BACON_SKIN_PARENT_ID" type="Int" value="67356"/>
+</Entity>
+<Entity CardID="TB_BaconShop_HERO_KelThuzad" ID="59194" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Kel'Thuzad</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HP_044" ID="59891" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Procrastinate</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HP_086" ID="64402" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Swatting Insects</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconShop_HP_105t" ID="67213" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Fish of N'Zoth</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconUps_045" ID="58400" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Brann Bronzebeard</enUS>
+	</Tag>
+</Entity>
+<Entity CardID="TB_BaconUps_307" ID="67216" version="2">
+	<Tag enumID="185" name="CARDNAME" type="LocString">
+		<enUS>Fish of N'Zoth</enUS>
+	</Tag>
+</Entity>
+</CardDefs>
