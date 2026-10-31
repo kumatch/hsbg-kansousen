@@ -18,6 +18,9 @@
 - [x] CI（`.github/workflows/ci.yml`）: Windows で ruff + pytest + check_private。プラグインの `schema/game-log.schema.json` と比べる job（取得できなければ警告だけ）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
+- [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ
+      （Power.log やワークスペースの分析・profile.md は貼らない）
+- [ ] 公開: リポジトリを public にする（プラグインの最初のリリースと、README の手順の確認の後）
 - [ ] ダッシュボード・レポートの画面の英語化（今は日本語だけ）
 - [ ] ワークスペースの雛形の英語版（`hsbg init --lang en` など）
 - [ ] Hearthstone クライアントと違う言語のカード名（HDT が取得しない言語の CardDefs を hsbg が取得する。外部通信が増えるので要検討）
