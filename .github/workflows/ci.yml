@@ -27,23 +27,40 @@ jobs:
         run: python scripts/check_private.py
 
   schema:
-    # The log schema belongs to the plugin repository; hsbg keeps a copy (hsbg/game-log.schema.json).
-    # A difference means the plugin changed the log format: update the copy and the loader.
+    # The log contract belongs to the plugin repository (hdt-plugin-hsbg-kansousen); hsbg keeps copies
+    # of its schema/game-log.schema.json (hsbg/game-log.schema.json) and docs/log-schema.md.
+    # A difference means the plugin changed the log format: copy both over and update the loader
+    # (the plugin's CLAUDE.md "ログの形を変えたとき"). Fails on a difference; a file that cannot be
+    # fetched (e.g. while the plugin repository is private) is only a warning.
     runs-on: ubuntu-latest
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
-      - name: Compare with the plugin's schema
+      - name: Compare with the plugin's schema and log-schema.md
         run: |
-          curl -fsSL -o plugin-schema.json \
-            https://raw.githubusercontent.com/kumatch/hdt-plugin-hsbg-kansousen/main/schema/game-log.schema.json \
-            || { echo "::warning::could not fetch the plugin's schema"; exit 0; }
+          base=https://raw.githubusercontent.com/kumatch/hdt-plugin-hsbg-kansousen/main
+          if ! curl -fsSL -o plugin-schema.json "$base/schema/game-log.schema.json" \
+             || ! curl -fsSL -o plugin-log-schema.md "$base/docs/log-schema.md"; then
+            echo "::warning::could not fetch the plugin's log contract; not compared"
+            exit 0
+          fi
           python - <<'PY'
           import json
-          ours = json.load(open("hsbg/game-log.schema.json", encoding="utf-8"))
-          theirs = json.load(open("plugin-schema.json", encoding="utf-8"))
+          from pathlib import Path
+
+          failed = False
+          ours = json.loads(Path("hsbg/game-log.schema.json").read_text(encoding="utf-8"))
+          theirs = json.loads(Path("plugin-schema.json").read_text(encoding="utf-8"))
           if ours != theirs:
-              print("::warning::hsbg/game-log.schema.json differs from the plugin's schema/game-log.schema.json")
+              print("::error::hsbg/game-log.schema.json differs from the plugin's schema/game-log.schema.json")
+              failed = True
+          def text(p):
+              # line endings ignored (a checkout may convert them)
+              return Path(p).read_text(encoding="utf-8").replace("\r\n", "\n")
+
+          if text("docs/log-schema.md") != text("plugin-log-schema.md"):
+              print("::error::docs/log-schema.md differs from the plugin's docs/log-schema.md")
+              failed = True
+          if failed:
               raise SystemExit(1)
-          print("schema copy is up to date")
+          print("log contract copies are up to date")
           PY
