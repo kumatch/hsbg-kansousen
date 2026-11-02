@@ -40,6 +40,13 @@ read these logs.
   changed the rules: the Deity needs 4 friendly Aberration deaths in a combat (3 before) and counts as
   tier 1 for hero damage (3 before). Deity awakening turns, awakened combats and damage taken from
   Deity boards are not comparable across that date; split the period.
+- **Beetles (甲虫).** "Your Beetles have +X/+Y this game" (Turquoise Skitterer, Ravaging Scorpid ...)
+  is not on any minion, so `board_end_of_shop` totals hide a Beetle build's strength (a 354-stat
+  board can beat a 6236-stat one). Recorded from schema 1.7.0 (plugin 0.12.0) as the Beetle's stats
+  (base 2/2 included) at shop end and after combat: `turns.beetle_*` and, when the combat opponent
+  has a Beetle buff, `combats.opponent_beetle_*` (`hsbg export` / lenses; null = no Beetle buff).
+  The values also grow during combat. Older logs got them from their saved power.log
+  (`hsbg backfill-beetle`, note "beetle backfilled from power.log").
 - **Aberration in the type tables.** Aberration was in every lobby from 36.6.1 until 36.6.3
   (2026-10-02) and is in about half the lobbies since, so before 36.6.3 it is only compared on played
   vs not played and after it also on offered vs not offered.

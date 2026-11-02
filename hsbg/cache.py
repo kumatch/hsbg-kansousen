@@ -18,7 +18,7 @@ from . import cards, loader, normalize
 from .normalize import Tables
 
 CACHE_DIR = ".cache"
-CACHE_FORMAT = 8  # bump when the table columns change (old caches are then rebuilt)
+CACHE_FORMAT = 9  # bump when the table columns change (old caches are then rebuilt)
 TABLE_NAMES = (
     "games",
     "turns",

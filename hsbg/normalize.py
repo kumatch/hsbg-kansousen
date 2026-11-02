@@ -106,6 +106,10 @@ TURN_COLUMNS = [
     "deity_health_after",
     "deity_awakened",
     "deity_golden",
+    "beetle_attack",
+    "beetle_health",
+    "beetle_attack_after",
+    "beetle_health_after",
 ]
 COMBAT_COLUMNS = [
     "game_id",
@@ -134,6 +138,10 @@ COMBAT_COLUMNS = [
     "opponent_deity_health_after",
     "opponent_deity_awakened",
     "opponent_deity_golden",
+    "opponent_beetle_attack",
+    "opponent_beetle_health",
+    "opponent_beetle_attack_after",
+    "opponent_beetle_health_after",
 ]
 MINION_COLUMNS = [
     "game_id",
@@ -198,6 +206,18 @@ def _actions(turn: dict[str, Any]) -> dict[str, Any]:
 
 def _stat_sum(minions: list[dict[str, Any]] | None, key: str) -> int:
     return sum(int(m.get(key) or 0) for m in minions or [])
+
+
+def _buff_stats(d: dict[str, Any] | None, prefix: str) -> dict[str, Any]:
+    """schema 1.7.0 の beetle / opponent_beetle（甲虫のステータス。基本の 2/2 を含む）。
+    古いログや甲虫を強化していないターンは全て None。"""
+    d = d or {}
+    return {
+        f"{prefix}_attack": d.get("attack"),
+        f"{prefix}_health": d.get("health"),
+        f"{prefix}_attack_after": d.get("attack_after_combat"),
+        f"{prefix}_health_after": d.get("health_after_combat"),
+    }
 
 
 def _deity(d: dict[str, Any] | None, prefix: str) -> dict[str, Any]:
@@ -343,6 +363,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                     if t.get("deity")
                     else None,
                     **_deity(t.get("deity"), "deity"),
+                    **_buff_stats(t.get("beetle"), "beetle"),
                 }
             )
             minions.extend(
@@ -405,6 +426,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                         "opponent_board_attack": _stat_sum(c.get("opponent_board"), "attack"),
                         "opponent_board_health": _stat_sum(c.get("opponent_board"), "health"),
                         **_deity(c.get("opponent_deity"), "opponent_deity"),
+                        **_buff_stats(c.get("opponent_beetle"), "opponent_beetle"),
                     }
                 )
                 minions.extend(

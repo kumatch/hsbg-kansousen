@@ -379,3 +379,234 @@ def apply_deity(log: dict, deity: dict[int, DeityTurn]) -> int:
     if BACKFILL_NOTE not in notes:
         notes.append(BACKFILL_NOTE)
     return filled
+
+
+# ---------------------------------------------------------------- beetles (hsbg backfill-beetle)
+#
+# docs/log-schema.md §turns[].beetle (schema 1.7.0, plugin 0.12.0). The Beetle buff ("Your
+# Beetles have +X/+Y this game") is not on any minion: it accumulates on a hidden enchantment
+# attached to the player entity.
+# - The local player's `BG31_808pe` ("Beetle Army Player Enchant [DNT]") is created the first time
+#   their Beetles are buffed and stays all game. TAG_SCRIPT_DATA_NUM_1/2 is the buff, without the
+#   Beetle's base 2/2; the recorded stats are base + buff (= the {0}/{1} of the summoning cards).
+# - The combat opponent's enchantment is copied onto their player entity in every combat (their
+#   controller, created during the combat) and moved to REMOVEDFROMGAME afterwards (values kept).
+#   No copy is made when the opponent has no Beetle buff.
+# - The values also change during combat (Ravaging Scorpid etc.), so the value when the combat ends
+#   is the after-combat value, like the Deity.
+
+BEETLE_ENCHANT_CARD_ID = "BG31_808pe"
+BEETLE_BASE = (2, 2)  # Beetle token BG28_603t
+BEETLE_BACKFILL_NOTE = "beetle backfilled from power.log"
+
+_PLAYER_ENTITY = re.compile(r"Player EntityID=(\d+) PlayerID=(\d+) GameAccountId=\[hi=(\d+)")
+_BEETLE_WATCHED = {
+    "CONTROLLER",
+    "ATTACHED",
+    "ZONE",
+    "TAG_SCRIPT_DATA_NUM_1",
+    "TAG_SCRIPT_DATA_NUM_2",
+}
+
+
+@dataclass
+class BeetleSide:
+    """One player's Beetle stats in one turn (same keys as docs/log-schema.md `beetle`)."""
+
+    attack: int | None = None
+    health: int | None = None
+    attack_after_combat: int | None = None
+    health_after_combat: int | None = None
+
+
+@dataclass
+class BeetleTurn:
+    turn: int
+    player: BeetleSide | None = None
+    opponent: BeetleSide | None = None
+
+
+def _beetle_stats(e: _Entity) -> tuple[int, int] | None:
+    """Base + buff, or None while the enchantment has no buff yet (0/0 right after creation)."""
+    a = e.int_tag("TAG_SCRIPT_DATA_NUM_1") or 0
+    h = e.int_tag("TAG_SCRIPT_DATA_NUM_2") or 0
+    if a <= 0 and h <= 0:
+        return None
+    return BEETLE_BASE[0] + a, BEETLE_BASE[1] + h
+
+
+class _BeetleReplay:
+    def __init__(self) -> None:
+        self.entities: dict[int, _Entity] = {}
+        self.local_entity: int | None = None
+        self.local_player: int | None = None
+        self.turn_tag = 0
+        self.turns: dict[int, BeetleTurn] = {}
+        # enchantment entity id -> [first, last] stats seen (for the opponent's combat copies)
+        self._seen: dict[int, list[tuple[int, int]]] = {}
+        self._block: _Entity | None = None
+        self._block_id = 0
+
+    def _turn(self, n: int) -> BeetleTurn:
+        return self.turns.setdefault(n, BeetleTurn(turn=n))
+
+    def _own(self) -> _Entity | None:
+        if self.local_entity is None:
+            return None
+        own = [
+            (eid, e)
+            for eid, e in self.entities.items()
+            if e.card_id == BEETLE_ENCHANT_CARD_ID
+            and e.int_tag("ATTACHED") == self.local_entity
+            and e.int_tag("CONTROLLER") == self.local_player
+            and e.tags.get("ZONE") == "PLAY"
+        ]
+        return max(own, key=lambda x: x[0])[1] if own else None
+
+    def _on_turn_change(self, new: int) -> None:
+        old = self.turn_tag
+        self.turn_tag = new
+        if new % 2 == 0 and new > 0:  # shop of turn new/2 ends
+            own = self._own()
+            stats = _beetle_stats(own) if own is not None else None
+            if stats is not None:
+                self._turn(new // 2).player = BeetleSide(attack=stats[0], health=stats[1])
+        if old % 2 == 0 and old > 0:
+            self._close_combat(old)
+
+    def _close_combat(self, combat_tag: int) -> None:
+        n = combat_tag // 2
+        own = self._own()
+        after = _beetle_stats(own) if own is not None else None
+        if after is not None:
+            rec = self.turns.get(n)
+            side = rec.player if rec is not None else None
+            if side is None:  # first buffed during this combat
+                side = self._turn(n).player = BeetleSide()
+            side.attack_after_combat, side.health_after_combat = after
+        copies = [
+            eid
+            for eid, e in self.entities.items()
+            if e.card_id == BEETLE_ENCHANT_CARD_ID
+            and e.created_in == combat_tag
+            and e.int_tag("CONTROLLER") not in (None, self.local_player)
+            and self._seen.get(eid)
+        ]
+        if copies:
+            (fa, fh), (la, lh) = self._seen[max(copies)]
+            self._turn(n).opponent = BeetleSide(
+                attack=fa, health=fh, attack_after_combat=la, health_after_combat=lh
+            )
+
+    def _observe(self, eid: int, e: _Entity) -> None:
+        if e.card_id != BEETLE_ENCHANT_CARD_ID:
+            return
+        stats = _beetle_stats(e)
+        if stats is None:
+            return
+        seen = self._seen.setdefault(eid, [stats, stats])
+        seen[1] = stats
+
+    def _end_block(self) -> None:
+        if self._block is not None:
+            self._observe(self._block_id, self._block)
+        self._block = None
+
+    def feed(self, line: str) -> None:
+        if self._block is not None:
+            m = _BLOCK_TAG.search(line)
+            if m:
+                if m.group(1) in _BEETLE_WATCHED:
+                    self._block.tags[m.group(1)] = m.group(2)
+                return
+            self._end_block()
+        if "Player EntityID=" in line and self.local_entity is None:
+            m = _PLAYER_ENTITY.search(line)
+            if m and m.group(3) != "0":
+                self.local_entity, self.local_player = int(m.group(1)), int(m.group(2))
+            return
+        m = _CREATE.search(line)
+        if m:
+            eid = int(m.group(1))
+            e = self.entities.get(eid)
+            if e is None:
+                e = _Entity(created_in=self.turn_tag)
+                self.entities[eid] = e
+            if m.group(2):
+                e.card_id = m.group(2)
+            self._block, self._block_id = e, eid
+            return
+        if "TAG_CHANGE" not in line:
+            return
+        m = _TURN.search(line)
+        if m:
+            self._on_turn_change(int(m.group(1)))
+            return
+        m = _TAG_CHANGE.search(line)
+        if m and m.group(3) in _BEETLE_WATCHED:
+            eid = int(m.group(2) or m.group(1))
+            e = self.entities.get(eid)
+            if e is not None:
+                e.tags[m.group(3)] = m.group(4)
+                self._observe(eid, e)
+
+    def finish(self) -> dict[int, BeetleTurn]:
+        self._end_block()
+        if self.turn_tag % 2 == 0 and self.turn_tag > 0:
+            self._close_combat(self.turn_tag)
+        return dict(sorted(self.turns.items()))
+
+
+def parse_beetle(lines: Iterable[str]) -> dict[int, BeetleTurn]:
+    """Per-turn Beetle stats for the local player and the combat opponent (only turns with any).
+
+    Empty when neither we nor any combat opponent buffed Beetles.
+    """
+    replay = _BeetleReplay()
+    for line in lines:
+        replay.feed(line)
+    return {n: t for n, t in replay.finish().items() if t.player or t.opponent}
+
+
+def has_beetle_keys(log: dict) -> bool:
+    """True when the log has the 1.7.0 beetle keys (plugin 0.12.0+ or an earlier backfill)."""
+    return any("beetle" in t for t in log.get("turns") or [])
+
+
+def _beetle_json(side: BeetleSide | None) -> dict | None:
+    if side is None:
+        return None
+    return {
+        "attack": side.attack,
+        "health": side.health,
+        "attack_after_combat": side.attack_after_combat,
+        "health_after_combat": side.health_after_combat,
+    }
+
+
+def apply_beetle(log: dict, beetle: dict[int, BeetleTurn]) -> int:
+    """Write `turns[].beetle` / `combat.opponent_beetle` in place (docs/log-schema.md 1.7.0).
+    Returns the number of turns that got a value of mine. `beetle` comes from `parse_beetle`.
+
+    `schema_version` is left as it is: the other keys of an older log keep their older meaning
+    (e.g. `sells` before 1.6.0), and the note says that the beetle keys were added afterwards."""
+    filled = 0
+    new_turns = []
+    for t in log.get("turns") or []:
+        bt = beetle.get(t.get("turn"))
+        mine = _beetle_json(bt.player if bt else None)
+        filled += mine is not None
+        # keep the documented key order: ..., deity, beetle, combat
+        rebuilt = {k: v for k, v in t.items() if k not in ("beetle", "combat")}
+        rebuilt["beetle"] = mine
+        if "combat" in t:
+            combat = t["combat"]
+            if combat is not None:
+                combat["opponent_beetle"] = _beetle_json(bt.opponent if bt else None)
+            rebuilt["combat"] = combat
+        new_turns.append(rebuilt)
+    log["turns"] = new_turns
+    notes = log.setdefault("notes", [])
+    if BEETLE_BACKFILL_NOTE not in notes:
+        notes.append(BEETLE_BACKFILL_NOTE)
+    return filled

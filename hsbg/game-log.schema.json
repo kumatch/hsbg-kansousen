@@ -132,6 +132,7 @@
           "shop_offers": { "type": "array", "items": { "$ref": "#/definitions/shop_offer" } },
           "lobby": { "type": ["array", "null"], "items": { "$ref": "#/definitions/lobby_entry" } },
           "deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
+          "beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
           "combat": {
             "type": ["object", "null"],
             "additionalProperties": false,
@@ -160,7 +161,8 @@
                   "simulations": { "type": "integer", "minimum": 0 }
                 }
               },
-              "opponent_deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] }
+              "opponent_deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
+              "opponent_beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] }
             }
           }
         }
@@ -252,6 +254,17 @@
         "health_after_combat": { "type": ["integer", "null"] },
         "awakened": { "type": ["boolean", "null"] },
         "golden": { "type": ["boolean", "null"] }
+      }
+    },
+    "buff_stats": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["attack", "health", "attack_after_combat", "health_after_combat"],
+      "properties": {
+        "attack": { "type": ["integer", "null"] },
+        "health": { "type": ["integer", "null"] },
+        "attack_after_combat": { "type": ["integer", "null"] },
+        "health_after_combat": { "type": ["integer", "null"] }
       }
     },
     "minion": {

@@ -1,5 +1,6 @@
 """`hsbg` command line (docs/architecture.md §6): validate / report / summarize / stats / export /
-serve / backfill-deity, plus config / init for the settings and the workspace (config.py)."""
+serve / backfill-deity / backfill-beetle, plus config / init for the settings and the workspace
+(config.py)."""
 
 from __future__ import annotations
 
@@ -301,6 +302,63 @@ def backfill_deity(
             filled = powerlog.apply_deity(log, deity)
             awake = sum(1 for t in log["turns"] if (t.get("deity") or {}).get("awakened"))
             typer.echo(f"{verb} {filled} turns ({awake} awakenings) {path.name}")
+        done += 1
+        if dry_run:
+            continue
+        dest = backup / path.relative_to(root)
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, dest)
+        # the plugin writes CRLF + 2-space indent; keep the file looking the same
+        text = json.dumps(log, ensure_ascii=False, indent=2).replace("\n", "\r\n")
+        tmp = path.with_suffix(".json.tmp")
+        tmp.write_bytes(text.encode("utf-8"))
+        tmp.replace(path)
+    typer.echo(f"{'would update' if dry_run else 'updated'}: {done}  skipped: {skipped}")
+    if done and not dry_run:
+        typer.echo(f"backup: {backup}")
+
+
+@app.command("backfill-beetle")
+def backfill_beetle(
+    log_dir: LogDir = None,
+    dry_run: Annotated[bool, typer.Option("--dry-run", help="Only report, write nothing")] = False,
+    force: Annotated[
+        bool, typer.Option(help="Also redo logs that already have beetle keys")
+    ] = False,
+) -> None:
+    """Add the Beetle stats (schema 1.7.0 `beetle` / `opponent_beetle`) to older logs from their
+    saved power.log. Games where neither side buffed Beetles are left as they are.
+
+    Originals are copied to <logs>/.backup/beetle-<timestamp>/ before being rewritten.
+    """
+    import json
+    import shutil
+
+    root = _root(log_dir)
+    backup = root / ".backup" / f"beetle-{datetime.now():%Y%m%d-%H%M%S}"
+    done = skipped = 0
+    for path in loader.find_logs(root):
+        log, reason = loader.load_log(path)
+        if log is None:
+            typer.echo(f"skip (invalid: {reason}) {path.name}")
+            skipped += 1
+            continue
+        if powerlog.has_beetle_keys(log) and not force:
+            skipped += 1
+            continue
+        plog = powerlog.power_log_for(path)
+        if plog is None:
+            typer.echo(f"skip (no power.log) {path.name}")
+            skipped += 1
+            continue
+        beetle = powerlog.parse_beetle(powerlog.open_power_log(plog))
+        if not beetle:
+            skipped += 1
+            continue
+        filled = powerlog.apply_beetle(log, beetle)
+        seen = sum(1 for t in log["turns"] if (t.get("combat") or {}).get("opponent_beetle"))
+        verb = "would fill" if dry_run else "filled"
+        typer.echo(f"{verb} {filled} turns (opponent's seen in {seen} combats) {path.name}")
         done += 1
         if dry_run:
             continue

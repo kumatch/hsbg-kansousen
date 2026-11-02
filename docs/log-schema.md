@@ -41,6 +41,10 @@
   game_id・`started_at`・ファイル名は最初の `OnGameStart` のものを使う。再接続中に終わった戦闘の結果は推定値（下の「再接続」節）。
   events.jsonl に `reconnect` を追加し、推定した `combat_end` に `inferred: true` を付ける。
   あわせて、記録中のゲームが `OnGameEnd` を経ずに別のゲーム（GameHandle が違う / 取れない）が始まったときは、捨てずに `incomplete` で書き出す
+- 2026-11-03 `1.7.0`（プラグイン 0.12.0）: 甲虫（beast の「甲虫」構成）のステータスを追加。`turns[].beetle`（自分）と `turns[].combat.opponent_beetle`（戦闘相手）。
+  どちらも任意キー（`1.6.x` 以前のログには無い。保存済みの power.log から補完できる。下の「甲虫」節）。甲虫の強化は盤面のミニオンではなく
+  プレイヤーに付く隠れたエンチャントに溜まるので、`board_end_of_shop` の攻撃力・体力だけでは強さが見えない。
+  events.jsonl の `shop_end` に beetle_attack / beetle_health、`combat_end` に beetle_attack_after / beetle_health_after と opponent_beetle_*
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -165,6 +169,10 @@
         "awakened": true,                // この戦闘で目覚めたか（味方の異形が規定数死ぬと召喚される）。不明なら null
         "golden": false                  // 1.3.0: 神祇が金色か（古なる者の仮面）。Sigil の神祇カードが金色版（card_id が _G で終わる）か、金色で目覚めたら true
       },
+      "beetle": {                        // 1.7.0: 自分の甲虫のステータス（基本の 2/2 を含む）。甲虫部隊のエンチャントが無ければ null（下の「甲虫」節）
+        "attack": 42, "health": 42,      // ショップ終了時 = 戦闘に持ち込む値。エンチャントが戦闘中に初めて作られたときは null
+        "attack_after_combat": 83, "health_after_combat": 83         // 戦闘終了時（荒らし屋スコーピッド等で戦闘中に伸びた分を含む）
+      },
       "combat": {
         "opponent_player_id": 7,         // 自ヒーロー Entity の NEXT_OPPONENT_PLAYER_ID（戦闘相手の PLAYER_ID と一致）
         "opponent_hero": { "card_id": "BG20_HERO_283_SKIN_G", "name": "...", "dbf_id": 0 },
@@ -186,6 +194,10 @@
           "attack_after_combat": 4626, "health_after_combat": 4544,
           "awakened": true,
           "golden": false
+        },
+        "opponent_beetle": {             // 1.7.0: 戦闘相手の甲虫（beetle と同じ形）。attack/health は戦闘開始時。
+          "attack": 272, "health": 270,  // 相手のエンチャントは戦闘中だけ見える。相手に甲虫の強化が無ければ null
+          "attack_after_combat": 385, "health_after_combat": 383
         }
       }
     }
@@ -233,6 +245,28 @@
   `BACON_EVOLUTION_CARD_ID` が 0 → 130610（神祇に関係なくクトゥーン）の順（2026-09-27 23:34 のゲームで確認）。
   HDT 1.58.4 は `REMOVEDFROMGAME` の Sigil を読まないよう直した。プラグインも 0.8.0 から相手の Sigil を探すときに除外する（値 0 は従来から捨てている）。
   相手の神祇のカードは戦闘中に最初に読めた値を使う（プラグインは初めから、`hsbg backfill-deity` は 1.3.0 で修正）
+
+### 甲虫（`turns[].beetle` / `combat.opponent_beetle`、1.7.0）
+
+ターコイズ・スキッタラー（`BG31_809`）や荒らし屋スコーピッド（`BG36_209`）などは「この対戦中、自分の甲虫は +X/+Y」を持ち、断末魔で甲虫を召喚する。
+この強化は盤面のミニオンには乗らず、プレイヤーに付く隠れたエンチャントに溜まるので、**盤面のステータスだけでは強さが分からない**
+（2026-11-02 15:18 のゲームの T11 は盤面の攻撃力 + 体力が 354 対 6236 で勝っている。ショップ終了時の甲虫の強化は T10 の 40/40 から T17 の 769/764 まで伸びた）。
+値の置き場所（保存済みの power.log 182 ゲーム（2026-09-25〜11-03）と HDT 1.59.7 のソースで確認）:
+
+- 甲虫が初めて強化されたときに、エンチャント `BG31_808pe`（「甲虫部隊 プレイヤー付与効果[DNT]」、HearthDb `RunedProgenitor_BeetleArmyPlayerEnchantDnt`）が
+  作られてプレイヤー Entity に付く（`ATTACHED` = プレイヤー Entity）。以後ゲーム中ずっと残り、`TAG_SCRIPT_DATA_NUM_1` / `_2` が **強化の量**（基本の 2/2 を含まない）
+- 記録する `attack` / `health` は **甲虫のステータス = 基本の 2/2 + 強化の量**。甲虫を召喚するカードの説明文の `{0}/{1}`（`TAG_SCRIPT_DATA_NUM_1/2`）と一致する
+  （182 ゲームの 181 回の観測で全て一致。金色のカードも同じ値）。HDT の BeetlesSizeCounter も甲虫のカード `BG28_603t`（2/2）の値を足して表示する。
+  分析で強化の量だけが欲しければ 2 を引く
+- プレイヤー Entity のタグ 3874 / 3924（HearthDb に名前が無い）も強化の量と同じ値（203 回の観測で全て一致）。プラグインは HDT（Bob's Buddy の `BeetlesAtkBuff`）と同じくエンチャントを読む
+- 値はショップ中にも戦闘中（荒らし屋スコーピッドの「味方のミニオンが攻撃した後」など）にも変わる。プラグインは神祇と同じく戦闘中の毎 tick にエンチャントを読み、
+  最後の値を `*_after_combat` にする。ショップ終了時にエンチャントが無く戦闘中に初めて作られたときは、`attack` / `health` が null で `*_after_combat` だけが入る
+- **相手の値**: 戦闘ごとに、相手の強化のエンチャントが相手のプレイヤー Entity に複製される（相手の制御、`COPIED_FROM_ENTITY_ID` 付き）。
+  戦闘中に伸び、後片付けで `REMOVEDFROMGAME` に移る（値は残る）。プラグインは戦闘中に作られた（ID がショップ終了時の最大より大きい）コピーを探し、
+  最初の値を `attack/health`、最後の値を `*_after_combat` にする。相手に甲虫の強化が無ければコピーは作られず `opponent_beetle` は null
+  （戦闘ごとに相手のプレイヤー Entity に付く `Bacon_TagTransferPlayerE` は 2193 戦闘の全てにあり、そのタグ 3874 / 3924 で強化がある戦闘は 126 回。
+  コピーのある 134 回とほぼ重なり、最初の値も 124 回で一致した。見えない戦闘が多いのは相手が甲虫を育てていないため）
+- 相手のプレイヤー Entity のタグ 3874 / 3924 は前の戦闘の相手の値が残ることがあるので読まない
 
 ### 必須フィールド（`status: "complete"` のとき）
 `schema_version`, `status`, `generator.plugin_version`, `game.game_id`, `game.started_at`, `game.ended_at`,
@@ -315,9 +349,9 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `dark_gift` | card_id, name（選んだミニオン）, gold_after, source=`dark_gift`, offered[]（3 択。観測できなければ null） | 1.1.0。手札に現れた Entity の **直接の** 作成元（DISPLAYED_CREATOR か CREATOR）がボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`。作成元を何段も辿らない（得たミニオンが生成したカードや悪夢の恵みが作るコピーを除外） |
 | `discover` | card_id, name, gold_after, source（`hero_power` / `triple`）, offered[] | 1.1.0。ヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で選んだカード。**3 択に含まれていたカードだけ**（Barov の Tavern Coin のような生成物は記録しない） |
 | `tier_up` | value（新ティア）, gold_after | 同上 |
-| `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0） | `OnTurnStart(Opponent)` |
+| `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0） | `OnTurnStart(Opponent)` |
 | `combat_start` | opponent_player_id, opponent_hero_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board[] | 戦闘フェーズ開始 |
-| `combat_end` | result, damage_dealt, damage_taken（再接続中に終わった戦闘は推定値で `inferred: true`。1.6.2）。神祇があれば deity_attack_after, deity_health_after, deity_awakened, deity_golden、相手の Sigil が読めれば opponent_deity_attack, opponent_deity_health, opponent_deity_awakened, opponent_deity_golden（1.2.0。golden は 1.3.0） | 次ターン開始時（最終ターンはゲーム終了時） |
+| `combat_end` | result, damage_dealt, damage_taken（再接続中に終わった戦闘は推定値で `inferred: true`。1.6.2）。神祇があれば deity_attack_after, deity_health_after, deity_awakened, deity_golden、相手の Sigil が読めれば opponent_deity_attack, opponent_deity_health, opponent_deity_awakened, opponent_deity_golden（1.2.0。golden は 1.3.0）。甲虫があれば beetle_attack_after, beetle_health_after、相手の甲虫のエンチャントが見えれば opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0） | 次ターン開始時（最終ターンはゲーム終了時） |
 | `trinket` | card_id, name, dbf_id | 獲得を検出したとき |
 | `player_eliminated` | player_id, hero_card_id, eliminated_turn, place | ターン開始時のロビー更新 |
 | `game_end` | placement, total_turns, status | `OnGameEnd` |
@@ -344,13 +378,19 @@ GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n な�
 すでに神祇の値があって `golden` が無いログは、プラグイン（0.6.0）が書いたものなら値を残して `golden` だけ足し（note `deity golden backfilled from power.log`）、
 以前の補完が書いたものは作り直す（1.2.0 の補完は相手のカードを後片付け後に読んでいて、ヤシャラージュ戦の相手がクトゥーンになっていた）。
 
+`hsbg backfill-beetle`（同じ `powerlog.py`）は 1.7.0 より前のログに `beetle` / `opponent_beetle` を補う（上の「甲虫」節と同じ読み方）。
+`TURN` が 2n になった時点の自分のエンチャントをショップ終了時の値、2n+1（最終ターンはファイル末尾）の時点を戦闘後の値、
+戦闘中（`TURN` = 2n）に作られた相手のコピーの最初と最後の値を相手の値とする。自分にも相手にも甲虫の強化が無いゲームは書き換えない。
+元の JSON は `<logs>\.backup\beetle-<日時>\` に退避し、`notes[]` に `beetle backfilled from power.log` を追記する。
+**`schema_version` は上げない**（古いログの他のキーは古い意味のまま。例: 1.5.x 以前の `sells`）。
+
 ## 分析側での正規化テーブル（Analysis CLI 内部。参考）
 
 | テーブル | 主キー | 主な列 |
 |---|---|---|
 | `games` | game_id | started_at, hero_card_id, hero_base_card_id（スキン正規化後）, placement, mmr_before, mmr_after, mmr_delta, total_turns, final_tier, duration_sec, status, minion_types, anomaly_card_id |
-| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups |
-| `combats` | game_id, turn | opponent_player_id, opponent_hero, opponent_tavern_tier（1.5.0）, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage |
+| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, deity_*（1.2.0）, beetle_attack, beetle_health, beetle_attack_after, beetle_health_after（1.7.0） |
+| `combats` | game_id, turn | opponent_player_id, opponent_hero, opponent_tavern_tier（1.5.0）, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0） |
 | `board_minions` | game_id, turn, position | card_id, tier, attack, health, golden, keywords, divine_shields（1.3.x 以前は keywords から 0/1）, minion_types |
 | `opponents` | game_id, player_id | hero_card_id, placement, estimated_placement, eliminated_turn, final_tavern_tier |
 | `hand` | game_id, turn, position | card_id, name, card_type, tier, attack, health, golden（1.5.0。1.4.x 以前の手札は card_id, name だけ） |
