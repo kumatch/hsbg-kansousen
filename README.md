@@ -73,8 +73,8 @@ hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペース�
 
 | hsbg | すべての項目を読めるログ | 対応するプラグイン |
 |---|---|---|
-| [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | 0.13.0 まで |
-| [0.1.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.1.0) | schema 1.6.2 まで | 0.11.0 まで |
+| [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | [0.13.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.13.0) まで |
+| [0.1.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.1.0) | schema 1.6.2 まで | [0.11.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.11.0) まで |
 
 - hsbg より新しいプラグインのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
   `hsbg validate` とダッシュボードに「hsbg を更新してください」と出ます（0.1.0 はそのログを読み飛ばします）
