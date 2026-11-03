@@ -8,6 +8,7 @@ import pandas as pd
 import streamlit as st
 
 from ... import charts, labels, metrics, summarize
+from ...normalize import BUFF_KEYS
 from ..components import board_cards, translate_columns
 from ..data import DashboardContext, game_path, load_game, raw_json
 
@@ -33,6 +34,25 @@ def _deity_text(d: dict | None) -> str:
     if woke and d.get("golden"):
         woke += "・金色"
     return text + (f"（{woke}）" if woke else "")
+
+
+def _buff_text(d: dict) -> str:
+    """'5/7' or '5/7 → 戦闘後 6/8'. d = turns[].<buff key> or combat.opponent_<buff key>."""
+    a, h = d.get("attack"), d.get("health")
+    aa, ha = d.get("attack_after_combat"), d.get("health_after_combat")
+    text = f"{a}/{h}" if a is not None else "-"
+    if aa is not None and (aa, ha) != (a, h):
+        text += f" → 戦闘後 {aa}/{ha}"
+    return text
+
+
+def _buffs_text(holder: dict, prefix: str = "") -> str:
+    """'血の宝石 5/7 · 甲虫 9/9' for the buffs on a turn (prefix "") or a combat ("opponent_")."""
+    return " · ".join(
+        f"{labels.buff_name(k)} {_buff_text(holder[prefix + k])}"
+        for k in BUFF_KEYS
+        if holder.get(prefix + k)
+    )
 
 
 _SELECT_KEY = "game_detail_select"
@@ -110,12 +130,16 @@ def render(ctx: DashboardContext) -> None:
     turns_df = ctx.tables.turns[ctx.tables.turns["game_id"] == game_id]
     st.plotly_chart(charts.game_hp_tier_line(turns_df), width="stretch")
     deity_df = metrics.deity_by_turn(ctx.tables, game_id)
-    if not deity_df.empty:
+    buff_df = metrics.buffs_by_turn(ctx.tables, game_id)
+    buff_keys = metrics.buff_keys(buff_df)
+    log_y = False
+    if not deity_df.empty or buff_keys:
         log_y = st.checkbox(
             "グラフを対数目盛にする",
             value=False,
             help="盤面や神祇は終盤に桁違いに伸びるので、序盤の伸び方を見るときは対数目盛が読みやすい",
         )
+    if not deity_df.empty:
         st.plotly_chart(charts.deity_growth_line(deity_df, log_y=log_y), width="stretch")
         deity_card = next(
             (t["deity"].get("card_id") for t in log.get("turns") or [] if t.get("deity")), None
@@ -131,6 +155,14 @@ def render(ctx: DashboardContext) -> None:
                 "自分の盤面（ショップ終了時）と、その戦闘の相手の盤面のミニオンの合計。"
                 "神祇の記録が無いゲーム（ロビーに異形がいない、または 2026-09-25 19:26 より前のログ）なので、神祇の線は出ません。"
             )
+    if buff_keys:
+        st.plotly_chart(charts.buff_growth_line(buff_df, buff_keys, log_y=log_y), width="stretch")
+        st.caption(
+            "盤面のミニオンには表示されない、この対戦の残りずっと効く強化。"
+            + "".join(f"{labels.buff_name(k)}＝{labels.BUFF_MEANINGS[k]}。" for k in buff_keys)
+            + "相手の値は、その戦闘の相手がその強化を持っているときだけ見える（中抜きの印）。"
+            "1 体・1 個あたりの量なので、盤面の合計とは別のグラフにしている。"
+        )
     runs = metrics.type_runs(log)
     if runs:
         st.caption(
@@ -170,6 +202,9 @@ def render(ctx: DashboardContext) -> None:
         if t.get("deity"):
             d = t["deity"]
             st.markdown(f"**自分の{_name(d)}**: {_deity_text(d)}")
+        mine = _buffs_text(t)
+        if mine:
+            st.markdown(f"**自分の強化**: {mine}")
         if c:
             oh = _name(c.get("opponent_hero")) if c.get("opponent_hero") else "?"
             res = labels.result(c.get("result"))
@@ -193,6 +228,9 @@ def render(ctx: DashboardContext) -> None:
             if c.get("opponent_deity"):
                 od = c["opponent_deity"]
                 st.markdown(f"**相手の{_name(od)}**: {_deity_text(od)}")
+            theirs = _buffs_text(c, "opponent_")
+            if theirs:
+                st.markdown(f"**相手の強化**: {theirs}")
         if t.get("hand_end_of_shop"):
             st.caption("手札: " + "、".join(_name(h) for h in t["hand_end_of_shop"]))
 
@@ -224,6 +262,11 @@ def render(ctx: DashboardContext) -> None:
         table = table.drop(
             columns=["deity_attack", "deity_health", "deity_awakened", "deity_golden"]
         )
+    # この対戦中の強化（自分の、ショップ終了時）: 神祇と同じく盤面に乗らない強さとして神祇の隣に並べる
+    mine_keys = metrics.buff_keys(buff_df, "mine")
+    buff_cols = [f"{k}_{s}" for k in mine_keys for s in ("attack", "health")]
+    table = table.merge(turns_df[["turn", *buff_cols]], on="turn", how="left")
+    table[buff_cols] = table[buff_cols].astype("Int64")  # 2.0 → 2（無いターンは空欄）
     combats = ctx.tables.combats[ctx.tables.combats["game_id"] == game_id][
         ["turn", "opponent_hero_name", "result", "damage_dealt", "damage_taken", "bb_win"]
     ]
@@ -250,6 +293,11 @@ def render(ctx: DashboardContext) -> None:
             "deity_health": "神祇 体力",
             "deity_awakened": st.column_config.CheckboxColumn("神祇 覚醒"),
             "deity_golden": st.column_config.CheckboxColumn("神祇 金色"),
+            **{
+                f"{k}_{s}": f"{labels.buff_name(k)} {ja}"
+                for k in mine_keys
+                for s, ja in (("attack", "攻撃"), ("health", "体力"))
+            },
             "opponent_hero_name": "相手",
             "result": "結果",
             "damage_dealt": "与ダメ",

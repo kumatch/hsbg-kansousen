@@ -3,9 +3,10 @@ Power.log replay, backfill and the turns / combats columns."""
 
 import copy
 import json
+import os
 from pathlib import Path
 
-from hsbg import loader, normalize, powerlog
+from hsbg import charts, loader, metrics, normalize, powerlog, summarize
 from hsbg.normalize import Tables
 
 FIXTURES = Path(__file__).parent / "fixtures"
@@ -245,3 +246,85 @@ def test_normalize_buff_columns(tables: Tables) -> None:
     assert turns.loc[2, "tavern_minion_health"] == 4
     combats = t.combats.set_index("turn")
     assert combats.loc[1, "opponent_tavern_spell_attack"] == 23
+
+
+def _buff_log() -> dict:
+    log = _fixture_log()
+    powerlog.apply_buffs(log, powerlog.parse_buffs(other_buffs_power_log()))
+    return log
+
+
+def test_buffs_by_turn() -> None:
+    log = _buff_log()
+    t = normalize.normalize([log])
+    gid = log["game"]["game_id"]
+    df = metrics.buffs_by_turn(t, gid)
+    assert list(df.columns) == metrics.BUFF_TURN_COLUMNS
+    t1 = df[df["turn"] == 1].iloc[0]
+    assert (
+        t1["blood_gem_stats"]
+        == log["turns"][0]["blood_gem"]["attack"] + log["turns"][0]["blood_gem"]["health"]
+    )
+    assert t1["opponent_tavern_spell_stats"] == 23 + 16
+    assert "blood_gem" in metrics.buff_keys(df, "mine")
+    assert "tavern_spell" in metrics.buff_keys(df, "opponent")
+    assert "beetle" not in metrics.buff_keys(df)
+    assert metrics.buffs_by_turn(t, "no-such-game").empty
+    # older logs (no buff keys): nothing to show
+    old_t = normalize.normalize([_fixture_log()])
+    assert metrics.buff_keys(metrics.buffs_by_turn(old_t, gid)) == []
+
+
+def test_buff_presentation() -> None:
+    log = _buff_log()
+    md = summarize.summarize(log)
+    assert "## This-game buffs (not on the board)" in md
+    assert "| T | My board total | My blood gem |" in md
+    assert "Blood gem = what one Blood Gem gives" in md
+    assert "Beetle =" not in md  # only the kinds in the game
+    t1 = log["turns"][0]["blood_gem"]
+    assert f"| {t1['attack']}/{t1['health']} → 5/" in md  # grew in combat
+    assert "## This-game buffs" not in summarize.summarize(_fixture_log())
+
+    t = normalize.normalize([log])
+    df = metrics.buffs_by_turn(t, log["game"]["game_id"])
+    keys = metrics.buff_keys(df)
+    fig = charts.buff_growth_line(df, keys)
+    names = [tr.name for tr in fig.data]
+    assert "自分の血の宝石" in names and "相手の酒場の呪文（戦闘開始時）" in names
+    opp = next(tr for tr in fig.data if tr.name == "相手の酒場の呪文（戦闘開始時）")
+    assert opp.mode == "markers"
+    assert fig.layout.xaxis.range[0] == 0.5  # the whole game, not just the buffed turns
+    assert charts.buff_growth_line(df, [], log_y=True).data == ()
+
+
+_GAME_DETAIL_SCRIPT = """
+import os
+from pathlib import Path
+from hsbg.dashboard import data
+from hsbg.dashboard.filters import FilterState
+from hsbg.dashboard.views import game_detail
+game_detail.render(data.load_context(Path(os.environ["HSBG_LOGS"]), FilterState()))
+"""
+
+
+def test_game_detail_shows_buffs(tmp_path: Path) -> None:
+    from streamlit.testing.v1 import AppTest
+
+    log = _buff_log()
+    (tmp_path / "game.json").write_text(json.dumps(log), encoding="utf-8")
+    os.environ["HSBG_LOGS"] = str(tmp_path)
+    try:
+        at = AppTest.from_string(_GAME_DETAIL_SCRIPT, default_timeout=60)
+        at.run()
+        assert not at.exception, [str(e) for e in at.exception]
+        at.select_slider[0].set_value(1).run()
+        assert not at.exception, [str(e) for e in at.exception]
+        texts = [m.value for m in at.markdown]
+        assert any(s.startswith("**自分の強化**: 血の宝石 ") for s in texts), texts
+        assert any(s.startswith("**相手の強化**: ") and "酒場の呪文 23/16" in s for s in texts)
+        assert any("血の宝石＝1 個が与える量" in c.value for c in at.caption)
+        columns = list(at.dataframe[0].value.columns)
+        assert "blood_gem_attack" in columns and "beetle_attack" not in columns
+    finally:
+        os.environ.pop("HSBG_LOGS", None)

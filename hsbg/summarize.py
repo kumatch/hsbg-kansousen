@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Any
 
 from . import metrics
-from .normalize import Tables, divine_shields
+from .normalize import BUFF_KEYS, Tables, divine_shields
 
 
 def _name(ref: dict[str, Any] | None) -> str:
@@ -106,6 +106,67 @@ def _deity_section(turns: list[dict[str, Any]]) -> list[str]:
             f"{_board_total(t.get('board_end_of_shop'))} | {_stats(od)} | {_stats(od, after=True)} | "
             f"{_awake(od)} | {_board_total(c.get('opponent_board'))} |"
         )
+    return lines
+
+
+_BUFF_LABEL = {
+    "beetle": "beetle",
+    "blood_gem": "blood gem",
+    "tavern_spell": "tavern spell",
+    "tavern_minion": "tavern minion",
+    "tavern_elemental": "tavern elemental",
+}
+_BUFF_MEANING = {
+    "beetle": "Beetle = the stats of each Beetle I summon (base 2/2 included).",
+    "blood_gem": "Blood gem = what one Blood Gem gives (base +1/+1 included).",
+    "tavern_spell": "Tavern spell = added to what Tavern spells give (includes auras of minions "
+    "on the board, so it drops when such a minion is sold or dies).",
+    "tavern_minion": "Tavern minion = added to the stats of minions in the Tavern.",
+    "tavern_elemental": "Tavern elemental = added to Elementals in the Tavern (on top of Tavern "
+    "minion).",
+}
+
+
+def _buff(d: dict[str, Any] | None) -> str:
+    """'5/7', '5/7 → 6/8' (grew in combat), '- → 3/3' (appeared in combat), '-' (none)."""
+    if not d:
+        return "-"
+    start = _stats(d)
+    after = _stats(d, after=True)
+    return start if after in ("-", start) else f"{start} → {after}"
+
+
+def _buff_section(turns: list[dict[str, Any]]) -> list[str]:
+    """schema 1.7.0 / 1.8.0: buffs for the rest of the game that no minion shows (BUFF_KEYS).
+    Only the kinds that appear in the game; nothing for a game (or older log) without any."""
+    mine = [k for k in BUFF_KEYS if any(t.get(k) for t in turns)]
+    theirs = [
+        k for k in BUFF_KEYS if any((t.get("combat") or {}).get("opponent_" + k) for t in turns)
+    ]
+    if not mine and not theirs:
+        return []
+    head = ["T", "My board total"]
+    head += [f"My {_BUFF_LABEL[k]}" for k in mine]
+    head += ["Opp board total"] + [f"Opp {_BUFF_LABEL[k]}" for k in theirs]
+    lines = [
+        "",
+        "## This-game buffs (not on the board)",
+        "Permanent buffs for the rest of the game that no minion on the board shows, so read them "
+        "next to the board totals. Mine = at the end of my shop (→ after combat when it grew in "
+        "combat); Opp = the combat opponent's at combat start, visible only when they had it. "
+        + " ".join(_BUFF_MEANING[k] for k in BUFF_KEYS if k in mine or k in theirs)
+        + (" The Deity is in the Deity table." if any(t.get("deity") for t in turns) else ""),
+        "",
+        "| " + " | ".join(head) + " |",
+        "|" + "---|" * len(head),
+    ]
+    for t in turns:
+        c = t.get("combat") or {}
+        row = [str(t.get("turn")), _board_total(t.get("board_end_of_shop"))]
+        row += [_buff(t.get(k)) for k in mine]
+        row += [_board_total(c.get("opponent_board"))]
+        row += [_buff(c.get("opponent_" + k)) for k in theirs]
+        lines.append("| " + " | ".join(row) + " |")
     return lines
 
 
@@ -262,6 +323,7 @@ def summarize(log: dict[str, Any], history: Tables | None = None) -> str:
 
     lines += _hand_shop_section(log.get("turns") or [])
     lines += _deity_section(log.get("turns") or [])
+    lines += _buff_section(log.get("turns") or [])
 
     moments = metrics.key_moments(log, history)
     lines += ["", "## Key moments (auto-detected)"]

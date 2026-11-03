@@ -64,6 +64,30 @@ def deity_ability(card_id: str | None) -> str:
     return DEITY_ABILITIES.get(deity_base_id(card_id) or "", DEITY_ABILITY_DEFAULT)
 
 
+# この対戦中の強化（turns[].<キー>。docs/log-schema.md「この対戦中の強化」）
+# 順は normalize.BUFF_KEYS
+BUFF_NAMES = {
+    "beetle": "甲虫",
+    "blood_gem": "血の宝石",
+    "tavern_spell": "酒場の呪文",
+    "tavern_minion": "酒場のミニオン",
+    "tavern_elemental": "酒場のエレメンタル",
+}
+# 名前に続けて「血の宝石＝1 個が与える量…」と読む文
+BUFF_MEANINGS = {
+    "beetle": "召喚する 1 体のステータス（基本の 2/2 を含む）",
+    "blood_gem": "1 個が与える量（基本の +1/+1 を含む）",
+    "tavern_spell": "呪文が与える量に足される量（盤面のミニオンのオーラを含むので、"
+    "そのミニオンを売ったり戦闘で死んだりすると下がる）",
+    "tavern_minion": "酒場に並ぶミニオンに足される量",
+    "tavern_elemental": "酒場に並ぶエレメンタルに足される量（酒場のミニオンの分とは別）",
+}
+
+
+def buff_name(key: str) -> str:
+    return BUFF_NAMES.get(key, key)
+
+
 RESULTS = {"win": "勝ち", "loss": "負け", "tie": "引き分け"}
 STATUS = {"complete": "完了", "incomplete": "未完了"}
 

@@ -653,6 +653,102 @@ def deity_growth_line(df: pd.DataFrame, log_y: bool = False) -> go.Figure:
     return fig
 
 
+# ---------------------------------------------------------- this-game buffs (この対戦中の強化)
+#
+# Own chart, not the Deity / board one: a buff is a per-minion amount (one Beetle, one Blood Gem),
+# an order of magnitude below the board totals, so on one axis it would sit flat at the bottom.
+# Hue = me / opponent as in the Deity chart; the buff kind is the marker symbol + dash.
+_BUFF_SYMBOLS = {
+    "beetle": "circle",
+    "blood_gem": "diamond",
+    "tavern_spell": "square",
+    "tavern_minion": "triangle-up",
+    "tavern_elemental": "star",
+}
+_BUFF_DASH = {
+    "beetle": "solid",
+    "blood_gem": "dash",
+    "tavern_spell": "dot",
+    "tavern_minion": "dashdot",
+    "tavern_elemental": "longdash",
+}
+
+
+def buff_growth_line(df: pd.DataFrame, keys: list[str], log_y: bool = False) -> go.Figure:
+    """Single game: each "this game" buff in `keys` (metrics.buffs_by_turn / buff_keys), as
+    attack + health. Mine = line at the shop end; the combat opponent's = markers only (a different
+    opponent each combat, so the points are not joined)."""
+    title = "この対戦中の強化（攻撃力 + 体力）"
+    if df.empty or not keys:
+        return _empty(title)
+    fig = go.Figure()
+
+    def hover(prefix: str, p: str, k: str) -> list[str]:
+        out = []
+        for r in df.itertuples():
+            a, h = getattr(r, f"{p}{k}_attack"), getattr(r, f"{p}{k}_health")
+            aa, ha = getattr(r, f"{p}{k}_attack_after"), getattr(r, f"{p}{k}_health_after")
+            if pd.isna(a) and pd.isna(aa):
+                out.append("")
+                continue
+            text = f"{prefix} {int(a)}/{int(h)}" if not pd.isna(a) else f"{prefix} -"
+            if not pd.isna(aa) and (pd.isna(a) or (aa, ha) != (a, h)):
+                text += f" → 戦闘後 {int(aa)}/{int(ha)}"
+            out.append(text)
+        return out
+
+    for k in keys:
+        name = labels.buff_name(k)
+        if df[f"{k}_stats"].notna().any():
+            fig.add_trace(
+                go.Scatter(
+                    x=df["turn"],
+                    y=df[f"{k}_stats"],
+                    mode="lines+markers",
+                    name=f"自分の{name}",
+                    line={"color": DEITY_ME_COLOR, "width": 2, "dash": _BUFF_DASH[k]},
+                    marker={"size": 8, "symbol": _BUFF_SYMBOLS[k]},
+                    text=hover(f"自分の{name}", "", k),
+                    hovertemplate="%{text}<extra></extra>",
+                    connectgaps=False,
+                )
+            )
+        if df[f"opponent_{k}_stats"].notna().any():
+            fig.add_trace(
+                go.Scatter(
+                    x=df["turn"],
+                    y=df[f"opponent_{k}_stats"],
+                    mode="markers",
+                    name=f"相手の{name}（戦闘開始時）",
+                    marker={
+                        "size": 10,
+                        "symbol": _BUFF_SYMBOLS[k] + "-open",
+                        "color": DEITY_OPP_COLOR,
+                        "line": {"width": 2},
+                    },
+                    text=hover(f"相手の{name}", "opponent_", k),
+                    hovertemplate="%{text}<extra></extra>",
+                )
+            )
+    yaxis: dict = {
+        "title": "攻撃力 + 体力" + ("（対数目盛）" if log_y else ""),
+        "type": "log" if log_y else "linear",
+        "tickformat": ",",
+    }
+    if not log_y:
+        yaxis["rangemode"] = "tozero"
+    turns = pd.to_numeric(df["turn"])
+    fig.update_layout(
+        title=title,
+        # the whole game on x (a buff often starts mid-game), like the Deity / board chart
+        xaxis={"title": "ターン", "dtick": 1, "range": [turns.min() - 0.5, turns.max() + 0.5]},
+        yaxis=yaxis,
+        hovermode="x unified",
+        legend={"orientation": "h", "y": -0.2},
+    )
+    return fig
+
+
 # ---------------------------------------------------------------- lenses (workspace lenses/)
 
 

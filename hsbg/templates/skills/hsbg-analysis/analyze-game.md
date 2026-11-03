@@ -41,6 +41,11 @@ Rules:
      among the other minions), Y'Shaarj's is its size plus the first Aberrations that die (it
      resummons them), so for Y'Shaarj also look at which Aberrations sit on the board. "(golden)" =
      the Deity is golden (Mask of Ancient Ones): C'Thun splits twice its stats, Y'Shaarj resummons 4.
+     When the summary has a `## This-game buffs (not on the board)` table (Beetle, Blood Gem, Tavern
+     spell / minion / elemental buffs), these are per-unit amounts, not board totals: say when each
+     started and how fast it grew, and what it did to the board (e.g. Blood Gem size vs. the Quilboar
+     on the board, Beetle size vs. the minions it joins). Compare the opponent's value in the same
+     combat when it is shown ("-" means the opponent did not have it, or the log predates it).
    - (c2) When the summary has a `## Hand and shop` table: what the shop offered and what I took or
      left (a key card that was offered and not bought is a choice; one that never appeared is not),
      spells or minions left in hand at the end of the shop, and my tier vs. the combat opponent's

@@ -12,7 +12,7 @@ from typing import Any
 
 import pandas as pd
 
-from .normalize import Tables, base_hero_id
+from .normalize import BUFF_KEYS, BUFF_STATS, Tables, base_hero_id
 
 TIERS = [2, 3, 4, 5, 6]
 
@@ -705,6 +705,44 @@ def deity_by_turn(tables: Tables, game_id: str) -> pd.DataFrame:
     df["opponent_board_stats"] = _sum2(df["opponent_board_attack"], df["opponent_board_health"])
     df["opponent_deity_stats"] = _sum2(df["opponent_deity_attack"], df["opponent_deity_health"])
     return df[DEITY_TURN_COLUMNS]
+
+
+_BUFF_MINE = [f"{k}_{s}" for k in BUFF_KEYS for s in BUFF_STATS]
+_BUFF_OPP = [f"opponent_{c}" for c in _BUFF_MINE]
+BUFF_TURN_COLUMNS = [
+    "turn",
+    *_BUFF_MINE,
+    *_BUFF_OPP,
+    *(f"{p}{k}_stats" for k in BUFF_KEYS for p in ("", "opponent_")),
+]
+
+
+def buffs_by_turn(tables: Tables, game_id: str) -> pd.DataFrame:
+    """One game, per turn: each "this game" buff (normalize.BUFF_KEYS, schema 1.7.0 / 1.8.0) of
+    mine and of the combat opponent. `<key>_stats` = attack + health at my shop end (after combat
+    when the buff first appeared in combat); `opponent_<key>_stats` = the opponent's at combat
+    start. Keys with no value in the game are all NaN (see `buff_keys`)."""
+    t = tables.turns[tables.turns["game_id"] == game_id].sort_values("turn")
+    if t.empty:
+        return pd.DataFrame(columns=BUFF_TURN_COLUMNS)
+    c = tables.combats[tables.combats["game_id"] == game_id][["turn", *_BUFF_OPP]]
+    df = t[["turn", *_BUFF_MINE]].merge(c, on="turn", how="left").reset_index(drop=True)
+    for p in ("", "opponent_"):
+        for k in BUFF_KEYS:
+            at_start = _sum2(df[f"{p}{k}_attack"], df[f"{p}{k}_health"])
+            after = _sum2(df[f"{p}{k}_attack_after"], df[f"{p}{k}_health_after"])
+            df[f"{p}{k}_stats"] = at_start.fillna(after)
+    return df[BUFF_TURN_COLUMNS]
+
+
+def buff_keys(df: pd.DataFrame, side: str = "any") -> list[str]:
+    """The buff keys with any value in `buffs_by_turn(...)`. side = "mine", "opponent" or "any"."""
+    prefixes = {"mine": [""], "opponent": ["opponent_"]}.get(side, ["", "opponent_"])
+    return [
+        k
+        for k in BUFF_KEYS
+        if not df.empty and any(df[f"{p}{k}_stats"].notna().any() for p in prefixes)
+    ]
 
 
 def deity_game_stats(tables: Tables) -> pd.DataFrame:
