@@ -15,8 +15,16 @@ from .cards import CardNames, base_hero_id
 __all__ = ["Tables", "normalize", "base_hero_id"]
 
 # "this game" buffs (docs/log-schema.md "この対戦中の強化"): turns[].<key> / combat.opponent_<key>.
-# beetle is schema 1.7.0, the others 1.8.0. Same order as powerlog.BUFF_KEYS
-BUFF_KEYS = ("beetle", "blood_gem", "tavern_spell", "tavern_minion", "tavern_elemental")
+# beetle is schema 1.7.0, blood_gem_barrage 1.9.0, the others 1.8.0.
+# Same order as powerlog.BUFF_KEYS
+BUFF_KEYS = (
+    "beetle",
+    "blood_gem",
+    "tavern_spell",
+    "tavern_minion",
+    "tavern_elemental",
+    "blood_gem_barrage",
+)
 BUFF_STATS = ("attack", "health", "attack_after", "health_after")
 
 
@@ -210,8 +218,8 @@ def _stat_sum(minions: list[dict[str, Any]] | None, key: str) -> int:
 
 
 def _buff_stats(d: dict[str, Any] | None, prefix: str) -> dict[str, Any]:
-    """schema 1.7.0 / 1.8.0 の「この対戦中」の強化（beetle, blood_gem, tavern_spell, tavern_minion,
-    tavern_elemental と opponent_*）。古いログやその強化が無いターンは全て None。"""
+    """schema 1.7.0 / 1.8.0 / 1.9.0 の「この対戦中」の強化（BUFF_KEYS と opponent_*）。
+    古いログやその強化が無いターンは全て None。"""
     d = d or {}
     return {
         f"{prefix}_attack": d.get("attack"),

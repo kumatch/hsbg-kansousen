@@ -19,7 +19,7 @@ SUPPORTED_SCHEMA_MAJOR = 1
 # tests/test_loader.py checks they match). A log of the same major but newer than this was written
 # by a newer plugin: it is still read, with the keys this hsbg does not know ignored
 # (`LoadResult.newer`).
-KNOWN_SCHEMA_VERSION = "1.8.0"
+KNOWN_SCHEMA_VERSION = "1.9.0"
 SKIP_DIR_NAMES = {".partial", ".spike", ".cache", "reports", "analysis", "export"}
 ABORTED_REASON = "ended before turn 1"
 

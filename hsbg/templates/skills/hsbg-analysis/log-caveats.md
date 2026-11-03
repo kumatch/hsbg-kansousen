@@ -53,6 +53,10 @@ read these logs.
   minions on the board, so it can drop when such a minion is sold or dies), `tavern_minion_*` and
   `tavern_elemental_*` (added to Tavern minions / Tavern Elementals). Null means no such buff. Eonar's
   Favor (per minion type) is not recorded.
+- **Blood Gem Barrage.** From schema 1.9.0 (plugin 0.14.0): `blood_gem_barrage_*` = the Blood Gem stats
+  every Tavern minion gets after each refresh (it adds up with each Barrage played). It is separate
+  from `tavern_minion_*` (that one applies to every minion in the Tavern; Barrage only after a refresh),
+  so add both when judging how big the shop minions were. No opponent value (never visible).
 - **Aberration in the type tables.** Aberration was in every lobby from 36.6.1 until 36.6.3
   (2026-10-02) and is in about half the lobbies since, so before 36.6.3 it is only compared on played
   vs not played and after it also on offered vs not offered.

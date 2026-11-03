@@ -11,7 +11,7 @@
 ## 現在の状態
 
 - hsbg 0.2.0（2026-11-04 リリース。0.1.0 はプラグイン 0.11.0 に合わせて `62d7034` にタグを打ってリリース）。読めるログ: schema 1.x（プラグイン 0.2.0 以降）。
-  すべての項目を読むのは 1.8.0 まで（`loader.KNOWN_SCHEMA_VERSION`）、それより新しい 1.x は既知の項目だけで読む。レンズ API 1
+  開発中: 0.3.0（未リリース。すべての項目を読むのは 1.9.0 まで = `loader.KNOWN_SCHEMA_VERSION`）、それより新しい 1.x は既知の項目だけで読む。レンズ API 1
 - 公開の準備中。GitHub Releases に v0.1.0 と v0.2.0 を置いた
 
 ## タスク
@@ -27,6 +27,9 @@
 - [x] プラグインとの版の食い違い対策: 新しいプラグインのログも既知の項目だけで読み、`hsbg validate` とダッシュボードで更新を勧める。
       版はそろえず、README の対応表とリリースノートで対応を書く（`docs/release.md`）。`hsbg config` に版を出す
 - [x] リリース: v0.1.0（プラグイン 0.11.0 に対応）と v0.2.0（0.13.0 に対応）のタグと GitHub Release。その後でプラグイン v0.13.0 をリリースした（2026-11-04）
+- [x] 血の宝石の雨（schema 1.9.0）: `blood_gem_barrage_*` と `opponent_blood_gem_barrage_*` の列、summarize とダッシュボードの表示、
+      `hsbg backfill-buffs` での補完（power.log から。試しに数えると 65 件。まだ実行していない）
+- [ ] リリース: v0.3.0（プラグイン 0.14.0 の実機確認の後、プラグインより先に）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ

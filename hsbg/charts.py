@@ -664,6 +664,7 @@ _BUFF_SYMBOLS = {
     "tavern_spell": "square",
     "tavern_minion": "triangle-up",
     "tavern_elemental": "star",
+    "blood_gem_barrage": "hexagon",
 }
 _BUFF_DASH = {
     "beetle": "solid",
@@ -671,6 +672,7 @@ _BUFF_DASH = {
     "tavern_spell": "dot",
     "tavern_minion": "dashdot",
     "tavern_elemental": "longdash",
+    "blood_gem_barrage": "longdashdot",
 }
 
 

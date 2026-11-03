@@ -107,7 +107,8 @@ def other_buffs_power_log() -> list[str]:
     T1: my gem tags say +3/+2 while the enchantment lags at +1/+1 (seen in a real game), Tavern
     spells +1/+1 (tags only); the opponent's Tavern spells come on the TagTransferPlayerEnchant.
     The opponent's player entity (named Bob here) carries stale gem tags: they must be ignored.
-    T2: my Shop Buff is created; the opponent's gem enchantment copy is seen."""
+    T2: my Shop Buff is created; the opponent's gem enchantment copy is seen.
+    T2 also: my first Blood Gem Barrage (3/3), a second one in the same shop adds to it (8/9)."""
     return [
         *_header(),
         _turn(1),
@@ -126,6 +127,9 @@ def other_buffs_power_log() -> list[str]:
         _turn(3),
         *_own_enchant(620, "BG_ShopBuff"),
         *_sd("620", 4, 4),
+        *_own_enchant(630, "BG34_689e2"),
+        *_sd("630", 3, 3),
+        *_sd("630", 8, 9),
         _turn(4),
         *_opp_copy(720, "BG26_159pe", {"TAG_SCRIPT_DATA_NUM_1": 6, "TAG_SCRIPT_DATA_NUM_2": 3}),
     ]
@@ -161,6 +165,10 @@ def test_parse_other_buffs() -> None:
     assert (t2.player["tavern_minion"].attack, t2.player["tavern_minion"].health) == (4, 4)
     assert (t2.opponent["blood_gem"].attack, t2.opponent["blood_gem"].health) == (7, 4)
     assert "tavern_elemental" not in t2.player
+    barrage = t2.player["blood_gem_barrage"]  # no base: the enchantment's value as it is
+    assert (barrage.attack, barrage.health, barrage.attack_after_combat) == (8, 9, 8)
+    assert "blood_gem_barrage" not in t2.opponent
+    assert (t2.player["tavern_minion"].attack, t2.player["tavern_minion"].health) == (4, 4)
 
 
 def test_parse_buffs_none() -> None:
@@ -192,7 +200,7 @@ def test_apply_buffs_is_schema_valid() -> None:
     assert log["schema_version"] == version  # older keys keep their older meaning
     assert any(n.startswith(powerlog.BUFF_BACKFILL_NOTE) for n in log["notes"])
     t1, t2, t3 = log["turns"][:3]
-    assert list(t2)[-6:] == [*powerlog.BUFF_KEYS, "combat"]
+    assert list(t2)[-len(powerlog.BUFF_KEYS) - 1 :] == [*powerlog.BUFF_KEYS, "combat"]
     assert t1["beetle"] is None and t1["combat"]["opponent_beetle"] is None
     assert t2["beetle"] == {
         "attack": None,
@@ -223,8 +231,10 @@ def test_apply_buffs_keeps_the_plugins_beetle() -> None:
     assert t3["beetle"]["attack"] == 1000
     assert t1["blood_gem"]["attack"] == 4
     assert t1["combat"]["opponent_tavern_spell"]["health"] == 16
-    assert list(t1)[-6:] == [*powerlog.BUFF_KEYS, "combat"]
-    assert list(t1["combat"])[-5:] == [f"opponent_{k}" for k in powerlog.BUFF_KEYS]
+    assert list(t1)[-len(powerlog.BUFF_KEYS) - 1 :] == [*powerlog.BUFF_KEYS, "combat"]
+    assert list(t1["combat"])[-len(powerlog.BUFF_KEYS) :] == [
+        f"opponent_{k}" for k in powerlog.BUFF_KEYS
+    ]
     ok, reason = _validate(log)
     assert ok, reason
 

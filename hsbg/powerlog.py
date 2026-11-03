@@ -424,6 +424,8 @@ BUFF_KINDS = (
     ),
     BuffKind("tavern_minion", "BG_ShopBuff", None, False, (0, 0)),
     BuffKind("tavern_elemental", "BG_ShopBuff_Elemental", None, False, (0, 0)),
+    # schema 1.9.0: Blood Gem Barrage (BG34_689), given to each Tavern minion after a refresh
+    BuffKind("blood_gem_barrage", "BG34_689e2", None, False, (0, 0)),
 )
 BUFF_KEYS = tuple(k.key for k in BUFF_KINDS)
 TAG_TRANSFER_CARD_ID = "Bacon_TagTransferPlayerE"

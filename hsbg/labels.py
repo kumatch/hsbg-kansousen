@@ -72,6 +72,7 @@ BUFF_NAMES = {
     "tavern_spell": "酒場の呪文",
     "tavern_minion": "酒場のミニオン",
     "tavern_elemental": "酒場のエレメンタル",
+    "blood_gem_barrage": "血の宝石の雨",
 }
 # 名前に続けて「血の宝石＝1 個が与える量…」と読む文
 BUFF_MEANINGS = {
@@ -81,6 +82,8 @@ BUFF_MEANINGS = {
     "そのミニオンを売ったり戦闘で死んだりすると下がる）",
     "tavern_minion": "酒場に並ぶミニオンに足される量",
     "tavern_elemental": "酒場に並ぶエレメンタルに足される量（酒場のミニオンの分とは別）",
+    "blood_gem_barrage": "酒場を入れ替えた後、酒場のミニオン 1 体ずつに血の宝石として与える量"
+    "（使うたびに足される）",
 }
 
 

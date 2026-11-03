@@ -115,6 +115,7 @@ _BUFF_LABEL = {
     "tavern_spell": "tavern spell",
     "tavern_minion": "tavern minion",
     "tavern_elemental": "tavern elemental",
+    "blood_gem_barrage": "blood gem barrage",
 }
 _BUFF_MEANING = {
     "beetle": "Beetle = the stats of each Beetle I summon (base 2/2 included).",
@@ -124,6 +125,8 @@ _BUFF_MEANING = {
     "tavern_minion": "Tavern minion = added to the stats of minions in the Tavern.",
     "tavern_elemental": "Tavern elemental = added to Elementals in the Tavern (on top of Tavern "
     "minion).",
+    "blood_gem_barrage": "Blood gem barrage = Blood Gem stats given to every Tavern minion after "
+    "each refresh (Blood Gem Barrage; grows with each one played; not part of Tavern minion).",
 }
 
 

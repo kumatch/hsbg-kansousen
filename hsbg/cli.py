@@ -333,7 +333,8 @@ def backfill_buffs(
     force: Annotated[bool, typer.Option(help="Also redo the buff keys a log already has")] = False,
 ) -> None:
     """Add the "this game" buffs (schema 1.7.0 `beetle`, 1.8.0 `blood_gem`, `tavern_spell`,
-    `tavern_minion`, `tavern_elemental`, and their `opponent_*`) to older logs from their saved
+    `tavern_minion`, `tavern_elemental`, 1.9.0 `blood_gem_barrage`, and their `opponent_*`) to
+    older logs from their saved
     power.log. Only the keys a log lacks are added (a plugin 0.12.0 log keeps its `beetle`).
     Games where neither side had any of them are left as they are.
 
