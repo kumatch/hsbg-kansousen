@@ -97,6 +97,14 @@ def validate(log_dir: LogDir = None) -> None:
     typer.echo(f"valid logs: {len(result.logs)}  invalid: {len(result.warnings)}")
     for w in result.warnings:
         typer.echo(f"  INVALID {w}")
+    notice = loader.newer_notice(
+        [
+            (g.get("schema_version"), (g.get("generator") or {}).get("plugin_version"))
+            for g in result.logs
+        ]
+    )
+    if notice:
+        typer.echo(f"newer than this hsbg: {notice}")
     if result.aborted:
         typer.echo(f"ended before turn 1 (ignored): {len(result.aborted)}")
         for p in result.aborted:
@@ -446,6 +454,11 @@ def config_cmd(
         typer.echo(json.dumps(values, ensure_ascii=False, indent=2))
         return
     ws = settings.workspace
+    from . import __version__
+
+    typer.echo(
+        f"hsbg {__version__} (reads logs up to schema {loader.KNOWN_SCHEMA_VERSION} in full)"
+    )
     typer.echo(f"workspace: {ws / config.CONFIG_FILE if ws else '(none; defaults)'}")
     for key in config.ENV_VARS:
         value = values[key]

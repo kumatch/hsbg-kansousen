@@ -81,6 +81,7 @@ GAME_COLUMNS = [
     "anomaly_name",
     "global_old_god_name",
     "lobby_size",
+    "schema_version",
     "plugin_version",
     "hero_choices",
     "hero_rerolled",
@@ -324,6 +325,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                 "anomaly_name": (g.get("anomaly") or {}).get("name"),
                 "global_old_god_name": (g.get("global_old_god") or {}).get("name"),
                 "lobby_size": g.get("lobby_size"),
+                "schema_version": log.get("schema_version"),
                 "plugin_version": (log.get("generator") or {}).get("plugin_version"),
                 "hero_choices": "|".join(
                     str(c.get("card_id")) for c in (p.get("hero_choices") or [])

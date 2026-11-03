@@ -166,3 +166,26 @@ def test_game_detail_select_follows_every_change() -> None:
     at.session_state["selected_game_id"] = seen[2]
     at.run()
     assert at.selectbox[0].value == seen[2]
+
+
+def test_app_warns_about_logs_from_a_newer_plugin(tmp_path: Path) -> None:
+    from hsbg import loader
+
+    log = json.loads(sorted(FIXTURES.glob("20260110-122609_*.json"))[0].read_text("utf-8"))
+    known = loader.version_tuple(loader.KNOWN_SCHEMA_VERSION)
+    log["schema_version"] = f"{known[0]}.{known[1] + 1}.0"
+    log["generator"]["plugin_version"] = "9.9.9"
+    log["turns"][0]["future_key"] = 1
+    (tmp_path / "new.json").write_text(json.dumps(log), "utf-8")
+    os.environ["HSBG_LOGS"] = str(tmp_path)
+    try:
+        at = AppTest.from_file(str(APP), default_timeout=60)
+        at.run()
+        assert not at.exception, [str(e) for e in at.exception]
+        assert at.metric[0].value == "1"
+        assert any("新しいプラグイン（9.9.9" in w.value for w in at.warning)
+    finally:
+        os.environ["HSBG_LOGS"] = str(FIXTURES)
+    at = AppTest.from_file(str(APP), default_timeout=60)
+    at.run()
+    assert not any("新しいプラグイン" in w.value for w in at.warning)

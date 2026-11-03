@@ -3,6 +3,7 @@ games that ended before turn 1 are skipped silently (counted in `LoadResult.abor
 
 from __future__ import annotations
 
+import copy
 import json
 import os
 from dataclasses import dataclass, field
@@ -14,6 +15,11 @@ import fastjsonschema
 from . import config
 
 SUPPORTED_SCHEMA_MAJOR = 1
+# The newest schema_version this hsbg knows (the last entry of docs/log-schema.md's change history;
+# tests/test_loader.py checks they match). A log of the same major but newer than this was written
+# by a newer plugin: it is still read, with the keys this hsbg does not know ignored
+# (`LoadResult.newer`).
+KNOWN_SCHEMA_VERSION = "1.8.0"
 SKIP_DIR_NAMES = {".partial", ".spike", ".cache", "reports", "analysis", "export"}
 ABORTED_REASON = "ended before turn 1"
 
@@ -35,6 +41,34 @@ def load_schema() -> dict[str, Any]:
         return json.load(f)
 
 
+def version_tuple(version: str | None) -> tuple[int, ...]:
+    """'1.8.0' -> (1, 8, 0); anything unparsable -> ()."""
+    try:
+        return tuple(int(x) for x in str(version or "").split("."))
+    except ValueError:
+        return ()
+
+
+def is_newer_than_known(version: str | None) -> bool:
+    """Same major as this hsbg reads, but newer than KNOWN_SCHEMA_VERSION (a newer plugin)."""
+    v = version_tuple(version)
+    return bool(v) and v[0] == SUPPORTED_SCHEMA_MAJOR and v > version_tuple(KNOWN_SCHEMA_VERSION)
+
+
+def _allow_unknown_keys(schema: Any) -> Any:
+    """The schema with every `additionalProperties: false` dropped: a minor version only adds
+    optional keys (docs/log-schema.md), so a newer log must still match apart from those."""
+    if isinstance(schema, dict):
+        return {
+            k: _allow_unknown_keys(v)
+            for k, v in schema.items()
+            if not (k == "additionalProperties" and v is False)
+        }
+    if isinstance(schema, list):
+        return [_allow_unknown_keys(v) for v in schema]
+    return schema
+
+
 @dataclass(frozen=True)
 class LoadWarning:
     path: Path
@@ -50,6 +84,9 @@ class LoadResult:
     paths: list[Path] = field(default_factory=list)
     warnings: list[LoadWarning] = field(default_factory=list)
     aborted: list[Path] = field(default_factory=list)
+    # read, but written by a newer plugin than this hsbg knows (is_newer_than_known): their new
+    # keys are not used. Also in `logs`.
+    newer: list[Path] = field(default_factory=list)
 
     @property
     def incomplete(self) -> list[dict[str, Any]]:
@@ -95,8 +132,11 @@ def is_aborted_before_first_turn(log: dict[str, Any]) -> bool:
 class _Validator:
     """Compiled draft-07 validator (fastjsonschema: ~30x faster than jsonschema on 70 KB logs)."""
 
-    def __init__(self) -> None:
-        self._validate = fastjsonschema.compile(load_schema())
+    def __init__(self, allow_unknown_keys: bool = False) -> None:
+        schema = load_schema()
+        if allow_unknown_keys:
+            schema = _allow_unknown_keys(copy.deepcopy(schema))
+        self._validate = fastjsonschema.compile(schema)
 
     def errors(self, log: dict[str, Any]) -> list[str]:
         try:
@@ -124,10 +164,37 @@ def load_log(
         return None, f"unsupported schema_version {version!r}"
     if is_aborted_before_first_turn(log):
         return None, ABORTED_REASON
+    if is_newer_than_known(version):
+        validator = _newer_validator()
     errors = (validator or _Validator()).errors(log)
     if errors:
         return None, "schema violation: " + "; ".join(errors[:3])
     return log, None
+
+
+_NEWER_VALIDATOR: _Validator | None = None
+
+
+def _newer_validator() -> _Validator:
+    global _NEWER_VALIDATOR
+    if _NEWER_VALIDATOR is None:
+        _NEWER_VALIDATOR = _Validator(allow_unknown_keys=True)
+    return _NEWER_VALIDATOR
+
+
+def newer_notice(versions: list[tuple[str | None, str | None]]) -> str | None:
+    """One line about logs written by a newer plugin, or None. versions = (schema_version,
+    plugin_version) of each loaded log."""
+    newer = [(s, p) for s, p in versions if is_newer_than_known(s)]
+    if not newer:
+        return None
+    schema, plugin = max(newer, key=lambda sp: version_tuple(sp[0]))
+    return (
+        f"{len(newer)} log(s) were written by a newer plugin (up to {plugin or '?'}, "
+        f"schema {schema}) than this hsbg knows (schema {KNOWN_SCHEMA_VERSION}): they are read, "
+        "but their new items are not used. Update hsbg: `uv tool upgrade hsbg`, then "
+        "`hsbg skills update` in the workspace."
+    )
 
 
 def events_path(path: Path) -> Path:
@@ -176,6 +243,8 @@ def load_logs(root: Path, *, paths: list[Path] | None = None) -> LoadResult:
         if log is None:
             result.warnings.append(LoadWarning(path, reason or "unknown error"))
             continue
+        if is_newer_than_known(log.get("schema_version")):
+            result.newer.append(path)
         log["_path"] = str(path)
         events = read_events(path, ("discover", "sell"))
         log["_discovers"] = events["discover"]

@@ -116,7 +116,27 @@ def main() -> None:
     }
     st.session_state["pages"] = pages
     nav = st.navigation(list(pages.values()))
+    newer = _newer_than_hsbg(ctx.tables.games)
+    if newer:
+        st.warning(newer)
     nav.run()
+
+
+def _newer_than_hsbg(games) -> str | None:  # noqa: ANN001 (pd.DataFrame)
+    """Logs written by a newer plugin than this hsbg knows (loader.is_newer_than_known)."""
+    if games.empty or "schema_version" not in games:
+        return None
+    newer = games[games["schema_version"].map(loader.is_newer_than_known)]
+    if newer.empty:
+        return None
+    top = max(newer.itertuples(), key=lambda r: loader.version_tuple(r.schema_version))
+    return (
+        f"{len(newer)} 件のログは、この hsbg より新しいプラグイン（{top.plugin_version or '?'}、"
+        f"schema {top.schema_version}）で書かれています。読み込みはしますが、この hsbg の知らない"
+        f"新しい項目（schema {loader.KNOWN_SCHEMA_VERSION} より後）は表示・分析に使われません。"
+        "`uv tool upgrade hsbg` で更新し、"
+        "ワークスペースで `hsbg skills update` を実行してください。"
+    )
 
 
 main()

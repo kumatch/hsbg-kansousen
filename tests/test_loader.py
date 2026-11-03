@@ -253,3 +253,87 @@ def test_older_logs_have_empty_new_tables(load_result: loader.LoadResult) -> Non
     tables = normalize.normalize(load_result.logs)
     assert tables.shop_offers.empty and tables.lobby.empty
     assert "opponent_tavern_tier" in tables.combats.columns
+
+
+# ---------------------------------------------------------------- logs from a newer plugin
+
+
+def test_known_schema_version_is_the_last_documented() -> None:
+    """KNOWN_SCHEMA_VERSION follows docs/log-schema.md (raise it with the plugin's log)."""
+    import re
+
+    doc = (Path(__file__).resolve().parents[1] / "docs" / "log-schema.md").read_text("utf-8")
+    documented = re.findall(r"^- \d{4}-\d{2}-\d{2} `(\d+\.\d+\.\d+)`", doc, re.MULTILINE)
+    assert documented
+    assert loader.KNOWN_SCHEMA_VERSION == max(documented, key=loader.version_tuple)
+
+
+def test_version_comparison() -> None:
+    known = loader.version_tuple(loader.KNOWN_SCHEMA_VERSION)
+    newer_minor = f"{known[0]}.{known[1] + 1}.0"
+    assert loader.is_newer_than_known(newer_minor)
+    assert loader.is_newer_than_known(f"{known[0]}.{known[1]}.{known[2] + 1}")
+    assert not loader.is_newer_than_known(loader.KNOWN_SCHEMA_VERSION)
+    assert not loader.is_newer_than_known("1.0.0")
+    assert not loader.is_newer_than_known(f"{known[0] + 1}.0.0")  # another major: not read at all
+    assert not loader.is_newer_than_known("x")
+    assert loader.version_tuple("1.10.0") > loader.version_tuple("1.9.9")
+
+
+def _newer_log(version: str) -> dict:
+    """A real fixture log with keys a future plugin might add, at every level."""
+    path = sorted(FIXTURES.glob("20260110-122609_*.json"))[0]
+    log = json.loads(path.read_text("utf-8"))
+    log["schema_version"] = version
+    log["generator"]["plugin_version"] = "9.9.9"
+    log["future_top"] = {"x": 1}
+    log["game"]["future_game"] = 1
+    log["turns"][0]["future_turn"] = [1, 2]
+    log["turns"][0]["combat"]["future_combat"] = None
+    return log
+
+
+def test_newer_log_is_read_with_unknown_keys_ignored(tmp_path: Path) -> None:
+    known = loader.version_tuple(loader.KNOWN_SCHEMA_VERSION)
+    newer = f"{known[0]}.{known[1] + 1}.0"
+    (tmp_path / "new.json").write_text(json.dumps(_newer_log(newer)), "utf-8")
+    # the same keys under the known version are a schema violation, as before
+    (tmp_path / "bad.json").write_text(json.dumps(_newer_log(loader.KNOWN_SCHEMA_VERSION)), "utf-8")
+    result = loader.load_logs(tmp_path)
+    assert [Path(g["_path"]).name for g in result.logs] == ["new.json"]
+    assert [p.name for p in result.newer] == ["new.json"]
+    assert [w.path.name for w in result.warnings] == ["bad.json"]
+    assert "schema violation" in result.warnings[0].message
+
+    from hsbg import normalize
+
+    t = normalize.normalize(result.logs)
+    assert t.games.iloc[0]["schema_version"] == newer
+    assert len(t.turns) == len(result.logs[0]["turns"])
+    assert "future_turn" not in t.turns.columns
+
+    notice = loader.newer_notice([(newer, "9.9.9"), (loader.KNOWN_SCHEMA_VERSION, "0.13.0")])
+    assert notice is not None
+    assert notice.startswith("1 log(s) were written by a newer plugin (up to 9.9.9, schema")
+    assert "uv tool upgrade hsbg" in notice
+    assert loader.newer_notice([(loader.KNOWN_SCHEMA_VERSION, "0.13.0")]) is None
+
+
+def test_newer_log_still_needs_the_known_shape(tmp_path: Path) -> None:
+    """Only unknown keys are let through: a missing or mistyped known key is still an error."""
+    known = loader.version_tuple(loader.KNOWN_SCHEMA_VERSION)
+    log = _newer_log(f"{known[0]}.{known[1] + 1}.0")
+    del log["result"]
+    (tmp_path / "a.json").write_text(json.dumps(log), "utf-8")
+    result = loader.load_logs(tmp_path)
+    assert not result.logs and not result.newer
+    assert "schema violation" in result.warnings[0].message
+
+
+def test_package_version_matches_pyproject() -> None:
+    import tomllib
+
+    import hsbg
+
+    pyproject = Path(__file__).resolve().parents[1] / "pyproject.toml"
+    assert hsbg.__version__ == tomllib.loads(pyproject.read_text("utf-8"))["project"]["version"]

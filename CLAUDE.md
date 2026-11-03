@@ -64,7 +64,8 @@ scripts/（start-dashboard.ps1, anonymize_log.py, check_private.py）
 - `TASKS.md` の順に進める。コミットはユーザーの許可を得てから
 - ログ仕様に関わる変更は、先にプラグインのリポジトリで docs/log-schema.md と schema を変えてから、こちらのコピーと読み込みを合わせる
   （手順はプラグインの `CLAUDE.md`「ログの形を変えたとき」。プラグイン側の `scripts/check_cli_sync.py` がコピーの食い違いを見つけ、
-  この CI の `schema` ジョブもプラグインの main と違えば失敗する）
+  この CI の `schema` ジョブもプラグインの main と違えば失敗する）。そのとき `hsbg/loader.py` の `KNOWN_SCHEMA_VERSION` も上げる
+- リリース（`docs/release.md`）: ログの版が変わったときは、プラグインより先にこちらをリリースする
 
 ## やらないこと
 

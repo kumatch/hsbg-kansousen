@@ -67,6 +67,20 @@ hdt-plugin-hsbg-kansousen ──書く──▶ ログのフォルダ（Document
 
 hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペースで `hsbg skills update` を実行してください（スキルが新しくなります）。
 
+### プラグインと hsbg の版
+
+プラグインを新しくしたら、hsbg も対応する版以降にしてください。対応はログの版（`schema_version`）で決まります。
+
+| hsbg | すべての項目を読めるログ | 対応するプラグイン |
+|---|---|---|
+| [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | 0.13.0 まで |
+| [0.1.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.1.0) | schema 1.6.2 まで | 0.11.0 まで |
+
+- hsbg より新しいプラグインのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
+  `hsbg validate` とダッシュボードに「hsbg を更新してください」と出ます（0.1.0 はそのログを読み飛ばします）
+- 古いプラグインのログは、新しい hsbg でもそのまま読めます（無い項目は空欄。いくつかは `hsbg backfill-*` で power.log から補えます）
+- 上の `uv tool install` は最新の版を入れます。版を指定するときは `git+https://github.com/kumatch/hsbg-kansousen@v0.2.0` のように書きます
+
 ## ワークスペースでの使いかた
 
 いつも **ワークスペースのフォルダで** Claude Code を起動して、ふつうの言葉で頼みます（`hsbg` のコマンドは AI が実行します）。
