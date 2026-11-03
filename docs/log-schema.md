@@ -45,6 +45,10 @@
   どちらも任意キー（`1.6.x` 以前のログには無い。保存済みの power.log から補完できる。下の「甲虫」節）。甲虫の強化は盤面のミニオンではなく
   プレイヤーに付く隠れたエンチャントに溜まるので、`board_end_of_shop` の攻撃力・体力だけでは強さが見えない。
   events.jsonl の `shop_end` に beetle_attack / beetle_health、`combat_end` に beetle_attack_after / beetle_health_after と opponent_beetle_*
+- 2026-11-03 `1.8.0`（プラグイン 0.13.0）: 甲虫と同じ形で、ほかの「この対戦中」の強化を追加。`turns[].blood_gem`（血の宝石 1 個が与える量）、
+  `turns[].tavern_spell`（酒場の呪文の攻撃力・体力の付与量に足される量）、`turns[].tavern_minion`（酒場のミニオンに足される量）、
+  `turns[].tavern_elemental`（酒場のエレメンタルに足される量）と、それぞれの `combat.opponent_*`。どれも任意キー（`1.7.x` 以前のログには無い。
+  保存済みの power.log から補完できる。下の「この対戦中の強化」節）。events.jsonl の `shop_end` / `combat_end` にも甲虫と同じ名前の付け方で入る
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -173,6 +177,12 @@
         "attack": 42, "health": 42,      // ショップ終了時 = 戦闘に持ち込む値。エンチャントが戦闘中に初めて作られたときは null
         "attack_after_combat": 83, "health_after_combat": 83         // 戦闘終了時（荒らし屋スコーピッド等で戦闘中に伸びた分を含む）
       },
+      "blood_gem": {                     // 1.8.0: 血の宝石 1 個が与える攻撃力・体力（基本の +1/+1 を含む）。強化が無ければ null。形は beetle と同じ
+        "attack": 6, "health": 7, "attack_after_combat": 6, "health_after_combat": 7
+      },
+      "tavern_spell": { "attack": 1, "health": 1, "attack_after_combat": 1, "health_after_combat": 1 },   // 1.8.0: 酒場の呪文の付与量に足される量。0/0 なら null
+      "tavern_minion": { "attack": 4, "health": 4, "attack_after_combat": 4, "health_after_combat": 4 },  // 1.8.0: 酒場のミニオンに足される量。無ければ null
+      "tavern_elemental": null,          // 1.8.0: 酒場のエレメンタルに足される量（tavern_minion とは別に足される）。無ければ null
       "combat": {
         "opponent_player_id": 7,         // 自ヒーロー Entity の NEXT_OPPONENT_PLAYER_ID（戦闘相手の PLAYER_ID と一致）
         "opponent_hero": { "card_id": "BG20_HERO_283_SKIN_G", "name": "...", "dbf_id": 0 },
@@ -198,7 +208,11 @@
         "opponent_beetle": {             // 1.7.0: 戦闘相手の甲虫（beetle と同じ形）。attack/health は戦闘開始時。
           "attack": 272, "health": 270,  // 相手のエンチャントは戦闘中だけ見える。相手に甲虫の強化が無ければ null
           "attack_after_combat": 385, "health_after_combat": 383
-        }
+        },
+        "opponent_blood_gem": { "attack": 5, "health": 4, "attack_after_combat": 5, "health_after_combat": 4 },        // 1.8.0: 相手の値（形は同じ）。
+        "opponent_tavern_spell": { "attack": 23, "health": 16, "attack_after_combat": 23, "health_after_combat": 16 },  // 戦闘中にだけ見え、相手に
+        "opponent_tavern_minion": { "attack": 40, "health": 80, "attack_after_combat": 40, "health_after_combat": 80 }, // その強化が無ければ null
+        "opponent_tavern_elemental": null
       }
     }
   ],
@@ -267,6 +281,25 @@
   （戦闘ごとに相手のプレイヤー Entity に付く `Bacon_TagTransferPlayerE` は 2193 戦闘の全てにあり、そのタグ 3874 / 3924 で強化がある戦闘は 126 回。
   コピーのある 134 回とほぼ重なり、最初の値も 124 回で一致した。見えない戦闘が多いのは相手が甲虫を育てていないため）
 - 相手のプレイヤー Entity のタグ 3874 / 3924 は前の戦闘の相手の値が残ることがあるので読まない
+
+### この対戦中の強化（`blood_gem` / `tavern_spell` / `tavern_minion` / `tavern_elemental` と `opponent_*`、1.8.0）
+
+甲虫と同じく盤面のミニオンには乗らない「この対戦中」の強化。形と読み方（ショップ終了時、戦闘中の毎 tick、相手は戦闘ごとのコピーの最初と最後）は
+甲虫と同じ。値の置き場所（保存済みの power.log 182 ゲームと HDT 1.59.7 のソースで確認。docs/hdt-research.md §3.20）:
+
+| キー | 記録する値 | 自分の値 | 相手の値 |
+|---|---|---|---|
+| `blood_gem` | 血の宝石（`BG20_GEM`）1 個が与える攻撃力・体力 = 基本の +1/+1 + 強化 | エンチャント `BG26_159pe`（"Blood Gem Player Enchant"）の `TAG_SCRIPT_DATA_NUM_1/2` と、プレイヤー Entity の `BACON_BLOODGEMBUFFATKVALUE` / `BACON_BLOODGEMBUFFHEALTHVALUE` の **成分ごとの大きいほう**（HDT 1.59.7 の Bob's Buddy と同じ。614 回中 604 回は一致し、残り 10 回は 1 ゲームでエンチャントが少なかった） | `BG26_159pe` の戦闘ごとのコピー（558 戦闘）。相手のプレイヤー Entity のタグは前の相手の値が残るので読まない |
+| `tavern_spell` | 酒場の呪文が与える攻撃力・体力に足される量 | プレイヤー Entity の `TAVERN_SPELL_ATTACK_INCREASE` / `TAVERN_SPELL_HEALTH_INCREASE`（エンチャントは無い）。盤面のミニオンのオーラを含む今の値なので、そのミニオンを売ったり戦闘で死んだりすると一時的に下がる | 戦闘ごとに相手のプレイヤー Entity に付く `Bacon_TagTransferPlayerE` の同じタグ（588 戦闘） |
+| `tavern_minion` | 酒場のミニオンに足される攻撃力・体力 | エンチャント `BG_ShopBuff`（"Shop Buff Player Enchant (DNT)"）の `TAG_SCRIPT_DATA_NUM_1/2` | `BG_ShopBuff` の戦闘ごとのコピー（184 戦闘） |
+| `tavern_elemental` | 酒場のエレメンタルに足される攻撃力・体力（`tavern_minion` とは別のエンチャント） | エンチャント `BG_ShopBuff_Elemental` の `TAG_SCRIPT_DATA_NUM_1/2` | 182 ゲームでコピーは作られなかった（相手の値は実際には null になる見込み） |
+
+- どれも強化が無い（エンチャントが無い、値が 0/0）ターンは null。`blood_gem` と `tavern_spell` はプレイヤーのタグが 0 のうちは null
+- 記録しないもの: Eonar's Favor（`BG35_912`。「選んだミニオンの種族の酒場のミニオン +X/+Y」）の `BG_ShopBuff_MultiRace` は
+  `TAG_SCRIPT_DATA_NUM_1/2` に値が入らず、種族ごとの値の置き場所が分からない。`BG34_854pe`（酒場のランダムな 1 体が強化される）は「足される量」ではない
+- 神祇（`deity`）も盤面に乗らない強さだが、この形にはまとめず別のキーのままにする。値の意味（強化の量ではなく神祇の合計値）、
+  置き場所（SECRET の Sigil）、相手のコピーの後片付け（値とカードが戻される）が違い、どの神祇か・金色か・目覚めたかも持つため。
+  形を揃えるとスキーマのメジャー版が変わる。神祇とこの対戦中の強化を並べて見るのは分析側（hsbg の表示）で行う
 
 ### 必須フィールド（`status: "complete"` のとき）
 `schema_version`, `status`, `generator.plugin_version`, `game.game_id`, `game.started_at`, `game.ended_at`,
@@ -349,9 +382,9 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `dark_gift` | card_id, name（選んだミニオン）, gold_after, source=`dark_gift`, offered[]（3 択。観測できなければ null） | 1.1.0。手札に現れた Entity の **直接の** 作成元（DISPLAYED_CREATOR か CREATOR）がボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`。作成元を何段も辿らない（得たミニオンが生成したカードや悪夢の恵みが作るコピーを除外） |
 | `discover` | card_id, name, gold_after, source（`hero_power` / `triple`）, offered[] | 1.1.0。ヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で選んだカード。**3 択に含まれていたカードだけ**（Barov の Tavern Coin のような生成物は記録しない） |
 | `tier_up` | value（新ティア）, gold_after | 同上 |
-| `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0） | `OnTurnStart(Opponent)` |
+| `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0）。ほかの強化も同じく blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0） | `OnTurnStart(Opponent)` |
 | `combat_start` | opponent_player_id, opponent_hero_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board[] | 戦闘フェーズ開始 |
-| `combat_end` | result, damage_dealt, damage_taken（再接続中に終わった戦闘は推定値で `inferred: true`。1.6.2）。神祇があれば deity_attack_after, deity_health_after, deity_awakened, deity_golden、相手の Sigil が読めれば opponent_deity_attack, opponent_deity_health, opponent_deity_awakened, opponent_deity_golden（1.2.0。golden は 1.3.0）。甲虫があれば beetle_attack_after, beetle_health_after、相手の甲虫のエンチャントが見えれば opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0） | 次ターン開始時（最終ターンはゲーム終了時） |
+| `combat_end` | result, damage_dealt, damage_taken（再接続中に終わった戦闘は推定値で `inferred: true`。1.6.2）。神祇があれば deity_attack_after, deity_health_after, deity_awakened, deity_golden、相手の Sigil が読めれば opponent_deity_attack, opponent_deity_health, opponent_deity_awakened, opponent_deity_golden（1.2.0。golden は 1.3.0）。甲虫があれば beetle_attack_after, beetle_health_after、相手の甲虫のエンチャントが見えれば opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0）。ほかの強化も同じ名前の付け方（`<キー>_attack_after`、`opponent_<キー>_attack` 等。1.8.0） | 次ターン開始時（最終ターンはゲーム終了時） |
 | `trinket` | card_id, name, dbf_id | 獲得を検出したとき |
 | `player_eliminated` | player_id, hero_card_id, eliminated_turn, place | ターン開始時のロビー更新 |
 | `game_end` | placement, total_turns, status | `OnGameEnd` |
@@ -378,10 +411,11 @@ GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n な�
 すでに神祇の値があって `golden` が無いログは、プラグイン（0.6.0）が書いたものなら値を残して `golden` だけ足し（note `deity golden backfilled from power.log`）、
 以前の補完が書いたものは作り直す（1.2.0 の補完は相手のカードを後片付け後に読んでいて、ヤシャラージュ戦の相手がクトゥーンになっていた）。
 
-`hsbg backfill-beetle`（同じ `powerlog.py`）は 1.7.0 より前のログに `beetle` / `opponent_beetle` を補う（上の「甲虫」節と同じ読み方）。
-`TURN` が 2n になった時点の自分のエンチャントをショップ終了時の値、2n+1（最終ターンはファイル末尾）の時点を戦闘後の値、
-戦闘中（`TURN` = 2n）に作られた相手のコピーの最初と最後の値を相手の値とする。自分にも相手にも甲虫の強化が無いゲームは書き換えない。
-元の JSON は `<logs>\.backup\beetle-<日時>\` に退避し、`notes[]` に `beetle backfilled from power.log` を追記する。
+`hsbg backfill-buffs`（同じ `powerlog.py`）は、ログに無い「この対戦中の強化」のキー（1.7.0 の `beetle`、1.8.0 の `blood_gem` 等）と
+それぞれの `opponent_*` を補う（上の「甲虫」「この対戦中の強化」節と同じ読み方）。プラグイン 0.12.0 のログ（`beetle` だけある）は `beetle` を残してほかを足す。
+`TURN` が 2n になった時点の自分の値をショップ終了時の値、2n+1（最終ターンはファイル末尾）の時点を戦闘後の値、
+戦闘中（`TURN` = 2n）に作られた相手のコピーの最初と最後の値を相手の値とする。自分にも相手にもその強化が無いゲームは書き換えない。
+元の JSON は `<logs>\.backup\buffs-<日時>\` に退避し、`notes[]` に `buffs backfilled from power.log: <足したキー>` を追記する。
 **`schema_version` は上げない**（古いログの他のキーは古い意味のまま。例: 1.5.x 以前の `sells`）。
 
 ## 分析側での正規化テーブル（Analysis CLI 内部。参考）
@@ -389,8 +423,8 @@ GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n な�
 | テーブル | 主キー | 主な列 |
 |---|---|---|
 | `games` | game_id | started_at, hero_card_id, hero_base_card_id（スキン正規化後）, placement, mmr_before, mmr_after, mmr_delta, total_turns, final_tier, duration_sec, status, minion_types, anomaly_card_id |
-| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, deity_*（1.2.0）, beetle_attack, beetle_health, beetle_attack_after, beetle_health_after（1.7.0） |
-| `combats` | game_id, turn | opponent_player_id, opponent_hero, opponent_tavern_tier（1.5.0）, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0） |
+| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, deity_*（1.2.0）, beetle_*（1.7.0）, blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0。それぞれ attack, health, attack_after, health_after） |
+| `combats` | game_id, turn | opponent_player_id, opponent_hero, opponent_tavern_tier（1.5.0）, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_*（1.7.0）, opponent_blood_gem_*, opponent_tavern_spell_*, opponent_tavern_minion_*, opponent_tavern_elemental_*（1.8.0） |
 | `board_minions` | game_id, turn, position | card_id, tier, attack, health, golden, keywords, divine_shields（1.3.x 以前は keywords から 0/1）, minion_types |
 | `opponents` | game_id, player_id | hero_card_id, placement, estimated_placement, eliminated_turn, final_tavern_tier |
 | `hand` | game_id, turn, position | card_id, name, card_type, tier, attack, health, golden（1.5.0。1.4.x 以前の手札は card_id, name だけ） |

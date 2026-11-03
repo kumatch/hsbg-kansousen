@@ -46,7 +46,13 @@ read these logs.
   (base 2/2 included) at shop end and after combat: `turns.beetle_*` and, when the combat opponent
   has a Beetle buff, `combats.opponent_beetle_*` (`hsbg export` / lenses; null = no Beetle buff).
   The values also grow during combat. Older logs got them from their saved power.log
-  (`hsbg backfill-beetle`, note "beetle backfilled from power.log").
+  (`hsbg backfill-buffs`, note "buffs backfilled from power.log: ...").
+- **Other "this game" buffs.** Recorded from schema 1.8.0 (plugin 0.13.0) the same way, mine at shop
+  end / after combat and the combat opponent's when they have one: `blood_gem_*` (what one Blood Gem
+  gives, base +1/+1 included), `tavern_spell_*` (added to what Tavern spells give; includes auras of
+  minions on the board, so it can drop when such a minion is sold or dies), `tavern_minion_*` and
+  `tavern_elemental_*` (added to Tavern minions / Tavern Elementals). Null means no such buff. Eonar's
+  Favor (per minion type) is not recorded.
 - **Aberration in the type tables.** Aberration was in every lobby from 36.6.1 until 36.6.3
   (2026-10-02) and is in about half the lobbies since, so before 36.6.3 it is only compared on played
   vs not played and after it also on offered vs not offered.

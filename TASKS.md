@@ -10,15 +10,19 @@
 
 ## 現在の状態
 
-- hsbg 0.1.0。読めるログ: schema 1.x（プラグイン 0.2.0 以降。最新 1.7.0）。レンズ API 1
+- hsbg 0.1.0。読めるログ: schema 1.x（プラグイン 0.2.0 以降。最新 1.8.0）。レンズ API 1
 - 公開の準備中（最初のリリース前）
 
 ## タスク
 
 - [x] CI（`.github/workflows/ci.yml`）: Windows で ruff + pytest + check_private。プラグインの `schema/game-log.schema.json` と比べる job（取得できなければ警告だけ）
 - [x] 甲虫（schema 1.7.0）: turns に `beetle_attack` / `beetle_health` / `beetle_attack_after` / `beetle_health_after`、
-      combats に `opponent_beetle_*`（`hsbg export` とレンズから読める）。過去のゲームは `hsbg backfill-beetle` で power.log から補完
-- [ ] 甲虫を `summarize`（AI への入力）とダッシュボードのゲーム詳細にも出す（神祇の `## Deity` 表と同じく、盤面の合計と並べる）
+      combats に `opponent_beetle_*`（`hsbg export` とレンズから読める）
+- [x] この対戦中の強化（schema 1.8.0）: `blood_gem_*` / `tavern_spell_*` / `tavern_minion_*` / `tavern_elemental_*` と `opponent_*` の列。
+      過去のゲームは `hsbg backfill-buffs` で power.log から補完（`backfill-beetle` は置き換えた）
+- [ ] この対戦中の強化（甲虫・血の宝石・酒場の呪文・酒場のミニオン）を `summarize`（AI への入力）とダッシュボードのゲーム詳細にも出す。
+      神祇も同じ「盤面に乗らない強さ」として同じ表・グラフに並べ、盤面の合計と比べられるようにする（ログでは神祇は別のキーのまま。docs/log-schema.md「この対戦中の強化」）。
+      プラグイン 0.13.0 の実機確認が済んでから、そのとき出力されたゲームログを使って作業する
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ

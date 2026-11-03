@@ -133,6 +133,10 @@
           "lobby": { "type": ["array", "null"], "items": { "$ref": "#/definitions/lobby_entry" } },
           "deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
           "beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+          "blood_gem": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+          "tavern_spell": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+          "tavern_minion": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+          "tavern_elemental": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
           "combat": {
             "type": ["object", "null"],
             "additionalProperties": false,
@@ -162,7 +166,11 @@
                 }
               },
               "opponent_deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
-              "opponent_beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] }
+              "opponent_beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+              "opponent_blood_gem": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+              "opponent_tavern_spell": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+              "opponent_tavern_minion": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
+              "opponent_tavern_elemental": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] }
             }
           }
         }

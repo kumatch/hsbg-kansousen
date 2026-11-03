@@ -14,6 +14,11 @@ from .cards import CardNames, base_hero_id
 
 __all__ = ["Tables", "normalize", "base_hero_id"]
 
+# "this game" buffs (docs/log-schema.md "この対戦中の強化"): turns[].<key> / combat.opponent_<key>.
+# beetle is schema 1.7.0, the others 1.8.0. Same order as powerlog.BUFF_KEYS
+BUFF_KEYS = ("beetle", "blood_gem", "tavern_spell", "tavern_minion", "tavern_elemental")
+BUFF_STATS = ("attack", "health", "attack_after", "health_after")
+
 
 @dataclass
 class Tables:
@@ -106,10 +111,8 @@ TURN_COLUMNS = [
     "deity_health_after",
     "deity_awakened",
     "deity_golden",
-    "beetle_attack",
-    "beetle_health",
-    "beetle_attack_after",
-    "beetle_health_after",
+    # schema 1.7.0 (beetle) / 1.8.0 (the others): "this game" buffs, see BUFF_KEYS
+    *(f"{k}_{s}" for k in BUFF_KEYS for s in BUFF_STATS),
 ]
 COMBAT_COLUMNS = [
     "game_id",
@@ -138,10 +141,7 @@ COMBAT_COLUMNS = [
     "opponent_deity_health_after",
     "opponent_deity_awakened",
     "opponent_deity_golden",
-    "opponent_beetle_attack",
-    "opponent_beetle_health",
-    "opponent_beetle_attack_after",
-    "opponent_beetle_health_after",
+    *(f"opponent_{k}_{s}" for k in BUFF_KEYS for s in BUFF_STATS),
 ]
 MINION_COLUMNS = [
     "game_id",
@@ -209,8 +209,8 @@ def _stat_sum(minions: list[dict[str, Any]] | None, key: str) -> int:
 
 
 def _buff_stats(d: dict[str, Any] | None, prefix: str) -> dict[str, Any]:
-    """schema 1.7.0 の beetle / opponent_beetle（甲虫のステータス。基本の 2/2 を含む）。
-    古いログや甲虫を強化していないターンは全て None。"""
+    """schema 1.7.0 / 1.8.0 の「この対戦中」の強化（beetle, blood_gem, tavern_spell, tavern_minion,
+    tavern_elemental と opponent_*）。古いログやその強化が無いターンは全て None。"""
     d = d or {}
     return {
         f"{prefix}_attack": d.get("attack"),
@@ -363,7 +363,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                     if t.get("deity")
                     else None,
                     **_deity(t.get("deity"), "deity"),
-                    **_buff_stats(t.get("beetle"), "beetle"),
+                    **{c: v for k in BUFF_KEYS for c, v in _buff_stats(t.get(k), k).items()},
                 }
             )
             minions.extend(
@@ -426,7 +426,13 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                         "opponent_board_attack": _stat_sum(c.get("opponent_board"), "attack"),
                         "opponent_board_health": _stat_sum(c.get("opponent_board"), "health"),
                         **_deity(c.get("opponent_deity"), "opponent_deity"),
-                        **_buff_stats(c.get("opponent_beetle"), "opponent_beetle"),
+                        **{
+                            col: v
+                            for k in BUFF_KEYS
+                            for col, v in _buff_stats(
+                                c.get("opponent_" + k), "opponent_" + k
+                            ).items()
+                        },
                     }
                 )
                 minions.extend(

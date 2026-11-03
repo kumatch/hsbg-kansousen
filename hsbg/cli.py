@@ -1,5 +1,5 @@
 """`hsbg` command line (docs/architecture.md §6): validate / report / summarize / stats / export /
-serve / backfill-deity / backfill-beetle, plus config / init for the settings and the workspace
+serve / backfill-deity / backfill-buffs, plus config / init for the settings and the workspace
 (config.py)."""
 
 from __future__ import annotations
@@ -318,24 +318,24 @@ def backfill_deity(
         typer.echo(f"backup: {backup}")
 
 
-@app.command("backfill-beetle")
-def backfill_beetle(
+@app.command("backfill-buffs")
+def backfill_buffs(
     log_dir: LogDir = None,
     dry_run: Annotated[bool, typer.Option("--dry-run", help="Only report, write nothing")] = False,
-    force: Annotated[
-        bool, typer.Option(help="Also redo logs that already have beetle keys")
-    ] = False,
+    force: Annotated[bool, typer.Option(help="Also redo the buff keys a log already has")] = False,
 ) -> None:
-    """Add the Beetle stats (schema 1.7.0 `beetle` / `opponent_beetle`) to older logs from their
-    saved power.log. Games where neither side buffed Beetles are left as they are.
+    """Add the "this game" buffs (schema 1.7.0 `beetle`, 1.8.0 `blood_gem`, `tavern_spell`,
+    `tavern_minion`, `tavern_elemental`, and their `opponent_*`) to older logs from their saved
+    power.log. Only the keys a log lacks are added (a plugin 0.12.0 log keeps its `beetle`).
+    Games where neither side had any of them are left as they are.
 
-    Originals are copied to <logs>/.backup/beetle-<timestamp>/ before being rewritten.
+    Originals are copied to <logs>/.backup/buffs-<timestamp>/ before being rewritten.
     """
     import json
     import shutil
 
     root = _root(log_dir)
-    backup = root / ".backup" / f"beetle-{datetime.now():%Y%m%d-%H%M%S}"
+    backup = root / ".backup" / f"buffs-{datetime.now():%Y%m%d-%H%M%S}"
     done = skipped = 0
     for path in loader.find_logs(root):
         log, reason = loader.load_log(path)
@@ -343,7 +343,8 @@ def backfill_beetle(
             typer.echo(f"skip (invalid: {reason}) {path.name}")
             skipped += 1
             continue
-        if powerlog.has_beetle_keys(log) and not force:
+        keys = list(powerlog.BUFF_KEYS) if force else powerlog.missing_buff_keys(log)
+        if not keys:
             skipped += 1
             continue
         plog = powerlog.power_log_for(path)
@@ -351,14 +352,19 @@ def backfill_beetle(
             typer.echo(f"skip (no power.log) {path.name}")
             skipped += 1
             continue
-        beetle = powerlog.parse_beetle(powerlog.open_power_log(plog))
-        if not beetle:
+        buffs = powerlog.parse_buffs(powerlog.open_power_log(plog))
+        if not any(k in t.player or k in t.opponent for t in buffs.values() for k in keys):
             skipped += 1
             continue
-        filled = powerlog.apply_beetle(log, beetle)
-        seen = sum(1 for t in log["turns"] if (t.get("combat") or {}).get("opponent_beetle"))
+        powerlog.apply_buffs(log, buffs, keys)
+        counts = []
+        for k in keys:
+            mine = sum(1 for t in log["turns"] if t.get(k))
+            opp = sum(1 for t in log["turns"] if (t.get("combat") or {}).get("opponent_" + k))
+            if mine or opp:
+                counts.append(f"{k} {mine}/{opp}")
         verb = "would fill" if dry_run else "filled"
-        typer.echo(f"{verb} {filled} turns (opponent's seen in {seen} combats) {path.name}")
+        typer.echo(f"{verb} (turns mine/opponent's) {', '.join(counts)}  {path.name}")
         done += 1
         if dry_run:
             continue
