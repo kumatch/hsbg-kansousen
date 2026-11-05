@@ -1,7 +1,7 @@
 # ログファイル仕様（JSON スキーマ）
 
 このドキュメントが **ログ形式の契約**。`schema/game-log.schema.json` はこれと同期させる。
-フィールドを変更したら `schema_version` を上げ、Analysis CLI の `loader.py` に互換処理を入れる。
+フィールドを変更したら `schema_version` を上げ、分析ツール hsbg-kansousen の `hsbg/loader.py` の `KNOWN_SCHEMA_VERSION` を合わせる。キーの意味が変わるなら互換処理を入れる。
 
 改訂履歴:
 - 2026-09-15 初版
@@ -10,9 +10,9 @@
   events.jsonl に `dark_gift` / `discover` を追加し、`hero_power` に選んだカードと 3 択を載せる。`loader.py` はメジャー 1 を全て受け付ける
 - 2026-09-27 `1.2.0`: 神祇（クトゥーン、ヤシャラージュ等）のステータスを追加。`turns[].deity`（自分）と `turns[].combat.opponent_deity`（戦闘相手）。
   どちらも任意キー（`1.1.x` 以前のログには無い。`hsbg backfill-deity` で保存済みの power.log から補完できる。下の「神祇」節）。
-- 2026-09-27 `1.3.0`: `deity` / `opponent_deity` に `golden`（神祇が金色か。古なる者の仮面）を追加（任意キー。`1.2.0` のログには無い）。
-  events.jsonl の `combat_end` に deity_golden / opponent_deity_golden
   events.jsonl の `shop_end` / `combat_end` に神祇の値を追加
+- 2026-09-27 `1.3.0`: `deity` / `opponent_deity` に `golden`（神祇が金色か。古なる者の仮面）を追加（任意キー。`1.2.0` のログには無い）。
+  events.jsonl の `combat_end` に deity_golden / opponent_deity_golden を追加
 - 2026-09-28 `1.4.0`: ミニオン（`board_end_of_shop[]` / `opponent_board[]`）に `divine_shields`（聖なる盾の枚数。`DIVINE_SHIELD` の値、無ければ 0）を追加
   （任意キー。`1.3.x` 以前のログには無く、分析側は keywords の `divine_shield` から 0/1 とみなす）。闇のパラドックス（`BG36_360t4`）は盾を重ねて 2 枚以上になる
   （保存済み 30 ゲーム中 7 ゲームで 3 枚。HDT 1.58.4 も Bob's Buddy に枚数で渡すようになった）。`keywords` の `divine_shield` は従来どおり 1 枚以上で入る
@@ -66,13 +66,13 @@
 
 ```jsonc
 {
-  "schema_version": "1.6.2",
+  "schema_version": "1.9.0",
   "status": "complete",                 // "complete" | "incomplete" | "not_battlegrounds"
   "generator": {
     "plugin": "HsbgKansousen",
-    "plugin_version": "0.1.0",
-    "hdt_version": "1.58.3",
-    "hearthstone_build": 56608          // GameStats.HearthstoneBuild
+    "plugin_version": "0.14.0",
+    "hdt_version": "1.59.7",
+    "hearthstone_build": 59182          // GameStats.HearthstoneBuild
   },
 
   "game": {
@@ -243,7 +243,7 @@
 | ヤシャラージュ | `BGFYM_011`（`BGFYM_011_G`） | 132532（134634） | 断末魔: この戦闘で最初に死亡した味方の異形 2 体（金色は 4 体。神祇は除く）を最大攻撃力・体力で召喚 |
 
 ヤシャラージュの召喚数は覚醒したミニオンの `TAG_SCRIPT_DATA_NUM_1`（通常 2、金色 4）。29 ゲームで他の値は無く、金色から決まるので記録しない。
-クトゥーンは神祇の大きさがそのまま効くが、ヤシャラージュは本体の大きさに加えて **先に死ぬ異形の強さ** が効く（分析側の説明文はこの違いを出し分ける）。
+クトゥーンは神祇の大きさがそのまま戦闘力になるが、ヤシャラージュは本体の大きさに加えて **先に死ぬ異形の強さ** でも戦闘力が変わる（分析側の説明文はこの違いを出し分ける）。
 値の置き場所（2026-09-26 の Power.log と HDT 1.58.3 のソースで確認）:
 
 - 各プレイヤーは SECRET ゾーンに Sigil `BG_OldGod`（"Secret Deity [DNT]"、HearthDb `SecretDeityDnt`）を持つ。
@@ -349,7 +349,7 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 
 ## 補助ファイル 1: `<name>.events.jsonl`（任意）
 
-ゲーム中の細粒度イベントを 1 行 1 JSON で追記する。**ゲーム中に逐次書く**（クラッシュ対策も兼ねる）。
+ゲーム中の細かいイベントを 1 行 1 JSON で追記する。**ゲーム中に逐次書く**（クラッシュ対策も兼ねる）。
 
 ```jsonl
 {"t":"2026-09-25T15:56:27+09:00","turn":0,"type":"hero_choice","card_ids":["...","...","...","..."]}
@@ -399,7 +399,7 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `reconnect` | game_handle, hdt_game_id（HDT が付け直した GameStats.GameId）, interrupted_combat_turn, interrupted_shop_turn（見られなかった戦闘 / 落ちたショップのターン。無ければ null） | 1.6.2。同じサーバーのゲームで `OnGameStart` が出し直されたとき（上の「再接続」節） |
 
 `freeze` は未実装。取れないイベント種別があっても構わない。主ログの `turns[].actions` は同じ差分検出の集計値なので、events.jsonl と一致する。
-書き込みはキュー経由でバックグラウンド行われ、ゲーム終了時と MMR 後値の確定時にフラッシュされる。
+書き込みはキュー経由でバックグラウンドで行われ、ゲーム終了時と MMR 後値の確定時にフラッシュされる。
 
 ## 補助ファイル 2: `<name>.power.log.gz`（任意。`power_log_gzip: false` なら `<name>.power.log`）
 
@@ -408,9 +408,9 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 実測で 1 ゲーム（14 ターン、29 分）約 20 万行 / 29 MB あるため、既定では gzip（約 3 MB）。Python は `gzip.open(path, "rt", encoding="utf-8")` で読める。
 HDT の Replays（`.hdtreplay`）機能は BG では動作しないので使わない（hdt-plugin-hsbg-kansousen の docs/hdt-research.md §3.10）。
 HDT が読み込んだ時点で日本語カード名は文字化けしているが `CardId` と数値は無傷なので、再抽出は `CardId` ベースで行う。
-AI に「生ログから戦闘の詳細を読み解かせる」用途と、将来スキーマを拡張したときの **再抽出用**。
+用途は、AI に生ログから戦闘の詳細を読み解かせることと、将来スキーマを拡張したときの **再抽出**。
 
-再抽出の例: `hsbg backfill-deity`（`analysis/hsbg/powerlog.py`）は 1.2.0 より前のログに `deity` / `opponent_deity` を補う。
+再抽出の例: `hsbg backfill-deity`（hsbg-kansousen の `hsbg/powerlog.py`）は 1.2.0 より前のログに `deity` / `opponent_deity` を補う。
 GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n なので、`TURN` が 2n になった時点の自分の Sigil をショップ終了時の値、
 2n+1（最終ターンはファイル末尾）になった時点を戦闘後の値とする。元の JSON は `<logs>\.backup\deity-<日時>\` に退避し、
 `schema_version` を 1.3.0 にして `notes[]` に `deity backfilled from power.log` を追記する。power.log の無いゲーム（2026-09-25 19:26 より前）は補完できない。
@@ -424,15 +424,16 @@ GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n な�
 元の JSON は `<logs>\.backup\buffs-<日時>\` に退避し、`notes[]` に `buffs backfilled from power.log: <足したキー>` を追記する。
 **`schema_version` は上げない**（古いログの他のキーは古い意味のまま。例: 1.5.x 以前の `sells`）。
 
-## 分析側での正規化テーブル（Analysis CLI 内部。参考）
+## 分析側での正規化テーブル（hsbg-kansousen の `hsbg/normalize.py`。参考）
 
 | テーブル | 主キー | 主な列 |
 |---|---|---|
-| `games` | game_id | started_at, hero_card_id, hero_base_card_id（スキン正規化後）, placement, mmr_before, mmr_after, mmr_delta, total_turns, final_tier, duration_sec, status, minion_types, anomaly_card_id |
-| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, deity_*（1.2.0）, beetle_*（1.7.0）, blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0。それぞれ attack, health, attack_after, health_after） |
-| `combats` | game_id, turn | opponent_player_id, opponent_hero, opponent_tavern_tier（1.5.0）, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_*（1.7.0）, opponent_blood_gem_*, opponent_tavern_spell_*, opponent_tavern_minion_*, opponent_tavern_elemental_*（1.8.0）, opponent_blood_gem_barrage_*（1.9.0） |
-| `board_minions` | game_id, turn, position | card_id, tier, attack, health, golden, keywords, divine_shields（1.3.x 以前は keywords から 0/1）, minion_types |
-| `opponents` | game_id, player_id | hero_card_id, placement, estimated_placement, eliminated_turn, final_tavern_tier |
+| `games` | game_id | started_at, ended_at, duration_sec, status, hero_card_id, hero_base_card_id（スキン正規化後）, hero_name, placement, mmr_before, mmr_after, mmr_delta, total_turns, final_tier, minion_types, anomaly_card_id, global_old_god_name, lobby_size, schema_version, plugin_version, hero_choices, hero_rerolled |
+| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, hero_power_uses, spells_played, dark_gifts（1.1.0）, board_size, board_attack, board_health, deity_*（1.2.0）, beetle_*（1.7.0）, blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0。強化はそれぞれ attack, health, attack_after, health_after） |
+| `combats` | game_id, turn | opponent_player_id, opponent_hero_card_id, opponent_hero_base_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board_size, opponent_board_attack, opponent_board_health, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_*（1.7.0）, opponent_blood_gem_*, opponent_tavern_spell_*, opponent_tavern_minion_*, opponent_tavern_elemental_*（1.8.0）, opponent_blood_gem_barrage_*（1.9.0） |
+| `board_minions` | game_id, turn, side, position | card_id, name, tier, attack, health, golden, keywords, divine_shields（1.3.x 以前は keywords から 0/1）, minion_types。side は `player`（board_end_of_shop）/ `opponent`（opponent_board） |
+| `opponents` | game_id, player_id | hero_card_id, hero_base_card_id, placement, estimated_placement, eliminated_turn, final_tavern_tier, final_health |
+| `discovers` | game_id, turn | source（`hero_power` / `triple`）, card_id, name（events.jsonl の `discover`。1.1.0） |
 | `hand` | game_id, turn, position | card_id, name, card_type, tier, attack, health, golden（1.5.0。1.4.x 以前の手札は card_id, name だけ） |
 | `shop_offers` | game_id, turn, offer, position | trigger, card_id, name, card_type, tier, attack, health, golden（1.5.0） |
 | `lobby` | game_id, turn, player_id | tavern_tier, health, armor, leaderboard_place, eliminated（1.5.0） |
