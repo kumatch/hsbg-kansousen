@@ -152,6 +152,8 @@
               "result": { "type": ["string", "null"], "enum": ["win", "loss", "tie", null] },
               "damage_dealt": { "type": ["integer", "null"] },
               "damage_taken": { "type": ["integer", "null"] },
+              "ice_block": { "type": ["boolean", "null"] },
+              "opponent_ice_block": { "type": ["boolean", "null"] },
               "bobs_buddy": {
                 "type": ["object", "null"],
                 "additionalProperties": false,

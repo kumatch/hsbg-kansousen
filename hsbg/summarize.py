@@ -316,6 +316,11 @@ def summarize(log: dict[str, Any], history: Tables | None = None) -> str:
             if c
             else "-"
         )
+        # schema 1.10.0: the damage above was blocked by an Ice Block (HP not reduced)
+        if c and c.get("ice_block"):
+            dmg += " (my Ice Block)"
+        if c and c.get("opponent_ice_block"):
+            dmg += " (opp. Ice Block)"
         bb = c.get("bobs_buddy") or {}
         bbs = f"{bb['win']:.0%}/{bb['tie']:.0%}/{bb['loss']:.0%}" if bb else "-"
         lines.append(

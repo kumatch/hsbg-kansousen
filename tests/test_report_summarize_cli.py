@@ -151,3 +151,35 @@ def test_summarize_gold_gained(complete_logs: list[dict], tables: Tables) -> Non
     assert any(
         line.startswith(f"| {turn['turn']} |") and " +4 |" in line for line in md.splitlines()
     )
+
+
+def test_summarize_and_key_moments_mark_ice_block(
+    complete_logs: list[dict], tables: Tables
+) -> None:
+    import copy
+
+    log = copy.deepcopy(max(complete_logs, key=lambda g: g["game"]["started_at"]))
+    filtered = metrics.apply_filter(tables, metrics.LogFilter())
+    # schema 1.9.x and older: no key, nothing marked
+    assert "Ice Block" not in summarize.summarize(log, filtered)
+    turn = next(t for t in log["turns"] if t.get("combat"))
+    turn["combat"].update(
+        {"result": "loss", "damage_dealt": 0, "damage_taken": 15, "ice_block": True}
+    )
+    md = summarize.summarize(log, filtered)
+    assert any(
+        line.startswith(f"| {turn['turn']} |") and "-15 (my Ice Block)" in line
+        for line in md.splitlines()
+    )
+    moments = metrics.key_moments(log)
+    assert any(f"T{turn['turn']}: my Ice Block prevented lethal damage (15" in m for m in moments)
+    ja = metrics.key_moments(log, lang="ja")
+    assert any("自分のアイスブロック" in m for m in ja)
+
+    turn["combat"].update(
+        {"result": "win", "damage_dealt": 23, "damage_taken": 0, "ice_block": False}
+    )
+    turn["combat"]["opponent_ice_block"] = True
+    md = summarize.summarize(log, filtered)
+    assert any("+23 (opp. Ice Block)" in line for line in md.splitlines())
+    assert any("Ice Block prevented my lethal damage (23)" in m for m in metrics.key_moments(log))

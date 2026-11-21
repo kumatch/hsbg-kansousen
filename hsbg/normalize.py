@@ -138,6 +138,9 @@ COMBAT_COLUMNS = [
     "result",
     "damage_dealt",
     "damage_taken",
+    # schema 1.10.0 (hsbg-kifu 0.2.0): Ice Block triggered (None = older log / combat not seen)
+    "ice_block",
+    "opponent_ice_block",
     "bb_win",
     "bb_tie",
     "bb_loss",
@@ -429,6 +432,8 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                         "result": c.get("result"),
                         "damage_dealt": c.get("damage_dealt"),
                         "damage_taken": c.get("damage_taken"),
+                        "ice_block": c.get("ice_block"),
+                        "opponent_ice_block": c.get("opponent_ice_block"),
                         "bb_win": bb.get("win"),
                         "bb_tie": bb.get("tie"),
                         "bb_loss": bb.get("loss"),

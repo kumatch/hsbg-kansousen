@@ -253,6 +253,9 @@ def test_older_logs_have_empty_new_tables(load_result: loader.LoadResult) -> Non
     tables = normalize.normalize(load_result.logs)
     assert tables.shop_offers.empty and tables.lobby.empty
     assert "opponent_tavern_tier" in tables.combats.columns
+    # schema 1.10.0 keys: the columns exist, empty for older logs
+    assert tables.combats["ice_block"].isna().all()
+    assert tables.combats["opponent_ice_block"].isna().all()
 
 
 # ---------------------------------------------------------------- logs from a newer plugin

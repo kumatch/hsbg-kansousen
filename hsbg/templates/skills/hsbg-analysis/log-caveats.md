@@ -65,6 +65,14 @@ read these logs.
   every Tavern minion gets after each refresh (it adds up with each Barrage played). It is separate
   from `tavern_minion_*` (that one applies to every minion in the Tavern; Barrage only after a refresh),
   so add both when judging how big the shop minions were. No opponent value (never visible).
+- **Ice Block.** From schema 1.10.0 (hsbg-kifu 0.2.0): `combat.ice_block` = my Ice Block
+  (`TB_Bacon_Secrets_12`, e.g. from Safety Patch) prevented damage that would have killed me, and
+  `combat.opponent_ice_block` = the opponent's prevented my lethal damage. `damage_taken` /
+  `damage_dealt` still count the blocked damage, so on those turns the HP did not drop by that amount.
+  The summary marks them "(my Ice Block)" / "(opp. Ice Block)" and Key moments lists them. An Ice
+  Block that saved me from elimination is worth a lot of placement; weigh it when judging the build.
+  Older logs and plugin logs have no such key (null): a lost combat whose damage did not lower the next
+  turn's HP is usually an Ice Block there.
 - **Aberration in the type tables.** Aberration was in every lobby from 36.6.1 until 36.6.3
   (2026-10-02) and is in about half the lobbies since, so before 36.6.3 it is only compared on played
   vs not played and after it also on offered vs not offered.

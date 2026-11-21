@@ -839,6 +839,10 @@ _KEY_MOMENT_TEXT = {
         "hit": "T{turn}: largest hit taken, {dmg} damage from {hero}",
         "upset_loss": "T{turn}: lost a combat Bob's Buddy rated {p:.0%} win",
         "upset_win": "T{turn}: won a combat Bob's Buddy rated {p:.0%} loss",
+        "ice_block": (
+            "T{turn}: my Ice Block prevented lethal damage ({dmg} from {hero}; HP not reduced)"
+        ),
+        "opponent_ice_block": "T{turn}: {hero}'s Ice Block prevented my lethal damage ({dmg})",
         "rerolls": "T{turn}: {n} rerolls, no buy",
         "eliminated": "T{turn}: eliminated by {hero}",
         "board": " (board: {board})",
@@ -855,6 +859,13 @@ _KEY_MOMENT_TEXT = {
         "hit": "T{turn}: 最大の被ダメージ {dmg}（相手: {hero}）",
         "upset_loss": "T{turn}: Bob's Buddy 勝率 {p:.0%} の戦闘に負けた",
         "upset_win": "T{turn}: Bob's Buddy 敗率 {p:.0%} の戦闘に勝った",
+        "ice_block": (
+            "T{turn}: 自分のアイスブロックで倒れるダメージを防いだ"
+            "（{hero} から {dmg}。HP は減っていない）"
+        ),
+        "opponent_ice_block": (
+            "T{turn}: {hero} のアイスブロックに、倒すはずのダメージ {dmg} を防がれた"
+        ),
         "rerolls": "T{turn}: リロール {n} 回で購入なし",
         "eliminated": "T{turn}: {hero} に敗退",
         "board": "（相手盤面: {board}）",
@@ -903,6 +914,16 @@ def key_moments(log: dict[str, Any], history: Tables | None = None, lang: str = 
                 moments.append(tx["upset_loss"].format(turn=turn, p=bb["win"]))
             if res == "win" and (bb.get("loss") or 0) >= 0.8:
                 moments.append(tx["upset_win"].format(turn=turn, p=bb["loss"]))
+            # schema 1.10.0 (hsbg-kifu 0.2.0): Ice Block. damage_* still counts the blocked damage
+            oh = (c.get("opponent_hero") or {}).get("name") or "?"
+            if c.get("ice_block"):
+                moments.append(
+                    tx["ice_block"].format(turn=turn, dmg=c.get("damage_taken"), hero=oh)
+                )
+            if c.get("opponent_ice_block"):
+                moments.append(
+                    tx["opponent_ice_block"].format(turn=turn, dmg=c.get("damage_dealt"), hero=oh)
+                )
     for t in turns:
         a = t.get("actions") or {}
         if (a.get("rerolls") or 0) >= 3 and (a.get("buys") or 0) == 0:

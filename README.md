@@ -72,13 +72,14 @@ hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペース�
 ### 記録アプリと hsbg の版
 
 記録アプリ（HDT プラグイン、またはその後継の [hsbg-kifu](https://github.com/kumatch/hsbg-kifu)）を新しくしたら、hsbg も対応する版以降にしてください。
-対応はログの版（`schema_version`）で決まります。hsbg-kifu はプラグインと同じ schema 1.9.0 の記録を書くので、hsbg 0.3.0 以降で読めます。
+対応はログの版（`schema_version`）で決まります。
 
-| hsbg | すべての項目を読めるログ | 対応するプラグイン |
+| hsbg | すべての項目を読めるログ | 対応する記録アプリ |
 |---|---|---|
-| [0.3.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.3.0) | schema 1.9.0 まで | [0.14.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.14.0) まで |
-| [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | [0.13.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.13.0) まで |
-| [0.1.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.1.0) | schema 1.6.2 まで | [0.11.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.11.0) まで |
+| [0.4.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.4.0) | schema 1.10.0 まで | hsbg-kifu [0.2.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.2.0) まで（アイスブロック） |
+| [0.3.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.3.0) | schema 1.9.0 まで | プラグイン [0.14.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.14.0) まで、hsbg-kifu [0.1.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.1.0) |
+| [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | プラグイン [0.13.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.13.0) まで |
+| [0.1.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.1.0) | schema 1.6.2 まで | プラグイン [0.11.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.11.0) まで |
 
 - hsbg より新しい記録アプリのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
   `hsbg validate` とダッシュボードに「hsbg を更新してください」と出ます（0.1.0 はそのログを読み飛ばします）

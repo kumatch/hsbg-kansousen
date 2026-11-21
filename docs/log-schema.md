@@ -56,6 +56,9 @@
   `tavern_minion`（酒場に並ぶミニオンにいつも足される量）とは別のエンチャントで、入れ替えた後にだけ付く。events.jsonl も同じ名前の付け方
 - 2026-11-21（`1.9.0` のまま。形は変えていない）: 正本を hsbg-kifu へ移した。hsbg-kifu は HDT を介さず Power.log から同じ形の記録を書く（hsbg-kifu 0.1.0 から）。
   プラグインの記録との違いは次のとおりで、どれも `generator.plugin` で見分けられる（下の「記録を書いたアプリ」節）
+- 2026-11-22 `1.10.0`（hsbg-kifu 0.2.0）: `combat.ice_block` と `combat.opponent_ice_block`（その戦闘で自分 / 相手のアイスブロックが発動したか）を追加。
+  任意キー（`1.9.x` 以前のログ、プラグインの記録には無い）。`damage_dealt` / `damage_taken` は今までどおり防がれたダメージも数えるので、
+  「受けたダメージで倒れるはずだったが防いだ」が分かるのはこのキーだけ（下の「アイスブロック」節）。events.jsonl の `combat_end` にも同じ名前で入る
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -216,6 +219,8 @@
         "result": "win",                 // "win" | "loss" | "tie" | null（OnEntityWillTakeDamage のヒーロー被弾から判定）
         "damage_dealt": 2,
         "damage_taken": 0,
+        "ice_block": false,              // 1.10.0: 自分のアイスブロックが発動したか（倒れるはずのダメージを防いだ）。戦闘を見られなければ null
+        "opponent_ice_block": false,     // 1.10.0: 相手のアイスブロックが発動したか。戦闘を見られなければ null
         "bobs_buddy": {                  // 次ショップ開始時にリフレクションで取得。取れなければ null
           "win": 1.0, "tie": 0.0, "loss": 0.0,
           "lethal": 0.0, "opponent_lethal": 0.0,   // myDeathRate / theirDeathRate ではなく「相手を倒す/自分が倒される」確率
@@ -327,6 +332,18 @@
   置き場所（SECRET の Sigil）、相手のコピーの後片付け（値とカードが戻される）が違い、どの神祇か・金色か・目覚めたかも持つため。
   形を揃えるとスキーマのメジャー版が変わる。神祇とこの対戦中の強化を並べて見るのは分析側（hsbg の表示）で行う
 
+### アイスブロック（`combat.ice_block` / `combat.opponent_ice_block`、1.10.0）
+
+アイスブロックは秘策 `TB_Bacon_Secrets_12`（装飾品 Safety Patch `BG35_MagicItem_820` などで得る）。HP が 0 になるダメージを 1 度だけ無効にして消える。
+発動すると、その戦闘で倒れるはずだったのに倒れなかったことになるので、順位への影響が大きい。
+
+- `ice_block`: その戦闘で自分のアイスブロックが発動したら `true`。`damage_taken` は防いだダメージ（戦闘の結果のダメージ）のままで、次のターンの HP は減っていない
+- `opponent_ice_block`: その戦闘で相手のアイスブロックが発動したら `true`（相手を倒すはずだった `damage_dealt` が防がれた）
+- 戦闘を見られたら `true` / `false` のどちらか。再接続で戦闘を見られなかったら `null`
+- 見分け方（Power.log）: アイスブロックの Entity が戦闘中に `ZONE=GRAVEYARD` に移ったら発動。持ち主はそのときの `CONTROLLER`。
+  相手のアイスブロックは戦闘ごとに複製され、複製の `CONTROLLER` は相手役のプレイヤー。発動しなければ墓地を経ずに `REMOVEDFROMGAME` に移る。
+  プラグインの power.log.gz 242 ゲーム（2,917 戦闘）で、自分の発動 6 件と相手の発動 1 件がすべてこの方法で見つかり、ほかの戦闘では立たなかった（hsbg-kifu の docs/research.md §3.1）
+
 ### 必須フィールド（`status: "complete"` のとき）
 `schema_version`, `status`, `generator.plugin_version`, `game.game_id`, `game.started_at`, `game.ended_at`,
 `player.hero.card_id`, `result.placement`, `turns[]`（各要素の `turn`, `tavern_tier`, `health`）
@@ -410,7 +427,7 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `tier_up` | value（新ティア）, gold_after | 同上 |
 | `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0）。ほかの強化も同じく blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0） | `OnTurnStart(Opponent)` |
 | `combat_start` | opponent_player_id, opponent_hero_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board[] | 戦闘フェーズ開始 |
-| `combat_end` | result, damage_dealt, damage_taken（再接続中に終わった戦闘は推定値で `inferred: true`。1.6.2）。神祇があれば deity_attack_after, deity_health_after, deity_awakened, deity_golden、相手の Sigil が読めれば opponent_deity_attack, opponent_deity_health, opponent_deity_awakened, opponent_deity_golden（1.2.0。golden は 1.3.0）。甲虫があれば beetle_attack_after, beetle_health_after、相手の甲虫のエンチャントが見えれば opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0）。ほかの強化も同じ名前の付け方（`<キー>_attack_after`、`opponent_<キー>_attack` 等。1.8.0。blood_gem_barrage は 1.9.0） | 次ターン開始時（最終ターンはゲーム終了時） |
+| `combat_end` | result, damage_dealt, damage_taken（再接続中に終わった戦闘は推定値で `inferred: true`。1.6.2）。神祇があれば deity_attack_after, deity_health_after, deity_awakened, deity_golden、相手の Sigil が読めれば opponent_deity_attack, opponent_deity_health, opponent_deity_awakened, opponent_deity_golden（1.2.0。golden は 1.3.0）。甲虫があれば beetle_attack_after, beetle_health_after、相手の甲虫のエンチャントが見えれば opponent_beetle_attack, opponent_beetle_health, opponent_beetle_attack_after, opponent_beetle_health_after（1.7.0）。ほかの強化も同じ名前の付け方（`<キー>_attack_after`、`opponent_<キー>_attack` 等。1.8.0。blood_gem_barrage は 1.9.0）。ice_block, opponent_ice_block（1.10.0。推定した戦闘には無い） | 次ターン開始時（最終ターンはゲーム終了時） |
 | `trinket` | card_id, name, dbf_id | 獲得を検出したとき |
 | `player_eliminated` | player_id, hero_card_id, eliminated_turn, place | ターン開始時のロビー更新 |
 | `game_end` | placement, total_turns, status | `OnGameEnd` |
