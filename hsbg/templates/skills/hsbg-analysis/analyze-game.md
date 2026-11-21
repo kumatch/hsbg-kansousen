@@ -8,7 +8,7 @@ Answer in the player's language. The player's goals (`profile.md`) and the activ
 ---
 
 You are reviewing one Hearthstone Battlegrounds game of mine. The summary below was generated from a
-log recorded by my own tracker plugin; it contains everything I know about the game and nothing else.
+log recorded by my own game recorder (hsbg-kifu, or the earlier HDT plugin); it contains everything I know about the game and nothing else.
 
 Rules:
 1. **Cite evidence.** Every claim must point at a turn number and a value from the summary

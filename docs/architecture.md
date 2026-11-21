@@ -48,7 +48,7 @@
 
 | 項目 | 環境変数 | 既定 |
 |---|---|---|
-| `logs_dir` | `HSBG_LOGS` | `%USERPROFILE%\Documents\HSBG-Logs`（プラグインの既定の出力先） |
+| `logs_dir` | `HSBG_LOGS` | `%USERPROFILE%\Documents\HSBG-Logs`（記録アプリ hsbg-kifu とプラグインの既定の出力先） |
 | `analysis_dir` / `reports_dir` / `export_dir` | — | ワークスペースの `analysis\` / `reports\` / `export\`（ワークスペースが無ければログフォルダの下） |
 | `lenses_dir` | — | ワークスペースの `lenses\`（ワークスペースが無ければレンズ無し） |
 | `knowledge_dir` | `HSBG_KNOWLEDGE` | 無し（`hsbg init` が `knowledge` を書く） |

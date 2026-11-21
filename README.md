@@ -1,22 +1,22 @@
 # hsbg-kansousen
 
 Hearthstone Battlegrounds（BG）の自分のゲームを、AI エージェント（Claude Code）と一緒に振り返る **感想戦** の道具です。
-HDT プラグイン [hdt-plugin-hsbg-kansousen](https://github.com/kumatch/hdt-plugin-hsbg-kansousen) が 1 ゲームごとに保存した記録を読み、
+記録アプリ [hsbg-kifu](https://github.com/kumatch/hsbg-kifu) が 1 ゲームごとに保存した記録を読み、
 集計（`hsbg` コマンド）、ローカルのダッシュボード、AI による分析をします。何をどう分析するかは利用者ごとに違うので、
 **自分の目標と分析の筋（レンズ）を AI と相談しながら作っていく** 形になっています。
 
 > English: analysis tools for your own Hearthstone Battlegrounds games — CLI tables, a local dashboard
-> and Claude Code skills — reading the logs of hdt-plugin-hsbg-kansousen. You keep your goals,
+> and Claude Code skills — reading the game logs written by hsbg-kifu. You keep your goals,
 > your analysis angles ("lenses") and your game knowledge in your own private workspace.
 
-- 動作環境: Windows（プラグインと同じ PC）、Python 3.12、[uv](https://docs.astral.sh/uv/)、AI 分析には [Claude Code](https://claude.com/claude-code)
+- 動作環境: Windows（記録アプリと同じ PC）、Python 3.12、[uv](https://docs.astral.sh/uv/)、AI 分析には [Claude Code](https://claude.com/claude-code)
 - ログは読むだけで書き換えません。外部へは何も送りません（ダッシュボードは 127.0.0.1 だけで開きます）
 - 非公式のファンメイドツールです。Blizzard Entertainment、HearthSim とは関係ありません
 
 ## しくみ
 
 ```
-hdt-plugin-hsbg-kansousen ──書く──▶ ログのフォルダ（Documents\HSBG-Logs\YYYY\MM\*.json）
+hsbg-kifu（記録アプリ）──書く──▶ ログのフォルダ（Documents\HSBG-Logs\YYYY\MM\*.json）
                                           │ 読む
                                           ▼
         hsbg（このリポジトリ）: hsbg stats / summarize / report / serve、Claude Code のスキル
@@ -34,7 +34,9 @@ hdt-plugin-hsbg-kansousen ──書く──▶ ログのフォルダ（Document
 
 ## はじめかた
 
-1. プラグインを入れて、BG を何ゲームか遊ぶ（[プラグインの README](https://github.com/kumatch/hdt-plugin-hsbg-kansousen)）
+1. 記録アプリ hsbg-kifu を入れて、BG を何ゲームか遊ぶ（[hsbg-kifu の README](https://github.com/kumatch/hsbg-kifu)。HDT と一緒に使います）。
+   HDT プラグイン [hdt-plugin-hsbg-kansousen](https://github.com/kumatch/hdt-plugin-hsbg-kansousen) の記録も、同じフォルダにあればそのまま読めます
+   （プラグインは、HDT がプラグインを廃止する 2026-11-30 以降は動きません）
 2. uv を入れて、`hsbg` をインストールする
    ```powershell
    winget install astral-sh.uv
@@ -57,7 +59,7 @@ hdt-plugin-hsbg-kansousen ──書く──▶ ログのフォルダ（Document
    > セットアップして。主に MMR 6000 前後で遊んでいて、1 位を取るより 5〜8 位を減らしたい。分析は日本語で、カード名も日本語がいい
 
    AI（`hsbg-setup` スキル）が対話で次を進めます。答えにくい質問は飛ばしてかまいません。
-   - `hsbg config` / `hsbg validate` で、プラグインのログが見つかるか（保存先を変えている場合は `hsbg.toml` を直す）
+   - `hsbg config` / `hsbg validate` で、記録アプリのログが見つかるか（保存先を変えている場合は `hsbg.toml` を直す）
    - カード名の言語（`locale`）と、分析の文章の言語
    - 知識庫（`knowledge/`）の用意と、ワークスペースを git で管理すること
    - 目標・優先度・助言の前に確かめてほしいことの聞き取り → `profile.md` を書いて見せる
