@@ -10,9 +10,9 @@
 
 ## 現在の状態
 
-- hsbg 0.3.0（2026-11-06 リリース。0.1.0 はプラグイン 0.11.0 に合わせて `62d7034` にタグを打ってリリース）。読めるログ: schema 1.x（プラグイン 0.2.0 以降）。
-  すべての項目を読むのは 1.10.0 まで（`loader.KNOWN_SCHEMA_VERSION`。0.4.0 で上げた。未リリース）、それより新しい 1.x は既知の項目だけで読む。レンズ API 1
-- 公開の準備中。GitHub Releases に v0.1.0、v0.2.0、v0.3.0 を置いた
+- hsbg 0.4.0（2026-11-22 リリース。0.1.0 はプラグイン 0.11.0 に合わせて `62d7034` にタグを打ってリリース）。読めるログ: schema 1.x（プラグイン 0.2.0 以降）。
+  すべての項目を読むのは 1.10.0 まで（`loader.KNOWN_SCHEMA_VERSION`。0.4.0 で上げた）、それより新しい 1.x は既知の項目だけで読む。レンズ API 1
+- 公開の準備中。GitHub Releases に v0.1.0、v0.2.0、v0.3.0、v0.4.0 を置いた
 
 ## タスク
 
@@ -35,7 +35,7 @@
       README の「はじめかた」は hsbg-kifu の最初のリリース（2026-11-22）に合わせて書き換えた
 - [x] アイスブロック（schema 1.10.0、hsbg-kifu 0.2.0）: combats の列 `ice_block` / `opponent_ice_block`（`CACHE_FORMAT` 13）、
       要約の戦闘の列の「(my Ice Block)」「(opp. Ice Block)」、Key moments、`log-caveats.md`。保存済みのログを power.log から補う backfill はまだ無い
-- [ ] リリース: v0.4.0（schema 1.10.0 まで読む。hsbg-kifu 0.2.0 より先に）
+- [x] リリース: v0.4.0（2026-11-22。schema 1.10.0 まで読む。hsbg-kifu 0.2.0 より先に）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ

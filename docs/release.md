@@ -19,6 +19,8 @@ hsbg は記録アプリ（hsbg-kifu。2026-11-30 までは HDT プラグイン h
 ## 手順
 
 ログの版が変わったリリースでは、**hsbg を先に**出す（記録アプリだけが新しい期間を作らない）。
+ただし main の push は **hsbg-kifu を先に**する。CI の `schema` ジョブは hsbg-kifu の main と写しを比べるので、hsbg を先に push すると古い main と比べて失敗する
+（タグとリリースの順番は hsbg が先のまま）。
 
 1. `KNOWN_SCHEMA_VERSION` が hsbg-kifu の `GameLog.CurrentSchemaVersion` と同じこと
    （hsbg-kifu 側の `python scripts\check_cli_sync.py --strict` が確かめる）
