@@ -67,9 +67,10 @@ hdt-plugin-hsbg-kansousen ──書く──▶ ログのフォルダ（Document
 
 hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペースで `hsbg skills update` を実行してください（スキルが新しくなります）。
 
-### プラグインと hsbg の版
+### 記録アプリと hsbg の版
 
-プラグインを新しくしたら、hsbg も対応する版以降にしてください。対応はログの版（`schema_version`）で決まります。
+記録アプリ（HDT プラグイン、またはその後継の [hsbg-kifu](https://github.com/kumatch/hsbg-kifu)）を新しくしたら、hsbg も対応する版以降にしてください。
+対応はログの版（`schema_version`）で決まります。hsbg-kifu はプラグインと同じ schema 1.9.0 の記録を書くので、hsbg 0.3.0 以降で読めます。
 
 | hsbg | すべての項目を読めるログ | 対応するプラグイン |
 |---|---|---|
@@ -77,9 +78,9 @@ hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペース�
 | [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | [0.13.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.13.0) まで |
 | [0.1.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.1.0) | schema 1.6.2 まで | [0.11.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.11.0) まで |
 
-- hsbg より新しいプラグインのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
+- hsbg より新しい記録アプリのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
   `hsbg validate` とダッシュボードに「hsbg を更新してください」と出ます（0.1.0 はそのログを読み飛ばします）
-- 古いプラグインのログは、新しい hsbg でもそのまま読めます（無い項目は空欄。いくつかは `hsbg backfill-*` で power.log から補えます）
+- 古い記録アプリのログは、新しい hsbg でもそのまま読めます（無い項目は空欄。いくつかは `hsbg backfill-*` で power.log から補えます）
 - 上の `uv tool install` は最新の版を入れます。版を指定するときは `git+https://github.com/kumatch/hsbg-kansousen@v0.2.0` のように書きます
 
 ## ワークスペースでの使いかた
@@ -221,7 +222,7 @@ GitHub などに置くなら **private** リポジトリにしてください（
 | [docs/architecture.md](docs/architecture.md) | 設計（集計の層、設定、ワークスペース、レンズ、スキル） |
 | [docs/lenses.md](docs/lenses.md) | レンズの書き方（`hsbg.lens` の公開 API） |
 | [docs/analysis-and-visualization.md](docs/analysis-and-visualization.md) | 指標、ダッシュボードの画面、AI 分析の作法 |
-| [docs/log-schema.md](docs/log-schema.md) | ログの仕様（プラグインのリポジトリが正本） |
+| [docs/log-schema.md](docs/log-schema.md) | ログの仕様（hsbg-kifu のリポジトリが正本） |
 
 ## 開発
 

@@ -314,7 +314,7 @@ def test_newer_log_is_read_with_unknown_keys_ignored(tmp_path: Path) -> None:
 
     notice = loader.newer_notice([(newer, "9.9.9"), (loader.KNOWN_SCHEMA_VERSION, "0.13.0")])
     assert notice is not None
-    assert notice.startswith("1 log(s) were written by a newer plugin (up to 9.9.9, schema")
+    assert notice.startswith("1 log(s) were written by a newer recorder (up to 9.9.9, schema")
     assert "uv tool upgrade hsbg" in notice
     assert loader.newer_notice([(loader.KNOWN_SCHEMA_VERSION, "0.13.0")]) is None
 

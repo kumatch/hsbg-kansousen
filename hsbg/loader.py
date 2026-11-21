@@ -183,14 +183,14 @@ def _newer_validator() -> _Validator:
 
 
 def newer_notice(versions: list[tuple[str | None, str | None]]) -> str | None:
-    """One line about logs written by a newer plugin, or None. versions = (schema_version,
-    plugin_version) of each loaded log."""
+    """One line about logs written by a newer recorder (plugin / hsbg-kifu), or None.
+    versions = (schema_version, plugin_version) of each loaded log."""
     newer = [(s, p) for s, p in versions if is_newer_than_known(s)]
     if not newer:
         return None
     schema, plugin = max(newer, key=lambda sp: version_tuple(sp[0]))
     return (
-        f"{len(newer)} log(s) were written by a newer plugin (up to {plugin or '?'}, "
+        f"{len(newer)} log(s) were written by a newer recorder (up to {plugin or '?'}, "
         f"schema {schema}) than this hsbg knows (schema {KNOWN_SCHEMA_VERSION}): they are read, "
         "but their new items are not used. Update hsbg: `uv tool upgrade hsbg`, then "
         "`hsbg skills update` in the workspace."

@@ -3,7 +3,7 @@
 ## 1. 全体像
 
 ```
-ログのフォルダ（hdt-plugin-hsbg-kansousen が書く。docs/log-schema.md）
+ログのフォルダ（hsbg-kifu・HDT プラグインが書く。docs/log-schema.md）
         │ 読むだけ
         ▼
 ┌───────────────────────────────────────────────────────┐

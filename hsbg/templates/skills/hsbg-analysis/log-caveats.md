@@ -10,6 +10,14 @@ read these logs.
   2026-10-11): the summary's `## Hand and shop` table and the `hand` / `shop_offers` / `lobby` /
   `sells` tables of `hsbg export`. Hands alone (card names, no stats) exist from 2026-10-11 with
   plugin 0.8.0. Older logs have none of these; say so instead of guessing what was offered.
+- **hsbg-kifu logs.** From 2026-11 the logs can be written by hsbg-kifu, the recorder that replaces
+  the HDT plugin (`generator.plugin` = `"hsbg-kifu"`, `hdt_version` null; same schema). Its
+  `shop_offers` are the shop as it actually stood, after start-of-turn effects and Tavern buffs, while
+  the plugin often caught the turn-start shop before the buffs landed (smaller stats, sometimes a
+  missing card). Compare shop stats only between logs of the same recorder. Its buys / sells / rerolls /
+  spells / hero powers are counted from the player's own actions and are exact; the plugin's were
+  estimated and are off by one on a few turns. MMR comes from HDT's file and is null when HDT was not
+  running (note "mmr_before unavailable").
 - **Turns without actions.** On turns where the player cannot act (A. F. Kay's first two turns, etc.)
   `gold_available` / `gold_spent` are null and the summary shows `-`. This is not a defect.
 - **Dark Discovery.** Logs written before plugin 0.5.0 (schema 1.0.0) have no `dark_gifts` count: the

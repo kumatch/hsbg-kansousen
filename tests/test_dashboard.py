@@ -183,9 +183,9 @@ def test_app_warns_about_logs_from_a_newer_plugin(tmp_path: Path) -> None:
         at.run()
         assert not at.exception, [str(e) for e in at.exception]
         assert at.metric[0].value == "1"
-        assert any("新しいプラグイン（9.9.9" in w.value for w in at.warning)
+        assert any("新しい記録アプリ（9.9.9" in w.value for w in at.warning)
     finally:
         os.environ["HSBG_LOGS"] = str(FIXTURES)
     at = AppTest.from_file(str(APP), default_timeout=60)
     at.run()
-    assert not any("新しいプラグイン" in w.value for w in at.warning)
+    assert not any("新しい記録アプリ" in w.value for w in at.warning)

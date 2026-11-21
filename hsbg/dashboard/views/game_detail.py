@@ -125,7 +125,7 @@ def render(ctx: DashboardContext) -> None:
             "トリンケット: " + "、".join(f"{_name(t)}（T{t.get('turn')}）" for t in p["trinkets"])
         )
     if log.get("notes"):
-        st.warning("プラグインの注記: " + "; ".join(log["notes"]))
+        st.warning("記録の注記: " + "; ".join(log["notes"]))
 
     turns_df = ctx.tables.turns[ctx.tables.turns["game_id"] == game_id]
     st.plotly_chart(charts.game_hp_tier_line(turns_df), width="stretch")

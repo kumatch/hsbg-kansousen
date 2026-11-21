@@ -1,6 +1,8 @@
 # ログファイル仕様（JSON スキーマ）
 
 このドキュメントが **ログ形式の契約**。`schema/game-log.schema.json` はこれと同期させる。
+正本は記録アプリ hsbg-kifu のリポジトリにある（2026-11-21 に HDT プラグイン hdt-plugin-hsbg-kansousen から移した。プラグインは HDT が 2026-11-30 にプラグインを廃止するため保守を止める）。
+分析ツール hsbg-kansousen は、この文書と schema の写しを持つ。
 フィールドを変更したら `schema_version` を上げ、分析ツール hsbg-kansousen の `hsbg/loader.py` の `KNOWN_SCHEMA_VERSION` を合わせる。キーの意味が変わるなら互換処理を入れる。
 
 改訂履歴:
@@ -52,6 +54,8 @@
 - 2026-11-04 `1.9.0`（プラグイン 0.14.0）: `turns[].blood_gem_barrage`（血の宝石の雨: 酒場を入れ替えた後に酒場のミニオン 1 体ずつに与える血の宝石の量）と
   `combat.opponent_blood_gem_barrage` を追加。形は甲虫と同じ任意キー（`1.8.x` 以前のログには無い。保存済みの power.log から補完できる）。
   `tavern_minion`（酒場に並ぶミニオンにいつも足される量）とは別のエンチャントで、入れ替えた後にだけ付く。events.jsonl も同じ名前の付け方
+- 2026-11-21（`1.9.0` のまま。形は変えていない）: 正本を hsbg-kifu へ移した。hsbg-kifu は HDT を介さず Power.log から同じ形の記録を書く（hsbg-kifu 0.1.0 から）。
+  プラグインの記録との違いは次のとおりで、どれも `generator.plugin` で見分けられる（下の「記録を書いたアプリ」節）
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -61,6 +65,22 @@
   ヒーローはスキン ID のまま記録し（例 `TB_BaconShop_HERO_34_SKIN_C`）、集計側でスキンを元ヒーローに正規化する。`dbf_id` も持つ
 - ターン番号は HDT の `GetTurnNumber()`（自分視点のターン数、1 始まり。GameEntity `TURN` の (n+1)/2）
 - BattleTag、プレイヤー名、アカウント ID は **記録しない**（hdt-plugin-hsbg-kansousen の docs/maintenance.md R8）
+
+## 記録を書いたアプリ（`generator`）
+
+| | HDT プラグイン（〜2026-11-30） | hsbg-kifu |
+|---|---|---|
+| `generator.plugin` | `"HsbgKansousen"`（0.11.0 より前は `"HsbgLogger"`） | `"hsbg-kifu"` |
+| `generator.plugin_version` | プラグインの版 | hsbg-kifu の版（番号はプラグインと別） |
+| `generator.hdt_version` | HDT の版 | `null`（HDT を介さない） |
+| `game.game_id` | HDT の `GameStats.GameId` | Power.log の起動のフォルダと CREATE_GAME の時刻から作る決まった UUID（作り直しても同じ） |
+| `game.started_at` | HDT の `OnGameStart` | Power.log の CREATE_GAME の時刻 |
+| `turns[].shop_offers` | 演出の途中を見るため、ターン開始時の酒場がカードの揃う前・バフの乗る前のことがある | まとまりの終わりの状態（ターン開始の効果で足されたカードとバフを含む、実際に並んだ状態） |
+| `turns[].actions` の購入・売却・リロールなど | 状態の差分から推定 | 自分の操作（PLAY ブロック）から数える。ティアアップ・発見・ゴールド獲得はプラグインと同じく推定 |
+| `game.minion_types` | HDT の `BattlegroundsUtils.GetAvailableRaces()` | ショップに並んだミニオンの種族の上位 5 つ（5 つに決まらなければ `[]` と notes） |
+| MMR | HDT がゲームのメモリから読む | HDT の `BgsLastGames.xml` から読む（HDT が無ければ `null` と notes） |
+
+それ以外の項目は、同じゲームのプラグインの記録と一致することを確かめてある（hsbg-kifu の docs/research.md）。
 
 ## 主ログ `<name>.json`
 

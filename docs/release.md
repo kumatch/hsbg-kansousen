@@ -1,13 +1,13 @@
 # リリースの手順
 
-hsbg はプラグイン（hdt-plugin-hsbg-kansousen）と別に版を付ける。両者の対応はログの版（`schema_version`）で決まり、
-README の「プラグインと hsbg の版」の表に書く。
+hsbg は記録アプリ（hsbg-kifu。2026-11-30 までは HDT プラグイン hdt-plugin-hsbg-kansousen）と別に版を付ける。
+両者の対応はログの版（`schema_version`）で決まり、README の「記録アプリと hsbg の版」の表に書く。
 
 ## 版の付け方
 
 - `pyproject.toml` の `version`。タグは `v<version>`（例 `v0.2.0`）
 - 読めるログの版が増えた（`hsbg/loader.py` の `KNOWN_SCHEMA_VERSION` が上がった）ときは、少なくとも minor を上げる
-- プラグインと番号はそろえない（片方だけ直したときに、もう片方を出さずにすむように）
+- 記録アプリと番号はそろえない（片方だけ直したときに、もう片方を出さずにすむように）
 
 ## 互換の考え方
 
@@ -18,13 +18,13 @@ README の「プラグインと hsbg の版」の表に書く。
 
 ## 手順
 
-ログの版が変わったリリースでは、**hsbg を先に**出す（プラグインだけが新しい期間を作らない）。
+ログの版が変わったリリースでは、**hsbg を先に**出す（記録アプリだけが新しい期間を作らない）。
 
-1. `KNOWN_SCHEMA_VERSION` がプラグインの `GameLog.CurrentSchemaVersion` と同じこと
-   （プラグイン側の `python scripts\check_cli_sync.py --strict` が確かめる）
+1. `KNOWN_SCHEMA_VERSION` が hsbg-kifu の `GameLog.CurrentSchemaVersion` と同じこと
+   （hsbg-kifu 側の `python scripts\check_cli_sync.py --strict` が確かめる）
 2. `pyproject.toml` の `version` を上げ、README の対応表に行を足す。検証コマンドと `python scripts\check_private.py` を緑にしてコミットする
-3. `git tag -a v<version> -m "hsbg <version>（プラグイン <x.y.z> / schema <a.b.c> まで）"; git push origin main v<version>`
-4. GitHub の Releases でタグを選び、リリースノートに次を書く: 読めるログの版、対応するプラグインの版、変更点、
+3. `git tag -a v<version> -m "hsbg <version>（hsbg-kifu <x.y.z> / schema <a.b.c> まで）"; git push origin main v<version>`
+4. GitHub の Releases でタグを選び、リリースノートに次を書く: 読めるログの版、対応する記録アプリの版、変更点、
    版を指定したインストール（`uv tool install git+https://github.com/kumatch/hsbg-kansousen@v<version> --with pytest`）、
    更新の手順（`uv tool upgrade hsbg` → ワークスペースで `hsbg skills update`）
-5. その後でプラグインをリリースし、そのリリースノートに「新しい項目を使うには hsbg <version> 以降」と書く
+5. その後で hsbg-kifu をリリースし、そのリリースノートに「新しい項目を使うには hsbg <version> 以降」と書く

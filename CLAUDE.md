@@ -5,14 +5,14 @@ Claude Code がこのリポジトリ（hsbg 本体）の開発セッションで
 
 ## このリポジトリは何か
 
-HDT プラグイン hdt-plugin-hsbg-kansousen（別リポジトリ）が書いた BG のゲームログを読み、集計・可視化・AI 分析をする道具（Python パッケージ `hsbg`）。
+記録アプリ hsbg-kifu（別リポジトリ。2026-11-30 までは HDT プラグイン hdt-plugin-hsbg-kansousen も）が書いた BG のゲームログを読み、集計・可視化・AI 分析をする道具（Python パッケージ `hsbg`）。
 利用者ごとの目標・分析の筋・ゲーム知識は、各自の private なワークスペース（`profile.md`、`lenses/`、`knowledge/`）が持つ。
 **このリポジトリには、特定のプレイヤーの目標・分析の筋・戦績・結論を入れない**（雛形と汎用の部品だけ）。
 
 ## 必ず読むドキュメント
 
 - `docs/architecture.md` — 設計（層、設定、ワークスペース、レンズ、スキル）
-- `docs/log-schema.md` — ログ仕様（プラグインのリポジトリが正本。`hsbg/game-log.schema.json` はそのコピー）
+- `docs/log-schema.md` — ログ仕様（hsbg-kifu のリポジトリが正本。`hsbg/game-log.schema.json` はそのコピー）
 - `docs/lenses.md` — レンズの公開 API（`hsbg.lens`）
 - `TASKS.md` — 今やるべきタスク
 
@@ -25,7 +25,7 @@ hsbg/
 ├── cards（HDT の CardDefs からカード名とスキン → 元ヒーロー）, labels（種族・キーワード等の日本語）, powerlog
 ├── config（フォルダと言語: CLI > 環境変数 > ワークスペースの hsbg.toml > 既定）
 ├── lens（レンズのコードが使う公開 API）, lenses（ワークスペースの lenses/ の発見・実行）
-├── game-log.schema.json（プラグインのリポジトリの schema/ のコピー）
+├── game-log.schema.json（hsbg-kifu のリポジトリの schema/ のコピー）
 ├── dashboard/（app, data, filters, components, views/）
 └── templates/
     ├── workspace/（hsbg init: hsbg.toml, CLAUDE.md, README, lenses/README, knowledge/ の雛形と tools/pool.py）
@@ -62,10 +62,11 @@ scripts/（start-dashboard.ps1, anonymize_log.py, check_private.py）
 ## 作業の進め方
 
 - `TASKS.md` の順に進める。コミットはユーザーの許可を得てから
-- ログ仕様に関わる変更は、先にプラグインのリポジトリで docs/log-schema.md と schema を変えてから、こちらのコピーと読み込みを合わせる
-  （手順はプラグインの `CLAUDE.md`「ログの形を変えたとき」。プラグイン側の `scripts/check_cli_sync.py` がコピーの食い違いを見つけ、
-  この CI の `schema` ジョブもプラグインの main と違えば失敗する）。そのとき `hsbg/loader.py` の `KNOWN_SCHEMA_VERSION` も上げる
-- リリース（`docs/release.md`）: ログの版が変わったときは、プラグインより先にこちらをリリースする
+- ログ仕様に関わる変更は、先に hsbg-kifu（隣のフォルダ `..\hsbg-kifu`）で docs/log-schema.md と schema を変えてから、こちらのコピーと読み込みを合わせる
+  （手順は hsbg-kifu の `CLAUDE.md`「ログの形を変えたとき」。hsbg-kifu 側の `scripts/check_cli_sync.py` がコピーの食い違いを見つけ、
+  この CI の `schema` ジョブも hsbg-kifu の main と違えば失敗する）。そのとき `hsbg/loader.py` の `KNOWN_SCHEMA_VERSION` も上げる。
+  正本は 2026-11-21 にプラグインから hsbg-kifu へ移した（プラグインは HDT のプラグイン廃止で保守を止める）
+- リリース（`docs/release.md`）: ログの版が変わったときは、hsbg-kifu より先にこちらをリリースする
 
 ## やらないこと
 

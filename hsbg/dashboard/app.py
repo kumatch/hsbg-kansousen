@@ -123,7 +123,7 @@ def main() -> None:
 
 
 def _newer_than_hsbg(games) -> str | None:  # noqa: ANN001 (pd.DataFrame)
-    """Logs written by a newer plugin than this hsbg knows (loader.is_newer_than_known)."""
+    """Logs written by a newer recorder than this hsbg knows (loader.is_newer_than_known)."""
     if games.empty or "schema_version" not in games:
         return None
     newer = games[games["schema_version"].map(loader.is_newer_than_known)]
@@ -131,7 +131,7 @@ def _newer_than_hsbg(games) -> str | None:  # noqa: ANN001 (pd.DataFrame)
         return None
     top = max(newer.itertuples(), key=lambda r: loader.version_tuple(r.schema_version))
     return (
-        f"{len(newer)} 件のログは、この hsbg より新しいプラグイン（{top.plugin_version or '?'}、"
+        f"{len(newer)} 件のログは、この hsbg より新しい記録アプリ（{top.plugin_version or '?'}、"
         f"schema {top.schema_version}）で書かれています。読み込みはしますが、この hsbg の知らない"
         f"新しい項目（schema {loader.KNOWN_SCHEMA_VERSION} より後）は表示・分析に使われません。"
         "`uv tool upgrade hsbg` で更新し、"

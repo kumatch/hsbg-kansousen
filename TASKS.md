@@ -30,6 +30,9 @@
 - [x] 血の宝石の雨（schema 1.9.0）: `blood_gem_barrage_*` と `opponent_blood_gem_barrage_*` の列、summarize とダッシュボードの表示、
       `hsbg backfill-buffs` での補完（power.log から。試しに数えると 65 件。まだ実行していない）
 - [x] リリース: v0.3.0（2026-11-06。プラグイン 0.14.0 の実機確認の後、プラグインより先に）
+- [x] ログの仕様の正本が hsbg-kifu に移った（2026-11-21。schema 1.9.0 のまま）: CI の `schema` ジョブの比較先、CLAUDE.md、`docs/release.md`、
+      README の版の節を hsbg-kifu に向けた。`log-caveats.md` に hsbg-kifu の記録の違い（`shop_offers` がバフ込み、行動の回数が正確）を書いた。
+      README の「はじめかた」のインストール手順は、hsbg-kifu の最初のリリース（hsbg-kifu の TASKS.md M7）で書き換える
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ
