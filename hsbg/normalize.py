@@ -43,6 +43,10 @@ class Tables:
     sells: (
         pd.DataFrame
     )  # sell events from events.jsonl; card_id is null before 1.5.0 (1.5.x: null = gold gain)
+    # schema 1.11.0 (hsbg-kifu 0.3.0): every choice (discover, trinket pick, ...) and its offers.
+    # Empty for older logs
+    choices: pd.DataFrame
+    choice_offers: pd.DataFrame
 
     def game_ids(self) -> list[str]:
         return self.games["game_id"].tolist()
@@ -64,6 +68,10 @@ class Tables:
             ),
             lobby=self.lobby[self.lobby["game_id"].isin(ids)].reset_index(drop=True),
             sells=self.sells[self.sells["game_id"].isin(ids)].reset_index(drop=True),
+            choices=self.choices[self.choices["game_id"].isin(ids)].reset_index(drop=True),
+            choice_offers=self.choice_offers[self.choice_offers["game_id"].isin(ids)].reset_index(
+                drop=True
+            ),
         )
 
 
@@ -183,8 +191,9 @@ OPPONENT_COLUMNS = [
     "final_tavern_tier",
     "final_health",
 ]
-# discover events (events.jsonl, schema 1.1.0). source = "hero_power" | "triple"
-DISCOVER_COLUMNS = ["game_id", "turn", "source", "card_id", "name"]
+# discover events (events.jsonl, schema 1.1.0). source = "hero_power" | "triple", from 1.11.0
+# also "trinket" | "card"; source_card_id from 1.11.0 (None before)
+DISCOVER_COLUMNS = ["game_id", "turn", "source", "card_id", "name", "source_card_id"]
 # schema 1.5.0: cards in my hand at the end of the shop / offered by the shop. card_type =
 # "minion" | "spell" | "other"; attack / health / golden only for minions. Older hands have
 # card_id and name only.
@@ -204,6 +213,31 @@ LOBBY_COLUMNS = [
     "eliminated",
 ]
 SELL_COLUMNS = ["game_id", "turn", "card_id", "name"]
+# schema 1.11.0: turns[].choices[]. choice = 1-based index within the turn; source = triple |
+# hero_power | dark_gift | trinket | card; chosen_index = 0-based position in offered (None when
+# the choice was never made)
+CHOICE_COLUMNS = [
+    "game_id",
+    "turn",
+    "choice",
+    "source",
+    "source_card_id",
+    "source_name",
+    "offered_count",
+    "chosen_index",
+    "chosen_card_id",
+    "chosen_name",
+]
+# one row per offered card (position = 1-based, screen order; stats as offered)
+CHOICE_OFFER_COLUMNS = [
+    "game_id",
+    "turn",
+    "choice",
+    "source",
+    "position",
+    *CARD_COLUMNS,
+    "chosen",
+]
 
 
 def _ts(value: str | None) -> pd.Timestamp | None:
@@ -306,6 +340,8 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
     shop: list[dict] = []
     lobby: list[dict] = []
     sells: list[dict] = []
+    choices: list[dict] = []
+    choice_offers: list[dict] = []
 
     for log in logs:
         g = log.get("game") or {}
@@ -398,6 +434,10 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                             **_card_row(card, names),
                         }
                     )
+            for n, ch in enumerate(t.get("choices") or [], start=1):
+                c_rows, o_rows = _choice_rows(game_id, turn_no, n, ch, names)
+                choices.append(c_rows)
+                choice_offers.extend(o_rows)
             for e in t.get("lobby") or []:
                 lobby.append(
                     {
@@ -478,6 +518,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                     "source": e.get("source"),
                     "card_id": e.get("card_id"),
                     "name": names.name(e.get("card_id"), e.get("name")),
+                    "source_card_id": e.get("source_card_id"),
                 }
             )
         for e in log.get("_sells") or []:
@@ -506,4 +547,43 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
         shop_offers=pd.DataFrame(shop, columns=SHOP_COLUMNS),
         lobby=pd.DataFrame(lobby, columns=LOBBY_COLUMNS),
         sells=pd.DataFrame(sells, columns=SELL_COLUMNS),
+        choices=pd.DataFrame(choices, columns=CHOICE_COLUMNS),
+        choice_offers=pd.DataFrame(choice_offers, columns=CHOICE_OFFER_COLUMNS),
     )
+
+
+def _choice_rows(
+    game_id: str, turn: int | None, n: int, ch: dict, names: CardNames
+) -> tuple[dict, list[dict]]:
+    """schema 1.11.0: one `turns[].choices[]` entry -> a `choices` row and its offers."""
+    sc = ch.get("source_card") or {}
+    offered = ch.get("offered") or []
+    idx = ch.get("chosen_index")
+    chosen = offered[idx] if isinstance(idx, int) and 0 <= idx < len(offered) else {}
+    row = {
+        "game_id": game_id,
+        "turn": turn,
+        "choice": n,
+        "source": ch.get("source"),
+        "source_card_id": sc.get("card_id"),
+        "source_name": names.name(sc.get("card_id"), sc.get("name")) if sc.get("card_id") else None,
+        "offered_count": len(offered),
+        "chosen_index": idx,
+        "chosen_card_id": chosen.get("card_id"),
+        "chosen_name": names.name(chosen.get("card_id"), chosen.get("name"))
+        if chosen.get("card_id")
+        else None,
+    }
+    offers = [
+        {
+            "game_id": game_id,
+            "turn": turn,
+            "choice": n,
+            "source": ch.get("source"),
+            "position": i,
+            **_card_row(card, names),
+            "chosen": None if idx is None else i - 1 == idx,
+        }
+        for i, card in enumerate(offered, start=1)
+    ]
+    return row, offers

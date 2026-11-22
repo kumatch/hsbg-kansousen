@@ -76,6 +76,7 @@ hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペース�
 
 | hsbg | すべての項目を読めるログ | 対応する記録アプリ |
 |---|---|---|
+| [0.5.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.5.0) | schema 1.11.0 まで | hsbg-kifu [0.3.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.3.0) まで（すべての選択肢と候補） |
 | [0.4.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.4.0) | schema 1.10.0 まで | hsbg-kifu [0.2.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.2.0) まで（アイスブロック） |
 | [0.3.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.3.0) | schema 1.9.0 まで | プラグイン [0.14.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.14.0) まで、hsbg-kifu [0.1.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.1.0) |
 | [0.2.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.2.0) | schema 1.8.0 まで | プラグイン [0.13.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.13.0) まで |

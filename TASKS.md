@@ -36,6 +36,11 @@
 - [x] アイスブロック（schema 1.10.0、hsbg-kifu 0.2.0）: combats の列 `ice_block` / `opponent_ice_block`（`CACHE_FORMAT` 13）、
       要約の戦闘の列の「(my Ice Block)」「(opp. Ice Block)」、Key moments、`log-caveats.md`。保存済みのログを power.log から補う backfill はまだ無い
 - [x] リリース: v0.4.0（2026-11-22。schema 1.10.0 まで読む。hsbg-kifu 0.2.0 より先に）
+- [x] すべての選択肢（schema 1.11.0、hsbg-kifu 0.3.0）: `choices`（選択肢 1 回ずつ）と `choice_offers`（候補 1 枚ずつ）の表（`CACHE_FORMAT` 14）、
+      `discovers` に `source_card_id`、要約の「## Choices」、log-caveats（選択肢の読み方と、hsbg-kifu 0.1.0〜0.2.0 で発見の行が抜けていること）。
+      要約では、ヒーローパワーが前に作ったカードによる選択を「Hero power → <カード>」と書き、候補にミニオンがあれば discover、無ければ pick と書き分ける
+      （0.3.0 の実機確認のゲイルウィング: 行き先の選択と、着いたときの発見が同じ hero_power で見分けにくかった）
+- [ ] リリース: v0.5.0（schema 1.11.0 まで読む。hsbg-kifu 0.3.0 より先に。push は hsbg-kifu の main が先）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ

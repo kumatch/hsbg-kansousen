@@ -59,6 +59,11 @@
 - 2026-11-22 `1.10.0`（hsbg-kifu 0.2.0）: `combat.ice_block` と `combat.opponent_ice_block`（その戦闘で自分 / 相手のアイスブロックが発動したか）を追加。
   任意キー（`1.9.x` 以前のログ、プラグインの記録には無い）。`damage_dealt` / `damage_taken` は今までどおり防がれたダメージも数えるので、
   「受けたダメージで倒れるはずだったが防いだ」が分かるのはこのキーだけ（下の「アイスブロック」節）。events.jsonl の `combat_end` にも同じ名前で入る
+- 2026-11-22 `1.11.0`（hsbg-kifu 0.3.0）: `turns[].choices[]`（そのターンに出た選択肢と選んだもの）を追加。発見（トリプル報酬・ヒーローパワー・悪夢の発見・
+  ミニオンや呪文の発見）、トリンケットの選択、ヒーローパワーの選択（秘策など）のすべてで、出したもの・候補（出た時点のティア・攻撃力・体力）・選んだ位置を持つ
+  （任意キー。`1.10.x` 以前のログ、プラグインの記録には無い。下の「選択肢」節）。events.jsonl の `discover` は選択の出来事から書くようにし、
+  `source` に `trinket` / `card` を足し、`source_card_id` を足した。`offered` は画面に出た順（`1.10.x` 以前は Entity の番号順）。
+  あわせて、選んだカードが手札に入らない・すぐ手札から消える選択（秘策、すぐトリプルになったカード）も `discover` に出るようになった
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -188,6 +193,12 @@
         { "trigger": "turn_start",       // turn_start = ターンで最初に見えた酒場（凍結を含む） / reroll = 丸ごと入れ替わった /
           "cards": [ /* hand と同じ要素。酒場の並び順 */ ] },   // refill = 買い切って空になった後 / added = 途中から増えたカード（増えた分だけ）
         { "trigger": "reroll", "cards": [] }
+      ],
+      "choices": [                      // 1.11.0: このターンに出た選択肢（発見・トリンケットの選択など。ヒーロー選択は含まない）。出た順。無ければ []
+        { "source": "triple",           // triple / hero_power / dark_gift / trinket / card（下の「選択肢」節）
+          "source_card": { "card_id": "TB_BaconShop_Triples_01", "name": "Triple Reward", "dbf_id": 59604 },  // 選択肢を出したカード
+          "offered": [ /* hand と同じ要素。画面に出た順。攻撃力・体力は候補が出た時点の値 */ ],
+          "chosen_index": 2 }             // 選んだ候補の位置（0 始まり）。選び終える前にゲームが終わった・見られなかったなら null
       ],
       "lobby": [                         // 1.5.0: ショップ開始時の他プレイヤー（リーダーボードに出ている公開情報）。取れなければ null
         { "player_id": 3, "tavern_tier": 2, "health": 30, "armor": 5, "leaderboard_place": 1, "eliminated": false }
@@ -332,6 +343,25 @@
   置き場所（SECRET の Sigil）、相手のコピーの後片付け（値とカードが戻される）が違い、どの神祇か・金色か・目覚めたかも持つため。
   形を揃えるとスキーマのメジャー版が変わる。神祇とこの対戦中の強化を並べて見るのは分析側（hsbg の表示）で行う
 
+### 選択肢（`turns[].choices[]`、1.11.0）
+
+そのターンに出た選択肢（Power.log の `DebugPrintEntityChoices`。ヒーロー選択の `MULLIGAN` は除く）を、出た順に 1 つずつ持つ。
+何が提示されて何を選んだかを残し、提示が妥当だったか（ほかの候補のティア・攻撃力・体力と比べて）を分析できるようにするため。
+
+- `source`: 何による選択か。出したもの（`Source=` の Entity）と候補のカードの種類で決め、**ターン数では決めない**
+  （トリンケットの選択は普通 6・9 ターン目だが、ヒーローや効果で 5・8 ターン目に増えたり、上級が 7 ターン目に早まったりする）
+  - `triple`: トリプル報酬 `TB_BaconShop_Triples_01`
+  - `hero_power`: 自分のヒーローパワー（ヒーローパワーが作った悪夢の発見の発見スペルを含む。例 `BG36_HERO_105p`）。秘策を選ぶヒーローパワーなども含む
+  - `dark_gift`: 悪夢の発見（ボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`）
+  - `trinket`: 候補がすべてトリンケット（トリンケットの選択。トリンケットを選ばせるヒーローパワーやカードも、候補がトリンケットならこれ）
+  - `card`: それ以外（ミニオンの雄叫び、呪文、トリンケットの効果、クエストなど）。何かは `source_card`
+- `source_card`: 選択肢を出したカード（今のカード）
+- `offered`: 候補。`hand_end_of_shop` と同じ形（card_id, name, dbf_id, card_type, tier, attack, health, golden）で、画面に出た順。
+  攻撃力・体力は候補が出た時点の値（選んだ後に付くバフは含まない）。トリンケットの `card_type` は `other`
+- `chosen_index`: 選んだ候補の位置（0 始まり。Power.log の `DebugPrintEntitiesChosen`）。選び終える前にゲームが終わった・再接続で見られなかったなら `null`
+- events.jsonl の `discover` は、`dark_gift` 以外の選択肢ごとに 1 行（選び終えた時刻）。`dark_gift` は今までどおり `dark_gift` の行（手札に入ったカードから）
+- 2026-11-22 時点の 28 ゲームで 454 回（トリプル報酬 110、悪夢の発見 86、カード 135、ヒーローパワー 65、トリンケット 58）。候補の数は 1〜5（3 が最も多い）
+
 ### アイスブロック（`combat.ice_block` / `combat.opponent_ice_block`、1.10.0）
 
 アイスブロックは秘策 `TB_Bacon_Secrets_12`（装飾品 Safety Patch `BG35_MagicItem_820` などで得る）。HP が 0 になるダメージを 1 度だけ無効にして消える。
@@ -421,9 +451,9 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `shop` | trigger（`turn_start` / `reroll` / `refill` / `added`）, cards[]（card_id。酒場の並び順） | 1.5.0。`turns[].shop_offers` と同じタイミング |
 | `triple` | value（個数）, gold_after | 同上 |
 | `reroll` | gold_after | 同上 |
-| `hero_power` | gold_after。発見型のヒーローパワー（ゴミを宝に 等）で選んだカードが同じ tick で手札に来たときは card_id, name, source=`hero_power`, offered[]（3 択の card_id） | 同上 |
+| `hero_power` | gold_after。1.10.x 以前（プラグイン）は、発見型のヒーローパワー（ゴミを宝に 等）で選んだカードが同じ tick で手札に来たときに card_id, name, source=`hero_power`, offered[]（3 択の card_id）も載せた。hsbg-kifu は載せず `discover` に書く | 同上 |
 | `dark_gift` | card_id, name（選んだミニオン）, gold_after, source=`dark_gift`, offered[]（3 択。観測できなければ null） | 1.1.0。手札に現れた Entity の **直接の** 作成元（DISPLAYED_CREATOR か CREATOR）がボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`。作成元を何段も辿らない（得たミニオンが生成したカードや悪夢の恵みが作るコピーを除外） |
-| `discover` | card_id, name, gold_after, source（`hero_power` / `triple`）, offered[] | 1.1.0。ヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で選んだカード。**3 択に含まれていたカードだけ**（Barov の Tavern Coin のような生成物は記録しない） |
+| `discover` | card_id, name（選んだカード）, gold_after, source（`hero_power` / `triple`。1.11.0 から `trinket` / `card` も）, source_card_id（1.11.0）, offered[]（候補の card_id。1.11.0 から画面に出た順） | 1.1.0。1.11.0 からは `dark_gift` 以外のすべての選択肢（`turns[].choices[]`）ごとに、選び終えた時刻に 1 行。1.10.x 以前はヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で、手札に入った候補だけ（Barov の Tavern Coin のような生成物は記録しない） |
 | `tier_up` | value（新ティア）, gold_after | 同上 |
 | `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0）。ほかの強化も同じく blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0） | `OnTurnStart(Opponent)` |
 | `combat_start` | opponent_player_id, opponent_hero_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board[] | 戦闘フェーズ開始 |
@@ -470,7 +500,9 @@ GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n な�
 | `combats` | game_id, turn | opponent_player_id, opponent_hero_card_id, opponent_hero_base_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board_size, opponent_board_attack, opponent_board_health, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_*（1.7.0）, opponent_blood_gem_*, opponent_tavern_spell_*, opponent_tavern_minion_*, opponent_tavern_elemental_*（1.8.0）, opponent_blood_gem_barrage_*（1.9.0） |
 | `board_minions` | game_id, turn, side, position | card_id, name, tier, attack, health, golden, keywords, divine_shields（1.3.x 以前は keywords から 0/1）, minion_types。side は `player`（board_end_of_shop）/ `opponent`（opponent_board） |
 | `opponents` | game_id, player_id | hero_card_id, hero_base_card_id, placement, estimated_placement, eliminated_turn, final_tavern_tier, final_health |
-| `discovers` | game_id, turn | source（`hero_power` / `triple`）, card_id, name（events.jsonl の `discover`。1.1.0） |
+| `discovers` | game_id, turn | source（`hero_power` / `triple`。1.11.0 から `trinket` / `card` も）, card_id, name, source_card_id（1.11.0）（events.jsonl の `discover`。1.1.0） |
+| `choices` | game_id, turn, choice | source, source_card_id, source_name, offered_count, chosen_index, chosen_card_id, chosen_name（`turns[].choices[]`。1.11.0） |
+| `choice_offers` | game_id, turn, choice, position | source, card_id, name, card_type, tier, attack, health, golden, chosen（候補 1 枚ずつ。1.11.0） |
 | `hand` | game_id, turn, position | card_id, name, card_type, tier, attack, health, golden（1.5.0。1.4.x 以前の手札は card_id, name だけ） |
 | `shop_offers` | game_id, turn, offer, position | trigger, card_id, name, card_type, tier, attack, health, golden（1.5.0） |
 | `lobby` | game_id, turn, player_id | tavern_tier, health, armor, leaderboard_place, eliminated（1.5.0） |

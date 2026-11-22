@@ -183,3 +183,77 @@ def test_summarize_and_key_moments_mark_ice_block(
     md = summarize.summarize(log, filtered)
     assert any("+23 (opp. Ice Block)" in line for line in md.splitlines())
     assert any("Ice Block prevented my lethal damage (23)" in m for m in metrics.key_moments(log))
+
+
+def test_choices_are_summarized_and_normalized(complete_logs: list[dict], tables: Tables) -> None:
+    import copy
+
+    from hsbg import normalize
+
+    log = copy.deepcopy(max(complete_logs, key=lambda g: g["game"]["started_at"]))
+    filtered = metrics.apply_filter(tables, metrics.LogFilter())
+    # schema 1.10.x and older: no choices, no section, empty tables
+    assert "## Choices" not in summarize.summarize(log, filtered)
+    assert normalize.normalize([log]).choices.empty
+    turn = log["turns"][0]
+
+    def card(cid: str, tier: int, atk: int, hp: int) -> dict:
+        return {
+            "card_id": cid, "name": cid, "dbf_id": None, "card_type": "minion",
+            "tier": tier, "attack": atk, "health": hp, "golden": False,
+        }  # fmt: skip
+
+    turn["choices"] = [
+        {
+            "source": "triple",
+            "source_card": {"card_id": "TB_BaconShop_Triples_01", "name": "Triple Reward"},
+            "offered": [card("BG_A", 3, 3, 3), card("BG_B", 3, 4, 5), card("BG_C", 3, 2, 2)],
+            "chosen_index": 1,
+        },
+        {
+            "source": "card",
+            "source_card": {"card_id": "BG31_890", "name": "Some Minion"},
+            "offered": [card("BG_D", 2, 2, 2), card("BG_E", 2, 1, 3)],
+            "chosen_index": None,
+        },
+    ]
+    md = summarize.summarize(log, filtered)
+    assert "## Choices" in md
+    assert any("Triple Reward" in line and "→ BG_B (t3 4/5)" in line for line in md.splitlines())
+    assert any("Some Minion" in line and line.endswith("| - |") for line in md.splitlines())
+
+    t = normalize.normalize([log])
+    assert list(t.choices["source"]) == ["triple", "card"]
+    assert list(t.choices["chosen_card_id"].fillna("")) == ["BG_B", ""]
+    assert list(t.choices["offered_count"]) == [3, 2]
+    offers = t.choice_offers
+    assert len(offers) == 5
+    first = offers[offers["choice"] == 1]
+    assert list(first["chosen"]) == [False, True, False]
+    assert offers[offers["choice"] == 2]["chosen"].isna().all()
+
+    # Getaway Galewing: the hero power picks a destination (pick); the destination card discovers
+    # on arrival ("Hero power → <destination>")
+    log["player"]["hero_power"] = {"card_id": "BG20_HERO_283p", "name": "Dungar's Gryphon"}
+    dest = {"card_id": "BG20_HERO_283p_t3", "name": "Eastern Plaguelands", "card_type": "other"}
+    turn["choices"] = [
+        {
+            "source": "hero_power",
+            "source_card": {"card_id": "BG20_HERO_283p", "name": "Dungar's Gryphon"},
+            "offered": [dest],
+            "chosen_index": 0,
+        },
+        {
+            "source": "hero_power",
+            "source_card": {"card_id": "BG20_HERO_283p_t3", "name": "Eastern Plaguelands"},
+            "offered": [card("BG_F", 2, 2, 2)],
+            "chosen_index": 0,
+        },
+    ]
+    rows = [
+        line
+        for line in summarize.summarize(log, filtered).splitlines()
+        if line.startswith("| ") and "Hero power" in line
+    ]
+    assert "| Hero power (Dungar's Gryphon) | pick |" in rows[0]
+    assert "| Hero power → Eastern Plaguelands | discover |" in rows[1]

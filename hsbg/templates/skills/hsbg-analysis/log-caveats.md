@@ -73,6 +73,28 @@ read these logs.
   Block that saved me from elimination is worth a lot of placement; weigh it when judging the build.
   Older logs and plugin logs have no such key (null): a lost combat whose damage did not lower the next
   turn's HP is usually an Ice Block there.
+- **Missing discovers in early hsbg-kifu logs.** hsbg-kifu 0.1.0 – 0.2.0 (`generator.plugin_version`)
+  missed most `discover` rows for Triple Rewards and hero powers (about 2 of 3: the choice was made
+  before the recorder looked again), and the `offered` of Dark Gifts. Fixed in 0.2.1. In those logs a
+  tier-up after a Triple Reward can look like a tier-up "without a reason"; check the `triple` /
+  `spell` (TB_BaconShop_Triples_01) rows of the same turn before calling it a mistake.
+- **Choices (what was offered and what I picked).** From schema 1.11.0 (hsbg-kifu 0.3.0) every
+  choice is recorded in `turns[].choices[]`: Triple Rewards, hero powers (also secret picks), Dark
+  Gifts, trinket picks and discovers from minions / spells (`source` = triple / hero_power /
+  dark_gift / trinket / card, `source_card` = what made it). Each has the offered cards as shown
+  (tier and stats when offered) and `chosen_index`. The summary's `## Choices` table and the
+  `choices` / `choice_offers` tables of `hsbg export` show them. To judge a pick, compare it with
+  the other options (tier, stats, fit with the board) rather than with the result alone. Trinket
+  picks are not tied to turns 6 and 9 (some heroes get extra picks, some get the greater one early).
+  A `hero_power` choice whose `source_card` is not the hero power itself was made later by a card
+  the hero power created earlier, not by using the hero power that turn (e.g. Getaway Galewing:
+  Dungar's Gryphon picks a destination, and Eastern Plaguelands discovers a minion when the flight
+  arrives some turns later). The summary shows these as "Hero power → <card>". Kind "pick" (no
+  minion offered: destinations, secrets, trinkets) and "discover" (minions offered) are told apart
+  by the offered `card_type`.
+  From 1.11.0 the `discover` rows also cover these choices and list `offered` in screen order (before:
+  entity order); older logs have choices only for Triple Rewards and hero powers, without offers of
+  the other kinds.
 - **Aberration in the type tables.** Aberration was in every lobby from 36.6.1 until 36.6.3
   (2026-10-02) and is in about half the lobbies since, so before 36.6.3 it is only compared on played
   vs not played and after it also on offered vs not offered.

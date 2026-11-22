@@ -234,6 +234,63 @@ def _hand_shop_section(turns: list[dict[str, Any]]) -> list[str]:
     return lines
 
 
+_CHOICE_SOURCE = {
+    "triple": "Triple Reward",
+    "hero_power": "Hero power",
+    "dark_gift": "Dark Gift",
+    "trinket": "Trinket",
+}
+
+
+def _choice_label(c: dict[str, Any], hero_power_id: str | None) -> tuple[str, str]:
+    """(source, kind) for one choice. A hero power choice made by another card than the hero power
+    itself (e.g. Getaway Galewing's destination, which discovers on arrival) is shown as
+    "Hero power → <that card>". kind = "discover" when a minion is offered, else "pick" (destination,
+    secret, trinket, ...)."""
+    sc = c.get("source_card") or {}
+    card = sc.get("name") or sc.get("card_id")
+    source = c.get("source") or ""
+    label = _CHOICE_SOURCE.get(source)
+    if source == "hero_power" and card:
+        via = hero_power_id and sc.get("card_id") and sc.get("card_id") != hero_power_id
+        text = f"{label} → {card}" if via else f"{label} ({card})"
+    elif label and card and source not in ("triple", "dark_gift"):
+        text = f"{label} ({card})"
+    else:
+        text = label or card or source or "?"
+    offered = c.get("offered") or []
+    kind = "discover" if any(o.get("card_type") == "minion" for o in offered) else "pick"
+    return text, kind
+
+
+def _choice_section(turns: list[dict[str, Any]], hero_power_id: str | None = None) -> list[str]:
+    """schema 1.11.0: every choice (discover, trinket pick, ...) with what was offered and what I
+    picked. Older logs have none, so print nothing."""
+    rows = [(t, c) for t in turns for c in t.get("choices") or []]
+    if not rows:
+        return []
+    lines = [
+        "",
+        "## Choices",
+        'Every choice I was offered, in order. Source = what made the choice; "Hero power → X" = '
+        "made later by X, a card my hero power created earlier (e.g. a destination that discovers "
+        "on arrival), not by using the hero power that turn. Kind = discover (minions offered) or "
+        "pick (destinations, secrets, trinkets, ...). Offered = the options as shown (minions: tier "
+        "and stats when offered); the one I picked is marked →.",
+        "",
+        "| T | Source | Kind | Offered | Picked |",
+        "|---|---|---|---|---|",
+    ]
+    for t, c in rows:
+        source, kind = _choice_label(c, hero_power_id)
+        idx = c.get("chosen_index")
+        offered = c.get("offered") or []
+        opts = ", ".join(("→ " if i == idx else "") + _card(o) for i, o in enumerate(offered))
+        picked = _card(offered[idx]) if isinstance(idx, int) and 0 <= idx < len(offered) else "-"
+        lines.append(f"| {t.get('turn')} | {source} | {kind} | {opts or '-'} | {picked} |")
+    return lines
+
+
 def summarize(log: dict[str, Any], history: Tables | None = None) -> str:
     g = log.get("game") or {}
     p = log.get("player") or {}
@@ -330,6 +387,7 @@ def summarize(log: dict[str, Any], history: Tables | None = None) -> str:
         )
 
     lines += _hand_shop_section(log.get("turns") or [])
+    lines += _choice_section(log.get("turns") or [], (p.get("hero_power") or {}).get("card_id"))
     lines += _deity_section(log.get("turns") or [])
     lines += _buff_section(log.get("turns") or [])
 
