@@ -41,6 +41,13 @@
       要約では、ヒーローパワーが前に作ったカードによる選択を「Hero power → <カード>」と書き、候補にミニオンがあれば discover、無ければ pick と書き分ける
       （0.3.0 の実機確認のゲイルウィング: 行き先の選択と、着いたときの発見が同じ hero_power で見分けにくかった）
 - [x] リリース: v0.5.0（2026-11-23。schema 1.11.0 まで読む。hsbg-kifu 0.3.0 より先に。push は hsbg-kifu の main が先で、CI は最初の実行で緑）
+- [ ] 持っているヒーローパワーと時渡り（schema 1.12.0、hsbg-kifu の M10・M11。同じ版で一緒にリリースする）:
+  - [x] ヒーローパワー（M10）: `turns` の列 `hero_power_card_id` / `hero_power_name` / `additional_hero_power_card_id` / `additional_hero_power_name`
+        （`CACHE_FORMAT` 15）、要約の「## Hero powers」（変わったターンだけ）、log-caveats。要約の選択肢は、後から得たヒーローパワー
+        （ゲンの発見、時渡りの「○○の力」、グエンの選んだもの）による選択を「Hero power (X)」と書く（最初のヒーローパワーの別の形 = カード ID が
+        最初のもので始まるもの、ゲイルウィングの行き先などは今までどおり「Hero power → X」）
+  - [ ] 時渡り（M11）: hsbg-kifu の M11 に合わせる
+  - [ ] リリース（hsbg-kifu より先に。版を上げる）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ

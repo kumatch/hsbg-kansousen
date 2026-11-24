@@ -131,6 +131,7 @@
           "hand_end_of_shop": { "type": ["array", "null"], "items": { "$ref": "#/definitions/card_snapshot" } },
           "shop_offers": { "type": "array", "items": { "$ref": "#/definitions/shop_offer" } },
           "choices": { "type": "array", "items": { "$ref": "#/definitions/choice" } },
+          "hero_powers": { "type": "array", "items": { "$ref": "#/definitions/hero_power" } },
           "lobby": { "type": ["array", "null"], "items": { "$ref": "#/definitions/lobby_entry" } },
           "deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
           "beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
@@ -227,6 +228,17 @@
         "source_card": { "$ref": "#/definitions/card_ref" },
         "offered": { "type": "array", "items": { "$ref": "#/definitions/card_snapshot" } },
         "chosen_index": { "type": ["integer", "null"], "minimum": 0 }
+      }
+    },
+    "hero_power": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slot", "card_id", "name", "dbf_id"],
+      "properties": {
+        "slot": { "type": "string", "enum": ["main", "additional"] },
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] }
       }
     },
     "lobby_entry": {

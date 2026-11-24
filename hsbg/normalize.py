@@ -118,6 +118,12 @@ TURN_COLUMNS = [
     "hero_power_uses",
     "spells_played",
     "dark_gifts",
+    # schema 1.12.0 (hsbg-kifu): hero powers held at the end of the shop (main / additional slot).
+    # None = older log (no key) or none held; several additional ones are joined with "|"
+    "hero_power_card_id",
+    "hero_power_name",
+    "additional_hero_power_card_id",
+    "additional_hero_power_name",
     "board_size",
     "board_attack",
     "board_health",
@@ -266,6 +272,21 @@ def _buff_stats(d: dict[str, Any] | None, prefix: str) -> dict[str, Any]:
     }
 
 
+def _hero_powers(held: list[dict] | None, names: CardNames) -> dict[str, Any]:
+    """schema 1.12.0: `turns[].hero_powers[]` -> the main and additional hero power columns."""
+    out: dict[str, Any] = {}
+    for slot, prefix in (("main", "hero_power"), ("additional", "additional_hero_power")):
+        refs = [h for h in held or [] if h.get("slot") == slot]
+        out[f"{prefix}_card_id"] = "|".join(str(h.get("card_id")) for h in refs) or None
+        out[f"{prefix}_name"] = (
+            "|".join(
+                str(names.name(h.get("card_id"), h.get("name")) or h.get("card_id")) for h in refs
+            )
+            or None
+        )
+    return out
+
+
 def _deity(d: dict[str, Any] | None, prefix: str) -> dict[str, Any]:
     """schema 1.2.0 の deity / opponent_deity。古いログや神祇の無いシーズンは全て None。"""
     d = d or {}
@@ -403,6 +424,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                     "spells_played": a.get("spells_played"),
                     # schema 1.1.0 で追加（悪夢の発見の回数）。古いログはキーが無いので None
                     "dark_gifts": a.get("dark_gifts"),
+                    **_hero_powers(t.get("hero_powers"), names),
                     "board_size": len(t.get("board_end_of_shop") or []),
                     "board_attack": _stat_sum(t.get("board_end_of_shop"), "attack"),
                     "board_health": _stat_sum(t.get("board_end_of_shop"), "health"),

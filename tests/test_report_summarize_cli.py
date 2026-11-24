@@ -257,3 +257,74 @@ def test_choices_are_summarized_and_normalized(complete_logs: list[dict], tables
     ]
     assert "| Hero power (Dungar's Gryphon) | pick |" in rows[0]
     assert "| Hero power → Eastern Plaguelands | discover |" in rows[1]
+
+
+def test_hero_powers_are_summarized_and_normalized(
+    complete_logs: list[dict], tables: Tables
+) -> None:
+    import copy
+
+    import pandas as pd
+
+    from hsbg import normalize
+
+    log = copy.deepcopy(max(complete_logs, key=lambda g: g["game"]["started_at"]))
+    filtered = metrics.apply_filter(tables, metrics.LogFilter())
+    # schema 1.11.x and older: no hero_powers, no section, empty columns
+    assert "## Hero powers" not in summarize.summarize(log, filtered)
+    assert normalize.normalize([log]).turns["additional_hero_power_card_id"].isna().all()
+
+    # schema 1.12.0: Genn, Worgen King discovers two hero powers on turn 4 (the first goes to the
+    # additional slot, the second replaces the main one)
+    log["player"]["hero_power"] = {"card_id": "BG35_HERO_001p", "name": "King of Duality"}
+    duality = {"slot": "main", "card_id": "BG35_HERO_001p", "name": "King of Duality"}
+    secret = {"slot": "main", "card_id": "TB_BaconShop_HP_020", "name": "Prestidigitation"}
+    glaive = {"slot": "additional", "card_id": "BG20_HERO_280p5", "name": "Glaive Ricochet"}
+    for t in log["turns"]:
+        t["hero_powers"] = [duality] if t["turn"] < 4 else [secret, glaive]
+    t4 = next(t for t in log["turns"] if t["turn"] == 4)
+    t4["choices"] = [
+        {
+            "source": "hero_power",
+            "source_card": {"card_id": "TB_BaconShop_HP_020", "name": "Prestidigitation"},
+            "offered": [
+                {"card_id": "TB_Bacon_Secrets_10", "name": "Redemption", "card_type": "other"}
+            ],
+            "chosen_index": 0,
+        }
+    ]
+    md = summarize.summarize(log, filtered)
+    assert "## Hero powers" in md
+    assert "| 4 | Prestidigitation + Glaive Ricochet |" in md.splitlines()
+    assert not any(line.startswith("| 1 | King of Duality") for line in md.splitlines())
+    # a choice made by a hero power I got later is made by that hero power, not "→"
+    assert any("| Hero power (Prestidigitation) | pick |" in line for line in md.splitlines())
+
+    turns = normalize.normalize([log]).turns
+    row = turns[turns["turn"] == 4].iloc[0]
+    assert row["hero_power_card_id"] == "TB_BaconShop_HP_020"
+    assert row["additional_hero_power_card_id"] == "BG20_HERO_280p5"
+    assert row["additional_hero_power_name"] == "Glaive Ricochet"
+    first = turns[turns["turn"] == 1].iloc[0]
+    assert first["hero_power_card_id"] == "BG35_HERO_001p"
+    assert pd.isna(first["additional_hero_power_card_id"])
+
+    # Getaway Galewing in 1.12.0: the hero power turns into the destination while flying. The
+    # choice made on arrival stays "Hero power → <destination>" (another form of the first one)
+    log["player"]["hero_power"] = {"card_id": "BG20_HERO_283p", "name": "Dungar's Gryphon"}
+    dest = {"slot": "main", "card_id": "BG20_HERO_283p_t3", "name": "Eastern Plaguelands"}
+    for t in log["turns"]:
+        t["hero_powers"] = [dest]
+    t4["choices"] = [
+        {
+            "source": "hero_power",
+            "source_card": {"card_id": "BG20_HERO_283p_t3", "name": "Eastern Plaguelands"},
+            "offered": [{"card_id": "BG_F", "name": "BG_F", "card_type": "minion"}],
+            "chosen_index": 0,
+        }
+    ]
+    md = summarize.summarize(log, filtered)
+    assert any(
+        "| Hero power → Eastern Plaguelands | discover |" in line for line in md.splitlines()
+    )
+    assert "| 1 | Eastern Plaguelands |" in md.splitlines()

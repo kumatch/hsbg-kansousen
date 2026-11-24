@@ -242,17 +242,18 @@ _CHOICE_SOURCE = {
 }
 
 
-def _choice_label(c: dict[str, Any], hero_power_id: str | None) -> tuple[str, str]:
-    """(source, kind) for one choice. A hero power choice made by another card than the hero power
-    itself (e.g. Getaway Galewing's destination, which discovers on arrival) is shown as
-    "Hero power → <that card>". kind = "discover" when a minion is offered, else "pick" (destination,
-    secret, trinket, ...)."""
+def _choice_label(c: dict[str, Any], hero_power_ids: set[str]) -> tuple[str, str]:
+    """(source, kind) for one choice. A hero power choice made by another card than my hero powers
+    (e.g. Getaway Galewing's destination, which discovers on arrival) is shown as
+    "Hero power → <that card>". hero_power_ids = every hero power I held (the first one and, from
+    schema 1.12.0, `turns[].hero_powers[]`: Genn's discovered ones, ...). kind = "discover" when a
+    minion is offered, else "pick" (destination, secret, trinket, ...)."""
     sc = c.get("source_card") or {}
     card = sc.get("name") or sc.get("card_id")
     source = c.get("source") or ""
     label = _CHOICE_SOURCE.get(source)
     if source == "hero_power" and card:
-        via = hero_power_id and sc.get("card_id") and sc.get("card_id") != hero_power_id
+        via = hero_power_ids and sc.get("card_id") and sc.get("card_id") not in hero_power_ids
         text = f"{label} → {card}" if via else f"{label} ({card})"
     elif label and card and source not in ("triple", "dark_gift"):
         text = f"{label} ({card})"
@@ -263,7 +264,61 @@ def _choice_label(c: dict[str, Any], hero_power_id: str | None) -> tuple[str, st
     return text, kind
 
 
-def _choice_section(turns: list[dict[str, Any]], hero_power_id: str | None = None) -> list[str]:
+def _hero_power_ids(log: dict[str, Any]) -> set[str]:
+    """Card ids of the hero powers I held: the first one and, from `turns[].hero_powers[]` (1.12.0),
+    the other hero powers I got (Genn's discovered ones, a Timewarp "Power of X", Nguyen's picks).
+    Other forms of the first hero power (card id starting with it: Galewing's destination
+    BG20_HERO_283p_t3, Inge's BG26_HERO_102p2) are left out, so that a choice made on arrival
+    stays "Hero power → <destination>"."""
+    first = ((log.get("player") or {}).get("hero_power") or {}).get("card_id")
+    ids = {first} if first else set()
+    for t in log.get("turns") or []:
+        for h in t.get("hero_powers") or []:
+            cid = h.get("card_id")
+            if cid and not (first and cid.startswith(first)):
+                ids.add(cid)
+    return ids
+
+
+def _held(t: dict[str, Any]) -> str:
+    held = t.get("hero_powers") or []
+    main = [_name(h) for h in held if h.get("slot") == "main"]
+    extra = [_name(h) for h in held if h.get("slot") == "additional"]
+    return (", ".join(main) or "-") + (f" + {', '.join(extra)}" if extra else "")
+
+
+def _hero_power_section(log: dict[str, Any]) -> list[str]:
+    """schema 1.12.0: the turns where the hero powers I held changed (a second one from Genn or a
+    Timewarp "Power of X", swapped or chosen again, or gone because it became a trinket / quest).
+    Older logs have no `hero_powers`, and a game that kept its first hero power prints nothing."""
+    turns = [t for t in log.get("turns") or [] if "hero_powers" in t]
+    first = ((log.get("player") or {}).get("hero_power") or {}).get("card_id")
+    rows: list[tuple[Any, str]] = []
+    before: list[tuple[Any, Any]] = [("main", first)]
+    for t in turns:
+        now = [(h.get("slot"), h.get("card_id")) for h in t.get("hero_powers") or []]
+        if now != before:
+            rows.append((t.get("turn"), _held(t)))
+        before = now
+    if not rows:
+        return []
+    return [
+        "",
+        "## Hero powers",
+        f"Hero powers held at the end of the shop, on the turns they changed (first: "
+        f"{_name((log.get('player') or {}).get('hero_power'))}). + = an additional hero power "
+        '(e.g. Genn\'s second discover, a Timewarp "Power of X"); "-" = none held (it became a '
+        "trinket or quest).",
+        "",
+        "| T | Hero powers |",
+        "|---|---|",
+        *(f"| {turn} | {held} |" for turn, held in rows),
+    ]
+
+
+def _choice_section(
+    turns: list[dict[str, Any]], hero_power_ids: set[str] | None = None
+) -> list[str]:
     """schema 1.11.0: every choice (discover, trinket pick, ...) with what was offered and what I
     picked. Older logs have none, so print nothing."""
     rows = [(t, c) for t in turns for c in t.get("choices") or []]
@@ -282,7 +337,7 @@ def _choice_section(turns: list[dict[str, Any]], hero_power_id: str | None = Non
         "|---|---|---|---|---|",
     ]
     for t, c in rows:
-        source, kind = _choice_label(c, hero_power_id)
+        source, kind = _choice_label(c, hero_power_ids or set())
         idx = c.get("chosen_index")
         offered = c.get("offered") or []
         opts = ", ".join(("→ " if i == idx else "") + _card(o) for i, o in enumerate(offered))
@@ -387,7 +442,8 @@ def summarize(log: dict[str, Any], history: Tables | None = None) -> str:
         )
 
     lines += _hand_shop_section(log.get("turns") or [])
-    lines += _choice_section(log.get("turns") or [], (p.get("hero_power") or {}).get("card_id"))
+    lines += _hero_power_section(log)
+    lines += _choice_section(log.get("turns") or [], _hero_power_ids(log))
     lines += _deity_section(log.get("turns") or [])
     lines += _buff_section(log.get("turns") or [])
 

@@ -64,6 +64,10 @@
   （任意キー。`1.10.x` 以前のログ、プラグインの記録には無い。下の「選択肢」節）。events.jsonl の `discover` は選択の出来事から書くようにし、
   `source` に `trinket` / `card` を足し、`source_card_id` を足した。`offered` は画面に出た順（`1.10.x` 以前は Entity の番号順）。
   あわせて、選んだカードが手札に入らない・すぐ手札から消える選択（秘策、すぐトリプルになったカード）も `discover` に出るようになった
+- 2026-11-25 `1.12.0`（hsbg-kifu の次のリリース。未リリース）: `turns[].hero_powers[]`（ショップ終了時に持っていたヒーローパワー。メインと追加の枠）を追加
+  （任意キー。`1.11.x` 以前のログ、プラグインの記録には無い。下の「ヒーローパワー」節）。ウォーゲンの王ゲンや時渡りの「○○の力」で 2 つになったヒーローパワー、
+  ヒーローパワーの入れ替わり・なくなったことが分かる。`player.hero_power` は今までどおり最初のヒーローパワー。
+  events.jsonl の `hero_power` に `source_card_id`（使ったヒーローパワー）を足し、`hero_power_changed`（持っているヒーローパワーが変わった）を足した
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -199,6 +203,10 @@
           "source_card": { "card_id": "TB_BaconShop_Triples_01", "name": "Triple Reward", "dbf_id": 59604 },  // 選択肢を出したカード
           "offered": [ /* hand と同じ要素。画面に出た順。攻撃力・体力は候補が出た時点の値 */ ],
           "chosen_index": 2 }             // 選んだ候補の位置（0 始まり）。選び終える前にゲームが終わった・見られなかったなら null
+      ],
+      "hero_powers": [                  // 1.12.0: ショップ終了時に持っていたヒーローパワー。メインが先。見られなければ []（下の「ヒーローパワー」節）
+        { "slot": "main", "card_id": "TB_BaconShop_HP_020", "name": "Prestidigitation", "dbf_id": 58022 },
+        { "slot": "additional", "card_id": "BG20_HERO_280p5", "name": "Glaive Ricochet", "dbf_id": 104875 }   // 追加の枠（ゲン、時渡りの「○○の力」など）
       ],
       "lobby": [                         // 1.5.0: ショップ開始時の他プレイヤー（リーダーボードに出ている公開情報）。取れなければ null
         { "player_id": 3, "tavern_tier": 2, "health": 30, "armor": 5, "leaderboard_place": 1, "eliminated": false }
@@ -362,6 +370,22 @@
 - events.jsonl の `discover` は、`dark_gift` 以外の選択肢ごとに 1 行（選び終えた時刻）。`dark_gift` は今までどおり `dark_gift` の行（手札に入ったカードから）
 - 2026-11-22 時点の 28 ゲームで 454 回（トリプル報酬 110、悪夢の発見 86、カード 135、ヒーローパワー 65、トリンケット 58）。候補の数は 1〜5（3 が最も多い）
 
+### ヒーローパワー（`turns[].hero_powers[]`、1.12.0）
+
+ショップ終了時に持っていたヒーローパワー。ヒーローパワーが 2 つになる・入れ替わる・なくなることを、理由を問わずターンごとに残すため。
+
+- `slot`: `main`（ヒーローの `HERO_POWER_ENTITY`）か `additional`（`ADDITIONAL_HERO_POWER_ENTITY_1`。その Entity は `ADDITIONAL_HERO_POWER_INDEX=1`）。メインが先
+  - `HERO_POWER_ENTITY` が無いログ（2026-09 のゲームなど）では、PLAY にある自分のヒーローパワーのうち追加の枠でないもの
+- `card_id` / `name` / `dbf_id`: そのときのカード（Entity の今の CardID）
+- 2 つになる例: ウォーゲンの王ゲン（4 ターン目の 1 回目の発見が追加の枠、2 回目がメインと入れ替わる）、時渡りの「○○の力」（追加の枠）、効果で得るもの（バロフで 1 回）。
+  入れ替わる例: 毎ターン選び直すヒーローパワー（サンウェル・グエンなど）、毎ターン切り替わるヒーローパワー（ウォーソング・インゲなど）。
+  なくなる例: トリンケットやクエストに変わるヒーローパワー（マリン、ボタンズ、クエストを選ぶ Whodunit? `BG24_HERO_100p` など。`CHANGE_ENTITY`）。そのターンからは `[]`
+- 2026-11-25 時点の保存済み 257 ゲーム（3,100 ターン）: 2 つ持っていたターンは 19、何も持っていなかったターンは 104（上のなくなる例と、ショップの終わりを見られなかったターン）
+- events.jsonl の `hero_power_changed` は、持っているヒーローパワーが変わったときに枠ごとに 1 行（増えた・入れ替わった・なくなった）。
+  最初のヒーローパワー（`player.hero_power`）は書かない。カードで比べるので、再接続で Entity が作り直されても書かない
+- events.jsonl の `hero_power`（使った）の `source_card_id` は使ったヒーローパワー。2 つあるときにどちらを使ったかが分かる。
+  `actions.hero_power_uses` は 2 つを合わせた回数（常に効くヒーローパワーは PLAY ブロックを出さないので数えない）
+
 ### アイスブロック（`combat.ice_block` / `combat.opponent_ice_block`、1.10.0）
 
 アイスブロックは秘策 `TB_Bacon_Secrets_12`（装飾品 Safety Patch `BG35_MagicItem_820` などで得る）。HP が 0 になるダメージを 1 度だけ無効にして消える。
@@ -451,9 +475,10 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `shop` | trigger（`turn_start` / `reroll` / `refill` / `added`）, cards[]（card_id。酒場の並び順） | 1.5.0。`turns[].shop_offers` と同じタイミング |
 | `triple` | value（個数）, gold_after | 同上 |
 | `reroll` | gold_after | 同上 |
-| `hero_power` | gold_after。1.10.x 以前（プラグイン）は、発見型のヒーローパワー（ゴミを宝に 等）で選んだカードが同じ tick で手札に来たときに card_id, name, source=`hero_power`, offered[]（3 択の card_id）も載せた。hsbg-kifu は載せず `discover` に書く | 同上 |
+| `hero_power` | gold_after, source_card_id（1.12.0。使ったヒーローパワー）。1.10.x 以前（プラグイン）は、発見型のヒーローパワー（ゴミを宝に 等）で選んだカードが同じ tick で手札に来たときに card_id, name, source=`hero_power`, offered[]（3 択の card_id）も載せた。hsbg-kifu は載せず `discover` に書く | 同上 |
 | `dark_gift` | card_id, name（選んだミニオン）, gold_after, source=`dark_gift`, offered[]（3 択。観測できなければ null） | 1.1.0。手札に現れた Entity の **直接の** 作成元（DISPLAYED_CREATOR か CREATOR）がボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`。作成元を何段も辿らない（得たミニオンが生成したカードや悪夢の恵みが作るコピーを除外） |
 | `discover` | card_id, name（選んだカード）, gold_after, source（`hero_power` / `triple`。1.11.0 から `trinket` / `card` も）, source_card_id（1.11.0）, offered[]（候補の card_id。1.11.0 から画面に出た順） | 1.1.0。1.11.0 からは `dark_gift` 以外のすべての選択肢（`turns[].choices[]`）ごとに、選び終えた時刻に 1 行。1.10.x 以前はヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で、手札に入った候補だけ（Barov の Tavern Coin のような生成物は記録しない） |
+| `hero_power_changed` | slot（`main` / `additional`）, card_id, name（新しいヒーローパワー。なくなったなら null）, previous_card_id（前のヒーローパワー。増えたなら null） | 1.12.0。ショップ中に持っているヒーローパワーが変わったとき（上の「ヒーローパワー」節） |
 | `tier_up` | value（新ティア）, gold_after | 同上 |
 | `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0）。ほかの強化も同じく blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0） | `OnTurnStart(Opponent)` |
 | `combat_start` | opponent_player_id, opponent_hero_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board[] | 戦闘フェーズ開始 |
