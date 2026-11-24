@@ -100,9 +100,10 @@ read these logs.
   `player.hero_power` stays the first one. A second (additional) hero power comes from Genn, Worgen
   King (turn 4: the first discover goes to the additional slot, the second replaces the main one), a
   Timewarp "Power of X", or other effects. The main one also changes when the hero picks a new one
-  every turn (Sunwell Nguyen), switches every turn (Warsong Inge), turns into a flight destination
-  (Getaway Galewing), and is gone (`[]`) once it became a trinket or quest (Marin, Buttons,
-  Whodunit?). The summary's `## Hero powers` table (only when they changed) and the
+  every turn (Sunwell Nguyen), is replaced by the tavern spell Unmasked Identity (the choice has
+  `source` = card, `source_card` = EBG_Spell_037), switches every turn (Warsong Inge), turns into
+  a flight destination (Getaway Galewing), and is gone (`[]`) once it became a trinket or quest
+  (Marin, Buttons, Whodunit?). The summary's `## Hero powers` table (only when they changed) and the
   `hero_power_card_id` / `additional_hero_power_card_id` columns of the `turns` table show them.
   `actions.hero_power_uses` counts both hero powers together; the events.jsonl `hero_power` rows
   have `source_card_id` (which one was used) and `hero_power_changed` rows mark each change.
