@@ -328,3 +328,68 @@ def test_hero_powers_are_summarized_and_normalized(
         "| Hero power → Eastern Plaguelands | discover |" in line for line in md.splitlines()
     )
     assert "| 1 | Eastern Plaguelands |" in md.splitlines()
+
+
+def test_timewarp_is_summarized_and_normalized(complete_logs: list[dict], tables: Tables) -> None:
+    import copy
+
+    from hsbg import normalize
+
+    log = copy.deepcopy(max(complete_logs, key=lambda g: g["game"]["started_at"]))
+    filtered = metrics.apply_filter(tables, metrics.LogFilter())
+    # schema 1.11.x and older: no timewarp, no section, empty table
+    assert "## Timewarp" not in summarize.summarize(log, filtered)
+    assert normalize.normalize([log]).timewarp_offers.empty
+
+    def offer(cid: str, name: str, card_type: str, cost: int) -> dict:
+        return {
+            "card_id": cid, "name": name, "dbf_id": None, "card_type": card_type, "tier": 3,
+            "attack": 8 if card_type == "minion" else None,
+            "health": 8 if card_type == "minion" else None, "golden": None, "cost": cost,
+        }  # fmt: skip
+
+    # schema 1.12.0: Morchie visits the Minor Timewarp on turn 5 with 2 Chronum (2026-11-02 game)
+    turn = log["turns"][0]
+    turn["timewarp"] = {
+        "kind": "minor",
+        "source_card": {"card_id": "BG34_HERO_004p", "name": "Warped Conflux", "dbf_id": 129174},
+        "chronum": 2,
+        "offered": [
+            offer("BG34_Giant_580", "Timewarped Ragnaros", "minion", 1),
+            offer("BG34_Giant_582", "Timewarped Sporebat", "minion", 2),
+            offer("BG34_Treasure_607", "Timewarped Trainee", "spell", 1),
+            offer("BG34_HeroPowerSpell_009", "Power of Teron", "spell", 1),
+        ],
+        "bought": [{"index": 3, "cost": 1}, {"index": 2, "cost": 1}],
+        "chronum_left": 0,
+    }
+    md = summarize.summarize(log, filtered)
+    assert "## Timewarp" in md
+    row = next(line for line in md.splitlines() if "| minor | Warped Conflux |" in line)
+    assert "| 2 (0) |" in row
+    assert "→2 Timewarped Trainee" in row and "→1 Power of Teron" in row
+    assert "Timewarped Sporebat (t3 8/8) [2]" in row
+    assert row.endswith("| Power of Teron (spell), Timewarped Trainee (spell) |")
+    turn["choices"] = [
+        {
+            "source": "timewarp",
+            "source_card": {"card_id": "BG34_HERO_004p", "name": "Warped Conflux"},
+            "offered": turn["timewarp"]["offered"],
+            "chosen_index": 3,
+        }
+    ]
+    md = summarize.summarize(log, filtered)
+    assert any("| Timewarp (Warped Conflux) | buy |" in line for line in md.splitlines())
+
+    t = normalize.normalize([log]).timewarp_offers
+    assert list(t["card_id"]) == [
+        "BG34_Giant_580",
+        "BG34_Giant_582",
+        "BG34_Treasure_607",
+        "BG34_HeroPowerSpell_009",
+    ]
+    assert list(t["cost"]) == [1, 2, 1, 1]
+    assert list(t["bought"]) == [False, False, True, True]
+    assert list(t["bought_order"].fillna(0)) == [0, 0, 2, 1]
+    assert set(t["kind"]) == {"minor"}
+    assert set(t["source_card_id"]) == {"BG34_HERO_004p"}

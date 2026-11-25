@@ -239,6 +239,7 @@ _CHOICE_SOURCE = {
     "hero_power": "Hero power",
     "dark_gift": "Dark Gift",
     "trinket": "Trinket",
+    "timewarp": "Timewarp",
 }
 
 
@@ -260,6 +261,8 @@ def _choice_label(c: dict[str, Any], hero_power_ids: set[str]) -> tuple[str, str
     else:
         text = label or card or source or "?"
     offered = c.get("offered") or []
+    if source == "timewarp":
+        return text, "buy"  # schema 1.12.0: a Timewarp purchase (paid with Chronum)
     kind = "discover" if any(o.get("card_type") == "minion" for o in offered) else "pick"
     return text, kind
 
@@ -316,6 +319,40 @@ def _hero_power_section(log: dict[str, Any]) -> list[str]:
     ]
 
 
+def _timewarp_section(turns: list[dict[str, Any]]) -> list[str]:
+    """schema 1.12.0: each Timewarp visit (Chronum, what was offered with its cost, what I bought).
+    Older logs and games without a visit print nothing."""
+    rows = [t for t in turns if t.get("timewarp")]
+    if not rows:
+        return []
+    lines = [
+        "",
+        "## Timewarp",
+        "Timewarp visits (a special shop paid with Chronum, not gold). Offered = the cards as shown "
+        "with their Chronum cost; the ones I bought are marked → (1st, 2nd, ... in buying order). "
+        'Via = the hero power that took me there ("-" = the visit every player gets).',
+        "",
+        "| T | Kind | Via | Chronum (left) | Offered | Bought |",
+        "|---|---|---|---|---|---|",
+    ]
+    for t in rows:
+        tw = t["timewarp"]
+        offered = tw.get("offered") or []
+        bought = [b.get("index") for b in tw.get("bought") or []]
+        opts = []
+        for i, o in enumerate(offered):
+            mark = f"→{bought.index(i) + 1} " if i in bought else ""
+            opts.append(f"{mark}{_card(o)} [{_int(o.get('cost'))}]")
+        picked = [_card(offered[i]) for i in bought if isinstance(i, int) and 0 <= i < len(offered)]
+        via = _name(tw.get("source_card")) if tw.get("source_card") else "-"
+        lines.append(
+            f"| {t.get('turn')} | {tw.get('kind') or '?'} | {via} | {_int(tw.get('chronum'))} "
+            f"({_int(tw.get('chronum_left'))}) | {', '.join(opts) or '-'} | "
+            f"{', '.join(picked) or '-'} |"
+        )
+    return lines
+
+
 def _choice_section(
     turns: list[dict[str, Any]], hero_power_ids: set[str] | None = None
 ) -> list[str]:
@@ -329,8 +366,8 @@ def _choice_section(
         "## Choices",
         'Every choice I was offered, in order. Source = what made the choice; "Hero power → X" = '
         "made later by X, a card my hero power created earlier (e.g. a destination that discovers "
-        "on arrival), not by using the hero power that turn. Kind = discover (minions offered) or "
-        "pick (destinations, secrets, trinkets, ...). Offered = the options as shown (minions: tier "
+        "on arrival), not by using the hero power that turn. Kind = discover (minions offered), "
+        "pick (destinations, secrets, trinkets, ...) or buy (a Timewarp purchase, see ## Timewarp). Offered = the options as shown (minions: tier "
         "and stats when offered); the one I picked is marked →.",
         "",
         "| T | Source | Kind | Offered | Picked |",
@@ -443,6 +480,7 @@ def summarize(log: dict[str, Any], history: Tables | None = None) -> str:
 
     lines += _hand_shop_section(log.get("turns") or [])
     lines += _hero_power_section(log)
+    lines += _timewarp_section(log.get("turns") or [])
     lines += _choice_section(log.get("turns") or [], _hero_power_ids(log))
     lines += _deity_section(log.get("turns") or [])
     lines += _buff_section(log.get("turns") or [])

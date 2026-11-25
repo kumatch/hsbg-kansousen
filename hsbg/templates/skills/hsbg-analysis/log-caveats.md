@@ -109,6 +109,19 @@ read these logs.
   have `source_card_id` (which one was used) and `hero_power_changed` rows mark each change.
   Older logs have no `hero_powers` (the columns are empty), so a Genn game there shows only the first
   hero power and the two hero power choices of turn 4.
+- **Timewarp (a special shop paid with Chronum).** From patch 37.2 (2026-12-01) every player visits
+  the Timewarp on turns 6 (Minor) and 9 (Major); Morchie (turn 5, Minor) and Murozond (turn 8,
+  Major) get a visit from their hero power. From schema 1.12.0 (hsbg-kifu) a visit is
+  `turns[].timewarp`: `chronum`, the offered cards with their `cost` in Chronum, `bought` (in
+  buying order) and `chronum_left` (lost at the end of the turn). The purchases are also choices
+  with `source` = timewarp (one choice per purchase; after each purchase only the cards I can still
+  afford are offered), and events.jsonl has `timewarp` / `timewarp_buy` rows instead of `discover`.
+  Chronum is not gold: `gold_available`, `gold_spent` and `buys` count the normal shop only. `kind`
+  (minor / major) is inferred from the tier of the offered minions (Minor 3, Major 5 in 34.2) and
+  may be wrong until checked on 37.2 games. A bought "Power of X" becomes a second hero power at
+  once (see hero powers above). The summary's `## Timewarp` table and the `timewarp_offers` table
+  of `hsbg export` show the visits. Logs of 1.11.x recorded a hero power visit as `hero_power`
+  choices and `discover` rows.
 - **Aberration in the type tables.** Aberration was in every lobby from 36.6.1 until 36.6.3
   (2026-10-02) and is in about half the lobbies since, so before 36.6.3 it is only compared on played
   vs not played and after it also on offered vs not offered.

@@ -67,7 +67,10 @@
 - 2026-11-25 `1.12.0`（hsbg-kifu の次のリリース。未リリース）: `turns[].hero_powers[]`（ショップ終了時に持っていたヒーローパワー。メインと追加の枠）を追加
   （任意キー。`1.11.x` 以前のログ、プラグインの記録には無い。下の「ヒーローパワー」節）。ウォーゲンの王ゲンや時渡りの「○○の力」で 2 つになったヒーローパワー、
   ヒーローパワーの入れ替わり・なくなったことが分かる。`player.hero_power` は今までどおり最初のヒーローパワー。
-  events.jsonl の `hero_power` に `source_card_id`（使ったヒーローパワー）を足し、`hero_power_changed`（持っているヒーローパワーが変わった）を足した
+  events.jsonl の `hero_power` に `source_card_id`（使ったヒーローパワー）を足し、`hero_power_changed`（持っているヒーローパワーが変わった）を足した。
+  同じ版で `turns[].timewarp`（時渡りの酒場: 候補と値段・クロナム・買ったもの）を追加（任意キー。下の「時渡り」節）。37.2（2026-12-01）で戻る時渡りと、
+  ヒーローパワーで時渡りに行くヒーロー（ミロクー、ムロゾンド）のため。`choices[].source` に `timewarp` を足した（時渡りの酒場の中の選択肢。
+  `1.11.x` ではヒーローパワーで行った時渡りは `hero_power` だった）。events.jsonl は時渡りの選択では `discover` を書かず、`timewarp` と `timewarp_buy` を書く
 
 ## 設計方針
 - 1 ゲーム = 1 JSON。人間が読めて、AI にそのまま渡せる粒度
@@ -208,6 +211,17 @@
         { "slot": "main", "card_id": "TB_BaconShop_HP_020", "name": "Prestidigitation", "dbf_id": 58022 },
         { "slot": "additional", "card_id": "BG20_HERO_280p5", "name": "Glaive Ricochet", "dbf_id": 104875 }   // 追加の枠（ゲン、時渡りの「○○の力」など）
       ],
+      "timewarp": {                      // 1.12.0: このターンに行った時渡りの酒場。行かなければ null（下の「時渡り」節）
+        "kind": "minor",                 // minor / major（候補のティアから。決められなければ null）
+        "source_card": { "card_id": "BG34_HERO_004p", "name": "Warped Conflux", "dbf_id": 129174 },  // 連れて行ったヒーローパワー。全員が行く時渡りなら null
+        "chronum": 2,                    // 持っていたクロナム
+        "offered": [                     // 候補（画面に出た順）。hand と同じ要素に cost（払うクロナム）
+          { "card_id": "BG34_Giant_580", "name": "Timewarped Ragnaros", "dbf_id": 127246,
+            "card_type": "minion", "tier": 3, "attack": 8, "health": 8, "golden": false, "cost": 1 }
+        ],
+        "bought": [ { "index": 0, "cost": 1 } ],   // 買った順。index は offered の位置
+        "chronum_left": 1                // 使い残したクロナム（時渡りの終わりを見られなければ null）
+      },
       "lobby": [                         // 1.5.0: ショップ開始時の他プレイヤー（リーダーボードに出ている公開情報）。取れなければ null
         { "player_id": 3, "tavern_tier": 2, "health": 30, "armor": 5, "leaderboard_place": 1, "eliminated": false }
       ],                                 // SETASIDE のヒーロー Entity の PLAYER_TECH_LEVEL / HEALTH / ARMOR / PLAYER_LEADERBOARD_PLACE（opponents[] と同じ取り方）
@@ -363,11 +377,14 @@
   - `dark_gift`: 悪夢の発見（ボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`）
   - `trinket`: 候補がすべてトリンケット（トリンケットの選択。トリンケットを選ばせるヒーローパワーやカードも、候補がトリンケットならこれ）
   - `card`: それ以外（ミニオンの雄叫び、呪文、トリンケットの効果、クエストなど）。何かは `source_card`
+  - `timewarp`（1.12.0）: 時渡りの酒場での買い物（`GameEntity` の `BACON_ALT_TAVERN_IN_PROGRESS` が 1 の間に出た選択肢）。出したものは問わない
+    （ミロクーのヒーローパワーで行ったときは `source_card` がヒーローパワー）。下の「時渡り」節
 - `source_card`: 選択肢を出したカード（今のカード）
 - `offered`: 候補。`hand_end_of_shop` と同じ形（card_id, name, dbf_id, card_type, tier, attack, health, golden）で、画面に出た順。
   攻撃力・体力は候補が出た時点の値（選んだ後に付くバフは含まない）。トリンケットの `card_type` は `other`
 - `chosen_index`: 選んだ候補の位置（0 始まり。Power.log の `DebugPrintEntitiesChosen`）。選び終える前にゲームが終わった・再接続で見られなかったなら `null`
-- events.jsonl の `discover` は、`dark_gift` 以外の選択肢ごとに 1 行（選び終えた時刻）。`dark_gift` は今までどおり `dark_gift` の行（手札に入ったカードから）
+- events.jsonl の `discover` は、`dark_gift` と `timewarp` 以外の選択肢ごとに 1 行（選び終えた時刻）。`dark_gift` は今までどおり `dark_gift` の行（手札に入ったカードから）。
+  `timewarp` は `timewarp_buy` の行（1.12.0）
 - 2026-11-22 時点の 28 ゲームで 454 回（トリプル報酬 110、悪夢の発見 86、カード 135、ヒーローパワー 65、トリンケット 58）。候補の数は 1〜5（3 が最も多い）
 
 ### ヒーローパワー（`turns[].hero_powers[]`、1.12.0）
@@ -386,6 +403,28 @@
   最初のヒーローパワー（`player.hero_power`）は書かない。カードで比べるので、再接続で Entity が作り直されても書かない
 - events.jsonl の `hero_power`（使った）の `source_card_id` は使ったヒーローパワー。2 つあるときにどちらを使ったかが分かる。
   `actions.hero_power_uses` は 2 つを合わせた回数（常に効くヒーローパワーは PLAY ブロックを出さないので数えない）
+
+### 時渡り（`turns[].timewarp`、1.12.0）
+
+時渡り（Timewarp）の酒場に行ったターンの記録。通常の酒場とは別に、クロナム（Chronum）で特別なカードを買う。34.2 で入り、37.2（2026-12-01）で戻る
+（6 ターン目にミノール、9 ターン目にメジャー）。ヒーローパワーで別のターンに行くヒーローもいる（ミロクー `BG34_HERO_004p`: 5 ターン目にミノール、
+ムロゾンド `BG34_HERO_000p`: 8 ターン目にメジャー）。Power.log での出方は hsbg-kifu の docs/research.md §3.5。
+
+- 時渡りの酒場の中かは、`GameEntity` の `BACON_ALT_TAVERN_IN_PROGRESS`（1 の間）で決める。買い物は普通の選択肢として出て、1 つ選ぶと残りのクロナムで
+  買える候補だけで次の選択肢が出る。その選択肢はすべて `choices[]` に `source: "timewarp"` で入り、`timewarp` はそれをまとめたもの
+- `kind`: `minor` / `major`。候補のミニオンのティアの最大が 5 以上なら `major`、それ以外は `minor`（34.2 ではミノールが 3、メジャーが 5）。
+  37.2 の候補で確かめるまでは目安（**要検証**）
+- `source_card`: 時渡りに連れて行った自分のヒーローパワー。そうでなければ `null`
+- `chronum`: 持っていたクロナム（自分の `BACON_ALT_TAVERN_COIN`。無ければ最初の選択肢の時点の `RESOURCES - RESOURCES_USED`）。
+  前の時渡りから持ち越して 3 以上になることがある（Timewarped Investment など）
+- `offered`: 最初の選択肢の候補（ふつう 5 枚）。`hand_end_of_shop` と同じ形に `cost`（払うクロナム。`BACON_OVERRIDE_BG_COST`）
+- `bought`: 買った順に `index`（`offered` の位置）と `cost`
+- `chronum_left`: 使い残したクロナム（時渡りの酒場を出たときの `RESOURCES - RESOURCES_USED`）。使い残しはターンの終わりに消える
+- 時渡りの間は `RESOURCES` がクロナムになるが、`gold_available` / `actions` / `shop_offers` は通常の酒場の値だけ（時渡りが終わると `RESOURCES` が通常のゴールドに戻る）
+- 買ったミニオン・呪文は手札に入る（呪文を使えば `spell` の行）。「○○の力」は買うとすぐ 2 つ目のヒーローパワーになる（`hero_powers[]` の `additional`）
+- events.jsonl: 時渡りの最初の選択肢で `timewarp`（kind, chronum, source_card_id, offered[], costs[]）、買うたびに `timewarp_buy`
+  （card_id, name, index, cost, chronum_after）。時渡りの選択では `discover` を書かない
+- 2026-11-25 時点で記録があるのは、ミロクーのヒーローパワーで行った 1 回だけ（2026-11-02 のゲーム）。全員が行く時渡りは 37.2 のゲームで確かめる
 
 ### アイスブロック（`combat.ice_block` / `combat.opponent_ice_block`、1.10.0）
 
@@ -478,8 +517,10 @@ Hearthstone だけが落ちて（または切断して）同じゲームに戻�
 | `reroll` | gold_after | 同上 |
 | `hero_power` | gold_after, source_card_id（1.12.0。使ったヒーローパワー）。1.10.x 以前（プラグイン）は、発見型のヒーローパワー（ゴミを宝に 等）で選んだカードが同じ tick で手札に来たときに card_id, name, source=`hero_power`, offered[]（3 択の card_id）も載せた。hsbg-kifu は載せず `discover` に書く | 同上 |
 | `dark_gift` | card_id, name（選んだミニオン）, gold_after, source=`dark_gift`, offered[]（3 択。観測できなければ null） | 1.1.0。手札に現れた Entity の **直接の** 作成元（DISPLAYED_CREATOR か CREATOR）がボタン `BG36_Button_DarkGift` / 発見スペル `BG36_MidGameEffect_010`。作成元を何段も辿らない（得たミニオンが生成したカードや悪夢の恵みが作るコピーを除外） |
-| `discover` | card_id, name（選んだカード）, gold_after, source（`hero_power` / `triple`。1.11.0 から `trinket` / `card` も）, source_card_id（1.11.0）, offered[]（候補の card_id。1.11.0 から画面に出た順） | 1.1.0。1.11.0 からは `dark_gift` 以外のすべての選択肢（`turns[].choices[]`）ごとに、選び終えた時刻に 1 行。1.10.x 以前はヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で、手札に入った候補だけ（Barov の Tavern Coin のような生成物は記録しない） |
+| `discover` | card_id, name（選んだカード）, gold_after, source（`hero_power` / `triple`。1.11.0 から `trinket` / `card` も）, source_card_id（1.11.0）, offered[]（候補の card_id。1.11.0 から画面に出た順） | 1.1.0。1.11.0 からは `dark_gift` 以外（1.12.0 からは `timewarp` も除く）のすべての選択肢（`turns[].choices[]`）ごとに、選び終えた時刻に 1 行。1.10.x 以前はヒーローパワー（EXHAUSTED と別 tick になったとき）やトリプル報酬の発見で、手札に入った候補だけ（Barov の Tavern Coin のような生成物は記録しない） |
 | `hero_power_changed` | slot（`main` / `additional`）, card_id, name（新しいヒーローパワー。なくなったなら null）, previous_card_id（前のヒーローパワー。増えたなら null） | 1.12.0。ショップ中に持っているヒーローパワーが変わったとき（上の「ヒーローパワー」節） |
+| `timewarp` | kind, chronum, source_card_id, offered[]（候補の card_id）, costs[]（払うクロナム） | 1.12.0。時渡りの酒場の最初の選択肢が出たとき（上の「時渡り」節） |
+| `timewarp_buy` | card_id, name（買ったカード）, index（offered の位置）, cost, chronum_after（買った後のクロナム） | 1.12.0。時渡りの酒場で選んだとき（`discover` の代わり） |
 | `tier_up` | value（新ティア）, gold_after | 同上 |
 | `shop_end` | tier, gold_available, gold_spent, board[], next_opponent_player_id。神祇があれば deity_attack, deity_health（1.2.0）。甲虫のエンチャントがあれば beetle_attack, beetle_health（1.7.0）。ほかの強化も同じく blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0） | `OnTurnStart(Opponent)` |
 | `combat_start` | opponent_player_id, opponent_hero_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board[] | 戦闘フェーズ開始 |
@@ -522,13 +563,14 @@ GameEntity の `TURN` はターン n のショップで 2n-1、戦闘で 2n な�
 | テーブル | 主キー | 主な列 |
 |---|---|---|
 | `games` | game_id | started_at, ended_at, duration_sec, status, hero_card_id, hero_base_card_id（スキン正規化後）, hero_name, placement, mmr_before, mmr_after, mmr_delta, total_turns, final_tier, minion_types, anomaly_card_id, global_old_god_name, lobby_size, schema_version, plugin_version, hero_choices, hero_rerolled |
-| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, hero_power_uses, spells_played, dark_gifts（1.1.0）, board_size, board_attack, board_health, deity_*（1.2.0）, beetle_*（1.7.0）, blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0。強化はそれぞれ attack, health, attack_after, health_after） |
+| `turns` | game_id, turn | tavern_tier, health, armor, gold_available, gold_spent, buys, sells, gold_gained（1.6.0）, rerolls, tier_ups, hero_power_uses, spells_played, dark_gifts（1.1.0）, board_size, board_attack, board_health, deity_*（1.2.0）, beetle_*（1.7.0）, blood_gem_*, tavern_spell_*, tavern_minion_*, tavern_elemental_*（1.8.0）, blood_gem_barrage_*（1.9.0。強化はそれぞれ attack, health, attack_after, health_after）, hero_power_card_id, hero_power_name, additional_hero_power_card_id, additional_hero_power_name（1.12.0。`hero_powers[]` のメインと追加の枠） |
 | `combats` | game_id, turn | opponent_player_id, opponent_hero_card_id, opponent_hero_base_card_id, opponent_health, opponent_armor, opponent_tavern_tier（1.5.0）, opponent_board_size, opponent_board_attack, opponent_board_health, result, damage_dealt, damage_taken, bb_win, bb_tie, bb_loss, bb_avg_damage, opponent_deity_*（1.2.0）, opponent_beetle_*（1.7.0）, opponent_blood_gem_*, opponent_tavern_spell_*, opponent_tavern_minion_*, opponent_tavern_elemental_*（1.8.0）, opponent_blood_gem_barrage_*（1.9.0） |
 | `board_minions` | game_id, turn, side, position | card_id, name, tier, attack, health, golden, keywords, divine_shields（1.3.x 以前は keywords から 0/1）, minion_types。side は `player`（board_end_of_shop）/ `opponent`（opponent_board） |
 | `opponents` | game_id, player_id | hero_card_id, hero_base_card_id, placement, estimated_placement, eliminated_turn, final_tavern_tier, final_health |
 | `discovers` | game_id, turn | source（`hero_power` / `triple`。1.11.0 から `trinket` / `card` も）, card_id, name, source_card_id（1.11.0）（events.jsonl の `discover`。1.1.0） |
 | `choices` | game_id, turn, choice | source, source_card_id, source_name, offered_count, chosen_index, chosen_card_id, chosen_name（`turns[].choices[]`。1.11.0） |
 | `choice_offers` | game_id, turn, choice, position | source, card_id, name, card_type, tier, attack, health, golden, chosen（候補 1 枚ずつ。1.11.0） |
+| `timewarp_offers` | game_id, turn, position | kind, chronum, chronum_left, source_card_id, card_id, name, card_type, tier, attack, health, golden, cost, bought, bought_order（`turns[].timewarp` の候補 1 枚ずつ。bought_order は買った順で 1 始まり、買わなければ null。1.12.0） |
 | `hand` | game_id, turn, position | card_id, name, card_type, tier, attack, health, golden（1.5.0。1.4.x 以前の手札は card_id, name だけ） |
 | `shop_offers` | game_id, turn, offer, position | trigger, card_id, name, card_type, tier, attack, health, golden（1.5.0） |
 | `lobby` | game_id, turn, player_id | tavern_tier, health, armor, leaderboard_place, eliminated（1.5.0） |

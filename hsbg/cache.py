@@ -18,7 +18,7 @@ from . import cards, loader, normalize
 from .normalize import Tables
 
 CACHE_DIR = ".cache"
-CACHE_FORMAT = 15  # bump when the table columns change (old caches are then rebuilt)
+CACHE_FORMAT = 16  # bump when the table columns change (old caches are then rebuilt)
 TABLE_NAMES = (
     "games",
     "turns",
@@ -32,6 +32,7 @@ TABLE_NAMES = (
     "sells",
     "choices",
     "choice_offers",
+    "timewarp_offers",
 )
 DEFAULT_THRESHOLD = 200
 

@@ -239,7 +239,8 @@ def export(
     include_incomplete: Annotated[bool, typer.Option(help="Include incomplete logs")] = False,
 ) -> None:
     """Write the normalized tables (`cache.TABLE_NAMES`: games, turns, combats, board_minions,
-    opponents, discovers, hand, shop_offers, lobby, sells)."""
+    opponents, discovers, hand, shop_offers, lobby, sells, choices, choice_offers,
+    timewarp_offers)."""
     if fmt not in ("parquet", "csv"):
         typer.echo("format must be parquet or csv", err=True)
         raise typer.Exit(code=2)

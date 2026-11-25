@@ -132,6 +132,7 @@
           "shop_offers": { "type": "array", "items": { "$ref": "#/definitions/shop_offer" } },
           "choices": { "type": "array", "items": { "$ref": "#/definitions/choice" } },
           "hero_powers": { "type": "array", "items": { "$ref": "#/definitions/hero_power" } },
+          "timewarp": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/timewarp" }] },
           "lobby": { "type": ["array", "null"], "items": { "$ref": "#/definitions/lobby_entry" } },
           "deity": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/deity" }] },
           "beetle": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/buff_stats" }] },
@@ -224,7 +225,7 @@
       "additionalProperties": false,
       "required": ["source", "source_card", "offered", "chosen_index"],
       "properties": {
-        "source": { "type": "string", "enum": ["triple", "hero_power", "dark_gift", "trinket", "card"] },
+        "source": { "type": "string", "enum": ["triple", "hero_power", "dark_gift", "trinket", "card", "timewarp"] },
         "source_card": { "$ref": "#/definitions/card_ref" },
         "offered": { "type": "array", "items": { "$ref": "#/definitions/card_snapshot" } },
         "chosen_index": { "type": ["integer", "null"], "minimum": 0 }
@@ -239,6 +240,44 @@
         "card_id": { "type": ["string", "null"] },
         "name": { "type": ["string", "null"] },
         "dbf_id": { "type": ["integer", "null"] }
+      }
+    },
+    "timewarp": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "source_card", "chronum", "offered", "bought", "chronum_left"],
+      "properties": {
+        "kind": { "type": ["string", "null"], "enum": ["minor", "major", null] },
+        "source_card": { "oneOf": [{ "type": "null" }, { "$ref": "#/definitions/card_ref" }] },
+        "chronum": { "type": ["integer", "null"] },
+        "offered": { "type": "array", "items": { "$ref": "#/definitions/timewarp_offer" } },
+        "bought": { "type": "array", "items": { "$ref": "#/definitions/timewarp_buy" } },
+        "chronum_left": { "type": ["integer", "null"] }
+      }
+    },
+    "timewarp_offer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["card_id", "name", "dbf_id", "cost"],
+      "properties": {
+        "card_id": { "type": ["string", "null"] },
+        "name": { "type": ["string", "null"] },
+        "dbf_id": { "type": ["integer", "null"] },
+        "card_type": { "type": ["string", "null"], "enum": ["minion", "spell", "other", null] },
+        "tier": { "type": ["integer", "null"] },
+        "attack": { "type": ["integer", "null"] },
+        "health": { "type": ["integer", "null"] },
+        "golden": { "type": ["boolean", "null"] },
+        "cost": { "type": ["integer", "null"] }
+      }
+    },
+    "timewarp_buy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["index", "cost"],
+      "properties": {
+        "index": { "type": ["integer", "null"], "minimum": 0 },
+        "cost": { "type": ["integer", "null"] }
       }
     },
     "lobby_entry": {

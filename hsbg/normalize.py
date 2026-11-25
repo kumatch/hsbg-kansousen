@@ -47,6 +47,8 @@ class Tables:
     # Empty for older logs
     choices: pd.DataFrame
     choice_offers: pd.DataFrame
+    # schema 1.12.0 (hsbg-kifu): one row per card offered in a Timewarp visit. Empty for older logs
+    timewarp_offers: pd.DataFrame
 
     def game_ids(self) -> list[str]:
         return self.games["game_id"].tolist()
@@ -72,6 +74,9 @@ class Tables:
             choice_offers=self.choice_offers[self.choice_offers["game_id"].isin(ids)].reset_index(
                 drop=True
             ),
+            timewarp_offers=self.timewarp_offers[
+                self.timewarp_offers["game_id"].isin(ids)
+            ].reset_index(drop=True),
         )
 
 
@@ -244,6 +249,21 @@ CHOICE_OFFER_COLUMNS = [
     *CARD_COLUMNS,
     "chosen",
 ]
+# schema 1.12.0: turns[].timewarp, one row per offered card (position = 1-based, screen order).
+# cost = Chronum; bought_order = 1-based order of purchase (None = not bought)
+TIMEWARP_OFFER_COLUMNS = [
+    "game_id",
+    "turn",
+    "position",
+    "kind",
+    "chronum",
+    "chronum_left",
+    "source_card_id",
+    *CARD_COLUMNS,
+    "cost",
+    "bought",
+    "bought_order",
+]
 
 
 def _ts(value: str | None) -> pd.Timestamp | None:
@@ -363,6 +383,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
     sells: list[dict] = []
     choices: list[dict] = []
     choice_offers: list[dict] = []
+    timewarp_offers: list[dict] = []
 
     for log in logs:
         g = log.get("game") or {}
@@ -460,6 +481,7 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
                 c_rows, o_rows = _choice_rows(game_id, turn_no, n, ch, names)
                 choices.append(c_rows)
                 choice_offers.extend(o_rows)
+            timewarp_offers.extend(_timewarp_rows(game_id, turn_no, t.get("timewarp"), names))
             for e in t.get("lobby") or []:
                 lobby.append(
                     {
@@ -571,7 +593,34 @@ def normalize(logs: list[dict[str, Any]], names: CardNames | None = None) -> Tab
         sells=pd.DataFrame(sells, columns=SELL_COLUMNS),
         choices=pd.DataFrame(choices, columns=CHOICE_COLUMNS),
         choice_offers=pd.DataFrame(choice_offers, columns=CHOICE_OFFER_COLUMNS),
+        timewarp_offers=pd.DataFrame(timewarp_offers, columns=TIMEWARP_OFFER_COLUMNS),
     )
+
+
+def _timewarp_rows(game_id: str, turn: int | None, tw: dict | None, names: CardNames) -> list[dict]:
+    """schema 1.12.0: `turns[].timewarp` -> one row per offered card."""
+    if not tw:
+        return []
+    order: dict[int, int] = {}
+    for n, b in enumerate(tw.get("bought") or [], start=1):
+        if isinstance(b.get("index"), int):
+            order.setdefault(b["index"], n)
+    return [
+        {
+            "game_id": game_id,
+            "turn": turn,
+            "position": i + 1,
+            "kind": tw.get("kind"),
+            "chronum": tw.get("chronum"),
+            "chronum_left": tw.get("chronum_left"),
+            "source_card_id": (tw.get("source_card") or {}).get("card_id"),
+            **_card_row(card, names),
+            "cost": card.get("cost"),
+            "bought": i in order,
+            "bought_order": order.get(i),
+        }
+        for i, card in enumerate(tw.get("offered") or [])
+    ]
 
 
 def _choice_rows(

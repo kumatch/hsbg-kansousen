@@ -46,7 +46,8 @@
         （`CACHE_FORMAT` 15）、要約の「## Hero powers」（変わったターンだけ）、log-caveats。要約の選択肢は、後から得たヒーローパワー
         （ゲンの発見、時渡りの「○○の力」、グエンの選んだもの）による選択を「Hero power (X)」と書く（最初のヒーローパワーの別の形 = カード ID が
         最初のもので始まるもの、ゲイルウィングの行き先などは今までどおり「Hero power → X」）
-  - [ ] 時渡り（M11）: hsbg-kifu の M11 に合わせる
+  - [x] 時渡り（M11）: `timewarp_offers` の表（時渡りの候補 1 枚ずつ。値段・買ったか・買った順。`CACHE_FORMAT` 16）、要約の「## Timewarp」、
+        選択肢の `timewarp` の表示、log-caveats、`hsbg export` の説明に表の名前を足した
   - [ ] リリース（hsbg-kifu より先に。版を上げる）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
 - [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
