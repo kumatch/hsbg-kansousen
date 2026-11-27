@@ -7,8 +7,9 @@
 | `hsbg.toml` | 設定（ログ・分析・レポートのフォルダ、知識庫、表示言語）。`hsbg config` で今有効な値と出どころを確認できる |
 | `analysis/` | 保存された AI 分析（1 ゲーム: `<開始時刻>_<gameId8>_game.md`、傾向: `trend-*.md`） |
 | `knowledge/` | ゲームそのものの事実の資料庫（ルールの前提、シーズン、パッチ）。中身はあなたと AI が育てる（`knowledge/README.md`） |
-| `reports/`, `export/` | `hsbg report` / `hsbg export` の出力（作り直せるので git に入れない） |
+| `reports/`, `export/` | `hsbg report` / `hsbg export` の出力（作り直せるので、バックアップや git に入れなくてよい） |
 
 - `hsbg` のコマンドと Claude Code はこのフォルダで実行する（ここの設定が使われる）
-- 分析と知識庫の履歴を残すため、このフォルダを **private** な git リポジトリにすることを勧める（`git init`）。
-  知識庫を読んだ時点はコミットで記録されるので、知識庫を変えたらコミットする
+- 履歴のための準備は要らない。分析は `analysis/` にファイルとして溜まり、知識庫の変更は `knowledge/CHANGELOG.md` に記録される
+  （次の分析はそれを読んで、前回からの変更を確かめる）。消えると困るので、ときどきこのフォルダごとバックアップを取るとよい
+- git は任意。変更の履歴を細かく残したい人は、このフォルダを **private** な git リポジトリにしてもよい（`git init`）

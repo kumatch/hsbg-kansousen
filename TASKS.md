@@ -42,8 +42,25 @@
       要約では、ヒーローパワーが前に作ったカードによる選択を「Hero power → <カード>」と書き、候補にミニオンがあれば discover、無ければ pick と書き分ける
       （0.3.0 の実機確認のゲイルウィング: 行き先の選択と、着いたときの発見が同じ hero_power で見分けにくかった）
 - [x] リリース: v0.5.0（2026-11-23。schema 1.11.0 まで読む。hsbg-kifu 0.3.0 より先に。push は hsbg-kifu の main が先で、CI は最初の実行で緑）
+- [x] 古い表記: スキル・雛形の記録アプリを HDT プラグインから hsbg-kifu に（2026-11-28）
+- Claude デスクトップアプリ（コードタブ）から使えるようにする。ターミナルを使わない人が「セットアップして」「ダッシュボードを開いて」と頼むだけで使える形。
+  中身（hsbg のコマンドとスキル）はターミナル版と同じで、違うのは Claude がコマンドを打つことだけ。アプリ版は git を使わずに完結させる
+  - [x] 0. 実機での確認（2026-11-28。結果は「判明したこと」。git が無い PC でアプリが git を求めないかは 5 で）: タグのソース zip での `uv tool install`（git が PATH に無い状態で。`UV_TOOL_DIR` / `UV_TOOL_BIN_DIR` を一時フォルダに向け、
+        手元の hsbg に触れない）、インストール直後の PATH、`.claude/launch.json` で `hsbg serve` がアプリのブラウザペインに出るか、
+        `.claude/settings.json` の許可ルールの書式（PowerShell）、`hsbg init` で置いたスキルが同じセッションで使えるか
+  - [x] 1. git を任意にする（2026-11-28）: README・ワークスペースの README / CLAUDE.md・hsbg-setup・hsbg-lens の「git を勧める」を任意に。
+        知識庫に `knowledge/CHANGELOG.md`（変更のたびに日時・種類 patch / fix / season・ファイルを 1 行。git を使う人も書く）。
+        分析の `Knowledge:` 行は git があればハッシュ、無ければ CHANGELOG の最後の日時。次の傾向分析は git log / diff か、その日時より後の CHANGELOG の行で変更を見る
+  - [ ] 2. git の要らないインストール: `uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<版>.zip`。
+        AI が上から実行する手順書 `docs/install.md`（uv → hsbg → `hsbg init .` → hsbg-setup へ引き継ぎ → アプリの再起動）。
+        `docs/release.md` に「README と install.md の URL の版を上げる」。`git+https` はターミナル版に残す
+  - [ ] 3. アプリとの連携: `hsbg init` が `.claude/launch.json`（`hsbg serve --no-open`、autoVerify なし）と `.claude/settings.json`
+        （読むだけの hsbg コマンドを許可、ログのフォルダを additionalDirectories）を置く。ワークスペースの CLAUDE.md に「ダッシュボードを開いて / 止めて」
+  - [ ] 4. 人向けの文書: `docs/desktop-app.md`（アプリの入れ方、フォルダの作り方、コードタブ、承認の読み方、最初の依頼文、ふだんの頼み方、更新、困ったとき）、
+        README の入口をアプリ版とターミナル版に分ける、`docs/architecture.md`
+  - [ ] 5. 通しの確認: git の入っていない別の Windows ユーザーで、アプリだけでインストール → セットアップ → 分析 → ダッシュボードまで通す。
+        ターミナル版の README の手順も同じ機会に通す（雛形が変わるので 0.6.0 の想定）
 - [ ] CI を Ubuntu でも（テストに Windows のパスを前提にしたものがあるので、直してから）
-- [ ] 別の Windows ユーザーで README の手順だけを見て、インストール → `hsbg init` → セットアップ → 分析まで通す
 - [ ] Issue テンプレート: hsbg の版、`hsbg config` と `hsbg validate` の出力。ログを添えるときは `scripts/anonymize_log.py` を通した `.json` だけ
       （Power.log やワークスペースの分析・profile.md は貼らない）
 - [x] 公開: リポジトリを public にした
@@ -55,3 +72,14 @@
 
 - 利用者ごとのもの（目標、分析の筋、ゲーム知識、保存した分析）はワークスペースに置き、利用者どうしで共有しない（共有すると、そのメンテナンスと、
   誰かの変更が他の人の分析に波及する依存が生まれるため）。知識庫は使うことを勧め、`hsbg init` が空の雛形を用意する
+- `uv tool install git+https://...` は git 本体が要る。タグのソース zip（`.../archive/refs/tags/v<版>.zip`）なら git が PATH に無くても入る
+  （2026-11-28、uv 0.12.14 で確認）。zip で入れたものは `uv tool upgrade hsbg` が「Nothing to upgrade」になるので、更新は新しい版の URL で
+  `uv tool install --force <URL>`。uv のツールの置き場は既定で `%USERPROFILE%\.local\bin`。winget の uv はパッケージのフォルダをユーザーの PATH に足すだけなので、
+  入れた直後の同じセッションでは見えない（PATH を読み直すか、アプリを再起動する）
+- Claude Code の許可ルールは PowerShell でも Bash と同じ形（`PowerShell(hsbg stats *)`）。プロジェクトの `.claude/settings.json` の allow と
+  `additionalDirectories` は、フォルダを信頼した後で効く。`additionalDirectories` で `%USERPROFILE%` が展開されるかは文書に無い。
+  プロジェクトの `.claude/skills/` はセッション中に足しても読み込まれる（出なければ `/reload-skills`）
+- デスクトップアプリのコードタブで `.claude/launch.json`（`runtimeExecutable: "hsbg"`、`runtimeArgs: ["serve", "--no-open", "--port", "8501"]`、
+  `port: 8501`、`autoVerify: false`）が動いた（2026-11-28）。ブラウザペインのヘッダーの Dev servers メニューは、セッションで最初のメッセージを送った後に出る。
+  起動ボタンでダッシュボードが開き、表示と操作もできた。8501 が使用中だったときは、アプリが引数を `--server.port 8502` にして空いているポートで起動した
+  プロジェクトの `.claude/settings.json` の `PowerShell(hsbg config *)` で、フォルダを信頼した後は承認なしで実行された。`hsbg init` が置いたスキル 3 つも `/` の一覧に出た

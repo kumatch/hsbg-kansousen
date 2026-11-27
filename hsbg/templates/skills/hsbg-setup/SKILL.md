@@ -1,6 +1,6 @@
 ---
 name: hsbg-setup
-description: First-time setup of an hsbg workspace with the player — check that the game recorder's (hsbg-kifu's) logs are found, the settings (hsbg.toml), the knowledge folder and git, and interview the player about their goals to write profile.md. Use when the player starts using hsbg ("セットアップして", "使い始めたい"), when profile.md is missing, or when the player wants to change their goals.
+description: First-time setup of an hsbg workspace with the player — check that the game recorder's (hsbg-kifu's) logs are found, the settings (hsbg.toml) and the knowledge folder, and interview the player about their goals to write profile.md. Use when the player starts using hsbg ("セットアップして", "使い始めたい"), when profile.md is missing, or when the player wants to change their goals.
 ---
 
 # HSBG setup
@@ -31,15 +31,19 @@ Do not change anything outside this workspace folder.
    - **Dashboard / report screens**: Japanese for now, whatever the other two are.
    Default `locale` is `jaJP`; set `locale = 'enUS'` for English names.
 
-## 2. Knowledge folder and git
+## 2. Knowledge folder and history
 
 1. `knowledge_dir` (normally `knowledge/` in this workspace, created by `hsbg init`). If it is
    missing, offer to create it with `hsbg init --knowledge .` (existing files are kept). Explain in two
    lines what it is for (facts about the game: rules, season, patches; they grow it by pasting patch
-   notes) and that it is theirs alone.
-2. Git: suggest making this workspace a **private** git repository (`git init`, then their own private
-   remote if they want one). Analyses record the knowledge folder's commit, so knowledge changes should
-   be committed. Do not create remotes or push; commit only when they ask.
+   notes) and that it is theirs alone. If `knowledge/CHANGELOG.md` is missing (a workspace made by an
+   older hsbg), `hsbg init .` adds it.
+2. History needs no setup: analyses are kept as files in `analysis/`, and every change to the
+   knowledge folder is written to `knowledge/CHANGELOG.md`, which analyses read. Git is **optional**;
+   do not suggest installing it. Only if `git --version` works and the folder is not a repository
+   yet, mention in one line that they may make this workspace a **private** git repository for a
+   change history (`git init`); skip it if they do not want it. If it is a repository: do not create
+   remotes or push; commit only when they ask.
 3. Claude Code access: if the logs or the knowledge folder are outside this workspace, offer to add
    them to `.claude/settings.json` → `permissions.additionalDirectories` so analyses can read them.
 

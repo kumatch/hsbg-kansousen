@@ -156,7 +156,13 @@ def test_init_creates_the_workspace_with_its_own_knowledge_folder(
     assert all(created.values())
     for name in ["hsbg.toml", ".gitignore", "README.md", "analysis"]:
         assert name in created
-    for name in ["README.md", "CLAUDE.md", "patches/_template.md", "season/README.md"]:
+    for name in [
+        "README.md",
+        "CLAUDE.md",
+        "CHANGELOG.md",
+        "patches/_template.md",
+        "season/README.md",
+    ]:
         assert f"knowledge/{name}" in created
     assert "gitignore" not in created  # stored under another name in the package only
     # valid TOML; the only active line points at the knowledge folder it just created

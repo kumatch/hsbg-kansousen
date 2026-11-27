@@ -27,17 +27,28 @@ from a clone of hsbg, `uv run --project <clone> hsbg ...` also works.
 Facts about the game itself (rule assumptions, the current season's systems and minion pool, every
 patch / hotfix with its time) live in the player's own knowledge folder `<knowledge>` (none set =
 unavailable). `hsbg init` creates it as `knowledge/` inside the workspace; it may also be a separate
-git repository. Typical layout: `basics/` (glossary, assumptions), `season/current.md`,
-`season/pool/`, `patches/YYYY-MM-DD_<version>.md`. It is updated on its own schedule, so every
-analysis records which commit it read and the next trend analysis checks what changed since then.
-Limit every git command to that folder with `-- .`, so commits of the rest of a workspace repository
-do not count.
+folder. Typical layout: `basics/` (glossary, assumptions), `season/current.md`, `season/pool/`,
+`patches/YYYY-MM-DD_<version>.md`, `CHANGELOG.md`. It is updated on its own schedule, so every
+analysis records which state of it it read and the next trend analysis checks what changed since
+then. The state is followed in one of two ways; **git is optional**:
 
-- Record: `git -C <knowledge> log -1 --format=%h -- .`, plus `-dirty` when
-  `git -C <knowledge> status --porcelain -- .` is not empty. Write it as the second line of the saved
-  file: `Knowledge: knowledge@<hash>` (older files may say `hsbg-knowledge@<hash>`; same meaning).
-  If the folder exists but is not under git, write `Knowledge: knowledge@untracked` and say once that
-  changes cannot be followed until it is committed.
+- **Change record** (always): `<knowledge>\CHANGELOG.md` gets one line per change,
+  `- YYYY-MM-DD HH:MM <TZ> <kind>: <what>（<files>）`, kind `patch` / `fix` / `season` / `basics` /
+  `docs`. Lines are appended at the end.
+- **git** (only when `git -C <knowledge> rev-parse` succeeds, i.e. git is installed and the folder is
+  in a repository): commits. Limit every git command to that folder with `-- .`, so commits of the
+  rest of a workspace repository do not count. Never suggest installing git or creating a repository
+  for this; the change record is enough.
+
+Record it as the second line of the saved file:
+
+- git: `Knowledge: knowledge@<hash>` from `git -C <knowledge> log -1 --format=%h -- .`, plus `-dirty`
+  when `git -C <knowledge> status --porcelain -- .` is not empty (older files may say
+  `hsbg-knowledge@<hash>`; same meaning).
+- no git: `Knowledge: knowledge@changelog <date time TZ of the last CHANGELOG line>`, or
+  `Knowledge: knowledge@changelog none` when the file has no lines yet or is missing (a workspace made
+  by an older hsbg; `hsbg init .` adds the file without touching the others).
+- Older files may say `Knowledge: knowledge@untracked`: the state it read is unknown.
 - Use it for card facts (tier, stats, text, what a patch changed) instead of guessing, and cite the
   file. It contains no conclusions from the player's games; those stay in the analyses.
 - **Card facts go stale with every patch; judge their validity here, not in the knowledge folder.**
@@ -85,15 +96,23 @@ do not count.
    still carry the newest Standing summary forward.
 4. If the user gave no range, use the games started after the period in that newest trend file's
    header (`--since <date>`); otherwise `--last N` / `--since` as asked.
-5. **Knowledge changes.** Take the `Knowledge:` hash from the previous trend file and run
-   `git -C <knowledge> log --oneline <hash>..HEAD -- .` and
-   `git -C <knowledge> diff --stat <hash>..HEAD -- .` (read the changed files). When the previous file
-   has no hash, treat every `patches/` file dated after its period as new. Then:
+5. **Knowledge changes.** Find what changed in `<knowledge>` since the previous trend file, from its
+   `Knowledge:` line:
+   - a hash, and the folder is under git: `git -C <knowledge> log --oneline <hash>..HEAD -- .` and
+     `git -C <knowledge> diff --stat <hash>..HEAD -- .`, plus the CHANGELOG lines after the previous
+     file's time (the timestamp in its file name);
+   - `changelog <time>` (or a hash while the folder is no longer under git): the CHANGELOG lines after
+     that time. As a check for edits made without a line, also list the files in `<knowledge>` changed
+     after the previous file's time (`Get-ChildItem "<knowledge>" -Recurse -File | Where-Object
+     LastWriteTime -gt <time>`) and mention any that no line explains;
+   - `changelog none`, `untracked` or no line: treat every `patches/` file dated after its period as
+     new, and every CHANGELOG line after its time.
+   Read the changed files. Then:
    - a new patch inside or before the period → split the period at its time (run `hsbg stats` once
      per side with `--since` / `--until`) and compare the post-patch numbers with the post-patch side
      only; mark the Standing summary items that the patch touches (cards it changed, key cards, the
      mechanics they rely on) `needs re-check (<version>)`;
-   - a `fix:` commit or other change to an existing file → say what changed and which earlier
+   - a `fix:` line or commit, or another change to an existing file → say what changed and which earlier
      conclusions relied on it.
 6. Apply `analyze-trend.md` (next to this file) to the tables, then each active lens's questions. The
    output **must** contain `## Knowledge changes since last analysis` (when step 5 ran),

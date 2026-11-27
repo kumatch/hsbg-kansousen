@@ -84,5 +84,5 @@ another lens. Propose the plan (files, tables, columns) and wait for the OK.
 - Never edit another lens or the core hsbg code from this skill. If a lens needs something
   `hsbg.lens` does not offer, compute it in the lens from the tables, or tell the player it would be
   a change to hsbg itself.
-- The workspace is the player's git repository: list the files you changed and leave committing to
-  them (or commit only when they ask).
+- List the files you changed. If the workspace is a git repository (optional), leave committing to
+  the player (or commit only when they ask).

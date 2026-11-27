@@ -19,4 +19,5 @@ Rules:
 - Reply in the player's language (`profile.md`).
 - Run `hsbg` from this folder. Never modify the game logs (`hsbg config` → logs_dir) except moving a
   game to `.excluded` with the player's OK (see the analysis skill).
-- Commit only when the player asks; never push or create remotes on your own.
+- Git is optional here. If this folder is a git repository, commit only when the player asks; never
+  push or create remotes on your own. If it is not, do not suggest installing git or creating one.
