@@ -2,6 +2,7 @@
 
 hsbg-kansousen は、Claude デスクトップアプリに頼むだけで使い始められます。ターミナルを開いたり、コマンドを打ったりする必要はありません
 （インストールも分析も、Claude がコマンドを実行します。あなたは内容を見て許可するだけです）。
+ターミナルで Claude Code（CLI）を使うときは、README の「[Claude Code（CLI）を使う](../README.md#claude-codecliを使う)」を見てください。
 
 ## 用意するもの
 

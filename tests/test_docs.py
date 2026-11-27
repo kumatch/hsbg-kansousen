@@ -16,10 +16,10 @@ def _version() -> str:
 
 def test_tag_zip_urls_match_the_package_version() -> None:
     version = _version()
-    for name in ["README.md", "docs/install.md"]:
-        found = TAG_ZIP.findall((ROOT / name).read_text(encoding="utf-8"))
-        assert found, f"{name}: no tag zip URL"
-        assert set(found) == {version}, f"{name}: {sorted(set(found))} != {version}"
+    assert TAG_ZIP.search((ROOT / "docs" / "install.md").read_text(encoding="utf-8"))
+    for name in ["README.md", "docs/install.md", "docs/desktop-app.md"]:
+        found = set(TAG_ZIP.findall((ROOT / name).read_text(encoding="utf-8")))
+        assert found <= {version}, f"{name}: {sorted(found)} != {version}"
 
 
 def test_user_docs_do_not_ask_for_git() -> None:

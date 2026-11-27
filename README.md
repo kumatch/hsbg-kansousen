@@ -35,60 +35,45 @@ hsbg-kifu（記録アプリ）──書く──▶ ログのフォルダ（Docu
 
 ## はじめかた
 
-いちばん簡単なのは、**Claude デスクトップアプリに頼む** 方法です。ターミナルの操作は要りません
-（インストールも分析も Claude がコマンドを実行し、あなたは内容を見て許可します）。
+Claude に次の文を送ると、Claude がセットアップを進めます（インストール、ワークスペースの作成、記録のフォルダの確認、あなたの目標の聞き取り）。
+コマンドは Claude が実行し、あなたは内容を見て許可します。Claude デスクトップアプリと Claude Code（CLI）のどちらでも同じ文です。
 
-1. 記録アプリ hsbg-kifu を入れて、BG を何ゲームか遊ぶ（[hsbg-kifu の README](https://github.com/kumatch/hsbg-kifu)。HDT と一緒に使います）。
-   HDT プラグイン [hdt-plugin-hsbg-kansousen](https://github.com/kumatch/hdt-plugin-hsbg-kansousen) の記録も、同じフォルダにあればそのまま読めます
-   （プラグインは、HDT がプラグインを廃止する 2026-11-30 以降は動きません）
-2. [Claude デスクトップアプリ](https://claude.ai/download)を入れる（「コード」タブを使うので、Claude の Pro 以上のプランが要ります）
-3. ワークスペース（あなた専用の分析のフォルダ）にする空のフォルダを作る（例: 「ドキュメント」の中の `hsbg-workspace`）
-4. アプリの「コード」タブで、そのフォルダを選んでセッションを始め、次の文をそのままコピーして送る
+> hsbg-kansousen を使い始めたい。https://github.com/kumatch/hsbg-kansousen/blob/main/docs/install.md の手順に従って、このフォルダにセットアップして
 
-   > hsbg-kansousen を使い始めたい。https://github.com/kumatch/hsbg-kansousen/blob/main/docs/install.md の手順に従って、このフォルダにセットアップして
+どちらの場合も、先に記録アプリ hsbg-kifu を入れて、BG を何ゲームか遊んでおきます（[hsbg-kifu の README](https://github.com/kumatch/hsbg-kifu)。HDT と一緒に使います）。
+HDT プラグイン [hdt-plugin-hsbg-kansousen](https://github.com/kumatch/hdt-plugin-hsbg-kansousen) の記録も、同じフォルダにあればそのまま読めます
+（プラグインは、HDT がプラグインを廃止する 2026-11-30 以降は動きません）。
 
-   Claude が、何を入れるか（uv と hsbg）を説明してから、インストール、ワークスペースの作成、記録のフォルダの確認、あなたの目標の聞き取り
-   （→ `profile.md`）まで進めます。答えにくい質問は飛ばしてかまいません。最後にアプリを一度開き直します
-5. 次からも同じフォルダを選んで、「さっきのゲームを分析して」「ダッシュボードを開いて」のように頼みます（次の「ワークスペースでの使いかた」）
+### Claude デスクトップアプリを使う
 
-画面の操作や困ったときのことは [docs/desktop-app.md](docs/desktop-app.md)、Claude が実行する手順は [docs/install.md](docs/install.md) にあります。
-hsbg の更新も「hsbg を更新して」と頼めば済みます。
+ターミナルの操作は要りません。
 
-### ターミナルで使う（Claude Code の CLI）
+1. [Claude デスクトップアプリ](https://claude.ai/download)を入れる（「コード」タブを使うので、Claude の Pro 以上のプランが要ります）
+2. ワークスペース（あなた専用の分析のフォルダ）にする空のフォルダを作る（例: 「ドキュメント」の中の `hsbg-workspace`）
+3. アプリの「コード」タブで、そのフォルダを選んでセッションを始める（フォルダを信頼するかを聞かれたら、信頼する）
+4. 上の文をそのままコピーして送る。Claude の説明を読み、許可を求められたら内容を見て許可し、質問に答える（答えにくい質問は飛ばしてかまいません）
+5. 終わったら、アプリを一度終了して開き直す
+6. 次からも同じフォルダを選んで、「さっきのゲームを分析して」「ダッシュボードを開いて」のように頼む（次の「ワークスペースでの使いかた」）
 
-自分でコマンドを打つ場合の手順です。
+画面の操作や困ったときのことは [docs/desktop-app.md](docs/desktop-app.md) にあります。
 
-1. 上の 1 と同じく、記録アプリ hsbg-kifu を入れる
-2. uv を入れて、`hsbg` をインストールする
+### Claude Code（CLI）を使う
+
+1. [Claude Code](https://code.claude.com/docs/en/setup) を入れる（Claude の Pro 以上のプラン、または API キーが要ります）
+2. ワークスペースにする空のフォルダを作り、そのフォルダでターミナルを開いて `claude` を起動する
+   （エクスプローラーでフォルダを右クリック →「ターミナルで開く」。フォルダを信頼するかを聞かれたら、信頼する）
    ```powershell
-   winget install astral-sh.uv
-   uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v0.5.0.zip --with pytest
-   ```
-   （`hsbg` が見つからないと言われたら `uv tool update-shell` を実行して、ターミナルを開き直す）
-3. ワークスペースを作る
-   ```powershell
-   hsbg init $env:USERPROFILE\hsbg-kansousen-workspace
-   ```
-4. **ワークスペースのフォルダで** Claude Code を起動し、セットアップを頼む（以後の分析も、いつもこのフォルダで Claude Code を起動します）
-   ```powershell
-   cd $env:USERPROFILE\hsbg-kansousen-workspace
+   mkdir $env:USERPROFILE\hsbg-workspace
+   cd $env:USERPROFILE\hsbg-workspace
    claude
    ```
-   Claude Code が開いたら、たとえば次のように頼みます。
+3. 上の文をそのままコピーして送る。Claude の説明を読み、許可を求められたら内容を見て許可し、質問に答える
+4. 終わったら、ターミナルを一度閉じて開き直す
+5. 次からも同じフォルダで `claude` を起動して頼む（次の「ワークスペースでの使いかた」）
 
-   > セットアップして。主に MMR 6000 前後で遊んでいて、1 位を取るより 5〜8 位を減らしたい。分析は日本語で、カード名も日本語がいい
+Claude が実行するコマンドは、すべて [docs/install.md](docs/install.md) に書いてあります。Claude に任せずに自分で入れるときも、この手順書のコマンドを順に実行します。
 
-   AI（`hsbg-setup` スキル）が対話で次を進めます。答えにくい質問は飛ばしてかまいません。
-   - `hsbg config` / `hsbg validate` で、記録アプリのログが見つかるか（保存先を変えている場合は `hsbg.toml` を直す）
-   - カード名の言語（`locale`）と、分析の文章の言語
-   - 知識庫（`knowledge/`）の用意
-   - 目標・優先度・助言の前に確かめてほしいことの聞き取り → `profile.md` を書いて見せる
-
-   `profile.md` は後からいつでも「目標を変えたい。〜」と頼めば直してくれます（直接編集してもよい）。
-5. ゲームを遊んだら、同じフォルダで Claude Code を開いて「さっきのゲームを分析して」と頼みます。次の「ワークスペースでの使いかた」を参照
-
-hsbg の更新は、新しい版の URL で `uv tool install --force <URL> --with pytest` を実行し（`uv tool upgrade` では更新されません）、
-ワークスペースで `hsbg skills update` と `hsbg init .`（新しい版で増えたファイルだけを足す）を実行します。
+hsbg の更新は、どちらの場合も「hsbg を更新して」と頼みます（手順は docs/install.md の「更新するとき」）。
 
 ### 記録アプリと hsbg の版
 
@@ -106,7 +91,7 @@ hsbg の更新は、新しい版の URL で `uv tool install --force <URL> --wit
 - hsbg より新しい記録アプリのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
   `hsbg validate` とダッシュボードに「hsbg を更新してください」と出ます（0.1.0 はそのログを読み飛ばします）
 - 古い記録アプリのログは、新しい hsbg でもそのまま読めます（無い項目は空欄。いくつかは `hsbg backfill-*` で power.log から補えます）
-- 「ターミナルで使う」の `uv tool install` の URL の版（`v0.5.0` の部分）を変えると、その版を入れられます
+- 版を指定して入れるときは、[docs/install.md](docs/install.md) の `uv tool install` の URL の版（`v<版>.zip` の部分）を変えます
 
 ## ワークスペースでの使いかた
 
@@ -176,7 +161,7 @@ BG はシーズンの開始やパッチ・ホットフィックスで数値や�
 
 ### ダッシュボード: 普段の振り返りに
 
-デスクトップアプリなら「ダッシュボードを開いて」と頼みます（終わったら「ダッシュボードを止めて」）。ターミナルなら次のとおりです。
+Claude に「ダッシュボードを開いて」と頼みます（終わったら「ダッシュボードを止めて」）。自分で起動するときは、次のとおりです。
 
 ```powershell
 cd $env:USERPROFILE\hsbg-kansousen-workspace

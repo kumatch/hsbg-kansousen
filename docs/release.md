@@ -24,7 +24,7 @@ hsbg は記録アプリ（hsbg-kifu。2026-11-30 までは HDT プラグイン h
 
 1. `KNOWN_SCHEMA_VERSION` が hsbg-kifu の `GameLog.CurrentSchemaVersion` と同じこと
    （hsbg-kifu 側の `python scripts\check_cli_sync.py --strict` が確かめる）
-2. `pyproject.toml` の `version` を上げ、README の対応表に行を足す。README と `docs/install.md` にあるタグの zip の URL（`.../archive/refs/tags/v<version>.zip`）の版も上げる
+2. `pyproject.toml` の `version` を上げ、README の対応表に行を足す。`docs/install.md` にあるタグの zip の URL（`.../archive/refs/tags/v<version>.zip`）の版も上げる
    （デスクトップアプリの利用者は、`docs/install.md` の URL の版を入れる。`tests/test_docs.py` が `version` との食い違いを見つける）。
    検証コマンドと `python scripts\check_private.py` を緑にしてコミットする
 3. `git tag -a v<version> -m "hsbg <version>（hsbg-kifu <x.y.z> / schema <a.b.c> まで）"; git push origin main v<version>`
