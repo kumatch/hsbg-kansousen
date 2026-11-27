@@ -3,7 +3,7 @@
 # relative to this folder. Environment variables HSBG_LOGS / HSBG_KNOWLEDGE / HSBG_CARDDEFS /
 # HSBG_LOCALE override the matching line. `hsbg config` shows what is in effect.
 
-# Game logs written by the HDT plugin (its Settings > Log folder)
+# Game logs written by the recorder hsbg-kifu (its output folder; tray icon > 設定...)
 # logs_dir = '%USERPROFILE%\Documents\HSBG-Logs'
 
 # Saved AI analyses (Markdown), static HTML reports, `hsbg export` output

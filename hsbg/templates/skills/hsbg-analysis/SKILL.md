@@ -1,6 +1,6 @@
 ---
 name: hsbg-analysis
-description: Analyze the player's Hearthstone Battlegrounds games from the HDT plugin's logs with the hsbg CLI, following the workspace's profile.md and active lenses, and save every analysis as Markdown in the analysis folder. Use when the user asks about their BG results, a specific game ("昨日の最後のゲーム", "さっきの 6 位"), a hero's performance, or trends over recent games.
+description: Analyze the player's Hearthstone Battlegrounds games from the game recorder's (hsbg-kifu's) logs with the hsbg CLI, following the workspace's profile.md and active lenses, and save every analysis as Markdown in the analysis folder. Use when the user asks about their BG results, a specific game ("昨日の最後のゲーム", "さっきの 6 位"), a hero's performance, or trends over recent games.
 ---
 
 # HSBG analysis
@@ -17,10 +17,10 @@ here are overwritten). The player's own goals and angles live in the workspace, 
 ## Folders
 
 Run `hsbg` from the workspace folder (the one with `hsbg.toml`). First run `hsbg config` once: it
-prints the folders in effect; this skill calls them `<logs>` (logs_dir; the plugin writes
+prints the folders in effect; this skill calls them `<logs>` (logs_dir; the recorder writes
 `<logs>\YYYY\MM\*.json`), `<analysis>` (analysis_dir; where analyses are saved, create it if missing)
 and `<knowledge>` (knowledge_dir). If `hsbg` is not found, the user has not installed it (README);
-from a clone of hsbg, `uv run --project <clone>\analysis hsbg ...` also works.
+from a clone of hsbg, `uv run --project <clone> hsbg ...` also works.
 
 ## Game knowledge (the player's own knowledge folder)
 
@@ -148,7 +148,7 @@ do not count.
   hero names exactly as they appear in the summary / tables. They come from HDT's CardDefs in the
   configured `locale` when the file exists, English otherwise. Hero rows in `hsbg stats` are the base
   hero (skins merged); the summary header shows the skin name the player used.
-- Write the file with UTF-8 (no BOM). Never write into `<logs>\YYYY\MM\` (that is the plugin's
+- Write the file with UTF-8 (no BOM). Never write into `<logs>\YYYY\MM\` (that is the recorder's
   folder) and never modify the JSON logs.
 - Charts exist in the static report (`hsbg report --last 50 --open`) and the dashboard
   (`hsbg serve`; lens tables are on its マイ分析 page); mention them once, do not run them unless asked.

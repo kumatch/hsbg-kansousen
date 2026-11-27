@@ -1,6 +1,6 @@
 ---
 name: hsbg-setup
-description: First-time setup of an hsbg workspace with the player — check that the HDT plugin's logs are found, the settings (hsbg.toml), the knowledge folder and git, and interview the player about their goals to write profile.md. Use when the player starts using hsbg ("セットアップして", "使い始めたい"), when profile.md is missing, or when the player wants to change their goals.
+description: First-time setup of an hsbg workspace with the player — check that the game recorder's (hsbg-kifu's) logs are found, the settings (hsbg.toml), the knowledge folder and git, and interview the player about their goals to write profile.md. Use when the player starts using hsbg ("セットアップして", "使い始めたい"), when profile.md is missing, or when the player wants to change their goals.
 ---
 
 # HSBG setup
@@ -13,9 +13,12 @@ Do not change anything outside this workspace folder.
 1. `hsbg config` — shows the workspace and the folders in effect. If `hsbg` is not found, point to
    the install steps of the hsbg README and stop.
 2. `hsbg validate` — how many logs were found in `logs_dir`.
-   - None: ask whether the HDT plugin is installed and enabled (HDT: Options > Tracker > Plugins) and
-     where its Settings > Log folder points. If it is not the default, set `logs_dir` in `hsbg.toml`
-     to the same folder. If they have not played since installing it, ask them to play a game.
+   - None: ask whether the recorder **hsbg-kifu** is installed and running (its "BG" icon in the
+     task tray; it records only while running, alongside HDT and Hearthstone) and where its output
+     folder points (tray icon → 設定...; the default is `Documents\HSBG-Logs`). If it is not the
+     default, set `logs_dir` in `hsbg.toml` to the same folder. If they have not played since
+     installing it, ask them to play a game. Logs of the older HDT plugin
+     (hdt-plugin-hsbg-kansousen) in the same folder are read too.
    - Invalid logs: report them; they are skipped, not fatal.
 3. Languages — three independent choices; explain them in one or two lines each:
    - **Card / hero names** (summaries, stats, dashboard): `locale` in `hsbg.toml`. It can be English
@@ -23,7 +26,7 @@ Do not change anything outside this workspace folder.
      `CardDefs.base.xml` (English) and `CardDefs.<client language>.xml`, so a Japanese name needs a
      Japanese client. A locale whose file is missing falls back to English. `hsbg config` shows
      `carddefs_dir`; if the folder is missing (HDT has not downloaded its card data yet), names stay
-     English until it exists. The plugin's logs themselves are the same for every language.
+     English until it exists. The recorder's logs themselves are the same for every language.
    - **Analysis text** (replies and saved analyses): any language; record it in `profile.md`.
    - **Dashboard / report screens**: Japanese for now, whatever the other two are.
    Default `locale` is `jaJP`; set `locale = 'enUS'` for English names.
