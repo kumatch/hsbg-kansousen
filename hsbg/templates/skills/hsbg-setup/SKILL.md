@@ -39,11 +39,10 @@ Do not change anything outside this workspace folder.
    notes) and that it is theirs alone. If `knowledge/CHANGELOG.md` is missing (a workspace made by an
    older hsbg), `hsbg init .` adds it.
 2. History needs no setup: analyses are kept as files in `analysis/`, and every change to the
-   knowledge folder is written to `knowledge/CHANGELOG.md`, which analyses read. Git is **optional**;
-   do not suggest installing it. Only if `git --version` works and the folder is not a repository
-   yet, mention in one line that they may make this workspace a **private** git repository for a
-   change history (`git init`); skip it if they do not want it. If it is a repository: do not create
-   remotes or push; commit only when they ask.
+   knowledge folder is written to `knowledge/CHANGELOG.md`, which analyses read. Do not bring up git
+   (installing it, `git init`, remotes): whether to use it is entirely the player's choice. If the
+   folder already is a repository (their choice): do not create remotes or push; commit only when
+   they ask.
 3. Claude Code access: if the logs or the knowledge folder are outside this workspace, offer to add
    them to `.claude/settings.json` → `permissions.additionalDirectories` so analyses can read them.
 

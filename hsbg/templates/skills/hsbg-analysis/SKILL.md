@@ -30,15 +30,16 @@ unavailable). `hsbg init` creates it as `knowledge/` inside the workspace; it ma
 folder. Typical layout: `basics/` (glossary, assumptions), `season/current.md`, `season/pool/`,
 `patches/YYYY-MM-DD_<version>.md`, `CHANGELOG.md`. It is updated on its own schedule, so every
 analysis records which state of it it read and the next trend analysis checks what changed since
-then. The state is followed in one of two ways; **git is optional**:
+then. The state is followed from the change record, and also from git only when the player keeps
+the folder in git (their own choice):
 
 - **Change record** (always): `<knowledge>\CHANGELOG.md` gets one line per change,
   `- YYYY-MM-DD HH:MM <TZ> <kind>: <what>（<files>）`, kind `patch` / `fix` / `season` / `basics` /
   `docs`. Lines are appended at the end.
 - **git** (only when `git -C <knowledge> rev-parse` succeeds, i.e. git is installed and the folder is
   in a repository): commits. Limit every git command to that folder with `-- .`, so commits of the
-  rest of a workspace repository do not count. Never suggest installing git or creating a repository
-  for this; the change record is enough.
+  rest of a workspace repository do not count. Never bring up git with the player (installing it,
+  creating a repository); the change record is enough.
 
 Record it as the second line of the saved file:
 

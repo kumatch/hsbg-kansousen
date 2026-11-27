@@ -51,12 +51,12 @@
   - [x] 1. git を任意にする（2026-11-28）: README・ワークスペースの README / CLAUDE.md・hsbg-setup・hsbg-lens の「git を勧める」を任意に。
         知識庫に `knowledge/CHANGELOG.md`（変更のたびに日時・種類 patch / fix / season・ファイルを 1 行。git を使う人も書く）。
         分析の `Knowledge:` 行は git があればハッシュ、無ければ CHANGELOG の最後の日時。次の傾向分析は git log / diff か、その日時より後の CHANGELOG の行で変更を見る
-  - [ ] 2. git の要らないインストール: `uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<版>.zip`。
+  - [x] 2. git の要らないインストール（2026-11-28。README 冒頭に、アプリに送る最初の依頼文。`tests/test_docs.py` が URL の版を検査）: `uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<版>.zip`。
         AI が上から実行する手順書 `docs/install.md`（uv → hsbg → `hsbg init .` → hsbg-setup へ引き継ぎ → アプリの再起動）。
         `docs/release.md` に「README と install.md の URL の版を上げる」。`git+https` はターミナル版に残す
   - [ ] 3. アプリとの連携: `hsbg init` が `.claude/launch.json`（`hsbg serve --no-open`、autoVerify なし）と `.claude/settings.json`
         （読むだけの hsbg コマンドを許可、ログのフォルダを additionalDirectories）を置く。ワークスペースの CLAUDE.md に「ダッシュボードを開いて / 止めて」
-  - [ ] 4. 人向けの文書: `docs/desktop-app.md`（アプリの入れ方、フォルダの作り方、コードタブ、承認の読み方、最初の依頼文、ふだんの頼み方、更新、困ったとき）、
+  - [ ] 4. 人向けの文書（`docs/desktop-app.md` の最初の版と README の入口は 2 と一緒に書いた。3 の後で、ボタンでのダッシュボードと承認の減らし方を足す）: `docs/desktop-app.md`（アプリの入れ方、フォルダの作り方、コードタブ、承認の読み方、最初の依頼文、ふだんの頼み方、更新、困ったとき）、
         README の入口をアプリ版とターミナル版に分ける、`docs/architecture.md`
   - [ ] 5. 通しの確認: git の入っていない別の Windows ユーザーで、アプリだけでインストール → セットアップ → 分析 → ダッシュボードまで通す。
         ターミナル版の README の手順も同じ機会に通す（雛形が変わるので 0.6.0 の想定）
@@ -72,6 +72,8 @@
 
 - 利用者ごとのもの（目標、分析の筋、ゲーム知識、保存した分析）はワークスペースに置き、利用者どうしで共有しない（共有すると、そのメンテナンスと、
   誰かの変更が他の人の分析に波及する依存が生まれるため）。知識庫は使うことを勧め、`hsbg init` が空の雛形を用意する
+- git は前提にしない（2026-11-28）。インストール（タグの zip）も、ワークスペースの履歴（分析のファイルと `knowledge/CHANGELOG.md`）も git 無しで完結させ、
+  README・案内・雛形では git に触れない（`tests/test_docs.py` が検査）。使うかは利用者に任せ、スキルは、利用者が git で管理していればそれに合わせるだけ
 - `uv tool install git+https://...` は git 本体が要る。タグのソース zip（`.../archive/refs/tags/v<版>.zip`）なら git が PATH に無くても入る
   （2026-11-28、uv 0.12.14 で確認）。zip で入れたものは `uv tool upgrade hsbg` が「Nothing to upgrade」になるので、更新は新しい版の URL で
   `uv tool install --force <URL>`。uv のツールの置き場は既定で `%USERPROFILE%\.local\bin`。winget の uv はパッケージのフォルダをユーザーの PATH に足すだけなので、

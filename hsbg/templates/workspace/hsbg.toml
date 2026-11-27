@@ -15,7 +15,7 @@
 # lenses_dir = 'lenses'
 
 # Your own game-knowledge folder (rules, season, patches), created by `hsbg init` next to this file.
-# Point it at another folder (e.g. a separate git repository) if you keep it elsewhere; comment it
+# Point it at another folder if you keep it elsewhere; comment it
 # out to analyse without one.
 knowledge_dir = 'knowledge'
 

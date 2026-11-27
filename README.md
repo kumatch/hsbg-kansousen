@@ -9,7 +9,8 @@ Hearthstone Battlegrounds（BG）の自分のゲームを、AI エージェン�
 > and Claude Code skills — reading the game logs written by hsbg-kifu. You keep your goals,
 > your analysis angles ("lenses") and your game knowledge in your own private workspace.
 
-- 動作環境: Windows（記録アプリと同じ PC）、Python 3.12、[uv](https://docs.astral.sh/uv/)、AI 分析には [Claude Code](https://claude.com/claude-code)
+- 動作環境: Windows（記録アプリと同じ PC）、AI 分析には Claude（[デスクトップアプリ](https://claude.ai/download)の「コード」タブ、または [Claude Code](https://claude.com/claude-code)）。
+  Python 3.12 と [uv](https://docs.astral.sh/uv/) はセットアップで入ります
 - ログは読むだけで書き換えません。外部へは何も送りません（ダッシュボードは 127.0.0.1 だけで開きます）
 - 非公式のファンメイドツールです。Blizzard Entertainment、HearthSim とは関係ありません
 
@@ -34,16 +35,37 @@ hsbg-kifu（記録アプリ）──書く──▶ ログのフォルダ（Docu
 
 ## はじめかた
 
+いちばん簡単なのは、**Claude デスクトップアプリに頼む** 方法です。ターミナルの操作は要りません
+（インストールも分析も Claude がコマンドを実行し、あなたは内容を見て許可します）。
+
 1. 記録アプリ hsbg-kifu を入れて、BG を何ゲームか遊ぶ（[hsbg-kifu の README](https://github.com/kumatch/hsbg-kifu)。HDT と一緒に使います）。
    HDT プラグイン [hdt-plugin-hsbg-kansousen](https://github.com/kumatch/hdt-plugin-hsbg-kansousen) の記録も、同じフォルダにあればそのまま読めます
    （プラグインは、HDT がプラグインを廃止する 2026-11-30 以降は動きません）
+2. [Claude デスクトップアプリ](https://claude.ai/download)を入れる（「コード」タブを使うので、Claude の Pro 以上のプランが要ります）
+3. ワークスペース（あなた専用の分析のフォルダ）にする空のフォルダを作る（例: 「ドキュメント」の中の `hsbg-workspace`）
+4. アプリの「コード」タブで、そのフォルダを選んでセッションを始め、次の文をそのままコピーして送る
+
+   > hsbg-kansousen を使い始めたい。https://github.com/kumatch/hsbg-kansousen/blob/main/docs/install.md の手順に従って、このフォルダにセットアップして
+
+   Claude が、何を入れるか（uv と hsbg）を説明してから、インストール、ワークスペースの作成、記録のフォルダの確認、あなたの目標の聞き取り
+   （→ `profile.md`）まで進めます。答えにくい質問は飛ばしてかまいません。最後にアプリを一度開き直します
+5. 次からも同じフォルダを選んで、「さっきのゲームを分析して」「ダッシュボードを開いて」のように頼みます（次の「ワークスペースでの使いかた」）
+
+画面の操作や困ったときのことは [docs/desktop-app.md](docs/desktop-app.md)、Claude が実行する手順は [docs/install.md](docs/install.md) にあります。
+hsbg の更新も「hsbg を更新して」と頼めば済みます。
+
+### ターミナルで使う（Claude Code の CLI）
+
+自分でコマンドを打つ場合の手順です。
+
+1. 上の 1 と同じく、記録アプリ hsbg-kifu を入れる
 2. uv を入れて、`hsbg` をインストールする
    ```powershell
    winget install astral-sh.uv
-   uv tool install git+https://github.com/kumatch/hsbg-kansousen --with pytest
+   uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v0.5.0.zip --with pytest
    ```
    （`hsbg` が見つからないと言われたら `uv tool update-shell` を実行して、ターミナルを開き直す）
-3. ワークスペース（あなた専用の分析のフォルダ）を作る
+3. ワークスペースを作る
    ```powershell
    hsbg init $env:USERPROFILE\hsbg-kansousen-workspace
    ```
@@ -65,7 +87,8 @@ hsbg-kifu（記録アプリ）──書く──▶ ログのフォルダ（Docu
    `profile.md` は後からいつでも「目標を変えたい。〜」と頼めば直してくれます（直接編集してもよい）。
 5. ゲームを遊んだら、同じフォルダで Claude Code を開いて「さっきのゲームを分析して」と頼みます。次の「ワークスペースでの使いかた」を参照
 
-hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペースで `hsbg skills update` を実行してください（スキルが新しくなります）。
+hsbg の更新は、新しい版の URL で `uv tool install --force <URL> --with pytest` を実行し（`uv tool upgrade` では更新されません）、
+ワークスペースで `hsbg skills update` と `hsbg init .`（新しい版で増えたファイルだけを足す）を実行します。
 
 ### 記録アプリと hsbg の版
 
@@ -83,19 +106,15 @@ hsbg を更新したら、`uv tool upgrade hsbg` のあとワークスペース�
 - hsbg より新しい記録アプリのログ（同じ schema 1.x）も、0.2.0 以降なら読み込みます。新しい項目は使わず、
   `hsbg validate` とダッシュボードに「hsbg を更新してください」と出ます（0.1.0 はそのログを読み飛ばします）
 - 古い記録アプリのログは、新しい hsbg でもそのまま読めます（無い項目は空欄。いくつかは `hsbg backfill-*` で power.log から補えます）
-- 上の `uv tool install` は最新の版を入れます。版を指定するときは `git+https://github.com/kumatch/hsbg-kansousen@v0.2.0` のように書きます
+- 「ターミナルで使う」の `uv tool install` の URL の版（`v0.5.0` の部分）を変えると、その版を入れられます
 
 ## ワークスペースでの使いかた
 
-いつも **ワークスペースのフォルダで** Claude Code を起動して、ふつうの言葉で頼みます（`hsbg` のコマンドは AI が実行します）。
+いつも **ワークスペースのフォルダで** Claude を開いて、ふつうの言葉で頼みます（`hsbg` のコマンドは AI が実行します）。
+デスクトップアプリなら「コード」タブでワークスペースのフォルダを選んでセッションを始め、ターミナルならそのフォルダで `claude` を起動します。
 以下の「」は頼み方の例です。言い回しは自由です。
 
 ### ゲームの後に: 1 ゲームの分析
-
-```powershell
-cd $env:USERPROFILE\hsbg-kansousen-workspace
-claude
-```
 
 - 「さっきのゲームを分析して」
 - 「昨日の最後のゲームを分析して」「今日 6 位だったゲームを見て」
@@ -150,20 +169,21 @@ BG はシーズンの開始やパッチ・ホットフィックスで数値や�
    - 「BG のパッチ 37.2 が来た。パッチノートはこれ: <URL>。knowledge に記録して、ミニオンプールのスナップショットを作り直して前回と比べて」
    - パッチノートの本文を貼り付けて「これを knowledge に記録して」でもよい。ゲーム内で気づいた変更は「ゲーム内の表示で〜が Tier 3 になっていた」と伝える
 3. AI が `knowledge\patches\<日付>_<版>.md` を作り、`season\current.md` を更新し、カードデータとの食い違いや、確かめ直しが必要になった記述を挙げます
-4. AI は変更を `knowledge\CHANGELOG.md` にも 1 行ずつ記録します。分析は知識庫をどの時点まで読んだかを記録し、次の傾向分析でそこからの変更を確かめます。
-   ワークスペースを git で管理しているなら、内容を確かめて「knowledge の変更をコミットして」と頼みます
+4. AI は変更を `knowledge\CHANGELOG.md` にも 1 行ずつ記録します。分析は知識庫をどの時点まで読んだかを記録し、次の傾向分析でそこからの変更を確かめます
 
 記述の誤りに気づいたら「knowledge の 37.0 の適用日時が間違っていた。正しくは〜」と頼みます（直したことが `fix:` として記録され、次の分析が過去の結論を見直します）。
 知識庫はあなた専用で、他の人と共有しません。規約は `knowledge\CLAUDE.md`。
 
 ### ダッシュボード: 普段の振り返りに
 
+デスクトップアプリなら「ダッシュボードを開いて」と頼みます（終わったら「ダッシュボードを止めて」）。ターミナルなら次のとおりです。
+
 ```powershell
 cd $env:USERPROFILE\hsbg-kansousen-workspace
 hsbg serve
 ```
 
-ブラウザで http://127.0.0.1:8501 が開きます（自分の PC の中だけで動きます。終了はターミナルで Ctrl+C）。
+ブラウザで http://127.0.0.1:8501 が開きます（自分の PC の中だけで動きます。ターミナルで起動したときの終了は Ctrl+C）。
 AI の分析が「なぜ」を言葉で考える場所なら、ダッシュボードは数字とグラフを眺めて、自分の状態をつかむ場所です。
 左のサイドバーで期間（今日、直近 7 日、直近 30 日、全期間、日付の指定）とヒーローを絞れます。
 
@@ -184,16 +204,14 @@ AI の分析が「なぜ」を言葉で考える場所なら、ダッシュボ�
 pwsh.exe -NoExit -Command "cd $env:USERPROFILE\hsbg-kansousen-workspace; hsbg serve"
 ```
 
-（このリポジトリを clone している場合は `scripts\start-dashboard.ps1 -Workspace <ワークスペース>` も使えます。）
+（hsbg のソースを手元に置いている場合は `scripts\start-dashboard.ps1 -Workspace <ワークスペース>` も使えます。）
 静的な HTML レポート（`hsbg report --last 50 --open`）は、同じグラフを 1 枚のファイルにまとめたものです。
 
 ### 分析の履歴を残す
 
 特別な準備は要りません。分析は `analysis\` にファイルとして溜まり、知識庫の変更は `knowledge\CHANGELOG.md` に記録されて、次の分析に引き継がれます。
 消えると困るものなので、ときどきワークスペースのフォルダごとバックアップを取ってください（`reports\` と `export\` は作り直せるので要りません）。
-
-git は任意です。使い慣れていれば、ワークスペースを git のリポジトリにして「分析と knowledge の変更をコミットして」と頼むと、変更の履歴も残ります
-（push は自分で行うか、頼んだときだけ）。GitHub などに置くなら **private** リポジトリにしてください（あなたの戦績と分析が入っています）。
+ワークスペースにはあなたの戦績と分析が入っているので、他の人と共有する場所には置かないでください。
 
 ## 言語
 
@@ -224,6 +242,8 @@ git は任意です。使い慣れていれば、ワークスペースを git �
 
 | 文書 | 内容 |
 |---|---|
+| [docs/desktop-app.md](docs/desktop-app.md) | Claude デスクトップアプリでの使いかた（はじめかた、頼み方、困ったとき） |
+| [docs/install.md](docs/install.md) | セットアップの手順（Claude が実行する。何が行われるかを人が確かめるのにも） |
 | [docs/architecture.md](docs/architecture.md) | 設計（集計の層、設定、ワークスペース、レンズ、スキル） |
 | [docs/lenses.md](docs/lenses.md) | レンズの書き方（`hsbg.lens` の公開 API） |
 | [docs/analysis-and-visualization.md](docs/analysis-and-visualization.md) | 指標、ダッシュボードの画面、AI 分析の作法 |

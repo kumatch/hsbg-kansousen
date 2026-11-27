@@ -26,7 +26,7 @@
 
 ## 2. 利用者ごとのもの: ワークスペース
 
-利用者の目標、分析の筋、ゲーム知識、保存した分析は、hsbg 本体ではなく各自の **ワークスペース**（`hsbg init <folder>` で作る）に置く。git は任意（使うなら private なリポジトリに）で、無くても履歴が残るようにする（分析はファイル、知識庫の変更は `knowledge/CHANGELOG.md`）。
+利用者の目標、分析の筋、ゲーム知識、保存した分析は、hsbg 本体ではなく各自の **ワークスペース**（`hsbg init <folder>` で作る）に置く。git は前提にしない（手順にも案内にも出さず、使うかは利用者に任せる）。履歴は git 無しで残る（分析はファイル、知識庫の変更は `knowledge/CHANGELOG.md`）。
 利用者どうしで共有しない（共有すると、そのメンテナンスと、誰かの変更が他の人の分析に波及する依存が生まれる）。
 
 ```
@@ -38,7 +38,7 @@
 ├── knowledge/           # ゲームの事実の資料庫（ルールの前提、シーズン、パッチ）。雛形と tools/pool.py を hsbg init が置く
 │   └── CHANGELOG.md     # 知識庫の変更の記録（変えるたびに 1 行。分析が前回からの変更を知るのに使う）
 ├── analysis/            # 保存された分析（*_game.md, trend-*.md）
-├── reports/, export/    # 作り直せる出力（バックアップや git に入れない）
+├── reports/, export/    # 作り直せる出力（バックアップしなくてよい）
 └── .claude/skills/      # hsbg のスキルの複製（hsbg skills update で更新。利用者は編集しない）
 ```
 
@@ -79,7 +79,7 @@ Claude Code のスキルは hsbg に含め、`hsbg init` / `hsbg skills update` 
 
 | スキル | 役割 |
 |---|---|
-| `hsbg-analysis` | 1 ゲーム / 傾向の分析と保存。`analyze-game.md`（観点 a〜d + 各レンズのゲーム用チェック）、`analyze-trend.md`（Q1〜Q7 + 各レンズの問い、Standing summary、`## Proposed lens changes`）、`log-caveats.md`（ログの版ごとの注意）を同じフォルダに持つ。知識庫は読んだ時点（git ならコミット、無ければ `CHANGELOG.md` の最後の行の日時）を記録し、次の傾向分析でそこからの変更を見る |
+| `hsbg-analysis` | 1 ゲーム / 傾向の分析と保存。`analyze-game.md`（観点 a〜d + 各レンズのゲーム用チェック）、`analyze-trend.md`（Q1〜Q7 + 各レンズの問い、Standing summary、`## Proposed lens changes`）、`log-caveats.md`（ログの版ごとの注意）を同じフォルダに持つ。知識庫は読んだ時点（`CHANGELOG.md` の最後の行の日時。利用者が git で管理していればコミット）を記録し、次の傾向分析でそこからの変更を見る |
 | `hsbg-lens` | レンズを利用者と相談して作る・直す・引退させる |
 | `hsbg-setup` | 初回の設定確認と、目標の聞き取り → `profile.md` |
 
