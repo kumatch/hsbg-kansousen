@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "autoVerify": false,
+  "configurations": [
+    {
+      "name": "hsbg dashboard",
+      "runtimeExecutable": "hsbg",
+      "runtimeArgs": ["serve", "--no-open", "--port", "8501"],
+      "port": 8501
+    }
+  ]
+}

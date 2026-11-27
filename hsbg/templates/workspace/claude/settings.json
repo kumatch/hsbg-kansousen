@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(hsbg config *)",
+      "PowerShell(hsbg validate *)",
+      "PowerShell(hsbg summarize *)",
+      "PowerShell(hsbg stats *)",
+      "PowerShell(hsbg lens list *)",
+      "Bash(hsbg config *)",
+      "Bash(hsbg validate *)",
+      "Bash(hsbg summarize *)",
+      "Bash(hsbg stats *)",
+      "Bash(hsbg lens list *)"
+    ]
+  }
+}

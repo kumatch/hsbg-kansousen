@@ -43,8 +43,11 @@ Do not change anything outside this workspace folder.
    (installing it, `git init`, remotes): whether to use it is entirely the player's choice. If the
    folder already is a repository (their choice): do not create remotes or push; commit only when
    they ask.
-3. Claude Code access: if the logs or the knowledge folder are outside this workspace, offer to add
-   them to `.claude/settings.json` → `permissions.additionalDirectories` so analyses can read them.
+3. Claude access: `.claude/settings.json` (from `hsbg init`; `hsbg init .` adds it if missing)
+   lets hsbg's read-only commands run without asking; other commands still ask. If the logs or the
+   knowledge folder are outside this workspace (the logs usually are), offer to add their absolute
+   paths (from `hsbg config`) to `permissions.additionalDirectories` in
+   `.claude/settings.local.json` (create it; keep any existing keys) so analyses can read them.
 
 ## 3. Goals → profile.md
 
@@ -66,4 +69,7 @@ and preferences only — no statistics (those are in the analyses) and no game f
 - With fewer than about 10 games, analyse single games first (`hsbg-analysis`); trends need more.
 - Lenses come later: after a few analyses, when an angle keeps coming up, the `hsbg-lens` skill turns
   it into a lens. Mention `lenses/README.md`.
-- Dashboard: `hsbg serve` (127.0.0.1 only; the マイ分析 page shows the lenses).
+- Dashboard (127.0.0.1 only; the マイ分析 page shows the lenses): they can ask "ダッシュボードを開いて".
+  In the Claude desktop app they can also start it themselves: Browser pane → Dev servers →
+  "hsbg dashboard" (`.claude/launch.json`; the menu appears once the session has a message).
+  In a terminal: `hsbg serve`.

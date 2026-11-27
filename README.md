@@ -161,7 +161,8 @@ BG はシーズンの開始やパッチ・ホットフィックスで数値や�
 
 ### ダッシュボード: 普段の振り返りに
 
-Claude に「ダッシュボードを開いて」と頼みます（終わったら「ダッシュボードを止めて」）。自分で起動するときは、次のとおりです。
+Claude に「ダッシュボードを開いて」と頼みます（終わったら「ダッシュボードを止めて」）。デスクトップアプリでは、ブラウザペインの Dev servers メニューの
+「hsbg dashboard」から自分で起動・停止もでき、アプリの中に表示されます（[docs/desktop-app.md](docs/desktop-app.md)）。ターミナルで自分で起動するときは、次のとおりです。
 
 ```powershell
 cd $env:USERPROFILE\hsbg-kansousen-workspace

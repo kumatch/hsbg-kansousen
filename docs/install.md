@@ -17,7 +17,7 @@
 - 入れるもの（どちらも利用者のユーザーにだけ。管理者の権限は使わない）
   - **uv**: Python のツールを入れる道具。`winget` で入れる（すでにあれば入れない）
   - **hsbg**: このツール本体。uv が GitHub から取得して `%USERPROFILE%\.local\bin\hsbg.exe` に置く。Python 3.12 が無ければ uv が取得する
-- このフォルダに作るもの: `hsbg.toml`（設定）、`CLAUDE.md`、`README.md`、`analysis\`、`lenses\`、`knowledge\`、`.claude\`（Claude 用のスキル）。
+- このフォルダに作るもの: `hsbg.toml`（設定）、`CLAUDE.md`、`README.md`、`analysis\`、`lenses\`、`knowledge\`、`.claude\`（Claude 用のスキル、ダッシュボードの起動の設定、読むだけの hsbg コマンドを聞かずに実行する設定）。
   すでにあるファイルは書き換えない
 - ゲームのログ（記録アプリ hsbg-kifu が書く `Documents\HSBG-Logs`）は読むだけ。分析の内容や戦績をどこかへ送ることはない（インターネットはダウンロードにだけ使う）
 - コマンドを実行するたびに、アプリが許可を求めるので、内容を見て許可してほしいこと

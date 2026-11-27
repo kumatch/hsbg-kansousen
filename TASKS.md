@@ -54,9 +54,9 @@
   - [x] 2. git の要らないインストール（2026-11-28。README 冒頭に、アプリに送る最初の依頼文。`tests/test_docs.py` が URL の版を検査）: `uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<版>.zip`。
         AI が上から実行する手順書 `docs/install.md`（uv → hsbg → `hsbg init .` → hsbg-setup へ引き継ぎ → アプリの再起動）。
         `docs/release.md` に「README と install.md の URL の版を上げる」。`git+https` はターミナル版に残す
-  - [ ] 3. アプリとの連携: `hsbg init` が `.claude/launch.json`（`hsbg serve --no-open`、autoVerify なし）と `.claude/settings.json`
+  - [x] 3. アプリとの連携（2026-11-28。雛形はパッケージの中では `claude/` に置き、`hsbg init` が `.claude/` に写す）: `hsbg init` が `.claude/launch.json`（`hsbg serve --no-open`、autoVerify なし）と `.claude/settings.json`
         （読むだけの hsbg コマンドを許可、ログのフォルダを additionalDirectories）を置く。ワークスペースの CLAUDE.md に「ダッシュボードを開いて / 止めて」
-  - [ ] 4. 人向けの文書（`docs/desktop-app.md` の最初の版と README の入口は 2 と一緒に書いた。3 の後で、ボタンでのダッシュボードと承認の減らし方を足す）: `docs/desktop-app.md`（アプリの入れ方、フォルダの作り方、コードタブ、承認の読み方、最初の依頼文、ふだんの頼み方、更新、困ったとき）、
+  - [x] 4. 人向けの文書（2026-11-28。README の「はじめかた」をデスクトップアプリと Claude Code（CLI）の 2 つに分け、自分で打つコマンドは install.md に集約）: `docs/desktop-app.md`（アプリの入れ方、フォルダの作り方、コードタブ、承認の読み方、最初の依頼文、ふだんの頼み方、更新、困ったとき）、
         README の入口をアプリ版とターミナル版に分ける、`docs/architecture.md`
   - [ ] 5. 通しの確認: git の入っていない別の Windows ユーザーで、アプリだけでインストール → セットアップ → 分析 → ダッシュボードまで通す。
         ターミナル版の README の手順も同じ機会に通す（雛形が変わるので 0.6.0 の想定）
