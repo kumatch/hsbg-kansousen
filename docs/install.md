@@ -63,7 +63,7 @@
 3. 2 の読み直しをしてから、次で入れる（タグの zip を uv が GitHub から取得する。Python は 3.12 を使う）:
 
    ```powershell
-   uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v0.6.0.zip --python 3.12 --with pytest
+   uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v0.7.0.zip --python 3.12 --with pytest
    ```
 
 4. `uv tool update-shell`（次にアプリを開いたときから `hsbg` が見つかるように、PATH に `%USERPROFILE%\.local\bin` を足す）
