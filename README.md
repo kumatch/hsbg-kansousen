@@ -82,6 +82,7 @@ hsbg の更新は、どちらの場合も「hsbg を更新して」と頼みま�
 
 | hsbg | すべての項目を読めるログ | 対応する記録アプリ |
 |---|---|---|
+| [0.6.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.6.0) | schema 1.11.0 まで | hsbg-kifu [0.3.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.3.0) まで（ログの読み込みは 0.5.0 と同じ。Claude デスクトップアプリから始められるように） |
 | [0.5.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.5.0) | schema 1.11.0 まで | hsbg-kifu [0.3.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.3.0) まで（すべての選択肢と候補） |
 | [0.4.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.4.0) | schema 1.10.0 まで | hsbg-kifu [0.2.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.2.0) まで（アイスブロック） |
 | [0.3.0](https://github.com/kumatch/hsbg-kansousen/releases/tag/v0.3.0) | schema 1.9.0 まで | プラグイン [0.14.0](https://github.com/kumatch/hdt-plugin-hsbg-kansousen/releases/tag/v0.14.0) まで、hsbg-kifu [0.1.0](https://github.com/kumatch/hsbg-kifu/releases/tag/v0.1.0) |
