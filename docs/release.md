@@ -24,9 +24,12 @@ hsbg は記録アプリ（hsbg-kifu。2026-11-30 までは HDT プラグイン h
 
 1. `KNOWN_SCHEMA_VERSION` が hsbg-kifu の `GameLog.CurrentSchemaVersion` と同じこと
    （hsbg-kifu 側の `python scripts\check_cli_sync.py --strict` が確かめる）
-2. `pyproject.toml` の `version` を上げ、README の対応表に行を足す。検証コマンドと `python scripts\check_private.py` を緑にしてコミットする
+2. `pyproject.toml` の `version` と `hsbg/__init__.py` の `__version__` を上げ（`uv lock` で `uv.lock` も）、README の対応表に行を足す。`docs/install.md` にあるタグの zip の URL（`.../archive/refs/tags/v<version>.zip`）の版も上げる
+   （デスクトップアプリの利用者は、`docs/install.md` の URL の版を入れる。`tests/test_docs.py` が `version` との食い違いを見つける）。
+   検証コマンドと `python scripts\check_private.py` を緑にしてコミットする
 3. `git tag -a v<version> -m "hsbg <version>（hsbg-kifu <x.y.z> / schema <a.b.c> まで）"; git push origin main v<version>`
 4. GitHub の Releases でタグを選び、リリースノートに次を書く: 読めるログの版、対応する記録アプリの版、変更点、
-   版を指定したインストール（`uv tool install git+https://github.com/kumatch/hsbg-kansousen@v<version> --with pytest`）、
-   更新の手順（`uv tool upgrade hsbg` → ワークスペースで `hsbg skills update`）
+   版を指定したインストール（`uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<version>.zip --python 3.12 --with pytest`）、
+   更新の手順（デスクトップアプリなら「hsbg を更新して」と頼む。自分でするなら、上の URL で `uv tool install --force`
+   → ワークスペースで `hsbg skills update` と `hsbg init .`）
 5. その後で hsbg-kifu をリリースし、そのリリースノートに「新しい項目を使うには hsbg <version> 以降」と書く

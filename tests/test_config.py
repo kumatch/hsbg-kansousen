@@ -156,9 +156,17 @@ def test_init_creates_the_workspace_with_its_own_knowledge_folder(
     assert all(created.values())
     for name in ["hsbg.toml", ".gitignore", "README.md", "analysis"]:
         assert name in created
-    for name in ["README.md", "CLAUDE.md", "patches/_template.md", "season/README.md"]:
+    for name in [
+        "README.md",
+        "CLAUDE.md",
+        "CHANGELOG.md",
+        "patches/_template.md",
+        "season/README.md",
+    ]:
         assert f"knowledge/{name}" in created
     assert "gitignore" not in created  # stored under another name in the package only
+    assert ".claude/launch.json" in created and ".claude/settings.json" in created
+    assert not any(name.startswith("claude/") for name in created)
     # valid TOML; the only active line points at the knowledge folder it just created
     assert tomllib.loads((ws / "hsbg.toml").read_text(encoding="utf-8")) == {
         "knowledge_dir": "knowledge"
@@ -171,6 +179,30 @@ def test_init_creates_the_workspace_with_its_own_knowledge_folder(
     text = (ws / "hsbg.toml").read_text(encoding="utf-8")
     for key in config.ENV_VARS:
         assert f"{key} = " in text
+
+
+READ_ONLY_COMMANDS = {"config", "validate", "summarize", "stats", "lens list"}
+
+
+def test_init_writes_the_claude_settings(tmp_path: Path) -> None:
+    """.claude/launch.json starts the dashboard from the Claude desktop app's Browser pane;
+    .claude/settings.json allows only hsbg's read-only commands (the rest still asks)."""
+    ws = tmp_path / "ws"
+    config.init_workspace(ws)
+    launch = json.loads((ws / ".claude" / "launch.json").read_text(encoding="utf-8"))
+    assert launch["autoVerify"] is False  # nothing to verify after edits in a workspace
+    [dashboard] = launch["configurations"]
+    assert dashboard["runtimeExecutable"] == "hsbg"
+    args = dashboard["runtimeArgs"]
+    assert args[:2] == ["serve", "--no-open"]  # the app opens it in its own Browser pane
+    assert args[args.index("--port") + 1] == str(dashboard["port"])  # the app swaps a busy port
+    allow = json.loads((ws / ".claude" / "settings.json").read_text(encoding="utf-8"))
+    rules = allow["permissions"]["allow"]
+    assert set(allow) == {"permissions"} and set(allow["permissions"]) == {"allow"}
+    for tool in ["PowerShell", "Bash"]:
+        found = {r[len(tool) + 6 : -3] for r in rules if r.startswith(f"{tool}(hsbg ")}
+        assert found == READ_ONLY_COMMANDS, tool
+    assert all(re.fullmatch(r"(PowerShell|Bash)\(hsbg [a-z ]+ \*\)", r) for r in rules)
 
 
 def test_init_keeps_existing_files(tmp_path: Path) -> None:

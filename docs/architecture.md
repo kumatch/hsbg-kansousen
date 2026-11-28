@@ -3,7 +3,7 @@
 ## 1. 全体像
 
 ```
-ログのフォルダ（hsbg-kifu・HDT プラグインが書く。docs/log-schema.md）
+ログのフォルダ（記録アプリ hsbg-kifu が書く。以前の HDT プラグインの記録も同じ形。docs/log-schema.md）
         │ 読むだけ
         ▼
 ┌───────────────────────────────────────────────────────┐
@@ -26,7 +26,7 @@
 
 ## 2. 利用者ごとのもの: ワークスペース
 
-利用者の目標、分析の筋、ゲーム知識、保存した分析は、hsbg 本体ではなく各自の **ワークスペース**（`hsbg init <folder>` で作る。private な git リポジトリを推奨）に置く。
+利用者の目標、分析の筋、ゲーム知識、保存した分析は、hsbg 本体ではなく各自の **ワークスペース**（`hsbg init <folder>` で作る）に置く。git は前提にしない（手順にも案内にも出さず、使うかは利用者に任せる）。履歴は git 無しで残る（分析はファイル、知識庫の変更は `knowledge/CHANGELOG.md`）。
 利用者どうしで共有しない（共有すると、そのメンテナンスと、誰かの変更が他の人の分析に波及する依存が生まれる）。
 
 ```
@@ -36,9 +36,14 @@
 ├── profile.md           # 目標・優先度・助言の前に確かめること（hsbg-setup スキルが対話で作る）
 ├── lenses/<名前>/       # レンズ（§4、docs/lenses.md）
 ├── knowledge/           # ゲームの事実の資料庫（ルールの前提、シーズン、パッチ）。雛形と tools/pool.py を hsbg init が置く
+│   └── CHANGELOG.md     # 知識庫の変更の記録（変えるたびに 1 行。分析が前回からの変更を知るのに使う）
 ├── analysis/            # 保存された分析（*_game.md, trend-*.md）
-├── reports/, export/    # 作り直せる出力（git に入れない）
-└── .claude/skills/      # hsbg のスキルの複製（hsbg skills update で更新。利用者は編集しない）
+├── reports/, export/    # 作り直せる出力（バックアップしなくてよい）
+└── .claude/
+    ├── skills/          # hsbg のスキルの複製（hsbg skills update で更新。利用者は編集しない）
+    ├── launch.json      # ダッシュボード（hsbg serve --no-open）。Claude デスクトップアプリのブラウザペインから起動する（hsbg init が置く）
+    ├── settings.json    # hsbg の読むだけのコマンドを許可（hsbg init が置く）
+    └── settings.local.json  # 利用者ごとの追加（ログのフォルダの additionalDirectories など。hsbg-setup が書く）
 ```
 
 ## 3. 設定（`hsbg/config.py`）
@@ -78,7 +83,7 @@ Claude Code のスキルは hsbg に含め、`hsbg init` / `hsbg skills update` 
 
 | スキル | 役割 |
 |---|---|
-| `hsbg-analysis` | 1 ゲーム / 傾向の分析と保存。`analyze-game.md`（観点 a〜d + 各レンズのゲーム用チェック）、`analyze-trend.md`（Q1〜Q7 + 各レンズの問い、Standing summary、`## Proposed lens changes`）、`log-caveats.md`（ログの版ごとの注意）を同じフォルダに持つ。知識庫は読んだ時点のコミットを記録し、次の傾向分析でそこからの変更を見る |
+| `hsbg-analysis` | 1 ゲーム / 傾向の分析と保存。`analyze-game.md`（観点 a〜d + 各レンズのゲーム用チェック）、`analyze-trend.md`（Q1〜Q7 + 各レンズの問い、Standing summary、`## Proposed lens changes`）、`log-caveats.md`（ログの版ごとの注意）を同じフォルダに持つ。知識庫は読んだ時点（`CHANGELOG.md` の最後の行の日時。利用者が git で管理していればコミット）を記録し、次の傾向分析でそこからの変更を見る |
 | `hsbg-lens` | レンズを利用者と相談して作る・直す・引退させる |
 | `hsbg-setup` | 初回の設定確認と、目標の聞き取り → `profile.md` |
 
@@ -106,7 +111,7 @@ hsbg/
 | 項目 | 決定 |
 |---|---|
 | フレームワーク | Streamlit。分析層が Python / pandas なので同じ関数をそのまま呼べる |
-| 起動 | `hsbg serve` が内部で `streamlit run` を呼ぶ。Windows のショートカット用に `scripts/start-dashboard.ps1` |
+| 起動 | `hsbg serve` が内部で `streamlit run` を呼ぶ。Claude デスクトップアプリはワークスペースの `.claude/launch.json`（`hsbg serve --no-open --port 8501`）でブラウザペインに出す（ポートが使用中なら、アプリが `--port` の値を空いているものに替える）。Windows のショートカット用に `scripts/start-dashboard.ps1` |
 | ネットワーク | `127.0.0.1` 固定（LAN にも公開しない）。Streamlit の利用統計の送信は無効 |
 | データ | 起動時とサイドバーの「再読み込み」でログフォルダを走査。数百ゲームを超えたら parquet キャッシュ。DB は使わない |
 | 書き込み | ログを**読むだけ** |

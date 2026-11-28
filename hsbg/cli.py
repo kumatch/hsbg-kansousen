@@ -483,8 +483,9 @@ def init(
         ),
     ] = True,
 ) -> None:
-    """Create a workspace: hsbg.toml (defaults, commented), analysis/, README.md, .gitignore and
-    your own, empty knowledge folder (knowledge/). Files that already exist are left as they are."""
+    """Create a workspace: hsbg.toml (defaults, commented), analysis/, README.md, .gitignore,
+    .claude/ (Claude's skills, the dashboard's launch.json, settings.json) and your own, empty
+    knowledge folder (knowledge/). Files that already exist are left as they are."""
     for path, created in config.init_workspace(folder, knowledge=knowledge):
         typer.echo(f"{'created' if created else 'exists '}  {path}")
     typer.echo(f"next: cd {folder}; hsbg config")

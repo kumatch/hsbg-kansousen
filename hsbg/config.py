@@ -41,8 +41,9 @@ _VAR_RE = re.compile(r"%([^%\\/]+)%")
 TEMPLATE_DIR = Path(__file__).with_name("templates") / "workspace"
 SKILLS_TEMPLATE_DIR = Path(__file__).with_name("templates") / "skills"
 KNOWLEDGE_DIR_NAME = "knowledge"
-# files kept under another name in the package (a real .gitignore there would apply to this repo)
-_TEMPLATE_RENAMES = {"gitignore": ".gitignore"}
+# files / folders kept under another name in the package (a real .gitignore there would apply to
+# this repo, and a dot folder is easy to miss when packaging)
+_TEMPLATE_RENAMES = {"gitignore": ".gitignore", "claude": ".claude"}
 
 
 @dataclass(frozen=True)
@@ -173,7 +174,9 @@ def load(logs_dir: Path | None = None, start: Path | None = None) -> Settings:
 
 def init_workspace(folder: Path, knowledge: bool = True) -> list[tuple[Path, bool]]:
     """Copy the workspace skeleton (`templates/workspace/`): hsbg.toml, README.md, .gitignore,
-    analysis/, lenses/ and, unless `knowledge` is false, the user's own knowledge folder
+    analysis/, lenses/, .claude/launch.json (the dashboard for the Claude desktop app's Browser
+    pane), .claude/settings.json (hsbg's read-only commands allowed) and, unless `knowledge` is
+    false, the user's own knowledge folder
     (knowledge/, with `knowledge_dir = 'knowledge'` in hsbg.toml). Existing files are left
     untouched. Returns (path, created) for every file / folder of the skeleton."""
     folder.mkdir(parents=True, exist_ok=True)
@@ -187,7 +190,7 @@ def init_workspace(folder: Path, knowledge: bool = True) -> list[tuple[Path, boo
             continue
         if rel.parts[0] == KNOWLEDGE_DIR_NAME and not knowledge:
             continue
-        dest = folder.joinpath(*rel.parts[:-1], _TEMPLATE_RENAMES.get(rel.name, rel.name))
+        dest = folder.joinpath(*(_TEMPLATE_RENAMES.get(part, part) for part in rel.parts))
         if dest.exists():
             result.append((dest, False))
             continue
