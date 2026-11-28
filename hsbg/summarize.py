@@ -367,8 +367,9 @@ def _choice_section(
         'Every choice I was offered, in order. Source = what made the choice; "Hero power → X" = '
         "made later by X, a card my hero power created earlier (e.g. a destination that discovers "
         "on arrival), not by using the hero power that turn. Kind = discover (minions offered), "
-        "pick (destinations, secrets, trinkets, ...) or buy (a Timewarp purchase, see ## Timewarp). Offered = the options as shown (minions: tier "
-        "and stats when offered); the one I picked is marked →.",
+        "pick (destinations, secrets, trinkets, ...) or buy (a Timewarp purchase paid with "
+        "Chronum). Offered = the options as shown (minions: tier and stats when offered); the one "
+        "I picked is marked →.",
         "",
         "| T | Source | Kind | Offered | Picked |",
         "|---|---|---|---|---|",
