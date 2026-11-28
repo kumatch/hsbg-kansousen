@@ -64,12 +64,32 @@ Interview briefly (they can skip any question), then write `profile.md` and show
 the player's language are fine). Write dated facts ("2026-10-31: ..."). It holds the player's goals
 and preferences only — no statistics (those are in the analyses) and no game facts (knowledge).
 
-## 4. Next steps
+## 4. What to do next (the end of the setup)
 
-- With fewer than about 10 games, analyse single games first (`hsbg-analysis`); trends need more.
-- Lenses come later: after a few analyses, when an angle keeps coming up, the `hsbg-lens` skill turns
-  it into a lens. Mention `lenses/README.md`.
-- Dashboard (127.0.0.1 only; the マイ分析 page shows the lenses): they can ask "ダッシュボードを開いて".
-  In the Claude desktop app they can also start it themselves: Browser pane → Dev servers →
-  "hsbg dashboard" (`.claude/launch.json`; the menu appears once the session has a message).
-  In a terminal: `hsbg serve`.
+End the setup with a short guide the player can act on right away. Make it the **last part of your
+last message**, after the setup report and after anything else you have to tell them (e.g. the
+install steps' "restart the app next time"), so it is not buried. Write it as a numbered list; each
+item says in one line what it is for, gives a request they can copy, and offers to do it now. Then
+ask which one to start with (or anything else). Do not start any of them without their answer.
+
+1. **What they want to find out** — turn the top goal in `profile.md` into a first question to look
+   at (e.g. for "fewer 5th–8th places": 「5 位以下になったゲームに共通することを見たい」).
+2. **Analyse their games** (`hsbg-analysis`) — use the count from `hsbg validate`: with fewer than
+   about 10 games, the latest game (「さっきのゲームを分析して」); with more, also a trend over recent
+   games (「直近 30 ゲームの傾向を見て」).
+3. **Start the knowledge folder (recommended)** — it is empty now, and that is normal. Say why it
+   matters: analyses check card tiers, numbers, patch changes and the current season's mechanics
+   against it instead of guessing, and recent seasons are often beyond what Claude knows; facts not
+   in it are marked unchecked. The easiest start: paste the current patch notes (or show the season's
+   mechanics from the game) and ask to record them (「パッチノートを貼るので knowledge に記録して」);
+   you write `patches/` or `season/current.md` following `knowledge/CLAUDE.md` and add a
+   `CHANGELOG.md` line. It grows a little with each patch.
+4. **The dashboard** — charts of their games in the browser (overview, heroes, tribes, play trends,
+   opponents, each game; the マイ分析 page shows their lenses), local only (127.0.0.1). In the Claude
+   desktop app: offer to open it now in the Browser pane (「ダッシュボードを開いて」), and say they can
+   also start / stop it themselves from the pane's Dev servers menu → "hsbg dashboard"
+   (`.claude/launch.json`; the menu appears once the session has a message). In a terminal:
+   `hsbg serve`.
+
+After the list, one line: lenses come later — when an angle keeps coming up in analyses, the
+`hsbg-lens` skill turns it into a lens (`lenses/README.md`).

@@ -91,3 +91,7 @@
   （`FileSystemWriteVirtualization`。レジストリは振り替えない `RegistryWriteVirtualization disabled`）なので、uv の置き場所を
   ユーザーの環境変数で `%USERPROFILE%\.local\share\uv` と `%USERPROFILE%\.cache\uv` にし、`--python 3.12` を付けることにした。
   開発用のユーザーでは、`Invoke-CommandInDesktopPackage` でパッケージの中から実行しても振り替えは起きず、uv 0.13.10 と Python 3.15 でも失敗を再現できなかった
+- 通しの確認の 2 回目（2026-11-28、同じ別ユーザーで最初から）: インストール、分析、ダッシュボードの表示までアプリの中で完結した。
+  アプリの外の PowerShell と、アプリを開き直した後の `hsbg config` も動いた。セットアップの終わりの案内に、知識庫を始めることが無く、
+  ダッシュボードの案内が埋もれていたので、hsbg-setup の最後を「次にできること」の番号付きの一覧（分析したいこと、ゲームの分析、知識庫、ダッシュボード）にし、
+  最後のメッセージの最後に置くようにした
