@@ -17,6 +17,8 @@
 - 入れるもの（どちらも利用者のユーザーにだけ。管理者の権限は使わない）
   - **uv**: Python のツールを入れる道具。`winget` で入れる（すでにあれば入れない）
   - **hsbg**: このツール本体。uv が GitHub から取得して `%USERPROFILE%\.local\bin\hsbg.exe` に置く。Python 3.12 が無ければ uv が取得する
+  - uv の置き場所を `%USERPROFILE%\.local\share\uv`（Python とツール）と `%USERPROFILE%\.cache\uv`（ダウンロードの一時置き場）にする。そのために、
+    ユーザーの環境変数（`UV_PYTHON_INSTALL_DIR`、`UV_TOOL_DIR`、`UV_CACHE_DIR`）を設定する（すでに値があれば変えない）
 - このフォルダに作るもの: `hsbg.toml`（設定）、`CLAUDE.md`、`README.md`、`analysis\`、`lenses\`、`knowledge\`、`.claude\`（Claude 用のスキル、ダッシュボードの起動の設定、読むだけの hsbg コマンドを聞かずに実行する設定）。
   すでにあるファイルは書き換えない
 - ゲームのログ（記録アプリ hsbg-kifu が書く `Documents\HSBG-Logs`）は読むだけ。分析の内容や戦績をどこかへ送ることはない（インターネットはダウンロードにだけ使う）
@@ -29,10 +31,11 @@
 
 ## 2. コマンドの実行のしかた
 
-- PowerShell で実行します。**各コマンドの前に PATH を読み直してください**（インストールした直後は、起動中のアプリに新しい PATH が反映されないため）:
+- PowerShell で実行します。**各コマンドの前に、PATH と uv の置き場所を読み直してください**（インストールや設定をした直後は、起動中のアプリに反映されないため）:
 
   ```powershell
   $env:Path = [Environment]::GetEnvironmentVariable('Path','User') + ';' + [Environment]::GetEnvironmentVariable('Path','Machine')
+  foreach ($n in 'UV_PYTHON_INSTALL_DIR', 'UV_TOOL_DIR', 'UV_CACHE_DIR') { $v = [Environment]::GetEnvironmentVariable($n, 'User'); if ($v) { Set-Item "env:$n" $v } }
   ```
 
 - Bash しか使えないときは、PowerShell のコマンドを `powershell.exe -NoProfile -Command "..."` で包んで実行します
@@ -48,14 +51,23 @@
 ## 4. hsbg を入れる
 
 1. `hsbg config`。最初の行に `hsbg <版>` が表示されれば、入っている版を伝えて 5 へ。**入れ直しや更新はしない**（頼まれたときだけ。下の「更新するとき」）
-2. 無ければ、次で入れる（タグの zip を uv が GitHub から取得する）:
+2. 無ければ、uv の置き場所を AppData の外にする（ユーザーの環境変数。すでに値があるものは変えない）。
+   デスクトップアプリから実行すると、AppData への書き込みがアプリ専用の場所に振り替えられることがあり、uv が Python を入れるところで失敗したり、
+   入っても普段のターミナルから hsbg を使えなかったりするため:
 
    ```powershell
-   uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v0.5.0.zip --with pytest
+   $dirs = [ordered]@{ UV_PYTHON_INSTALL_DIR = "$env:USERPROFILE\.local\share\uv\python"; UV_TOOL_DIR = "$env:USERPROFILE\.local\share\uv\tools"; UV_CACHE_DIR = "$env:USERPROFILE\.cache\uv" }
+   foreach ($n in $dirs.Keys) { if (-not [Environment]::GetEnvironmentVariable($n, 'User')) { [Environment]::SetEnvironmentVariable($n, $dirs[$n], 'User') } }
    ```
 
-3. `uv tool update-shell`（次にアプリを開いたときから `hsbg` が見つかるように、PATH に `%USERPROFILE%\.local\bin` を足す）
-4. PATH を読み直して `hsbg config` で確かめる（最初の行が `hsbg <版>`）。見つからなければ `& "$env:USERPROFILE\.local\bin\hsbg.exe" config`
+3. 2 の読み直しをしてから、次で入れる（タグの zip を uv が GitHub から取得する。Python は 3.12 を使う）:
+
+   ```powershell
+   uv tool install https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v0.5.0.zip --python 3.12 --with pytest
+   ```
+
+4. `uv tool update-shell`（次にアプリを開いたときから `hsbg` が見つかるように、PATH に `%USERPROFILE%\.local\bin` を足す）
+5. PATH を読み直して `hsbg config` で確かめる（最初の行が `hsbg <版>`）。見つからなければ `& "$env:USERPROFILE\.local\bin\hsbg.exe" config`
    （このセッションの残りはこのフルパスで呼んでよい）
 
 ## 5. ワークスペースを作る
@@ -84,7 +96,7 @@
 1. 入っている版を `hsbg config` の最初の行で、最新の版を https://github.com/kumatch/hsbg-kansousen/releases で確かめる。同じなら何もしない
 2. どう入っているかを `Get-Content "$(uv tool dir)\hsbg\uv-receipt.toml"` で確かめる。`url = "https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/..."`
    なら次へ。それ以外（`editable` やローカルのパスなど）なら、利用者が自分で入れたもの（開発者など）なので置き換えず、利用者に任せる
-3. `uv tool install --force https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<最新の版>.zip --with pytest`
+3. `uv tool install --force https://github.com/kumatch/hsbg-kansousen/archive/refs/tags/v<最新の版>.zip --python 3.12 --with pytest`
    （`uv tool upgrade` は、zip で入れたものには効かない）
 4. ワークスペースで `hsbg skills update`（スキルを新しくする）と `hsbg init .`（新しい版で増えたファイルだけを足す）
 5. 記録アプリ hsbg-kifu の版との対応は README の「記録アプリと hsbg の版」

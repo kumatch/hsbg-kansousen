@@ -85,3 +85,9 @@
   `port: 8501`、`autoVerify: false`）が動いた（2026-11-28）。ブラウザペインのヘッダーの Dev servers メニューは、セッションで最初のメッセージを送った後に出る。
   起動ボタンでダッシュボードが開き、表示と操作もできた。8501 が使用中だったときは、アプリが引数を `--server.port 8502` にして空いているポートで起動した
   プロジェクトの `.claude/settings.json` の `PowerShell(hsbg config *)` で、フォルダを信頼した後は承認なしで実行された。`hsbg init` が置いたスキル 3 つも `/` の一覧に出た
+- 通しの確認の 1 回目（2026-11-28、別の Windows ユーザー、アプリ 6.28899.6.0、uv 0.13.10）: git は求められず、インストールの前の説明と了承も出た。
+  `uv tool install` が Python 3.15.2 を入れたところで `Missing expected target directory for Python minor version link` で失敗した。
+  `%APPDATA%\uv\python` の中身がアプリのパッケージの `LocalCache\Roaming\uv\python` にもあった。アプリのマニフェストは AppData への書き込みを振り替える設定
+  （`FileSystemWriteVirtualization`。レジストリは振り替えない `RegistryWriteVirtualization disabled`）なので、uv の置き場所を
+  ユーザーの環境変数で `%USERPROFILE%\.local\share\uv` と `%USERPROFILE%\.cache\uv` にし、`--python 3.12` を付けることにした。
+  開発用のユーザーでは、`Invoke-CommandInDesktopPackage` でパッケージの中から実行しても振り替えは起きず、uv 0.13.10 と Python 3.15 でも失敗を再現できなかった
